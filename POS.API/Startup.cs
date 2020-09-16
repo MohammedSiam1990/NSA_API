@@ -1,0 +1,257 @@
+using System;
+using System.IO;
+using System.Text;
+using System.Threading.Tasks;
+using AutoMapper;
+using EmailService;
+using MailKit;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Serialization;
+using Pos.IService;
+using Pos.Service;
+using POS.API.Helpers;
+using POS.Data.DataContext;
+using POS.Service.IService;
+using POS.Service.Services;
+using Steander.Core.Entities;
+
+namespace POS.API.CORE
+{
+    public class Startup
+    {
+        private readonly IWebHostEnvironment _env;
+        // private readonly IConfiguration _configuration;
+
+        public Startup(IWebHostEnvironment env, IConfiguration configuration)
+        {
+            _env = env;
+            Configuration = configuration;
+        }
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+
+        }
+
+
+        public IConfiguration Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            //services.AddEntityFrameworkSqlServer();
+            //services.AddDbContext<PosDbContext>();
+            // services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>();
+ 
+
+            services.AddDbContext<PosDbContext>(options =>
+                          options.UseSqlServer(Configuration.GetConnectionString("DefaultPosConnection")));
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+
+
+            services.AddIdentityCore<ApplicationUser>().AddRoles<IdentityRole>()
+                .AddClaimsPrincipalFactory<UserClaimsPrincipalFactory<ApplicationUser, IdentityRole>>()
+                .AddEntityFrameworkStores<PosDbContext>()
+                .AddDefaultTokenProviders()
+                .AddDefaultUI();
+        //    (options =>
+        //{
+        //    options.Password.RequireDigit = false;
+        //    options.Password.RequireLowercase = false;
+        //    options.Password.RequireUppercase = false;
+        //    options.Password.RequiredLength = 5;
+        //}).AddEntityFrameworkStores<PosDbContext>()
+        //.AddDefaultTokenProviders();
+
+            //    services.AddDbContext<PosDbContext>(c =>
+            //c.UseInMemoryDatabase(Guid.NewGuid().ToString()).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+            services.AddCors(o =>
+            {
+                o.AddPolicy("CorsAllowAll", policy => policy
+                     .SetIsOriginAllowed(_ => true)
+                     .AllowAnyHeader()
+                     .AllowAnyMethod()
+                     .AllowCredentials()
+                     .SetPreflightMaxAge(TimeSpan.FromMinutes(600)));
+            });
+            services.AddMvc();
+            services.AddCors();
+            services.AddControllers();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddControllers().AddNewtonsoftJson(options =>
+     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
+
+            // Register the Swagger generator, defining 1 orMicrosoft.OpenApi more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API POS", Version = "v1" });
+            });
+            services.AddSwaggerDocumentation();
+            //configure strongly typed settings objects
+           var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+
+            //configure jwt authentication
+           var appSettings = appSettingsSection.Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            //services.AddAuthentication(x =>
+            //{
+            //    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //})
+            //.AddJwtBearer(x =>
+            //{
+            //    x.Events = new JwtBearerEvents
+            //    {
+            //        OnTokenValidated = context =>
+            //        {
+            //            var userService = context.HttpContext.RequestServices.GetRequiredService<IAccountService>();
+            //            var userId = context.Principal.Identity.Name;
+            //            try
+            //            {
+            //                var user = userService.GetUserAsync(userId);
+            //                if (user == null)
+            //                {
+            //                    //return unauthorized if user no longer exists
+            //                    context.Fail("Unauthorized");
+            //                }
+            //            }
+            //            catch
+            //            {
+            //            }
+
+            //            return Task.CompletedTask;
+            //        }
+            //    };
+            //    x.RequireHttpsMetadata = false;
+            //    x.SaveToken = true;
+            //    x.TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        ValidateIssuerSigningKey = true,
+            //        IssuerSigningKey = new SymmetricSecurityKey(key),
+            //        ValidateIssuer = false,
+            //        ValidateAudience = false
+            //    };
+            //});
+
+
+            #region  Eltype
+
+
+
+            services.AddAuthentication(auth =>
+            {
+                auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidAudience = Configuration["AuthSettings:Audience"],
+                    ValidIssuer = Configuration["AuthSettings:Issuer"],
+                    RequireExpirationTime = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["AuthSettings:Key"])),
+                    ValidateIssuerSigningKey = true
+
+                };
+            });
+            #endregion
+
+
+            var emailConfig = Configuration
+                .GetSection("EmailConfiguration")
+                .Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
+            //services.AddScoped<IEmailSender, EmailSender>();
+            services.Configure<FormOptions>(o => {
+                o.ValueLengthLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;
+            });
+            // configure DI for application services
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<ICompaniesService, CompaniesService>();
+            services.AddScoped<IBrandService, BrandService>();
+            services.AddScoped<IBranchService, BranchService>();
+            services.AddScoped<IMajorServicesService, MajorServicesService>();
+
+
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            app.UseStaticFiles(); // For the wwwroot folder
+            app.UseFileServer(new FileServerOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                Path.Combine(Directory.GetCurrentDirectory(), "uploads")),
+                RequestPath = "/uploads",
+                EnableDirectoryBrowsing = true
+            });
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseCors("CorsAllowAll");
+            }
+            else
+            {
+                // production and staging cors should be here
+                UseCors(app);
+            }
+
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API POS V1");
+                c.RoutePrefix = string.Empty;
+                c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+            });
+            app.UseSwaggerDocumentation();
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
+            // UseCors(app);
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                //  endpoints.MapRazorPages();
+            });
+            //to ignore the reference loop
+
+        }
+
+        private static void UseCors(IApplicationBuilder app)
+        {
+            // global cors policy
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                );
+
+        }
+    }
+}

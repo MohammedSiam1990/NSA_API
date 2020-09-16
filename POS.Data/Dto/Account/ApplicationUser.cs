@@ -1,0 +1,21 @@
+﻿using Microsoft.AspNetCore.Identity;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+
+namespace Steander.Core.Entities
+{
+
+    public class ApplicationUser : IdentityUser
+    {
+        //[DataType("datetime2")]
+        public DateTime? CreateDate { get; set; }
+
+        public bool IsSuperAdmin { get; set; }
+        public int? CompanyId { get; set; }
+        public int? UserType { get; set; }
+        public string InsertedBy { get; set; }
+      
+    }
+}
