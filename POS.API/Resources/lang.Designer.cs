@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace POSAPI.Resources {
+namespace POS.API.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace POSAPI.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("POSAPI.Resources.lang", typeof(lang).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("POS.API.Resources.lang", typeof(lang).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -66,6 +66,15 @@ namespace POSAPI.Resources {
         public static string Activare_your_account {
             get {
                 return ResourceManager.GetString("Activare_your_account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ahmed.
+        /// </summary>
+        public static string ahmed {
+            get {
+                return ResourceManager.GetString("ahmed", resourceCulture);
             }
         }
         

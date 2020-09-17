@@ -24,7 +24,7 @@ namespace Pos.IService
         bool ValidateCodeorNameAlreadyExist(int BrandId, int CompanyId, string BrandCode, string BrandName);
         PagedList<Brands> GetBrandsByCompany(List<Brands> Brands, PagedListModel model);
 
-        void SaveProcBrands(Brands Branch);
+        int SaveProcBrands(Brands Branch);
         List<GetBrands> GetProcBrands(int CompanyId, string ImageURL);
     }
 }

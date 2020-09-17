@@ -60,12 +60,12 @@ namespace Pos.Service
             return PosService.BranchRepository.ValidateCodeorNameAlreadyExist(e => e.BranchId != BranchId  &&(  e.BranchName == BranchName));
         }
 
-        public void SaveProcBranch(Branches Branch)
+        public int SaveProcBranch(Branches Branch)
         {
-            PosService.BranchRepository.SaveProcBranch(Branch);
+          return  PosService.BranchRepository.SaveProcBranch(Branch);
         }
 
-        public GetBranches GetProcBranches(int BrandID, string ImageURL)
+        public List<GetBranches> GetProcBranches(int BrandID, string ImageURL)
         {
             return PosService.BranchRepository.GetProcBranches(BrandID, ImageURL);
         }

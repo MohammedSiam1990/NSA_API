@@ -128,7 +128,7 @@ namespace POS.Data.Repository
         }
 
         [Obsolete]
-        public void SaveProcBranch(Branches Branch)
+        public int SaveProcBranch(Branches Branch)
         {
 
             using (var DbContext = new PosDbContext())
@@ -153,20 +153,20 @@ namespace POS.Data.Repository
                                       new SqlParameter("@ModifiedBy", Branch.ModifiedBy)    , 
                                       new SqlParameter("@Latitude",Branch.Latitude )    ,
                                       new SqlParameter("@Longitude",Branch.Longitude  )    });
-                
-             }
-
+                return result;
+            }
+         
         }
         [Obsolete]
-        public GetBranches GetProcBranches(int BrandID, string ImageURL)
+        public List<GetBranches> GetProcBranches(int BrandID, string ImageURL)
         {
             using (var DbContext = new PosDbContext())
             {
 
                 string Sql = "EXEC GetBranches @BrandID,@ImageURL";
-                return DbContext.GetBranches.FromSqlRaw(Sql,  new SqlParameter("@BrandID", BrandID),
+                return DbContext.GetBranches.FromSql(Sql,  new SqlParameter("@BrandID", BrandID),
                                                               new SqlParameter("@ImageURL", ImageURL)
-                                                       ).AsEnumerable().FirstOrDefault();
+                                                       ).ToList();
             }
         }
     }

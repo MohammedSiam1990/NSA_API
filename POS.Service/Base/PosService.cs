@@ -17,6 +17,7 @@ namespace Pos.Service.Base
         public ICityRepository CityRepository { get; set; }
         public ICountryRepository CountryRepository { get; set; }
         public IMajorServiceTypesRepository MajorServiceTypesRepository { get; set; }
+        public IItemGroupsRepository ItemGroupsRepository { get; set; }
         //public IAspNetUserRolesRepository AspNetUserRolesRepository { get; set; }
         [Inject]
         public PosServices(          ICompaniesRepository _CompaniesRepository,
@@ -27,8 +28,9 @@ namespace Pos.Service.Base
                                      IMajorServiceTypesRepository _IMajorServiceTypesRepository,
                                      IBranchRepository _BranchRepository,
                                      ICityRepository _CityRepository,
-                                     ICountryRepository _CountryRepository
-                                     //IAspNetUserRolesRepository _AspNetUserRolesRepository
+                                     ICountryRepository _CountryRepository,
+                                     IItemGroupsRepository _ItemGroupsRepository
+                            //IAspNetUserRolesRepository _AspNetUserRolesRepository
                             )
         {
             CompaniesRepository = _CompaniesRepository;
@@ -40,6 +42,7 @@ namespace Pos.Service.Base
             BranchRepository = _BranchRepository;
             CityRepository = _CityRepository;
             CountryRepository = _CountryRepository;
+            ItemGroupsRepository = _ItemGroupsRepository;
             //AspNetUserRolesRepository = _AspNetUserRolesRepository;
         }
 

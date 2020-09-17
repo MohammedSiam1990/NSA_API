@@ -18,8 +18,8 @@ namespace POS.Data.IRepository
         void UpdateBranch(Branches Branch);
         void DeleteBranch(long BranchId);
         bool ValidateCodeorNameAlreadyExist(Expression<Func<Branches, bool>> where);
-        void SaveProcBranch(Branches Branch);
-        GetBranches GetProcBranches( int BrandID,string ImageURL );
+        int SaveProcBranch(Branches Branch);
+        List<GetBranches> GetProcBranches( int BrandID,string ImageURL );
 
 
     }

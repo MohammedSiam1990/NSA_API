@@ -30,9 +30,9 @@ namespace POS.IService.Base
                                                    new MajorServiceRepository(databaseFactory),
                                                    new MajorServiceTypesRepository(databaseFactory),
                                                    new BranchRepository(databaseFactory),
-                                                  
                                                    new CityRepository(databaseFactory),
-                                                   new CountryRepository(databaseFactory)
+                                                   new CountryRepository(databaseFactory),
+                                                   new ItemGroupsRepository(databaseFactory)
                                                    //new AspNetUserRolesRepository(databaseFactory)
                                                 );
                 }

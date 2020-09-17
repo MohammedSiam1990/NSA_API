@@ -69,9 +69,9 @@ namespace Pos.Service
             return new PagedList<Brands>(Brands, model.PageIndex, model.PageSize);
         }
 
-        public void SaveProcBrands(Brands Brand)
+        public int SaveProcBrands(Brands Brand)
         {
-            PosService.BrandRepository.SaveProcBrand(Brand);
+         return   PosService.BrandRepository.SaveProcBrand(Brand);
         }
 
         public List<GetBrands> GetProcBrands(int CompanyId, string ImageURL)

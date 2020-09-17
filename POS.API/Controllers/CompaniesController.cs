@@ -10,7 +10,7 @@ using POS.Entities;
 
 namespace POS.API.CORE.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CompaniesController : ControllerBase
@@ -61,16 +61,17 @@ namespace POS.API.CORE.Controllers
                 if (CompaniesService.ValidateCompany(Company))
                 // Edit Company
                 {
-
                     CompaniesService.UpdateCompany(Company);
-                    return Ok(new { message = "Update Company Success" });
+                    return Ok(new { success = false, message = Resources.lang.Update_operation_failed });
                 }
+
+
                 return Ok(new { message = "Data is Not Complete" });
             }
             catch (Exception ex)
             {
                 // return error message if there was an exception
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(new { message = Resources.lang.Update_operation_failed,ExMessage=ex.Message  });
             }
         }
 

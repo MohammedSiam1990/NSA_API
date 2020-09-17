@@ -18,6 +18,8 @@ namespace POS.API.Helpers
             CreateMap<BrandsModel, Brands>();
             CreateMap<Brands, BrandsDto>();
             CreateMap<BrandsDto, Brands>();
+            CreateMap<ItemGroup, ItemGroupsModel>();
+            CreateMap<ItemGroupsModel, ItemGroup>();
 
         }
     }

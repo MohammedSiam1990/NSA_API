@@ -22,7 +22,7 @@ namespace Pos.IService
         void DeleteBranch(long BranchId);
         bool ValidateCodeorNameAlreadyExist(long BranchId, int CompanyId, string BranchCode, string BranchName);
 
-        void SaveProcBranch(Branches Branch);
-        GetBranches GetProcBranches(int BrandID, string ImageURL);
+        int SaveProcBranch(Branches Branch);
+       List<GetBranches>  GetProcBranches(int BrandID, string ImageURL);
     }
 }

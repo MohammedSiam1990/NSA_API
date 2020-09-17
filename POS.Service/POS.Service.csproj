@@ -158,6 +158,7 @@
     <Compile Include="IService\IBrandService.cs" />
     <Compile Include="IService\ICompaniesService.cs" />
     <Compile Include="IService\IAccountService.cs" />
+    <Compile Include="IService\IItemGroupsService.cs" />
     <Compile Include="IService\IMajorServicesService.cs" />
     <Compile Include="IService\IServiceCategoryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="Services\BrandService.cs" />
     <Compile Include="Services\CompaniesService.cs" />
     <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\ItemGroupsService.cs" />
     <Compile Include="Services\MajorServicesService.cs" />
     <Compile Include="Services\ServiceCategoryService.cs" />
   </ItemGroup>

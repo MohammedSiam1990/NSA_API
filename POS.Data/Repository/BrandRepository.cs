@@ -153,7 +153,7 @@ namespace POS.Data.Repository
         }
 
         [Obsolete]
-        public void SaveProcBrand(Brands Brands)
+        public int SaveProcBrand(Brands Brands)
         {
             using (var DbContext = new PosDbContext())
             {
@@ -176,7 +176,7 @@ namespace POS.Data.Repository
                                                 new SqlParameter("@CompanyId"  , Brands.CompanyId),
                                                 new SqlParameter("@IsDefault"   , Brands.IsDefault)
                                             });
-
+                return result;
             }
         }
 

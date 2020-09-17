@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,14 +10,18 @@ using MailKit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
@@ -54,7 +60,7 @@ namespace POS.API.CORE
             //services.AddEntityFrameworkSqlServer();
             //services.AddDbContext<PosDbContext>();
             // services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>();
- 
+
 
             services.AddDbContext<PosDbContext>(options =>
                           options.UseSqlServer(Configuration.GetConnectionString("DefaultPosConnection")));
@@ -67,14 +73,14 @@ namespace POS.API.CORE
                 .AddEntityFrameworkStores<PosDbContext>()
                 .AddDefaultTokenProviders()
                 .AddDefaultUI();
-        //    (options =>
-        //{
-        //    options.Password.RequireDigit = false;
-        //    options.Password.RequireLowercase = false;
-        //    options.Password.RequireUppercase = false;
-        //    options.Password.RequiredLength = 5;
-        //}).AddEntityFrameworkStores<PosDbContext>()
-        //.AddDefaultTokenProviders();
+            //    (options =>
+            //{
+            //    options.Password.RequireDigit = false;
+            //    options.Password.RequireLowercase = false;
+            //    options.Password.RequireUppercase = false;
+            //    options.Password.RequiredLength = 5;
+            //}).AddEntityFrameworkStores<PosDbContext>()
+            //.AddDefaultTokenProviders();
 
             //    services.AddDbContext<PosDbContext>(c =>
             //c.UseInMemoryDatabase(Guid.NewGuid().ToString()).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
@@ -102,53 +108,37 @@ namespace POS.API.CORE
             });
             services.AddSwaggerDocumentation();
             //configure strongly typed settings objects
-           var appSettingsSection = Configuration.GetSection("AppSettings");
+            var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
             //configure jwt authentication
-           var appSettings = appSettingsSection.Get<AppSettings>();
+            var appSettings = appSettingsSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-            //services.AddAuthentication(x =>
-            //{
-            //    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //})
-            //.AddJwtBearer(x =>
-            //{
-            //    x.Events = new JwtBearerEvents
-            //    {
-            //        OnTokenValidated = context =>
-            //        {
-            //            var userService = context.HttpContext.RequestServices.GetRequiredService<IAccountService>();
-            //            var userId = context.Principal.Identity.Name;
-            //            try
-            //            {
-            //                var user = userService.GetUserAsync(userId);
-            //                if (user == null)
-            //                {
-            //                    //return unauthorized if user no longer exists
-            //                    context.Fail("Unauthorized");
-            //                }
-            //            }
-            //            catch
-            //            {
-            //            }
-
-            //            return Task.CompletedTask;
-            //        }
-            //    };
-            //    x.RequireHttpsMetadata = false;
-            //    x.SaveToken = true;
-            //    x.TokenValidationParameters = new TokenValidationParameters
-            //    {
-            //        ValidateIssuerSigningKey = true,
-            //        IssuerSigningKey = new SymmetricSecurityKey(key),
-            //        ValidateIssuer = false,
-            //        ValidateAudience = false
-            //    };
-            //});
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+            services.AddLocalization(opts => {
+                opts.ResourcesPath = "Resources";
+            });
 
 
+
+            services.Configure<RequestLocalizationOptions>(opts =>
+            {
+                var supportedCultures = new List<CultureInfo> {
+                    new CultureInfo("en"),
+                    new CultureInfo("ar-EG"),   // Arabic Egypt
+                  };
+
+                opts.DefaultRequestCulture = new RequestCulture("en-US");
+                // Formatting numbers, dates, etc.
+                opts.SupportedCultures = supportedCultures;
+                // UI strings that we have localized.
+                opts.SupportedUICultures = supportedCultures;
+            });
             #region  Eltype
 
 
@@ -171,27 +161,28 @@ namespace POS.API.CORE
 
                 };
             });
-            #endregion
+                #endregion
 
 
-            var emailConfig = Configuration
-                .GetSection("EmailConfiguration")
-                .Get<EmailConfiguration>();
-            services.AddSingleton(emailConfig);
-            //services.AddScoped<IEmailSender, EmailSender>();
-            services.Configure<FormOptions>(o => {
-                o.ValueLengthLimit = int.MaxValue;
-                o.MultipartBodyLengthLimit = int.MaxValue;
-                o.MemoryBufferThreshold = int.MaxValue;
-            });
-            // configure DI for application services
-            services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<ICompaniesService, CompaniesService>();
-            services.AddScoped<IBrandService, BrandService>();
-            services.AddScoped<IBranchService, BranchService>();
-            services.AddScoped<IMajorServicesService, MajorServicesService>();
-
-
+                var emailConfig = Configuration
+                    .GetSection("EmailConfiguration")
+                    .Get<EmailConfiguration>();
+                services.AddSingleton(emailConfig);
+                //services.AddScoped<IEmailSender, EmailSender>();
+                services.Configure<FormOptions>(o =>
+                {
+                    o.ValueLengthLimit = int.MaxValue;
+                    o.MultipartBodyLengthLimit = int.MaxValue;
+                    o.MemoryBufferThreshold = int.MaxValue;
+                });
+                // configure DI for application services
+                services.AddScoped<IAccountService, AccountService>();
+                services.AddScoped<ICompaniesService, CompaniesService>();
+                services.AddScoped<IBrandService, BrandService>();
+                services.AddScoped<IBranchService, BranchService>();
+                services.AddScoped<IMajorServicesService, MajorServicesService>();
+                services.AddScoped<IItemGroupsService, ItemGroupsService>();
+       
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -216,7 +207,9 @@ namespace POS.API.CORE
                 UseCors(app);
             }
 
-
+            var options = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(options.Value);
+            app.UseCookiePolicy();
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
@@ -253,5 +246,32 @@ namespace POS.API.CORE
                 );
 
         }
+        private void ConfigureLocalizationOptions(IServiceCollection services)
+        {
+            const string enUSCulture = "en-US";
+            const string arQACulture = "ar-EG";
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+                    new CultureInfo(enUSCulture),
+                    new CultureInfo(arQACulture)
+                };
+
+                options.DefaultRequestCulture = new RequestCulture(culture: enUSCulture, uiCulture: enUSCulture);
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+
+                options.RequestCultureProviders = new List<IRequestCultureProvider>
+                {
+                    new AcceptLanguageHeaderRequestCultureProvider(),
+                    new QueryStringRequestCultureProvider(),
+                    new CookieRequestCultureProvider()
+                };
+            });
+        }
+
     }
+
 }

@@ -17,7 +17,7 @@ namespace POS.Data.IRepository
         void DeleteBrand(int BrandId);
         void ResetDefaultBrand(int BrandId, int CompanyId);
         bool ValidateCodeorNameAlreadyExist(Expression<Func<Brands, bool>> where);
-        void SaveProcBrand(Brands Branch);
+        int SaveProcBrand(Brands Branch);
         List<GetBrands> GetProcBrand(int CompanyId, string ImageURL);
     }
 }
