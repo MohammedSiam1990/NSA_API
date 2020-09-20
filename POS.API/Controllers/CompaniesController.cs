@@ -17,18 +17,19 @@ namespace POS.API.CORE.Controllers
     public class CompaniesController : ControllerBase
     {
 
-        private readonly ImagesPath _imagesPath;
+        private ImagesPath imagesPath;
 
         private ICompaniesService CompaniesService;
         private IMapper Mapper;
     
         public CompaniesController(
             ICompaniesService _CompaniesService,
+            ImagesPath _imagesPath,
             IMapper mapper)
         {
             CompaniesService = _CompaniesService;
             Mapper = mapper;
-        
+            imagesPath = _imagesPath;
         }
 
        

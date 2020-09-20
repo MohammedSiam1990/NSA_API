@@ -19,17 +19,19 @@ namespace POS.API.Controllers
     [Route("api/[controller]")]
     public class ItemGroupsController : ControllerBase
     {
-        private readonly ImagesPath _imagesPath;
+        private ImagesPath imagesPath;
         private IItemGroupsService itemGroupsService;
 
         private IMapper Mapper;
 
         public ItemGroupsController(
                                       IItemGroupsService _itemGroupsService,
+                                      ImagesPath _imagesPath,
                                       IMapper mapper
                                 )
         {
             itemGroupsService = _itemGroupsService;
+            imagesPath = _imagesPath;
             Mapper = mapper;
 
         }
@@ -45,7 +47,7 @@ namespace POS.API.Controllers
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
 
-                var data = itemGroupsService.GetProcItemGroups(BrandID, _imagesPath.itemGroup);
+                var data = itemGroupsService.GetProcItemGroups(BrandID, imagesPath.itemGroup);
 
                 if (data!= null)
                 {

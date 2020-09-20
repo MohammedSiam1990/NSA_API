@@ -21,17 +21,19 @@ namespace POS.API.CORE.Controllers
     [Route("api/[controller]")]
     public class BranchController : ControllerBase
     {
-        private readonly ImagesPath _imagesPath;
+        private ImagesPath imagesPath;
         private IBranchService BranchService;
 
         private IMapper Mapper;
     
         public BranchController(
                                       IBranchService _BranchService,
+                                       ImagesPath _imagesPath,
                                       IMapper mapper
                                 )
         {
             BranchService = _BranchService;
+            imagesPath = _imagesPath;
             Mapper = mapper;
    
         }
@@ -46,7 +48,7 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = BranchService.GetProcBranches(BrandID, _imagesPath.branch);
+                var data = BranchService.GetProcBranches(BrandID, imagesPath.branch);
                 if (data != null)
                 {
                     if (data.Count() == 0)

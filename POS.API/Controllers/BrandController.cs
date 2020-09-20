@@ -24,17 +24,18 @@ namespace POS.API.CORE.Controllers
     public class BrandController : ControllerBase
     {
 
-        private readonly ImagesPath _imagesPath;
+        private ImagesPath imagesPath;
         private IBrandService BrandService;
 
    
         private IMapper Mapper;
     
-        public BrandController(  IBrandService _BrandService
-                                , IMapper mapper)
+        public BrandController(  IBrandService _BrandService,
+                         ImagesPath _imagesPath,
+                                 IMapper mapper)
         {
             BrandService = _BrandService;
-
+            imagesPath = _imagesPath;
             Mapper = mapper; 
         }
 
@@ -48,7 +49,7 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = BrandService.GetProcBrands(CompanyId, _imagesPath.brand);
+                var data = BrandService.GetProcBrands(CompanyId, imagesPath.brand);
                 if (data != null)
                 {
                     if (data.Count() == 0)
