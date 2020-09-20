@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using EmailService;
+using ImagesService;
 using MailKit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -168,8 +169,15 @@ namespace POS.API.CORE
                     .GetSection("EmailConfiguration")
                     .Get<EmailConfiguration>();
                 services.AddSingleton(emailConfig);
-                //services.AddScoped<IEmailSender, EmailSender>();
-                services.Configure<FormOptions>(o =>
+
+            var imagesPathConfig = Configuration
+                  .GetSection("ImagesPath")
+                  .Get<ImagesPath>();
+            services.AddSingleton(imagesPathConfig);
+
+
+            //services.AddScoped<IEmailSender, EmailSender>();
+            services.Configure<FormOptions>(o =>
                 {
                     o.ValueLengthLimit = int.MaxValue;
                     o.MultipartBodyLengthLimit = int.MaxValue;

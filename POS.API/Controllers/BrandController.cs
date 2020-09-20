@@ -12,7 +12,10 @@ using POS.Common;
 using POS.API.Helpers;
 using POS.DTO;
 using POS.API.Models;
-
+using System.Threading;
+using System.Globalization;
+using ImagesService;
+using Exceptions;
 namespace POS.API.CORE.Controllers
 {
     //[Authorize]
@@ -20,27 +23,33 @@ namespace POS.API.CORE.Controllers
     [Route("api/[controller]")]
     public class BrandController : ControllerBase
     {
-    
+
+        private ImagesPath imagesPath;
         private IBrandService BrandService;
 
    
         private IMapper Mapper;
     
-        public BrandController(  IBrandService _BrandService
-                                , IMapper mapper)
+        public BrandController(  IBrandService _BrandService,
+                         ImagesPath _imagesPath,
+                                 IMapper mapper)
         {
             BrandService = _BrandService;
-
+            imagesPath = _imagesPath;
             Mapper = mapper; 
         }
 
 
-        [HttpGet("GetProcBrandes")]
-        public IActionResult GetProcBrandes(int CompanyId, string @ImageURL)
+        [HttpGet("GetBrands")]
+        public IActionResult GetBrands(int CompanyId = 0, string Lang = "en")
         {
             try
             {
-                var data = BrandService.GetProcBrands(CompanyId, @ImageURL);
+                
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
+                var data = BrandService.GetProcBrands(CompanyId, imagesPath.brand);
                 if (data != null)
                 {
                     if (data.Count() == 0)
@@ -58,18 +67,22 @@ namespace POS.API.CORE.Controllers
             catch (Exception ex)
             {
                 // return error message if there was an exception
-                return BadRequest(new { message = ex.Message + " " + Resources.lang.An_error_occurred_while_processing_your_request });
+                ExceptionError.SaveException(ex);
+
             }
 
-            return Ok(new { success = false, message = Resources.lang.No_data_available });
+            return BadRequest(new { success = false, message = Resources.lang.An_error_occurred_while_processing_your_request });
         }
 
-
-        [HttpPost("SaveProcBrand")]
-        public IActionResult SaveProcBrand(BrandsModel model)
+        [HttpPost("Save_Brand")]
+        public IActionResult Save_Brand(BrandsModel model, string Lang = "en")
         {
             try
             {
+               
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
                 var Brand = Mapper.Map<Brands>(model);
                 BrandService.SaveProcBrands(Brand);
                 var data = BrandService.SaveProcBrands(Brand);
@@ -77,19 +90,11 @@ namespace POS.API.CORE.Controllers
                 {
                     if (data == -2)
                     {
-                        return Ok(new { success = false, message = Resources.lang.English_name_already_exists, repeated = "en" });
+                        return Ok(new { success = false, message = Resources.lang.English_name_already_exists, repeated = "BrandName" });
                     }
                     if (data == -3)
                     {
-                        return Ok(new { success = false, message = Resources.lang.Arabic_name_already_exists, repeated = "ar" });
-                    }
-                    if (data == -4)
-                    {
-                        return Ok(new { success = false, message = Resources.lang.English_group_name_for_mobile_already_exists, repeated = "en2" });
-                    }
-                    if (data == -5)
-                    {
-                        return Ok(new { success = false, message = Resources.lang.Arabic_group_name_for_mobile_already_exists, repeated = "ar2" });
+                        return Ok(new { success = false, message = Resources.lang.Arabic_name_already_exists, repeated = "BrandNameAr" });
                     }
                 }
                 else
@@ -101,9 +106,11 @@ namespace POS.API.CORE.Controllers
             catch (Exception ex)
             {
                 // return error message if there was an exception
-                return BadRequest(new { message = ex.Message + " " + Resources.lang.An_error_occurred_while_processing_your_request });
+                ExceptionError.SaveException(ex);
+
             }
-            return Ok(new { success = false + Resources.lang.An_error_occurred_while_processing_your_request });
+
+            return BadRequest(new { success = false, message = Resources.lang.An_error_occurred_while_processing_your_request });
         }
     }
 

@@ -7,6 +7,7 @@ using Pos.Service;
 using POS.Models;
 using System.Collections.Generic;
 using POS.Entities;
+using ImagesService;
 
 namespace POS.API.CORE.Controllers
 {
@@ -15,16 +16,20 @@ namespace POS.API.CORE.Controllers
     [Route("api/[controller]")]
     public class CompaniesController : ControllerBase
     {
+
+        private ImagesPath imagesPath;
+
         private ICompaniesService CompaniesService;
         private IMapper Mapper;
     
         public CompaniesController(
             ICompaniesService _CompaniesService,
+            ImagesPath _imagesPath,
             IMapper mapper)
         {
             CompaniesService = _CompaniesService;
             Mapper = mapper;
-        
+            imagesPath = _imagesPath;
         }
 
        
