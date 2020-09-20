@@ -10,7 +10,10 @@ using POS.Entities;
 using System.Linq;
 using POS.Common;
 using static POS.Common.Enums;
-
+using System.Globalization;
+using System.Threading;
+using ImagesService;
+using Exceptions;
 namespace POS.API.CORE.Controllers
 {
   //  [Authorize]
@@ -18,7 +21,7 @@ namespace POS.API.CORE.Controllers
     [Route("api/[controller]")]
     public class BranchController : ControllerBase
     {
-    
+        private readonly ImagesPath _imagesPath;
         private IBranchService BranchService;
 
         private IMapper Mapper;
@@ -35,13 +38,15 @@ namespace POS.API.CORE.Controllers
 
 
            
-        [HttpGet("GetProcBranches")]
-        public IActionResult GetProcBranches(int BrandId, string @ImageURL)
+        [HttpGet("GetBranches")]
+        public IActionResult GetBranches(int BrandID = 0, string Lang = "en")
         {
             try
             {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = BranchService.GetProcBranches(BrandId, @ImageURL);
+                var data = BranchService.GetProcBranches(BrandID, _imagesPath.branch);
                 if (data != null)
                 {
                     if (data.Count() == 0)
@@ -59,19 +64,22 @@ namespace POS.API.CORE.Controllers
             catch (Exception ex)
             {
                 // return error message if there was an exception
-                return BadRequest(new { message = ex.Message + " " + Resources.lang.An_error_occurred_while_processing_your_request });
+                ExceptionError.SaveException(ex);
+               
             }
 
-            return Ok(new { success = false, message = Resources.lang.No_data_available });
-        
+            return BadRequest(new { success = false, message = Resources.lang.An_error_occurred_while_processing_your_request });
+
         }
 
 
-        [HttpPost("SaveProcBranch")]
-        public IActionResult SaveProcBranch(BranchesModel model)
+        [HttpPost("Save_Branches")]
+        public IActionResult Save_Branches(BranchesModel model, string Lang = "en")
         {
             try
             {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
                 var Branch = Mapper.Map<Branches>(model);
              var data=   BranchService.SaveProcBranch(Branch);
@@ -79,19 +87,11 @@ namespace POS.API.CORE.Controllers
                 {
                     if (data == -2)
                     {
-                        return Ok(new { success = false, message = Resources.lang.English_name_already_exists, repeated = "en" });
+                        return Ok(new { success = false, message = Resources.lang.English_name_already_exists, repeated = "BranchName" });
                     }
                     if (data == -3)
                     {
-                        return Ok(new { success = false, message = Resources.lang.Arabic_name_already_exists, repeated = "ar" });
-                    }
-                    if (data == -4)
-                    {
-                        return Ok(new { success = false, message = Resources.lang.English_group_name_for_mobile_already_exists, repeated = "en2" });
-                    }
-                    if (data == -5)
-                    {
-                        return Ok(new { success = false, message = Resources.lang.Arabic_group_name_for_mobile_already_exists, repeated = "ar2" });
+                        return Ok(new { success = false, message = Resources.lang.Arabic_name_already_exists, repeated = "BranchNameAr" });
                     }
                 }
                 else
@@ -102,10 +102,11 @@ namespace POS.API.CORE.Controllers
             }
             catch (Exception ex)
             {
+                ExceptionError.SaveException(ex);
                 // return error message if there was an exception
-                return BadRequest(new { message = ex.Message + " " + Resources.lang.An_error_occurred_while_processing_your_request });
+
             }
-            return Ok(new { success = false + Resources.lang.An_error_occurred_while_processing_your_request });
+            return BadRequest(new { success = false, message = Resources.lang.An_error_occurred_while_processing_your_request });
         }
     }
 }

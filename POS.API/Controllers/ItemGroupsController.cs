@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ImagesService;
 using Microsoft.AspNetCore.Mvc;
 using POS.API.Models;
 using POS.Entities;
@@ -6,9 +7,11 @@ using POS.Service.IService;
 using POS.Service.Services;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
-
+using Exceptions;
 namespace POS.API.Controllers
 {
 
@@ -16,7 +19,7 @@ namespace POS.API.Controllers
     [Route("api/[controller]")]
     public class ItemGroupsController : ControllerBase
     {
-
+        private readonly ImagesPath _imagesPath;
         private IItemGroupsService itemGroupsService;
 
         private IMapper Mapper;
@@ -31,13 +34,18 @@ namespace POS.API.Controllers
 
         }
 
-        [HttpGet("GetProcItemGroups")]
-        public IActionResult GetProcItemGroups(int BrandID, string ImageName)
+        [HttpGet("GetItemGroups")]
+        public IActionResult GetItemGroups(int BrandID, string Lang = "en")
         {
           
             try
             {
-                var data = itemGroupsService.GetProcItemGroups(BrandID, ImageName);
+
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
+
+                var data = itemGroupsService.GetProcItemGroups(BrandID, _imagesPath.itemGroup);
 
                 if (data!= null)
                 {
@@ -55,18 +63,21 @@ namespace POS.API.Controllers
             catch (Exception ex)
             {
                 // return error message if there was an exception
-                return BadRequest(new { message = ex.Message + " " + Resources.lang.An_error_occurred_while_processing_your_request });
+                ExceptionError.SaveException(ex);
+
             }
-            
-                return Ok(new { success = false, message = Resources.lang.No_data_available  });
+
+            return BadRequest(new { success = false, message = Resources.lang.An_error_occurred_while_processing_your_request });
         }
 
 
-        [HttpPost("SaveProcItemGroup")]
-        public  IActionResult SaveProcItemGroup(ItemGroupsModel model)
+        [HttpPost("SaveItemGroups")]
+        public  IActionResult SaveItemGroups(ItemGroupsModel model, string Lang = "en")
         {
             try
             {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
                 var ItemGroup = Mapper.Map<ItemGroup>(model);
                
@@ -76,19 +87,19 @@ namespace POS.API.Controllers
                 {
                     if (data == -2)
                     {
-                        return Ok( new { success = false, message = Resources.lang.English_name_already_exists, repeated = "en" });
+                        return Ok( new { success = false, message = Resources.lang.English_name_already_exists, repeated = "ItemGroupName" });
                     }
                     if (data == -3)
                     {
-                        return Ok(new { success = false, message = Resources.lang.Arabic_name_already_exists, repeated = "ar" });
+                        return Ok(new { success = false, message = Resources.lang.Arabic_name_already_exists, repeated = "ItemGroupNameAr" });
                     }
                     if (data == -4)
                     {
-                        return Ok(new { success = false, message =Resources.lang.English_group_name_for_mobile_already_exists, repeated = "en2" });
+                        return Ok(new { success = false, message =Resources.lang.English_group_name_for_mobile_already_exists, repeated = "ItemGroupMobileName" });
                     }
                     if (data == -5)
                     {
-                        return Ok(new { success = false, message = Resources.lang.Arabic_group_name_for_mobile_already_exists, repeated = "ar2" });
+                        return Ok(new { success = false, message = Resources.lang.Arabic_group_name_for_mobile_already_exists, repeated = "ItemGroupMobileNameAr" });
                     }
                 }
                 else
@@ -100,9 +111,11 @@ namespace POS.API.Controllers
             catch (Exception ex)
             {
                 // return error message if there was an exception
-                return BadRequest(new { message = ex.Message + " " + Resources.lang.An_error_occurred_while_processing_your_request });
+                ExceptionError.SaveException(ex);
+
             }
-           return Ok(new { success = false + Resources.lang.An_error_occurred_while_processing_your_request });
+
+            return BadRequest(new { success = false, message = Resources.lang.An_error_occurred_while_processing_your_request });
 
         }
     }
