@@ -13,5 +13,5 @@ namespace ImagesService
         public string item { get; set; }
         public string itemGroup { get; set; }
         
-    }
+    }   
 }

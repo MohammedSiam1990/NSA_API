@@ -8,7 +8,7 @@ namespace Exceptions
         public static void SaveException(Exception ex)
         {
 
-            
+                 
         }
 
     }
