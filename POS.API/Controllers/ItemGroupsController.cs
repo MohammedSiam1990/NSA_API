@@ -43,6 +43,8 @@ namespace POS.API.Controllers
             try
             {
 
+
+
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
