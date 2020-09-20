@@ -34,7 +34,7 @@ namespace POS.API.CORE.Controllers
         }
 
 
-
+           
         [HttpGet("GetProcBranches")]
         public IActionResult GetProcBranches(int BrandId, string @ImageURL)
         {
@@ -70,6 +70,8 @@ namespace POS.API.CORE.Controllers
         [HttpPost("SaveProcBranch")]
         public IActionResult SaveProcBranch(BranchesModel model)
         {
+
+
             try
             {
 
