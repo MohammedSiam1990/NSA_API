@@ -15,18 +15,14 @@ using System.Threading;
 using ImagesService;
 using Exceptions;
 using System.IO;
-using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Http;
-using System.Net.Http.Headers;
 
 namespace POS.API.CORE.Controllers
 {
-    //  [Authorize]
+  //  [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class OperationsController : ControllerBase
     {
-        private readonly IHostEnvironment _env;
 
         [AllowAnonymous]
         [HttpPost]
@@ -35,45 +31,65 @@ namespace POS.API.CORE.Controllers
         {
             try
             {
-                //var file = Request.Form.Files.Count();
-                var folderName = Path.Combine("uploads");
-                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-                string[] ImagesNameList = new string[Request.Form.Files.Count()];
 
-                if (Request.Form.Files.Count() > 0)
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
+                string Extension = string.Empty;
+                string CurrentFileName = string.Empty;
+                string NewFileName = string.Empty;
+                var httpRequest = HttpContext.Current.Request;
+                string[] ImagesNameList = new string[httpRequest.Files.Count];
+                if (httpRequest.Files.Count > 0)
                 {
                     int i = 0;
-                    foreach (IFormFile file in Request.Form.Files)
-                    { 
-                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                    var fullPath = Path.Combine(pathToSave, fileName);
-                    var dbPath = Path.Combine(folderName, fileName);
-                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    foreach (string file in httpRequest.Files)
                     {
-                        file.CopyTo(stream);
-                    }
-                        if (i < Request.Form.Files.Count())
+                        var postedFile = httpRequest.Files[file];
+
+                        if (postedFile.ContentLength > 250)
+                            return new { success = false, message = Resources.lang.Your_file_was_not_uploaded_because + "," + Resources.lang.It_exceeds_the + "250" + " KB " + Resources.lang.Size_limit };
+
+
+                        Extension = Path.GetExtension(postedFile.FileName);
+                        CurrentFileName = Path.GetFileName(postedFile.FileName);
+
+                        if (File.Exists(HttpContext.Current.Server.MapPath("~/Content/Images/" + FolderName + "/" + CurrentFileName + Extension)))
                         {
-                            ImagesNameList[i] = fullPath;
+                            File.Delete(HttpContext.Current.Server.MapPath("~/Content/Images/" + FolderName + "/" + CurrentFileName + Extension));
+                        }
+
+                        NewFileName = Guid.NewGuid().ToString();
+                        var filePath = HttpContext.Current.Server.MapPath("~/Content/Images/" + FolderName + "/" + NewFileName + Extension);
+                        postedFile.SaveAs(filePath);
+                        if (i < httpRequest.Files.Count)
+                        {
+                            ImagesNameList[i] = NewFileName + Extension;
                             i++;
 
                         }
-
                     }
-                    return Ok(new { ImagesNameList });
+                    return new { success = true, message = POSAPI.Resources.lang.Upload_image_successful, filePath = WebConfigurationManager.AppSettings["URL"] + "Content/Images/" + FolderName + "/", ImagesName = ImagesNameList };
 
                 }
                 else
                 {
-                    return BadRequest();
+                    return new { success = false, message = POSAPI.Resources.lang.Select_image_file_to_upload };
                 }
-                return Ok(new { message="error" });
+
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex}");
+
+                ExceptionError(ex);
             }
+            return new { success = false, message = POSAPI.Resources.lang.Upload_image_failed };
 
         }
+
+
+
+
+
     }
 }
