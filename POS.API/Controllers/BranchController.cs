@@ -70,8 +70,6 @@ namespace POS.API.CORE.Controllers
         [HttpPost("SaveProcBranch")]
         public IActionResult SaveProcBranch(BranchesModel model)
         {
-
-
             try
             {
 
