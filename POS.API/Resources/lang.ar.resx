@@ -216,6 +216,9 @@
   <data name="Please_check_your_email_to_reset_your_password" xml:space="preserve">
     <value>يرجى التحقق من بريدك الإلكتروني لإعادة تعيين كلمة المرور الخاصة بك.</value>
   </data>
+  <data name="Reigster_Model_is_null" xml:space="preserve">
+    <value>تأكد من إدخال البيانات</value>
+  </data>
   <data name="Reset_password_confirmation" xml:space="preserve">
     <value>تأكيد استرجاع كلمة المرور</value>
   </data>

@@ -120,9 +120,6 @@
   <data name="Activare_your_account" xml:space="preserve">
     <value>Activate your account</value>
   </data>
-  <data name="ahmed" xml:space="preserve">
-    <value>ahmed</value>
-  </data>
   <data name="An_error_occurred_while_processing_your_request" xml:space="preserve">
     <value>An error occurred while processing your request</value>
   </data>
@@ -218,6 +215,9 @@
   </data>
   <data name="Please_check_your_email_to_reset_your_password" xml:space="preserve">
     <value>Please check your email to reset your password.</value>
+  </data>
+  <data name="Reigster_Model_is_null" xml:space="preserve">
+    <value>Reigster Model is null</value>
   </data>
   <data name="Reset_your_password" xml:space="preserve">
     <value>Reset your password</value>

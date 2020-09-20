@@ -14,12 +14,19 @@ using Steander.Core.DTOs;
 using POS.Data.DataContext;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
-using MailKit;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Steander.Core.Entities;
+using System.Threading;
+using System.Globalization;
+using EmailService;
+using System.IO;
+using System.Reflection;
+using POS.API.Resources;
+using MailKit;
+using POS.API.Helpers;
 
 namespace Pos.Service
 {
@@ -28,35 +35,129 @@ namespace Pos.Service
 
         private UserManager<ApplicationUser> _userManger;
         private IConfiguration _configuration;
-        //private IMailService _mailService;
-        public AccountService(UserManager<ApplicationUser> userManager, IConfiguration configuration
-            //, IMailService mailService
+       private IMailService mailService;
+        EmailConfiguration emailConfig;
+        public AccountService(UserManager<ApplicationUser> userManager,
+            EmailConfiguration _emailConfig,
+            IConfiguration configuration
+          , IMailService _mailService
             )
       
         {
             _userManger = userManager;
             _configuration = configuration;
-            //_mailService = mailService;
+             mailService  = _mailService;
+            emailConfig =_emailConfig;
         }
+        public static string CheckLanguage(string lang)
+        {
+            try
+            {
+                if (lang.ToLower() == "en")
+                    return "en";
+                if (lang.ToLower() == "ar")
+                    return "ar";
+                return "en";
+            }
+            catch (Exception ex)
+            {
+              ExceptionError(ex);
+            }
+            return "en";
+        }
+        public static void ExceptionError(Exception ex)
+        {
+
+            try
+            {
+                var file_name = Environment.CurrentDirectory + "/LOG/log.txt";// HostingEnvironment.MapPath(@"~/LOG/log.txt");
+                if (!Directory.Exists(Environment.CurrentDirectory + "/LOG/"))
+                    // System.Web.Hosting.HostingEnvironment.MapPath(@"~/LOG")))
+                    
+                {
+                    Directory.CreateDirectory(Environment.CurrentDirectory + "/LOG/");
+                }
+                if (!System.IO.File.Exists(file_name))
+                {
+                    FileStream stream = System.IO.File.Create(file_name);
+                    stream.Close();
+                }
+                System.IO.File.WriteAllText(file_name, System.IO.File.ReadAllText(file_name) + DateTime.Now + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + Environment.NewLine);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+   
 
         public async Task<UserManagerResponse> RegisterUserAsync(RegisterViewModel model)
         {
+            model.Lang = CheckLanguage(model.Lang);
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(model.Lang);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(model.Lang);
+
+
             if (model == null)
-                throw new NullReferenceException("Reigster Model is null");
+                 throw new AppException(lang.Reigster_Model_is_null);
+            if (string.IsNullOrWhiteSpace(model.Email))
+            {
+                 throw new AppException(lang.Missing_username);
+            }
+
+            if (string.IsNullOrWhiteSpace(model.Password))
+            {
+                throw new AppException(lang.Missing_password);
+            }
+
+            if (model.Password.Length < 6)
+            {
+                throw new AppException(lang.Password_length_should_be_6_characters_or_more);
+            }
 
             if (model.Password != model.ConfirmPassword)
-                return new UserManagerResponse
-                {
-                    Message = "Confirm password doesn't match the password",
-                    IsSuccess = false,
-                };
+              throw new AppException(lang.PasswordNotMatch);
+
+
+
+            var appUser = await _userManger.FindByEmailAsync(model.Email);
+            if (appUser != null && appUser.Email == model.Email)
+            {
+
+                throw new AppException(lang.Either_username_and_or_email_already_exists );
+            }
+
+            appUser = await _userManger.FindByNameAsync(model.Username);
+            if (appUser != null && appUser.UserName == model.Username)
+            {
+                throw new AppException(lang.Either_username_and_or_email_already_exists);
+            }
             string VerificationCode = RandomGenerator.RandomPassword();
 
-            var identityUser = new ApplicationUser
+            var company = new Companies {
+                CountryId = model.CountryId,
+                CompanyName = model.CompanyName,
+                CompanyNameAr = model.CompanyNameAr,
+                CompanyEmail = model.Email,
+                StatusId = 1,
+                ImageName = model.ImageName,
+                CreationDate = DateTime.Now
+            };
+            PosService.CompaniesRepository.AddCompany(company);
+
+            var identityUser = new ApplicationUser()
             {
+                UserName = model.Username,
                 Email = model.Email,
-                UserName = model.Email,
-                //verificationCode = VerificationCode
+                CreateDate = DateTime.Now,
+                Name = model.Name,
+                Password = model.Password,
+                PhoneNumber = model.PhoneNumber,
+                EmailConfirmed = false,
+                IsSuperAdmin = true,
+                  CompanyId = null,
+                UserType = 1,
+                VerificationCode = VerificationCode
             };
 
             var result = await _userManger.CreateAsync(identityUser, model.Password);
@@ -68,10 +169,12 @@ namespace Pos.Service
                 var encodedEmailToken = Encoding.UTF8.GetBytes(confirmEmailToken);
                 var validEmailToken = WebEncoders.Base64UrlEncode(encodedEmailToken);
 
-                string url = $"{_configuration["AppUrl"]}/api/auth/confirmemail?userid={identityUser.Id}&token={validEmailToken}";
+                string url = $"{emailConfig.AppUrl}/api/auth/confirmemail?userid={identityUser.Id}&token={validEmailToken}";
+                await mailService.SendEmailAsync(emailConfig.SmtpServer,emailConfig.Port,false ,emailConfig.From, identityUser.Email, "Confirm your email Otp Code ", VerificationCode, emailConfig.From, emailConfig.Password);
                 return new UserManagerResponse
                 {
-                    Message = "User created successfully!",
+                     
+                Message = lang.An_error_occurred_while_processing_your_request,
                     IsSuccess = true,
                 };
             }
@@ -84,7 +187,6 @@ namespace Pos.Service
             };
 
         }
-
         public async Task<LoginResponseDto> LoginUserAsync(LoginViewModel model)
         {
             var user = await _userManger.FindByEmailAsync(model.Email);

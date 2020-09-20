@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Pos.IService;
+using POS.API.Resources;
 using POS.Data.Dto;
 using Steander.Core.DTOs;
 
@@ -39,17 +40,25 @@ namespace StanderApi.Controllers
         [HttpPost("Register")]
         public async Task<IActionResult> RegisterAsync([FromBody]RegisterViewModel model)
         {
+
+
+
             if (ModelState.IsValid)
             {
                 var result = await _accountService.RegisterUserAsync(model);
 
                 if (result.IsSuccess)
                     return Ok(result); // Status Code: 200 
+                else
+                return BadRequest(result);
+            }
+            else
+            {
+                var result = new { message = lang.An_error_occurred_while_processing_your_request, success = false };
 
                 return BadRequest(result);
             }
-
-            return BadRequest("Some properties are not valid"); // Status code: 400
+      
         }
         // /api/auth/login
         [HttpPost("Login")]

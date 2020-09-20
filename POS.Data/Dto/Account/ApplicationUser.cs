@@ -11,11 +11,13 @@ namespace Steander.Core.Entities
     {
         //[DataType("datetime2")]
         public DateTime? CreateDate { get; set; }
-
+         public string Name { get; set; }
         public bool IsSuperAdmin { get; set; }
         public int? CompanyId { get; set; }
         public int? UserType { get; set; }
         public string InsertedBy { get; set; }
-      
+        public string Password { get; set; }
+        public string VerificationCode { get; set; }
+
     }
 }
