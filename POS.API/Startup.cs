@@ -70,19 +70,19 @@ namespace POS.API.CORE
 
 
 
-            services.AddIdentityCore<ApplicationUser>().AddRoles<IdentityRole>()
-                .AddClaimsPrincipalFactory<UserClaimsPrincipalFactory<ApplicationUser, IdentityRole>>()
+            services.AddIdentityCore<ApplicationUser>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 5;
+                options.Password.RequireNonAlphanumeric = false;
+            }).AddRoles<IdentityRole>()
+                //.AddClaimsPrincipalFactory<UserClaimsPrincipalFactory<ApplicationUser, IdentityRole>>()
                 .AddEntityFrameworkStores<PosDbContext>()
                 .AddDefaultTokenProviders()
                 .AddDefaultUI();
-            //    (options =>
-            //{
-            //    options.Password.RequireDigit = false;
-            //    options.Password.RequireLowercase = false;
-            //    options.Password.RequireUppercase = false;
-            //    options.Password.RequiredLength = 5;
-            //}).AddEntityFrameworkStores<PosDbContext>()
-            //.AddDefaultTokenProviders();
+
 
             //    services.AddDbContext<PosDbContext>(c =>
             //c.UseInMemoryDatabase(Guid.NewGuid().ToString()).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
