@@ -18,6 +18,9 @@ using System.IO;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.Net.Http.Headers;
+using Newtonsoft.Json;
+using POS.Services;
+using POS.Service.IService;
 
 namespace POS.API.CORE.Controllers
 {
@@ -27,7 +30,12 @@ namespace POS.API.CORE.Controllers
     public class OperationsController : ControllerBase
     {
         private readonly IHostEnvironment _env;
+        private IloockUpService loockUpService;
 
+        public OperationsController(IloockUpService _loockUpService)
+        {
+            loockUpService = _loockUpService;
+        }
         [AllowAnonymous]
         [HttpPost]
         [ActionName("UploadImage")]
@@ -39,7 +47,7 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var folderName = Path.Combine("uploads",FolderName);
+                var folderName = Path.Combine("uploads", FolderName);
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
                 string[] ImagesNameList = new string[Request.Form.Files.Count()];
 
@@ -57,7 +65,7 @@ namespace POS.API.CORE.Controllers
                         }
                         if (i < Request.Form.Files.Count())
                         {
-                            ImagesNameList[i] = FolderName+"/"+fileName;
+                            ImagesNameList[i] = FolderName + "/" + fileName;
                             i++;
 
                         }
@@ -77,5 +85,35 @@ namespace POS.API.CORE.Controllers
             }
 
         }
+        public object GetLookup(string Lang = "en")
+        {
+
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
+
+                var data = loockUpService.GetLookUps(Lang);
+
+                if (data == null)
+                {
+                    return new { success = false, message = Resources.lang.No_data_available };
+                }
+                else
+                {
+                    return new { success = true, message = "", datalist = JsonConvert.DeserializeObject(data) };
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+
+            }
+            return new { success = false, message = Resources.lang.An_error_occurred_while_processing_your_request };
+
+
+        }
+
     }
 }
