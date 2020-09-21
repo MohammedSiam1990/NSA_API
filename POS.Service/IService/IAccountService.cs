@@ -17,7 +17,7 @@ namespace Pos.IService
 
         Task<LoginResponseDto> LoginUserAsync(LoginViewModel model);
 
-        //Task<UserManagerResponse> ConfirmEmailAsync(ConfirmEmail model);
+        Task<bool> ConfirmEmailAsync(string userId, string code);
 
         Task<UserManagerResponse> ForgetPasswordAsync(ForgetPasswordModel forgetPasswordModel);
 

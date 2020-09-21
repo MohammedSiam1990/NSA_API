@@ -275,38 +275,12 @@ namespace Pos.Service
             };
         }
 
-        //public async Task<UserManagerResponse> ConfirmEmailAsync(ConfirmEmail model)
-        //{
-        //    var user = await _userManger.FindByEmailAsync(model.Email);
-        //    if (user == null)
-        //        return new UserManagerResponse
-        //        {
-        //            IsSuccess = false,
-        //            Message = "User not found"
-        //        };
-
-        ////    if (model.VerficationCode == user.verificationCode)
-        ////    {
-        ////        user.EmailConfirmed = true;
-        ////        var result = await _userManger.UpdateAsync(user);
-
-
-        ////        return new UserManagerResponse
-        ////        {
-        ////            Message = "Email confirmed successfully!",
-        ////            IsSuccess = true,
-        ////        };
-        ////    }
-        ////    else
-        ////    {
-        ////        return new UserManagerResponse
-        ////        {
-        ////            IsSuccess = false,
-        ////            Message = "Email did not confirm",
-
-        ////        };
-        ////    }
-        //}
+        public async Task<bool> ConfirmEmailAsync(string userId, string code)
+        {
+                var User = await _userManger.FindByEmailAsync(userId);
+                var result = _userManger.ConfirmEmailAsync(User,  code);
+                return true;
+        }
 
         public async Task<UserManagerResponse> ForgetPasswordAsync(ForgetPasswordModel forgetPasswordModel)
         {

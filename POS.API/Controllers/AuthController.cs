@@ -116,31 +116,47 @@ namespace StanderApi.Controllers
             }
 
         }
-        //[AllowAnonymous]
-        //[HttpGet("testMail")]
-        //public IActionResult TestMAil()
-        //{
-        //    return Ok(res);
-        //}
 
-        // /api/auth/confirmemail
-        //[AllowAnonymous]
-        //[HttpPost("ConfirmEmail")]
-        //public async Task<IActionResult> ConfirmEmail([FromBody] ConfirmEmail model)
-        //{
-        //    if (string.IsNullOrWhiteSpace(model.Email) || string.IsNullOrWhiteSpace(model.VerficationCode))
-        //        return NotFound();
+        [AllowAnonymous]
+        [HttpPost("ConfirmEmail")]
+        public async Task<IActionResult> ConfirmEmail(string userId, string code, string Lang)
+        {
+            try
+            {
+                if (Lang == null)
+                    Lang = "en";
+                code = code.Replace(' ', '+');
+                Lang = Utility.CheckLanguage(Lang);
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+                if (userId == "" || code == "")
+                {
+                    return BadRequest(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+                
+                }
+             
+                if (string.IsNullOrWhiteSpace(userId))
+                {
+                    return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+                }
 
-        //    var result = await _accountService.ConfirmEmailAsync(model);
+                if (string.IsNullOrWhiteSpace(code))
+                {
+                    return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+                }
 
-        //    if (result.IsSuccess)
-        //    {
-        //        return Ok(result);
-        //    }
-
-        //    return BadRequest(result);
-        //}
-
+               
+                var result = _accountService.ConfirmEmailAsync(userId, code);
+                if (await result)
+                    return Ok(new { message = lang.Your_registration_completed_successfully, success = true });
+                else
+                    return BadRequest(new { message = lang.An_error_occurred_while_processing_your_request });
+            }
+            catch (Exception ex)
+            {
+              return BadRequest(new { message = lang.An_error_occurred_while_processing_your_request, ex = ex });   
+            }
+        }
         // api/auth/forgetpassword
         [HttpPost("ForgetPassword")]
         public async Task<IActionResult> ForgetPassword([FromBody] ForgetPasswordModel forgetPasswordModel)
