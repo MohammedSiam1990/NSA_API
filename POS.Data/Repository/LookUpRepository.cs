@@ -7,6 +7,7 @@ using POS.Data.IRepository;
 using POS.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace POS.Data.Repository
@@ -25,10 +26,10 @@ namespace POS.Data.Repository
             using (var DbContext = new PosDbContext())
             {
 
-                string Sql = "EXEC Get_Json_Lookups @Lang";
-                string data= DbContext.Database.ExecuteSqlCommand(Sql, new SqlParameter("@Lang", Lang)).ToString();
+                string Sql = "EXEC Get_Json_Lookups @langID";
+                var data= DbContext.GetLookups.FromSqlRaw(Sql, new SqlParameter("@langID", Lang)).AsEnumerable().FirstOrDefault().Country_City_Currency;
 
-                return data;
+                return data.ToString();
             }
 
         }
