@@ -159,7 +159,7 @@
     <Compile Include="IService\ICompaniesService.cs" />
     <Compile Include="IService\IAccountService.cs" />
     <Compile Include="IService\IItemGroupsService.cs" />
-    <Compile Include="IService\IloockUpService.cs" />
+    <Compile Include="IService\IlookUpService.cs" />
     <Compile Include="IService\IMajorServicesService.cs" />
     <Compile Include="IService\IServiceCategoryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

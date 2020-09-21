@@ -26,7 +26,9 @@ namespace POS.Data.Repository
             {
 
                 string Sql = "EXEC Get_Json_Lookups @Lang";
-                return DbContext.GetLookups.FromSqlRaw(Sql, new SqlParameter("@Lang", Lang)).ToString();
+                string data= DbContext.Database.ExecuteSqlCommand(Sql, new SqlParameter("@Lang", Lang)).ToString();
+
+                return data;
             }
 
         }

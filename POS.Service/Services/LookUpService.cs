@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace POS.Services
 {
-    public class LookUpService : BaseService, IloockUpService
+    public class LookUpService : BaseService, IlookUpService
     {
         public string GetLookUps(string Lang)
         {
