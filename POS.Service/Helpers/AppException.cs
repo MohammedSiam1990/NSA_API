@@ -7,7 +7,7 @@ namespace POS.API.Helpers
     // that can be caught and handled within the application
     public class AppException : Exception
     {
-        public AppException() : base() {}
+        //public AppException() : base() {}
 
         public AppException(string message) : base(message) { }
 

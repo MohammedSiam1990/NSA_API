@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using EmailService;
 using ImagesService;
-using MailKit;
+//using MailKit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -184,6 +184,7 @@ namespace POS.API.CORE
                     o.MemoryBufferThreshold = int.MaxValue;
                 });
                 // configure DI for application services
+                services.AddScoped<IMailService, MailService>();
                 services.AddScoped<IAccountService, AccountService>();
                 services.AddScoped<ICompaniesService, CompaniesService>();
                 services.AddScoped<IBrandService, BrandService>();

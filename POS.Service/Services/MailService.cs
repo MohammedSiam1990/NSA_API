@@ -7,48 +7,51 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
-public class SendGridMailService : IMailService
+namespace POS.Service.Services
 {
-    private IConfiguration _configuration;
-
-    public SendGridMailService(IConfiguration configuration)
+    public class MailService : IMailService
     {
-        _configuration = configuration;
-    }
+        private IConfiguration _configuration;
 
-
-
-    public async Task SendEmailAsync(string Smtp,int Port  , bool EnableSsl, string From, string To, string Subject, string body, string CredentialEmail, string CredentialPassword)
-    {
-        MailAddress to = new MailAddress(To);
-        MailAddress from = new MailAddress(From);
-
-        MailMessage message = new MailMessage(from, to);
-        message.Subject = Subject;
-        message.Body = body;
-
-        SmtpClient client = new SmtpClient
+        public MailService(IConfiguration configuration)
         {
-            Host = Smtp,//"smtp.gmail.com",
-            Port = Port,
-            EnableSsl = EnableSsl
-        };
-        try
-        {
-            client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential(CredentialEmail, CredentialPassword);
-            client.Send(message);
-            //return true;
+            _configuration = configuration;
         }
-        catch (SmtpException ex)
-        {
-            Console.WriteLine(ex.ToString());
-            //return false;
-        }
-    }
 
-    //public Task SendEmailAsync(string From, string To, string Subject, string body, string CredentialEmail, string CredentialPasswordt)
-    //{
-    //    throw new NotImplementedException();
-    //}
+
+
+        public async Task SendEmailAsync(string Smtp, int Port, bool EnableSsl, string From, string To, string Subject, string body, string CredentialEmail, string CredentialPassword)
+        {
+            MailAddress to = new MailAddress(To);
+            MailAddress from = new MailAddress(From);
+
+            MailMessage message = new MailMessage(from, to);
+            message.Subject = Subject;
+            message.Body = body;
+
+            SmtpClient client = new SmtpClient
+            {
+                Host = Smtp,//"smtp.gmail.com",
+                Port = Port,
+                EnableSsl = EnableSsl
+            };
+            try
+            {
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential(CredentialEmail, CredentialPassword);
+                client.Send(message);
+                //return true;
+            }
+            catch (SmtpException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                //return false;
+            }
+        }
+
+        //public Task SendEmailAsync(string From, string To, string Subject, string body, string CredentialEmail, string CredentialPasswordt)
+        //{
+        //    throw new NotImplementedException();
+        //}
+    }
 }
