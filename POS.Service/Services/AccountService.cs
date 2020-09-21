@@ -158,6 +158,7 @@ namespace Pos.Service
                 PhoneNumber = model.PhoneNumber,
                 EmailConfirmed = false,
                 IsSuperAdmin = true,
+                LockoutEnabled = false,
                   CompanyId = company.CompanyId,
                 UserType = 1,
                // VerificationCode = VerificationCode
