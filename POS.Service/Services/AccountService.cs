@@ -205,7 +205,7 @@ namespace Pos.Service
                 {
                      
                 Message =lang.Your_registration_completed_successfully + ", " + lang.Please_check_your_email_to_activtate_your_email,
-                 EmailConfirmed = User.EmailConfirmed,
+                 //EmailConfirmed = User.EmailConfirmed,
                     IsSuccess = true,
                 };
             }
@@ -241,6 +241,14 @@ namespace Pos.Service
                 throw new AppException(lang.Your_account_is_locked_please_try_later);
             }
 
+            var result = await _userManger.CheckPasswordAsync(user, model.Password);
+
+            if (!result)
+                return new LoginResponseDto
+                {
+                    message = lang.The_username_or_password_is_incorrect,
+                    status = false,
+                };
             var claims = new[]
             {
                 new Claim("Username", model.Username),
@@ -272,7 +280,6 @@ namespace Pos.Service
                 Name = user.Name,
                 CompanyNameEn = Company.CompanyName,
                 CompanyNameAr = Company.CompanyNameAr
-
             };
         }
 
@@ -310,7 +317,7 @@ namespace Pos.Service
             };
         }
 
-        public async Task<UserManagerResponse> ResetPasswordAsync(ResetPasswordViewModel model)
+        public async Task<UserManagerResponse> ResetPasswordAsync(ResetPasswordViewModel2 model)
         {
             var user = await _userManger.FindByEmailAsync(model.Email);
             if (user == null)
@@ -348,6 +355,7 @@ namespace Pos.Service
                 Errors = result.Errors.Select(e => e.Description),
             };
         }
+
 
         public IList<ApplicationUser> GetAllUsersAsync()
         {
@@ -405,7 +413,39 @@ namespace Pos.Service
             };
         }
 
+        public async Task<UserManagerResponse> ResetPassword(ResetPasswordViewModel model)
+        {
 
+            var user = await _userManger.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                return new UserManagerResponse
+                {
+                    Message = lang.Invalid_email,
+                    IsSuccess = false,
+                };
+            }
+            var token = await _userManger.GeneratePasswordResetTokenAsync(user);
+            var encodedToken = Encoding.UTF8.GetBytes(token);
+            var validToken = WebEncoders.Base64UrlEncode(encodedToken);
+            var decodedToken = WebEncoders.Base64UrlDecode(token);
+            string normalToken = Encoding.UTF8.GetString(decodedToken);
+            var result = await _userManger.ResetPasswordAsync(user, token, model.Password);
 
+            if (result.Succeeded)
+                return new UserManagerResponse
+                {
+                    Message = lang.Your_password_has_been_reset_Please,
+                    IsSuccess = true,
+                };
+
+            return new UserManagerResponse
+            {
+                Message = "Something went wrong",
+                IsSuccess = false,
+                Errors = result.Errors.Select(e => e.Description),
+            };
+
+        }
     }
 }
