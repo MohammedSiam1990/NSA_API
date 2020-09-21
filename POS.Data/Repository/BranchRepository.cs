@@ -7,7 +7,6 @@ using POS.Entities;
 using POS.Common;
 using System;
 using System.Collections.Generic;
-using System.Device.Location;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Drawing;
