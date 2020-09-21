@@ -8,6 +8,7 @@ using POS.Models;
 using System.Collections.Generic;
 using POS.Entities;
 using ImagesService;
+using POS.Core.Resources;
 
 namespace POS.API.CORE.Controllers
 {
@@ -67,7 +68,7 @@ namespace POS.API.CORE.Controllers
                 // Edit Company
                 {
                     CompaniesService.UpdateCompany(Company);
-                    return Ok(new { success = false, message = Resources.lang.Update_operation_failed });
+                    return Ok(new { success = false, message = lang.Update_operation_failed });
                 }
 
 
@@ -76,7 +77,7 @@ namespace POS.API.CORE.Controllers
             catch (Exception ex)
             {
                 // return error message if there was an exception
-                return BadRequest(new { message = Resources.lang.Update_operation_failed,ExMessage=ex.Message  });
+                return BadRequest(new { message = lang.Update_operation_failed,ExMessage=ex.Message  });
             }
         }
 

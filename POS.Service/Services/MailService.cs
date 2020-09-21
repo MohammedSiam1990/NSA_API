@@ -20,7 +20,7 @@ namespace POS.Service.Services
 
 
 
-        public async Task SendEmailAsync(string Smtp, int Port, bool EnableSsl, string From, string To, string Subject, string body, string CredentialEmail, string CredentialPassword)
+        public bool  SendEmailAsync(string Smtp, int Port, bool EnableSsl, string From, string To, string Subject, string body, string CredentialEmail, string CredentialPassword)
         {
             MailAddress to = new MailAddress(To);
             MailAddress from = new MailAddress(From);
@@ -40,12 +40,12 @@ namespace POS.Service.Services
                 client.UseDefaultCredentials = false;
                 client.Credentials = new NetworkCredential(CredentialEmail, CredentialPassword);
                 client.Send(message);
-                //return true;
+                return true;
             }
             catch (SmtpException ex)
             {
                 Console.WriteLine(ex.ToString());
-                //return false;
+               return false;
             }
         }
 

@@ -14,6 +14,8 @@ using System.Globalization;
 using System.Threading;
 using ImagesService;
 using Exceptions;
+using POS.Core.Resources;
+
 namespace POS.API.CORE.Controllers
 {
   //  [Authorize]
@@ -53,7 +55,7 @@ namespace POS.API.CORE.Controllers
                 {
                     if (data.Count() == 0)
                     {
-                        return Ok(new { success = true, message = Resources.lang.No_data_available, datalist = data.ToList() });
+                        return Ok(new { success = true, message = lang.No_data_available, datalist = data.ToList() });
                     }
                     else
                     {
@@ -70,7 +72,7 @@ namespace POS.API.CORE.Controllers
                
             }
 
-            return BadRequest(new { success = false, message = Resources.lang.An_error_occurred_while_processing_your_request });
+            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
         }
 
@@ -89,16 +91,16 @@ namespace POS.API.CORE.Controllers
                 {
                     if (data == -2)
                     {
-                        return Ok(new { success = false, message = Resources.lang.English_name_already_exists, repeated = "BranchName" });
+                        return Ok(new { success = false, message = lang.English_name_already_exists, repeated = "BranchName" });
                     }
                     if (data == -3)
                     {
-                        return Ok(new { success = false, message = Resources.lang.Arabic_name_already_exists, repeated = "BranchNameAr" });
+                        return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "BranchNameAr" });
                     }
                 }
                 else
                 {
-                    return Ok(new { success = true, message = Resources.lang.Saved_successfully_completed });
+                    return Ok(new { success = true, message = lang.Saved_successfully_completed });
                 }
 
             }
@@ -108,7 +110,7 @@ namespace POS.API.CORE.Controllers
                 // return error message if there was an exception
 
             }
-            return BadRequest(new { success = false, message = Resources.lang.An_error_occurred_while_processing_your_request });
+            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
     }
 }

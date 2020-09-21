@@ -18,6 +18,7 @@ using System.IO;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.Net.Http.Headers;
+using POS.Core.Resources;
 
 namespace POS.API.CORE.Controllers
 {
@@ -63,17 +64,17 @@ namespace POS.API.CORE.Controllers
                         }
 
                     }
-                    return new { success = true, message = Resources.lang.Upload_image_successful, filePath = "http://posapi.opos.me/" + "uploads/" + FolderName + "/", ImagesName = ImagesNameList };
+                    return new { success = true, message =lang.Upload_image_successful, filePath = "http://posapi.opos.me/" + "uploads/" + FolderName + "/", ImagesName = ImagesNameList };
 
                 }
                 else
                 {
-                    return new { success = false, message = Resources.lang.Select_image_file_to_upload };
+                    return new { success = false, message = lang.Select_image_file_to_upload };
                 }
             }
             catch (Exception ex)
             {
-                return new { success = false, message = Resources.lang.An_error_occurred_while_processing_your_request };
+                return new { success = false, message = lang.An_error_occurred_while_processing_your_request };
             }
 
         }

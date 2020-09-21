@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Pos.IService;
-using POS.API.Resources;
+using POS.Core.Resources;
 using POS.Data.Dto;
 using Steander.Core.DTOs;
 

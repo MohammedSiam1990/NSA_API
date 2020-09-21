@@ -24,7 +24,7 @@ using System.Globalization;
 using EmailService;
 using System.IO;
 using System.Reflection;
-using POS.API.Resources;
+using POS.Core.Resources;
 using MailKit;
 using POS.API.Helpers;
 
@@ -157,7 +157,7 @@ namespace Pos.Service
                 IsSuperAdmin = true,
                   CompanyId = company.CompanyId,
                 UserType = 1,
-                VerificationCode = VerificationCode
+               // VerificationCode = VerificationCode
             };
 
             var result = await _userManger.CreateAsync(identityUser, model.Password);
@@ -169,21 +169,48 @@ namespace Pos.Service
                 var encodedEmailToken = Encoding.UTF8.GetBytes(confirmEmailToken);
                 var validEmailToken = WebEncoders.Base64UrlEncode(encodedEmailToken);
 
+                var User = await _userManger.FindByEmailAsync(model.Email);
+
+                string code = await this._userManger.GenerateEmailConfirmationTokenAsync(User);
+                var callbackUrl = emailConfig.AppUrl + "?userId=" + User.Id + "&code=" + code + "&lang=" + model.Lang;
+
+
+                var Body = lang.Please_activate_your_account_by_clicking + " <a href=\"" + callbackUrl + "\">" + lang.Here + "</a>";
+                var Subject = lang.Activare_your_account;
+
                 string url = $"{emailConfig.AppUrl}/api/auth/confirmemail?userid={identityUser.Id}&token={validEmailToken}";
-                await mailService.SendEmailAsync(emailConfig.SmtpServer,emailConfig.Port,false ,emailConfig.From, identityUser.Email, "Confirm your email Otp Code ", VerificationCode, emailConfig.From, emailConfig.Password);
+               bool isMessageSent =  mailService.SendEmailAsync(emailConfig.SmtpServer,emailConfig.Port,false ,emailConfig.From, identityUser.Email, Subject, Body, emailConfig.From, emailConfig.Password);
+
+                if (isMessageSent == false)
+                {
+                    try
+                    {
+                        var response = await DeletetUserAsync(User.Id);
+                    }
+                    catch (Exception ex)
+                    {
+
+                        ExceptionError(ex);
+                    }
+                    throw new AppException(lang.Cant_send_activation_email_please_try_registration_later);
+                }
+
+       
+
                 return new UserManagerResponse
                 {
                      
-                Message = lang.An_error_occurred_while_processing_your_request,
+                Message =lang.Your_registration_completed_successfully + ", " + lang.Please_check_your_email_to_activtate_your_email,
+                 EmailConfirmed = User.EmailConfirmed,
                     IsSuccess = true,
                 };
             }
 
             return new UserManagerResponse
             {
-                Message = "User did not create",
+
+                Message = lang.An_error_occurred_while_processing_your_request,
                 IsSuccess = false,
-                Errors = result.Errors.Select(e => e.Description)
             };
 
         }
