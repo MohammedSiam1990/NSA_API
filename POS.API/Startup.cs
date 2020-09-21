@@ -82,14 +82,7 @@ namespace POS.API.CORE
                 .AddEntityFrameworkStores<PosDbContext>()
                 .AddDefaultTokenProviders()
                 .AddDefaultUI();
-            //    (options =>
-            //{
-            //    options.Password.RequireDigit = false;
-            //    options.Password.RequireLowercase = false;
-            //    options.Password.RequireUppercase = false;
-            //    options.Password.RequiredLength = 5;
-            //}).AddEntityFrameworkStores<PosDbContext>()
-            //.AddDefaultTokenProviders();
+
 
             //    services.AddDbContext<PosDbContext>(c =>
             //c.UseInMemoryDatabase(Guid.NewGuid().ToString()).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));

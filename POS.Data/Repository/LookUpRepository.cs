@@ -27,7 +27,7 @@ namespace POS.Data.Repository
             {
 
                 string Sql = "EXEC Get_Json_Lookups @langID";
-                var data= DbContext.GetLookups.FromSqlRaw(Sql, new SqlParameter("@langID", Lang)).AsEnumerable().FirstOrDefault().Country_City_Currency;
+                var data= DbContext.GetLookups.FromSqlRaw(Sql, new SqlParameter("@langID", Lang)).AsEnumerable().FirstOrDefault().LookupsData;
 
                 return data.ToString();
             }
