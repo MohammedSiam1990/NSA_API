@@ -10,7 +10,6 @@ using POS.Models;
 using System.Linq;
 using POS.Common;
 using POS.API.Helpers;
-using POS.DTO;
 using POS.API.Models;
 using System.Threading;
 using System.Globalization;

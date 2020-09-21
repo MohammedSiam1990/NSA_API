@@ -57,6 +57,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DTO\" />
     <Folder Include="uploads\Brand\" />
     <Folder Include="uploads\Branch\" />
     <Folder Include="uploads\Comapny\" />

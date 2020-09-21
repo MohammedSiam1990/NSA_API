@@ -1,7 +1,6 @@
 using AutoMapper;
 using POS.Account;
 using POS.API.Models;
-using POS.DTO;
 using POS.Entities;
 using POS.Models;
 using System.Linq;
@@ -16,8 +15,8 @@ namespace POS.API.Helpers
             CreateMap<CompaniesModel, Companies>();
             CreateMap<Brands, BrandsModel>();
             CreateMap<BrandsModel, Brands>();
-            CreateMap<Brands, BrandsDto>();
-            CreateMap<BrandsDto, Brands>();
+            CreateMap<Branches, BranchesModel>();
+            CreateMap<BranchesModel, Branches>();
             CreateMap<ItemGroup, ItemGroupsModel>();
             CreateMap<ItemGroupsModel, ItemGroup>();
 
