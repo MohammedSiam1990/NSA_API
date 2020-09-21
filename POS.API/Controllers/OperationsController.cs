@@ -29,7 +29,6 @@ namespace POS.API.CORE.Controllers
     [Route("api/[controller]")]
     public class OperationsController : ControllerBase
     {
-        private readonly IHostEnvironment _env;
         private IloockUpService loockUpService;
 
         public OperationsController(IloockUpService _loockUpService)
@@ -37,9 +36,8 @@ namespace POS.API.CORE.Controllers
             loockUpService = _loockUpService;
         }
         [AllowAnonymous]
-        [HttpPost]
-        [ActionName("UploadImage")]
-        public object UploadImage(string FolderName, string Lang = "en")
+        [HttpPost("UploadImage")]
+        public IActionResult UploadImage(string FolderName, string Lang = "en")
         {
             try
             {
@@ -71,21 +69,23 @@ namespace POS.API.CORE.Controllers
                         }
 
                     }
-                    return new { success = true, message = Resources.lang.Upload_image_successful, filePath = "http://posapi.opos.me/" + "uploads/" + FolderName + "/", ImagesName = ImagesNameList };
+                    return Ok(new { success = true, message = Resources.lang.Upload_image_successful, filePath = "http://posapi.opos.me/" + "uploads/" + FolderName + "/", ImagesName = ImagesNameList });
 
                 }
                 else
                 {
-                    return new { success = false, message = Resources.lang.Select_image_file_to_upload };
+                    return Ok(new { success = false, message = Resources.lang.Select_image_file_to_upload });
                 }
             }
             catch (Exception ex)
             {
-                return new { success = false, message = Resources.lang.An_error_occurred_while_processing_your_request };
+                return Ok(new { success = false, message = Resources.lang.An_error_occurred_while_processing_your_request });
             }
 
         }
-        public object GetLookup(string Lang = "en")
+
+        [HttpGet("GetLookup")]
+        public IActionResult GetLookup(string Lang = "en")
         {
 
             try
@@ -98,11 +98,11 @@ namespace POS.API.CORE.Controllers
 
                 if (data == null)
                 {
-                    return new { success = false, message = Resources.lang.No_data_available };
+                    return Ok(new { success = false, message = Resources.lang.No_data_available });
                 }
                 else
                 {
-                    return new { success = true, message = "", datalist = JsonConvert.DeserializeObject(data) };
+                    return Ok(new { success = true, message = "", datalist = JsonConvert.DeserializeObject(data) });
                 }
             }
             catch (Exception ex)
@@ -110,7 +110,7 @@ namespace POS.API.CORE.Controllers
                 ExceptionError.SaveException(ex);
 
             }
-            return new { success = false, message = Resources.lang.An_error_occurred_while_processing_your_request };
+            return Ok(new { success = false, message = Resources.lang.An_error_occurred_while_processing_your_request });
 
 
         }
