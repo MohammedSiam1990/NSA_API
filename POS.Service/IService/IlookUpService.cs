@@ -7,7 +7,7 @@ using POS.Entities;
 
 namespace POS.Service.IService
 {
-    public interface IloockUpService
+    public interface IlookUpService
     {
         string GetLookUps(string Lang);
     }

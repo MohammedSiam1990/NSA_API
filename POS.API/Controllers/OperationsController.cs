@@ -29,9 +29,9 @@ namespace POS.API.CORE.Controllers
     [Route("api/[controller]")]
     public class OperationsController : ControllerBase
     {
-        private IloockUpService loockUpService;
+        private IlookUpService loockUpService;
 
-        public OperationsController(IloockUpService _loockUpService)
+        public OperationsController(IlookUpService _loockUpService)
         {
             loockUpService = _loockUpService;
         }

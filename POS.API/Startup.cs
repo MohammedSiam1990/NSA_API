@@ -32,6 +32,7 @@ using POS.API.Helpers;
 using POS.Data.DataContext;
 using POS.Service.IService;
 using POS.Service.Services;
+using POS.Services;
 using Steander.Core.Entities;
 
 namespace POS.API.CORE
@@ -190,6 +191,7 @@ namespace POS.API.CORE
                 services.AddScoped<IBranchService, BranchService>();
                 services.AddScoped<IMajorServicesService, MajorServicesService>();
                 services.AddScoped<IItemGroupsService, ItemGroupsService>();
+                services.AddScoped<IlookUpService, LookUpService>();
        
         }
 
