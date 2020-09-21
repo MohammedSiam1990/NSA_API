@@ -32,7 +32,8 @@ namespace POS.IService.Base
                                                    new BranchRepository(databaseFactory),
                                                    new CityRepository(databaseFactory),
                                                    new CountryRepository(databaseFactory),
-                                                   new ItemGroupsRepository(databaseFactory)
+                                                   new ItemGroupsRepository(databaseFactory),
+                                                   new LookUpRepository(databaseFactory)
                                                    //new AspNetUserRolesRepository(databaseFactory)
                                                 );
                 }
