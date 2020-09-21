@@ -21,8 +21,6 @@ namespace POS.Data.Repository
 
         }
 
-     
-   
         [Obsolete]
         public GetBranches GetProcBranches(int BrandID, string ImageURL)
         {

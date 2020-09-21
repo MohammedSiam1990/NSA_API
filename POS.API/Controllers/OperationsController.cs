@@ -36,7 +36,10 @@ namespace POS.API.CORE.Controllers
             try
             {
                 //var file = Request.Form.Files.Count();
-                var folderName = Path.Combine("uploads");
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
+                var folderName = Path.Combine("uploads",FolderName);
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
                 string[] ImagesNameList = new string[Request.Form.Files.Count()];
 
@@ -54,23 +57,23 @@ namespace POS.API.CORE.Controllers
                         }
                         if (i < Request.Form.Files.Count())
                         {
-                            ImagesNameList[i] = fullPath;
+                            ImagesNameList[i] = FolderName+"/"+fileName;
                             i++;
 
                         }
 
                     }
-                    return Ok(new { ImagesNameList });
+                    return new { success = true, message = Resources.lang.Upload_image_successful, filePath = "http://posapi.opos.me/" + "uploads/" + FolderName + "/", ImagesName = ImagesNameList };
 
                 }
                 else
                 {
-                    return BadRequest();
+                    return new { success = false, message = Resources.lang.Select_image_file_to_upload };
                 }
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex}");
+                return new { success = false, message = Resources.lang.An_error_occurred_while_processing_your_request };
             }
 
         }
