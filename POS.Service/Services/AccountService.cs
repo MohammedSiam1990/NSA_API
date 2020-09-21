@@ -37,14 +37,17 @@ namespace Pos.Service
         private IConfiguration _configuration;
        private IMailService mailService;
         EmailConfiguration emailConfig;
+        private ICompaniesService CompaniesService;
         public AccountService(UserManager<ApplicationUser> userManager,
+             ICompaniesService _CompaniesService,
             EmailConfiguration _emailConfig,
-            IConfiguration configuration
-          , IMailService _mailService
+            IConfiguration configuration ,
+          IMailService _mailService
             )
       
         {
             _userManger = userManager;
+            CompaniesService = _CompaniesService;
             _configuration = configuration;
              mailService  = _mailService;
             emailConfig =_emailConfig;
@@ -214,39 +217,32 @@ namespace Pos.Service
             };
 
         }
+   
         public async Task<LoginResponseDto> LoginUserAsync(LoginViewModel model)
         {
-            var user = await _userManger.FindByEmailAsync(model.Email);
+
+            var user = await _userManger.FindByEmailAsync(model.Username);
+
 
             if (user == null)
             {
-                return new LoginResponseDto
-                {
-                    message = "Username or password is incorrect",
-                    status = false,
-                };
+                throw new AppException(lang.The_username_or_password_is_incorrect);
             }
 
-            if (user.EmailConfirmed == false)
+            if (!user.EmailConfirmed)
             {
-                return new LoginResponseDto
-                {
-                    message = "Can't Login ,Please Confirm Email First",
-                    status = false
-                };
+                throw new AppException(lang.Your_account_is_not_activated_please_activate_it);
             }
-            var result = await _userManger.CheckPasswordAsync(user, model.Password);
 
-            if (!result)
-                return new LoginResponseDto
-                {
-                    message = "Invalid password",
-                    status = false,
-                };
+
+            if (user.LockoutEnabled == true)
+            {
+                throw new AppException(lang.Your_account_is_locked_please_try_later);
+            }
 
             var claims = new[]
             {
-                new Claim("Email", model.Email),
+                new Claim("Username", model.Username),
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
             };
 
@@ -260,6 +256,9 @@ namespace Pos.Service
                 signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256));
 
             string tokenAsString = new JwtSecurityTokenHandler().WriteToken(token);
+            var Company = CompaniesService.GetCompany(user.CompanyId);
+
+
             return new LoginResponseDto
             {
                 UserId = user.Id,
@@ -267,16 +266,13 @@ namespace Pos.Service
                 Email = user.Email,
                 Token = tokenAsString,
                 message = "Login Successfully",
-                status = true
+                status = true,
+                companyId = user.CompanyId.ToString(),
+                Name = user.Name,
+                CompanyNameEn = Company.CompanyName,
+                CompanyNameAr = Company.CompanyNameAr
+
             };
-            //return new LoginResponseDto
-            //{
-            //    Token = tokenAsString,
-            //    UserName = "dd",
-            //    Email = user.Email
-            //};
-
-
         }
 
         //public async Task<UserManagerResponse> ConfirmEmailAsync(ConfirmEmail model)

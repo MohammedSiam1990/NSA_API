@@ -211,6 +211,22 @@ namespace POS.Core
             DateTime tempDate = DateTime.ParseExact(hijriDate, "dd/MM/yyyy", arCI.DateTimeFormat, DateTimeStyles.AllowInnerWhite);
             return tempDate;
         }
+        public static string CheckLanguage(string lang)
+        {
+            try
+            {
+                if (lang.ToLower() == "en")
+                    return "en";
+                if (lang.ToLower() == "ar")
+                    return "ar";
+                return "en";
+            }
+            catch (Exception ex)
+            {
+                new Exception(ex.Message);
+            }
+            return "en";
+        }
     }
 }
 

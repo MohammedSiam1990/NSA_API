@@ -12,6 +12,10 @@ namespace POS.Data.Dto
         public string UserId { get; set; }
         public string message { get; set; }
         public bool status { get; set; }
+        public string Name { get; set; }
+        public string companyId { get; set; }
+        public string CompanyNameEn { get; set; }
+        public string CompanyNameAr { get; set; }
 
     }
 }

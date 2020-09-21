@@ -70,17 +70,17 @@ namespace POS.API.CORE.Controllers
                         }
 
                     }
-                    return Ok(new { success = true, message = Resources.lang.Upload_image_successful, filePath = "http://posapi.opos.me/" + "uploads/" + FolderName + "/", ImagesName = ImagesNameList });
+                    return Ok(new { success = true, message = lang.Upload_image_successful, filePath = "http://posapi.opos.me/" + "uploads/" + FolderName + "/", ImagesName = ImagesNameList });
 
                 }
                 else
                 {
-                    return Ok(new { success = false, message = Resources.lang.Select_image_file_to_upload });
+                    return Ok(new { success = false, message = lang.Select_image_file_to_upload });
                 }
             }
             catch (Exception ex)
             {
-                return Ok(new { success = false, message = Resources.lang.An_error_occurred_while_processing_your_request });
+                return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
             }
 
         }
@@ -99,7 +99,7 @@ namespace POS.API.CORE.Controllers
 
                 if (data == null)
                 {
-                    return Ok(new { success = false, message = Resources.lang.No_data_available });
+                    return Ok(new { success = false, message = lang.No_data_available });
                 }
                 else
                 {
@@ -111,7 +111,7 @@ namespace POS.API.CORE.Controllers
                 ExceptionError.SaveException(ex);
 
             }
-            return Ok(new { success = false, message = Resources.lang.An_error_occurred_while_processing_your_request });
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
 
         }

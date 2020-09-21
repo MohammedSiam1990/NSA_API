@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MailKit;
@@ -9,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Pos.IService;
+using POS.Core;
 using POS.Core.Resources;
 using POS.Data.Dto;
 using Steander.Core.DTOs;
@@ -61,23 +64,57 @@ namespace StanderApi.Controllers
       
         }
         // /api/auth/login
-        [HttpPost("Login")]
+       
+         [HttpPost("Login")]
         public async Task<IActionResult> LoginAsync([FromBody]LoginViewModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var result = await _accountService.LoginUserAsync(model);
+                model.Lang = Utility.CheckLanguage(model.Lang);
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(model.Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(model.Lang);
 
-                if (result.status)
+                if (string.IsNullOrWhiteSpace(model.Username))
                 {
-                    //await _mailService.SendEmailAsync(model.Email, "New login", "<h1>Hey!, new login to your account noticed</h1><p>New login to your account at " + DateTime.Now + "</p>");
-                    return Ok(result);
+                    return Ok(new { message = lang.Missing_username, success = false });
                 }
 
-                return BadRequest(result);
+                if (string.IsNullOrWhiteSpace(model.Password))
+                {
+                    return Ok(new { message = lang.Missing_password, success = false });
+                }
+
+                if (model.Password.Length < 6)
+                {
+                    return Ok(new { message = lang.Password_length_should_be_6_characters_or_more, success = false });
+                }
+
+
+                if (!ModelState.IsValid)
+                {
+                    return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+                }
+
+                if (ModelState.IsValid)
+                {
+                    var result = await _accountService.LoginUserAsync(model);
+
+                    if (result.status)
+                    {
+                        return Ok(result);
+                    }
+
+                    return BadRequest(result);
+                }
+                return BadRequest(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new { message = ex.Message });
             }
 
-            return BadRequest("Some properties are not valid");
         }
         //[AllowAnonymous]
         //[HttpGet("testMail")]

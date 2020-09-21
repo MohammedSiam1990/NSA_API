@@ -10,9 +10,10 @@ namespace POS.Data.Dto
 
         [Required]
         [StringLength(50)]
-        [EmailAddress]
-        public string Email { get; set; }
+        public string Username { get; set; }
 
+        [Required]
+        public string Lang { get; set; }
         [Required]
         [StringLength(50, MinimumLength = 5)]
         public string Password { get; set; }
