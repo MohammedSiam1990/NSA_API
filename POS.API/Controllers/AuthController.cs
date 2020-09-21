@@ -174,32 +174,65 @@ namespace StanderApi.Controllers
 
 
         // api/auth/resetpassword
+        //[HttpPost("ResetPassword2")]
+        //public async Task<IActionResult> ResetPassword([FromForm]ResetPasswordViewModel2 model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var result = await _accountService.ResetPasswordAsync(model);
+
+        //        if (result.IsSuccess)
+        //            return Ok(result);
+
+        //        return BadRequest(result);
+        //    }
+
+        //    return BadRequest("Some properties are not valid");
+        //}
         [HttpPost("ResetPassword")]
-        public async Task<IActionResult> ResetPassword([FromForm]ResetPasswordViewModel model)
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model, string Lang = "en")
         {
-            if (ModelState.IsValid)
+            try
             {
-                var result = await _accountService.ResetPasswordAsync(model);
+                Lang = Utility.CheckLanguage(Lang);
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                if (result.IsSuccess)
-                    return Ok(result);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(lang.Missing_data);
 
-                return BadRequest(result);
+                }
+                if (ModelState.IsValid)
+                {
+                    var result = await _accountService.ResetPassword(model);
+
+                    if (result.IsSuccess)
+                        return Ok(result);
+                }
+
+                return BadRequest(new { message = lang.An_error_occurred_while_processing_your_request });
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new { message = lang.An_error_occurred_while_processing_your_request, ex = ex });
             }
 
-            return BadRequest("Some properties are not valid");
+
         }
 
-        //api/auth/getAllUsers
-       //[HttpGet("GetAllUsers")]
-       // public async Task<IActionResult> GetAllUsers()
-       // {
 
-       //     var result = await _accountService.GetAllUsersAsync();
-       //     var resultDto = _mapper.Map<IList<UserDto>>(result);
-       //     return Ok(resultDto);
-       //     //return BadRequest();
-       // }
+        //api/auth/getAllUsers
+        //[HttpGet("GetAllUsers")]
+        // public async Task<IActionResult> GetAllUsers()
+        // {
+
+        //     var result = await _accountService.GetAllUsersAsync();
+        //     var resultDto = _mapper.Map<IList<UserDto>>(result);
+        //     return Ok(resultDto);
+        //     //return BadRequest();
+        // }
 
 
         //api/auth/getUser
