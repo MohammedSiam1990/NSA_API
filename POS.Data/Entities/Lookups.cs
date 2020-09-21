@@ -5,6 +5,6 @@ namespace POS.Entities
 {
     public partial class Lookups
     {
-        public string Country_City_Currency { get; set; }
+        public string LookupsData { get; set; }
     }
 }
