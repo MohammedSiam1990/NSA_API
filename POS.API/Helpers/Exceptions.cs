@@ -9,12 +9,12 @@ namespace Exceptions
         {
             try
             {   
-                var file_name = Path.Combine(@"~/LOG/log.txt");
+                var file_name = Path.Combine(@"LOG/log.txt");
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), file_name);
 
-                if (!Directory.Exists(Path.Combine(@"~/LOG")))
+                if (!Directory.Exists(Path.Combine(@"LOG")))
                 {
-                    Directory.CreateDirectory(Path.Combine(@"~/LOG"));
+                    Directory.CreateDirectory(Path.Combine(@"LOG"));
                 }
                 if (!System.IO.File.Exists(file_name))
                 {

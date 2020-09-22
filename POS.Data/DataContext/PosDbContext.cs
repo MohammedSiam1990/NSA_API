@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Steander.Core.Entities;
 using POS.Data.Dto.Account;
+using POS.Data.Entities;
 
 namespace POS.Data.DataContext
 {
@@ -41,6 +42,9 @@ namespace POS.Data.DataContext
         public virtual DbQuery<GetBranches> GetBranches { get; set; }
         [Obsolete]
         public virtual DbQuery<Lookups> GetLookups { get; set; }
+        [Obsolete]
+        public virtual DbQuery<AllData> GetAllData { get; set; }
+
 
         [Obsolete]
         public virtual DbQuery<GetBrands> GetBrands { get; set; }

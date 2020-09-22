@@ -18,7 +18,7 @@ using POS.Core.Resources;
 
 namespace POS.API.CORE.Controllers
 {
-  //  [Authorize]
+    //  [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class BranchController : ControllerBase
@@ -27,7 +27,7 @@ namespace POS.API.CORE.Controllers
         private IBranchService BranchService;
 
         private IMapper Mapper;
-    
+
         public BranchController(
                                       IBranchService _BranchService,
                                        ImagesPath _imagesPath,
@@ -37,11 +37,11 @@ namespace POS.API.CORE.Controllers
             BranchService = _BranchService;
             imagesPath = _imagesPath;
             Mapper = mapper;
-   
+
         }
 
 
-           
+
         [HttpGet("GetBranches")]
         public IActionResult GetBranches(int BrandID = 0, string Lang = "en")
         {
@@ -64,12 +64,12 @@ namespace POS.API.CORE.Controllers
 
                 }
             }
-            
+
             catch (Exception ex)
             {
                 // return error message if there was an exception
                 ExceptionError.SaveException(ex);
-               
+
             }
 
             return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -86,7 +86,7 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
                 var Branch = Mapper.Map<Branches>(model);
-             var data=   BranchService.SaveProcBranch(Branch);
+                var data = BranchService.SaveProcBranch(Branch);
                 if (data != 1)
                 {
                     if (data == -2)
