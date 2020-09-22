@@ -78,7 +78,7 @@ namespace POS.API.CORE.Controllers
                         }
 
                     }
-                    return Ok(new { success = true, message = lang.Upload_image_successful, filePath = "http://posapi.opos.me/" + "uploads/" + FolderName + "/", ImagesName = ImagesNameList });
+                    return Ok(new { success = true, message = lang.Upload_image_successful, filePath = "http://posapi.opos.me/" + "uploads/", ImagesName = ImagesNameList });
 
                 }
                 else
