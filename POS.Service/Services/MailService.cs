@@ -28,7 +28,7 @@ namespace POS.Service.Services
             MailMessage message = new MailMessage(from, to);
             message.Subject = Subject;
             message.Body = body;
-
+            message.IsBodyHtml = true;
             SmtpClient client = new SmtpClient
             {
                 Host = Smtp,//"smtp.gmail.com",

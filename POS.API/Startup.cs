@@ -68,6 +68,7 @@ namespace POS.API.CORE
                           options.UseSqlServer(Configuration.GetConnectionString("DefaultPosConnection")));
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
+
             var lockoutOptions = new LockoutOptions()
             {
                 AllowedForNewUsers = false,
@@ -89,6 +90,11 @@ namespace POS.API.CORE
                 .AddEntityFrameworkStores<PosDbContext>()
                 .AddDefaultTokenProviders()
                 .AddDefaultUI();
+
+
+
+
+
 
 
             //    services.AddDbContext<PosDbContext>(c =>

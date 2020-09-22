@@ -144,7 +144,8 @@ namespace Pos.Service
                 CompanyEmail = model.Email,
                 StatusId = 1,
                 ImageName = model.ImageName,
-                CreationDate = DateTime.Now
+                CreationDate = DateTime.Now,
+                
             };
             PosService.CompaniesRepository.AddCompany(company);
 
@@ -161,9 +162,9 @@ namespace Pos.Service
                 LockoutEnabled = false,
                 CompanyId = company.CompanyId,
                 UserType = 1,
+                
                 // VerificationCode = VerificationCode
             };
-
             var result = await _userManger.CreateAsync(identityUser, model.Password);
 
             if (result.Succeeded)
@@ -179,10 +180,11 @@ namespace Pos.Service
                 var callbackUrl = emailConfig.AppUrl + "?userId=" + User.Id + "&code=" + code + "&lang=" + model.Lang;
 
 
-                var Body = lang.Please_activate_your_account_by_clicking + " <a href=\"" + callbackUrl + "\">" + lang.Here + "</a>";
+                var Body = lang.Please_activate_your_account_by_clicking + "<a href=\"" + callbackUrl + "\"> " + lang.Here + "</a>";
+                
                 var Subject = lang.Activare_your_account;
 
-                string url = $"{emailConfig.AppUrl}/api/auth/confirmemail?userid={identityUser.Id}&token={validEmailToken}";
+                //string url = $"{emailConfig.AppUrl}/api/auth/confirmemail?userid={identityUser.Id}&token={validEmailToken}";
                 bool isMessageSent = mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, false, emailConfig.From, identityUser.Email, Subject, Body, emailConfig.From, emailConfig.Password);
 
                 if (isMessageSent == false)
@@ -285,7 +287,7 @@ namespace Pos.Service
 
         public async Task<bool> ConfirmEmailAsync(string userId, string code)
         {
-            var User = await _userManger.FindByEmailAsync(userId);
+            var User = await _userManger.FindByIdAsync(userId);
             var result = _userManger.ConfirmEmailAsync(User, code);
             return true;
         }
