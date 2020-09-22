@@ -22,6 +22,8 @@ using Newtonsoft.Json;
 using POS.Services;
 using POS.Service.IService;
 using POS.Core.Resources;
+using AutoMapper.Configuration;
+using System.Text;
 
 namespace POS.API.CORE.Controllers
 {
@@ -31,10 +33,15 @@ namespace POS.API.CORE.Controllers
     public class OperationsController : ControllerBase
     {
         private IlookUpService loockUpService;
+        private  IAllDataService AllDataService;
+        private ImagesPath imagesPath;
 
-        public OperationsController(IlookUpService _loockUpService)
+
+
+        public OperationsController(IlookUpService _loockUpService, ImagesPath _imagesPath)
         {
             loockUpService = _loockUpService;
+            imagesPath = _imagesPath;
         }
         [AllowAnonymous]
         [HttpPost("UploadImage")]
@@ -97,6 +104,32 @@ namespace POS.API.CORE.Controllers
 
 
                 var data = loockUpService.GetLookUps(Lang);
+
+                if (data == null)
+                {
+                    return Ok(new { success = false, message = lang.No_data_available });
+                }
+                else
+                {
+                    return Ok(new { success = true, message = "", datalist = JsonConvert.DeserializeObject(data) });
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+
+            }
+            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
+
+        }
+        [HttpGet("GetAllData")]
+        public IActionResult GetAllData(int CompanyID)
+        {
+
+            try
+            {
+                var data = AllDataService.GetAllData(CompanyID, imagesPath.brand, imagesPath.branch, imagesPath.itemGroup);
 
                 if (data == null)
                 {

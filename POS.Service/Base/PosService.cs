@@ -19,6 +19,7 @@ namespace Pos.Service.Base
         public IMajorServiceTypesRepository MajorServiceTypesRepository { get; set; }
         public IItemGroupsRepository ItemGroupsRepository { get; set; }
         public IlookUpRepository LookUpRepository { get; set; }
+        public IAllDataRepository AllDataRepository { get; set; }
         //public IAspNetUserRolesRepository AspNetUserRolesRepository { get; set; }
         [Inject]
         public PosServices(          ICompaniesRepository _CompaniesRepository,
@@ -31,7 +32,8 @@ namespace Pos.Service.Base
                                      ICityRepository _CityRepository,
                                      ICountryRepository _CountryRepository,
                                      IItemGroupsRepository _ItemGroupsRepository,
-                                     IlookUpRepository _lookUpRepository
+                                     IlookUpRepository _lookUpRepository,
+                                     IAllDataRepository _AllDataRepository
                             //IAspNetUserRolesRepository _AspNetUserRolesRepository
                             )
         {
@@ -46,6 +48,7 @@ namespace Pos.Service.Base
             CountryRepository = _CountryRepository;
             ItemGroupsRepository = _ItemGroupsRepository;
             LookUpRepository = _lookUpRepository;
+            AllDataRepository = _AllDataRepository;
             //AspNetUserRolesRepository = _AspNetUserRolesRepository;
         }
 

@@ -33,8 +33,9 @@ namespace POS.IService.Base
                                                    new CityRepository(databaseFactory),
                                                    new CountryRepository(databaseFactory),
                                                    new ItemGroupsRepository(databaseFactory),
-                                                   new LookUpRepository(databaseFactory)
-                                                   //new AspNetUserRolesRepository(databaseFactory)
+                                                   new LookUpRepository(databaseFactory),
+                                                   new AllDataRepository(databaseFactory)
+                                                //new AspNetUserRolesRepository(databaseFactory)
                                                 );
                 }
                 return _PosService;
