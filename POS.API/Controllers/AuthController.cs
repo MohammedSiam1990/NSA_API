@@ -6,6 +6,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Exceptions;
 using MailKit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -109,9 +110,9 @@ namespace StanderApi.Controllers
             }
             catch (Exception ex)
             {
-
-                return BadRequest(new { message = ex.Message });
+                ExceptionError.SaveException(ex);
             }
+            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
         }
 
@@ -152,22 +153,29 @@ namespace StanderApi.Controllers
             }
             catch (Exception ex)
             {
-              return BadRequest(new { message = lang.An_error_occurred_while_processing_your_request, ex = ex });   
+                ExceptionError.SaveException(ex);
             }
+            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
         // api/auth/forgetpassword
         [HttpPost("ForgetPassword")]
         public async Task<IActionResult> ForgetPassword([FromBody] ForgetPasswordModel forgetPasswordModel)
         {
-            if (string.IsNullOrEmpty(forgetPasswordModel.Email))
-                return NotFound();
+            try
+            {
+                if (string.IsNullOrEmpty(forgetPasswordModel.Email))
+                    return NotFound();
 
-            var result = await _accountService.ForgetPasswordAsync(forgetPasswordModel);
+                var result = await _accountService.ForgetPasswordAsync(forgetPasswordModel);
 
-            if (result.IsSuccess)
-                return Ok(result); // 200
-
-            return BadRequest(result); // 400
+                if (result.IsSuccess)
+                    return Ok(result); // 200
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+            }
+            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
 
 
@@ -198,7 +206,7 @@ namespace StanderApi.Controllers
 
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest(lang.Missing_data);
+                    return Ok(new { success = false, message = lang.Missing_data });
 
                 }
                 if (ModelState.IsValid)
@@ -206,16 +214,15 @@ namespace StanderApi.Controllers
                     var result = await _accountService.ResetPassword(model);
 
                     if (result.IsSuccess)
-                        return Ok(result);
+                    return Ok(new { success = false, Result=result });
                 }
 
-                return BadRequest(new { message = lang.An_error_occurred_while_processing_your_request });
             }
             catch (Exception ex)
             {
-
-                return BadRequest(new { message = lang.An_error_occurred_while_processing_your_request, ex = ex });
+                ExceptionError.SaveException(ex);
             }
+            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
 
         }
