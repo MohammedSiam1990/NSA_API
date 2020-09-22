@@ -51,22 +51,7 @@ namespace Pos.Service
             mailService = _mailService;
             emailConfig = _emailConfig;
         }
-        public static string CheckLanguage(string lang)
-        {
-            try
-            {
-                if (lang.ToLower() == "en")
-                    return "en";
-                if (lang.ToLower() == "ar")
-                    return "ar";
-                return "en";
-            }
-            catch (Exception ex)
-            {
-                ExceptionError(ex);
-            }
-            return "en";
-        }
+     
         public static void ExceptionError(Exception ex)
         {
 
@@ -95,7 +80,6 @@ namespace Pos.Service
 
         public async Task<UserManagerResponse> RegisterUserAsync(RegisterViewModel model)
         {
-            model.Lang = CheckLanguage(model.Lang);
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(model.Lang);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(model.Lang);
 

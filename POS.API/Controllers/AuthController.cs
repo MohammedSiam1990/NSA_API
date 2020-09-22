@@ -44,37 +44,23 @@ namespace StanderApi.Controllers
         [HttpPost("Register")]
         public async Task<IActionResult> RegisterAsync([FromBody]RegisterViewModel model)
         {
-
-
-
-
-
-
-
-
-
-
-            if (ModelState.IsValid)
+            try
             {
-                var result = await _accountService.RegisterUserAsync(model);
-                try
-                { 
-                
-                    return Ok(result); // Status Code: 200 
-                }
-                catch(Exception ex)
+                if (ModelState.IsValid)
                 {
-                    ExceptionError.SaveException(ex);
+                    var result = await _accountService.RegisterUserAsync(model);
+                    return Ok(result); 
                 }
-                return BadRequest(result);
+                else
+                {
+                    return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var result = new { message = lang.An_error_occurred_while_processing_your_request, success = false };
-
-                return BadRequest(result);
+                ExceptionError.SaveException(ex);
             }
-      
+            return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
         }
         // /api/auth/login
        
