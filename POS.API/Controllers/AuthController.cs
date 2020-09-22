@@ -157,38 +157,35 @@ namespace StanderApi.Controllers
               return BadRequest(new { message = lang.An_error_occurred_while_processing_your_request, ex = ex });   
             }
         }
-        // api/auth/forgetpassword
+
+        // api/auth/ForgetPassword
         [HttpPost("ForgetPassword")]
-        public async Task<IActionResult> ForgetPassword([FromBody] ForgetPasswordModel forgetPasswordModel)
+        public async Task<IActionResult> ForgetPassword(String Email, string Lang)
         {
-            if (string.IsNullOrEmpty(forgetPasswordModel.Email))
-                return NotFound();
+            try
+            {
+                Lang = Utility.CheckLanguage(Lang);
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+                if (string.IsNullOrEmpty(Email))
+                    return NotFound();
 
-            var result = await _accountService.ForgetPasswordAsync(forgetPasswordModel);
+                var result = await _accountService.ForgetPasswordAsync(Email, Lang);
 
-            if (result.IsSuccess)
-                return Ok(result); // 200
+                if (result.IsSuccess)
+                    return Ok(result); // 200
 
-            return BadRequest(result); // 400
+                return BadRequest(result); // 400
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new { message = lang.An_error_occurred_while_processing_your_request, ex = ex });
+
+            }
+
         }
 
-
-        // api/auth/resetpassword
-        //[HttpPost("ResetPassword2")]
-        //public async Task<IActionResult> ResetPassword([FromForm]ResetPasswordViewModel2 model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var result = await _accountService.ResetPasswordAsync(model);
-
-        //        if (result.IsSuccess)
-        //            return Ok(result);
-
-        //        return BadRequest(result);
-        //    }
-
-        //    return BadRequest("Some properties are not valid");
-        //}
         [HttpPost("ResetPassword")]
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model, string Lang = "en")
         {

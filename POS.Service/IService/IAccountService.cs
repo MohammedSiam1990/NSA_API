@@ -19,9 +19,7 @@ namespace Pos.IService
 
         Task<bool> ConfirmEmailAsync(string userId, string code);
 
-        Task<UserManagerResponse> ForgetPasswordAsync(ForgetPasswordModel forgetPasswordModel);
-
-        Task<UserManagerResponse> ResetPasswordAsync(ResetPasswordViewModel2 model);
+        Task<UserManagerResponse> ForgetPasswordAsync(String Email ,string Lang);
         Task<UserManagerResponse> ResetPassword(ResetPasswordViewModel model);
         IList<ApplicationUser> GetAllUsersAsync();
 

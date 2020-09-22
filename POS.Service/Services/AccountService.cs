@@ -290,72 +290,39 @@ namespace Pos.Service
                 return true;
         }
 
-        public async Task<UserManagerResponse> ForgetPasswordAsync(ForgetPasswordModel forgetPasswordModel)
+        public async Task<UserManagerResponse> ForgetPasswordAsync(String Email, string Lang)
         {
-            var user = await _userManger.FindByEmailAsync(forgetPasswordModel.Email);
+
+            var user = await _userManger.FindByEmailAsync(Email);
             if (user == null)
-                return new UserManagerResponse
-                {
-                    IsSuccess = false,
-                    Message = "No user associated with email",
-                };
+            {
+                throw new AppException(lang.Invalid_email);
 
-            var token = await _userManger.GeneratePasswordResetTokenAsync(user);
-            var encodedToken = Encoding.UTF8.GetBytes(token);
-            var validToken = WebEncoders.Base64UrlEncode(encodedToken);
-            string url = $"{_configuration["AppUrl"]}/ResetPassword?email={forgetPasswordModel.Email}&token={validToken}";
-            var body = "<html><body>" +
-                                        "<h2>Password reset</h2>" +
-                            $"<p>Hi {user.UserName}, <a href='{url}'> please click this link to reset your password </a></p>" +
-                             "</body></html>";
+            }
+            else if (!(await _userManger.IsEmailConfirmedAsync(user)))
+            {
+                throw new AppException(lang.Confirm_your_email);
+            }
 
+            var code = await _userManger.GeneratePasswordResetTokenAsync(user);
 
+            var callbackUrl = emailConfig.AppUrl+ "ResetPassword.html?code=" + code + "&Lang=" + Lang;
+
+            var Body = lang.To_reset_your_password_click + "<a href=\"" + callbackUrl + "\"> " + lang.Here + "</a>";
+            var Subject = lang.Reset_your_password;
+            bool isMessageSent = false;
+             isMessageSent = mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, false, emailConfig.From, Email, Subject, Body, emailConfig.From, emailConfig.Password);
+
+            if (isMessageSent == false)
+            {
+                throw new AppException(lang.Cant_send_forgot_password_email_please_try_later);
+            }
             return new UserManagerResponse
             {
                 IsSuccess = true,
-                Message = "Reset password URL has been sent to the email successfully!"
+                Message = lang.Please_check_your_email_to_reset_your_password,
             };
         }
-
-        public async Task<UserManagerResponse> ResetPasswordAsync(ResetPasswordViewModel2 model)
-        {
-            var user = await _userManger.FindByEmailAsync(model.Email);
-            if (user == null)
-                return new UserManagerResponse
-                {
-                    IsSuccess = false,
-                    Message = "No user associated with email",
-                };
-
-            if (model.NewPassword != model.ConfirmPassword)
-                return new UserManagerResponse
-                {
-                    IsSuccess = false,
-                    Message = "Password doesn't match its confirmation",
-                };
-            var token = await _userManger.GeneratePasswordResetTokenAsync(user);
-            var encodedToken = Encoding.UTF8.GetBytes(token);
-            var validToken = WebEncoders.Base64UrlEncode(encodedToken);
-            var decodedToken = WebEncoders.Base64UrlDecode(token);
-            string normalToken = Encoding.UTF8.GetString(decodedToken);
-
-            var result = await _userManger.ResetPasswordAsync(user, token, model.NewPassword);
-
-            if (result.Succeeded)
-                return new UserManagerResponse
-                {
-                    Message = "Password has been reset successfully!",
-                    IsSuccess = true,
-                };
-
-            return new UserManagerResponse
-            {
-                Message = "Something went wrong",
-                IsSuccess = false,
-                Errors = result.Errors.Select(e => e.Description),
-            };
-        }
-
 
         public IList<ApplicationUser> GetAllUsersAsync()
         {
@@ -415,7 +382,6 @@ namespace Pos.Service
 
         public async Task<UserManagerResponse> ResetPassword(ResetPasswordViewModel model)
         {
-
             var user = await _userManger.FindByEmailAsync(model.Email);
             if (user == null)
             {
@@ -425,25 +391,23 @@ namespace Pos.Service
                     IsSuccess = false,
                 };
             }
-            var token = await _userManger.GeneratePasswordResetTokenAsync(user);
-            var encodedToken = Encoding.UTF8.GetBytes(token);
-            var validToken = WebEncoders.Base64UrlEncode(encodedToken);
-            var decodedToken = WebEncoders.Base64UrlDecode(token);
-            string normalToken = Encoding.UTF8.GetString(decodedToken);
-            var result = await _userManger.ResetPasswordAsync(user, token, model.Password);
-
+            string code;
+            code = model.Code.Replace(' ', '+');
+            var result = await _userManger.ResetPasswordAsync(user, code, model.Password);
             if (result.Succeeded)
+            {
+                user.Password = model.Password;
+                await _userManger.UpdateAsync(user);
                 return new UserManagerResponse
                 {
                     Message = lang.Your_password_has_been_reset_Please,
-                    IsSuccess = true,
+                    IsSuccess = false,
                 };
-
+            }
             return new UserManagerResponse
             {
-                Message = "Something went wrong",
+                Message = lang.An_error_occurred_while_processing_your_request,
                 IsSuccess = false,
-                Errors = result.Errors.Select(e => e.Description),
             };
 
         }
