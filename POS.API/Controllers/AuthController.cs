@@ -44,8 +44,6 @@ namespace StanderApi.Controllers
         public async Task<IActionResult> RegisterAsync([FromBody]RegisterViewModel model)
         {
 
-
-
             if (ModelState.IsValid)
             {
                 var result = await _accountService.RegisterUserAsync(model);

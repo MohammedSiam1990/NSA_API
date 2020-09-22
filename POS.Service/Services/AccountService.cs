@@ -35,22 +35,22 @@ namespace Pos.Service
 
         private UserManager<ApplicationUser> _userManger;
         private IConfiguration _configuration;
-       private IMailService mailService;
+        private IMailService mailService;
         EmailConfiguration emailConfig;
         private ICompaniesService CompaniesService;
         public AccountService(UserManager<ApplicationUser> userManager,
              ICompaniesService _CompaniesService,
             EmailConfiguration _emailConfig,
-            IConfiguration configuration ,
+            IConfiguration configuration,
           IMailService _mailService
             )
-      
+
         {
             _userManger = userManager;
             CompaniesService = _CompaniesService;
             _configuration = configuration;
-             mailService  = _mailService;
-            emailConfig =_emailConfig;
+            mailService = _mailService;
+            emailConfig = _emailConfig;
         }
         public static string CheckLanguage(string lang)
         {
@@ -64,7 +64,7 @@ namespace Pos.Service
             }
             catch (Exception ex)
             {
-              ExceptionError(ex);
+                ExceptionError(ex);
             }
             return "en";
         }
@@ -75,8 +75,8 @@ namespace Pos.Service
             {
                 var file_name = Environment.CurrentDirectory + "/LOG/log.txt";// HostingEnvironment.MapPath(@"~/LOG/log.txt");
                 if (!Directory.Exists(Environment.CurrentDirectory + "/LOG/"))
-                    // System.Web.Hosting.HostingEnvironment.MapPath(@"~/LOG")))
-                    
+                // System.Web.Hosting.HostingEnvironment.MapPath(@"~/LOG")))
+
                 {
                     Directory.CreateDirectory(Environment.CurrentDirectory + "/LOG/");
                 }
@@ -92,7 +92,7 @@ namespace Pos.Service
                 throw e;
             }
         }
-   
+
 
         public async Task<UserManagerResponse> RegisterUserAsync(RegisterViewModel model)
         {
@@ -102,10 +102,10 @@ namespace Pos.Service
 
 
             if (model == null)
-                 throw new AppException(lang.Reigster_Model_is_null);
+                throw new AppException(lang.Reigster_Model_is_null);
             if (string.IsNullOrWhiteSpace(model.Email))
             {
-                 throw new AppException(lang.Missing_username);
+                throw new AppException(lang.Missing_username);
             }
 
             if (string.IsNullOrWhiteSpace(model.Password))
@@ -119,7 +119,7 @@ namespace Pos.Service
             }
 
             if (model.Password != model.ConfirmPassword)
-              throw new AppException(lang.PasswordNotMatch);
+                throw new AppException(lang.PasswordNotMatch);
 
 
 
@@ -127,7 +127,7 @@ namespace Pos.Service
             if (appUser != null && appUser.Email == model.Email)
             {
 
-                throw new AppException(lang.Either_username_and_or_email_already_exists );
+                throw new AppException(lang.Either_username_and_or_email_already_exists);
             }
 
             appUser = await _userManger.FindByNameAsync(model.Username);
@@ -137,7 +137,8 @@ namespace Pos.Service
             }
             string VerificationCode = RandomGenerator.RandomPassword();
 
-            var company = new Companies {
+            var company = new Companies
+            {
                 CountryId = model.CountryId,
                 CompanyName = model.CompanyName,
                 CompanyNameAr = model.CompanyNameAr,
@@ -159,9 +160,9 @@ namespace Pos.Service
                 EmailConfirmed = false,
                 IsSuperAdmin = true,
                 LockoutEnabled = false,
-                  CompanyId = company.CompanyId,
+                CompanyId = company.CompanyId,
                 UserType = 1,
-               // VerificationCode = VerificationCode
+                // VerificationCode = VerificationCode
             };
 
             var result = await _userManger.CreateAsync(identityUser, model.Password);
@@ -183,7 +184,7 @@ namespace Pos.Service
                 var Subject = lang.Activare_your_account;
 
                 string url = $"{emailConfig.AppUrl}/api/auth/confirmemail?userid={identityUser.Id}&token={validEmailToken}";
-               bool isMessageSent =  mailService.SendEmailAsync(emailConfig.SmtpServer,emailConfig.Port,false ,emailConfig.From, identityUser.Email, Subject, Body, emailConfig.From, emailConfig.Password);
+                bool isMessageSent = mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, false, emailConfig.From, identityUser.Email, Subject, Body, emailConfig.From, emailConfig.Password);
 
                 if (isMessageSent == false)
                 {
@@ -199,13 +200,13 @@ namespace Pos.Service
                     throw new AppException(lang.Cant_send_activation_email_please_try_registration_later);
                 }
 
-       
+
 
                 return new UserManagerResponse
                 {
-                     
-                Message =lang.Your_registration_completed_successfully + ", " + lang.Please_check_your_email_to_activtate_your_email,
-                 //EmailConfirmed = User.EmailConfirmed,
+
+                    Message = lang.Your_registration_completed_successfully + ", " + lang.Please_check_your_email_to_activtate_your_email,
+                    //EmailConfirmed = User.EmailConfirmed,
                     IsSuccess = true,
                 };
             }
@@ -218,7 +219,7 @@ namespace Pos.Service
             };
 
         }
-   
+
         public async Task<LoginResponseDto> LoginUserAsync(LoginViewModel model)
         {
 
@@ -285,9 +286,9 @@ namespace Pos.Service
 
         public async Task<bool> ConfirmEmailAsync(string userId, string code)
         {
-                var User = await _userManger.FindByEmailAsync(userId);
-                var result = _userManger.ConfirmEmailAsync(User,  code);
-                return true;
+            var User = await _userManger.FindByEmailAsync(userId);
+            var result = _userManger.ConfirmEmailAsync(User, code);
+            return true;
         }
 
         public async Task<UserManagerResponse> ForgetPasswordAsync(ForgetPasswordModel forgetPasswordModel)
@@ -309,6 +310,7 @@ namespace Pos.Service
                             $"<p>Hi {user.UserName}, <a href='{url}'> please click this link to reset your password </a></p>" +
                              "</body></html>";
 
+            bool isMessageSent = mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, false, emailConfig.From, forgetPasswordModel.Email, lang.Reset_your_password, body, emailConfig.From, emailConfig.Password);
 
             return new UserManagerResponse
             {
@@ -359,7 +361,7 @@ namespace Pos.Service
 
         public IList<ApplicationUser> GetAllUsersAsync()
         {
-            var users =  _userManger.Users.ToList();
+            var users = _userManger.Users.ToList();
             return users;
         }
 
