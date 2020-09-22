@@ -33,14 +33,15 @@ namespace POS.API.CORE.Controllers
     public class OperationsController : ControllerBase
     {
         private IlookUpService loockUpService;
-        private  IAllDataService AllDataService;
+        private  IMobileDataService AllDataService;
         private ImagesPath imagesPath;
 
 
 
-        public OperationsController(IlookUpService _loockUpService, ImagesPath _imagesPath)
+        public OperationsController(IlookUpService _loockUpService, ImagesPath _imagesPath,IMobileDataService _AllDataService)
         {
             loockUpService = _loockUpService;
+            AllDataService = _AllDataService;
             imagesPath = _imagesPath;
         }
         [AllowAnonymous]
@@ -123,13 +124,13 @@ namespace POS.API.CORE.Controllers
 
 
         }
-        [HttpGet("GetAllData")]
-        public IActionResult GetAllData(int CompanyID)
+        [HttpGet("GetMobileData")]
+        public IActionResult GetMobileData(int CompanyID)
         {
 
             try
             {
-                var data = AllDataService.GetAllData(CompanyID, imagesPath.brand, imagesPath.branch, imagesPath.itemGroup);
+                var data = AllDataService.GetMobileData(CompanyID, imagesPath.brand, imagesPath.branch, imagesPath.itemGroup);
 
                 if (data == null)
                 {
@@ -137,7 +138,7 @@ namespace POS.API.CORE.Controllers
                 }
                 else
                 {
-                    return Ok(new { success = true, message = "", datalist = JsonConvert.DeserializeObject(data) });
+                    return Ok(new { success = true, message = "", datalist = data.ToList() });
                 }
             }
             catch (Exception ex)

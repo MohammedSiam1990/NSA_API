@@ -11,17 +11,17 @@ using System.Text;
 
 namespace POS.Data.Repository
 {
-    public class AllDataRepository : Repository<AllData>, IAllDataRepository
+    public class MobileDataRepository : Repository<MobileData>, IMobileDataRepository
     {
 
-        public AllDataRepository(IDatabaseFactory databaseFactory)
+        public MobileDataRepository(IDatabaseFactory databaseFactory)
         : base(databaseFactory)
         {
 
         }
 
         [Obsolete]
-        public string GetAllData(int CompanyID, string BrandImageURL, string BranchImageURL, string ItemGroupImageURL)
+        public List<MobileData> GetMobileData(int CompanyID, string BrandImageURL, string BranchImageURL, string ItemGroupImageURL)
         {
             using (var DbContext = new PosDbContext())
             {
@@ -33,7 +33,7 @@ namespace POS.Data.Repository
                     new SqlParameter("@BranchImageURL", BranchImageURL),
                     new SqlParameter("@ItemGroupImageURL", ItemGroupImageURL)).ToList();
 
-                return data.ToString();
+                return data;
             }
         }
     }

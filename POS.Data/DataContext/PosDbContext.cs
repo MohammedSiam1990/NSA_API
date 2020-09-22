@@ -43,7 +43,7 @@ namespace POS.Data.DataContext
         [Obsolete]
         public virtual DbQuery<Lookups> GetLookups { get; set; }
         [Obsolete]
-        public virtual DbQuery<AllData> GetAllData { get; set; }
+        public virtual DbQuery<MobileData> GetAllData { get; set; }
 
 
         [Obsolete]
