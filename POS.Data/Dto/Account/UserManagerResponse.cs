@@ -6,7 +6,7 @@ namespace POS.Data.Dto
     public class UserManagerResponse
     {
 
-        public string Message { get; set; }
+        public string message { get; set; }
         //public bool EmailConfirmed { get; set; }
         public bool IsSuccess { get; set; }
         public IEnumerable<string> Errors { get; set; }

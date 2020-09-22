@@ -204,7 +204,7 @@ namespace Pos.Service
                 return new UserManagerResponse
                 {
 
-                    Message = lang.Your_registration_completed_successfully + ", " + lang.Please_check_your_email_to_activtate_your_email,
+                    message = lang.Your_registration_completed_successfully + ", " + lang.Please_check_your_email_to_activtate_your_email,
                     //EmailConfirmed = User.EmailConfirmed,
                     IsSuccess = true,
                 };
@@ -213,7 +213,7 @@ namespace Pos.Service
             return new UserManagerResponse
             {
 
-                Message = lang.An_error_occurred_while_processing_your_request,
+                message = lang.An_error_occurred_while_processing_your_request,
                 IsSuccess = false,
             };
 
@@ -320,7 +320,7 @@ namespace Pos.Service
             return new UserManagerResponse
             {
                 IsSuccess = true,
-                Message = lang.Please_check_your_email_to_reset_your_password,
+                message = lang.Please_check_your_email_to_reset_your_password,
             };
         }
 
@@ -348,13 +348,13 @@ namespace Pos.Service
             {
                 return new UserManagerResponse
                 {
-                    Message = "Update Successfully!",
+                    message = "Update Successfully!",
                     IsSuccess = true,
                 };
             }
             return new UserManagerResponse
             {
-                Message = "Something went wrong",
+                message = "Something went wrong",
                 IsSuccess = false,
                 Errors = result.Errors.Select(e => e.Description),
             };
@@ -368,14 +368,14 @@ namespace Pos.Service
             {
                 return new UserManagerResponse
                 {
-                    Message = "Delete Successfully!",
+                    message = "Delete Successfully!",
                     IsSuccess = true,
                 };
             }
             return new UserManagerResponse
             {
              
-                Message =    lang.An_error_occurred_while_processing_your_request,
+                message =    lang.An_error_occurred_while_processing_your_request,
                 IsSuccess = false,
                 Errors = result.Errors.Select(e => e.Description),
             };
@@ -388,7 +388,7 @@ namespace Pos.Service
             {
                 return new UserManagerResponse
                 {
-                    Message = lang.Invalid_email,
+                    message = lang.Invalid_email,
                     IsSuccess = false,
                 };
             }
@@ -401,16 +401,43 @@ namespace Pos.Service
                 await _userManger.UpdateAsync(user);
                 return new UserManagerResponse
                 {
-                    Message = lang.Your_password_has_been_reset_Please,
+                    message = lang.Your_password_has_been_reset_Please,
                     IsSuccess = true,
                 };
             }
             return new UserManagerResponse
             {
-                Message = lang.An_error_occurred_while_processing_your_request,
+                message = lang.An_error_occurred_while_processing_your_request,
                 IsSuccess = false,
             };
 
+        }
+
+
+        public async Task<UserManagerResponse> ChangePassword(string userName, string OldPassword, string NewPassword)
+        {
+            ApplicationUser user =await _userManger.FindByNameAsync(userName);
+            var result =await _userManger.ChangePasswordAsync(user, OldPassword, NewPassword);
+            if (!result.Succeeded)
+            {
+
+                foreach (var error in result.Errors)
+                {
+                    if (error.Description == "Incorrect password.")
+                    {
+                        return new UserManagerResponse {message= lang.Incorrect_current_password,IsSuccess = false };
+                    }
+                    else
+                    {
+                        return new UserManagerResponse { message = lang.An_error_occurred_while_processing_your_request, IsSuccess = false };
+                    }
+                }
+            }
+            return new UserManagerResponse
+            {
+                message = lang.Your_password_has_been_changed,
+                IsSuccess = false,
+            };
         }
     }
 }

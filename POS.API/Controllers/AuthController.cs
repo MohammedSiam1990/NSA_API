@@ -173,9 +173,9 @@ namespace StanderApi.Controllers
                 var result = await _accountService.ForgetPasswordAsync(Email, Lang);
 
                 if (result.IsSuccess)
-                    return Ok(result); // 200
-
-                return BadRequest(result); // 400
+                    return Ok(new { message = result.message, success = result.IsSuccess });
+                else
+                    return BadRequest(new { message = result.message, success = result.IsSuccess });
             }
             catch (Exception ex)
             {
@@ -205,7 +205,9 @@ namespace StanderApi.Controllers
                     var result = await _accountService.ResetPassword(model);
 
                     if (result.IsSuccess)
-                    return Ok(new { success = false, Result=result });
+                        return Ok(new { message = result.message, success = result.IsSuccess });
+                    else
+                        return BadRequest(new { message = result.message, success = result.IsSuccess });
                 }
 
             }
@@ -256,8 +258,56 @@ namespace StanderApi.Controllers
             var result = await _accountService.DeletetUserAsync(Id);
             return Ok(result);
         }
+        [HttpPost("ChangePassword")]
+               public async Task<IActionResult> ChangePassword(ChangePasswordBindingModel model)
+        {
+            try
+            {
+                model.Lang = Utility.CheckLanguage(model.Lang);
+
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(model.Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(model.Lang);
+
+                if (string.IsNullOrWhiteSpace(model.OldPassword))
+                {
+                    return Ok(new { message = lang.Missing_old_password, success = false });
+                }
+
+                if (string.IsNullOrWhiteSpace(model.NewPassword))
+                {
+                    return Ok(new { message = lang.Missing_new_password, success = false });
+                }
+
+                if (model.OldPassword.Length < 6)
+                {
+                    return Ok(new { message = lang.Old_password_length_should_be_6_characters_or_more, success = false });
+                }
 
 
+                if (model.NewPassword.Length < 6)
+                {
+                    return Ok(new { message = lang.New_password_length_should_be_6_characters_or_more, success = false });
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+                }
+               var userName  = HttpContext.User.Identity.Name;
+                var result = await _accountService.ChangePassword(userName, model.OldPassword,  model.NewPassword);
+
+                if (result.IsSuccess)
+                            return Ok(new { message = result.message, success = result.IsSuccess });
+                else     
+                    return BadRequest( new { message = result.message, success = result.IsSuccess });
+                     
+            }
+            catch (Exception ex)
+            {
+              ExceptionError.SaveException(ex);
+            }
+            return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+        }
 
 
     }
