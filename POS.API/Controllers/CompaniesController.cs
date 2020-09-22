@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using POS.Entities;
 using ImagesService;
 using POS.Core.Resources;
+using Exceptions;
 
 namespace POS.API.CORE.Controllers
 {
@@ -53,8 +54,10 @@ namespace POS.API.CORE.Controllers
             catch (Exception ex)
             {
                 // return error message if there was an exception
-                return BadRequest(new { message = ex.Message });
+                ExceptionError.SaveException(ex);
             }
+            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
         }
 
         [HttpPost("UpdateCompany")]
@@ -77,8 +80,10 @@ namespace POS.API.CORE.Controllers
             catch (Exception ex)
             {
                 // return error message if there was an exception
-                return BadRequest(new { message = lang.Update_operation_failed,ExMessage=ex.Message  });
+                ExceptionError.SaveException(ex);
             }
+            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
         }
 
         [HttpPost("DeleteCompany")]
@@ -111,8 +116,10 @@ namespace POS.API.CORE.Controllers
             catch (Exception ex)
             {
                 // return error message if there was an exception
-                return BadRequest(new { message = ex.Message });
+                ExceptionError.SaveException(ex);
             }
+            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
         }
 
         [HttpGet("GetCompanies")]
@@ -128,8 +135,10 @@ namespace POS.API.CORE.Controllers
             catch (Exception ex)
             {
                 // return error message if there was an exception
-                return BadRequest(new { message = ex.Message });
+                ExceptionError.SaveException(ex);
             }
+            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
         }
 
     }
