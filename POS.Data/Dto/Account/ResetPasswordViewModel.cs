@@ -35,7 +35,7 @@ namespace Steander.Core.DTOs
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
-        public string Code { get; set; }
+        public string Resetcode { get; set; }
     }
 
 }

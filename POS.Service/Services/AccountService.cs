@@ -305,9 +305,9 @@ namespace Pos.Service
                 throw new AppException(lang.Confirm_your_email);
             }
 
-            var code = await _userManger.GeneratePasswordResetTokenAsync(user);
+            var Resetcode = await _userManger.GeneratePasswordResetTokenAsync(user);
 
-            var callbackUrl = emailConfig.AppUrl + "ResetPassword.html?code=" + code + "&Lang=" + Lang;
+            var callbackUrl = emailConfig.AppUrl + "?Resetcode=" + Resetcode + "&Lang=" + Lang;
 
             var Body = lang.To_reset_your_password_click + "<a href=\"" + callbackUrl + "\"> " + lang.Here + "</a>";
             var Subject = lang.Reset_your_password;
@@ -392,9 +392,9 @@ namespace Pos.Service
                     IsSuccess = false,
                 };
             }
-            string code;
-            code = model.Code.Replace(' ', '+');
-            var result = await _userManger.ResetPasswordAsync(user, code, model.Password);
+            string Resetcode;
+            Resetcode = model.Resetcode.Replace(' ', '+');
+            var result = await _userManger.ResetPasswordAsync(user, Resetcode, model.Password);
             if (result.Succeeded)
             {
                 user.Password = model.Password;
@@ -402,7 +402,7 @@ namespace Pos.Service
                 return new UserManagerResponse
                 {
                     Message = lang.Your_password_has_been_reset_Please,
-                    IsSuccess = false,
+                    IsSuccess = true,
                 };
             }
             return new UserManagerResponse
