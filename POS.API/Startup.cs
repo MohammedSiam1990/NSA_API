@@ -194,7 +194,7 @@ namespace POS.API.CORE
                 services.AddScoped<IMajorServicesService, MajorServicesService>();
                 services.AddScoped<IItemGroupsService, ItemGroupsService>();
                 services.AddScoped<IlookUpService, LookUpService>();
-                services.AddScoped<IAllDataService, AllDataService>();
+                services.AddScoped<IMobileDataService, MobileDataService>();
        
         }
 

@@ -152,7 +152,7 @@
     <Compile Include="Helpers\IPagedList.cs" />
     <Compile Include="Helpers\PagedList.cs" />
     <Compile Include="Helpers\PagedListModel.cs" />
-    <Compile Include="IService\IAllDataService.cs" />
+    <Compile Include="IService\IMobileDataService.cs" />
     <Compile Include="IService\IMailService.cs" />
     <Compile Include="IService\IBranchService.cs" />
     <Compile Include="IService\ICitiesService.cs" />
@@ -167,7 +167,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Base\BaseService.cs" />
     <Compile Include="Base\PosService.cs" />
-    <Compile Include="Services\AllDataService.cs" />
+    <Compile Include="Services\MobileDataService.cs" />
     <Compile Include="Services\MailService.cs" />
     <Compile Include="Services\BranchService.cs" />
     <Compile Include="Services\CitiesService.cs" />
