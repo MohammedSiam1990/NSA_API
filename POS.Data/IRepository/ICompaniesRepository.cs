@@ -19,6 +19,6 @@ namespace POS.Data.IRepository
         void UpdateCompany(Companies Company);
         void  DeleteCompany(int CompanyId);
        
-        List<Companies> GetCompanyBy(Expression<Func<Companies, bool>> where);
+        
     }
 }
