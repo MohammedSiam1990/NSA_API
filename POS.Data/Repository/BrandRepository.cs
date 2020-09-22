@@ -164,16 +164,16 @@ namespace POS.Data.Repository
                                                 new SqlParameter("@BrandID", Brands.BrandId),
                                                 new SqlParameter("@BrandName"  ,Brands.BrandName),
                                                 new SqlParameter("@BrandNameAr" , Brands.BrandNameAr),
-                                                new SqlParameter("@StatusId" , Brands.StatusId),
-                                                new SqlParameter("@MajorServiceId" , Brands.MajorServiceId),
-                                                new SqlParameter("@CountryId" , Brands.CountryId),
-                                                new SqlParameter("@CityId" , Brands.CityId),
-                                                new SqlParameter("@CurrencyId" , Brands.CurrencyId),
+                                                new SqlParameter("@StatusId" , Brands.StatusId ?? (object)DBNull.Value),
+                                                new SqlParameter("@MajorServiceId" , Brands.MajorServiceId ?? (object)DBNull.Value),
+                                                new SqlParameter("@CountryId" , Brands.CountryId ?? (object)DBNull.Value),
+                                                new SqlParameter("@CityId" , Brands.CityId ?? (object)DBNull.Value),
+                                                new SqlParameter("@CurrencyId" , Brands.CurrencyId ?? (object)DBNull.Value),
                                                 new SqlParameter("@InsertedBy"  , Brands.InsertedBy), //  User.Identity.GetUserId(),
                                                 new SqlParameter("@ModifiedBy"  , Brands.ModifiedBy), //  User.Identity.GetUserId(),
                                                 new SqlParameter("@TaxNo"   , Brands.TaxNo),
                                                 new SqlParameter("@ImageName"    , Brands.ImageName),
-                                                new SqlParameter("@CompanyId"  , Brands.CompanyId),
+                                                new SqlParameter("@CompanyId"  , Brands.CompanyId ?? (object)DBNull.Value),
                                                 new SqlParameter("@IsDefault"   , Brands.IsDefault)
                                             });
                 return result;
