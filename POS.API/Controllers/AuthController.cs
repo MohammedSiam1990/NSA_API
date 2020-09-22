@@ -45,11 +45,24 @@ namespace StanderApi.Controllers
         public async Task<IActionResult> RegisterAsync([FromBody]RegisterViewModel model)
         {
 
+
+
+
+
+
+
+
+
+
             if (ModelState.IsValid)
             {
                 var result = await _accountService.RegisterUserAsync(model);
 
-                if (result.IsSuccess)
+
+
+
+
+                if (result.success)
                     return Ok(result); // Status Code: 200 
                 else
                 return BadRequest(result);
@@ -172,7 +185,7 @@ namespace StanderApi.Controllers
 
                 var result = await _accountService.ForgetPasswordAsync(Email, Lang);
 
-                if (result.IsSuccess)
+                if (result.success)
                     return Ok(result); // 200
 
                 return BadRequest(result); // 400
@@ -204,7 +217,7 @@ namespace StanderApi.Controllers
                 {
                     var result = await _accountService.ResetPassword(model);
 
-                    if (result.IsSuccess)
+                    if (result.success)
                     return Ok(new { success = false, Result=result });
                 }
 

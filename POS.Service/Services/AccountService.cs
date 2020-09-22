@@ -101,38 +101,72 @@ namespace Pos.Service
 
 
             if (model == null)
-                throw new AppException(lang.Reigster_Model_is_null);
+            {
+                return new UserManagerResponse
+                {
+                    message = lang.Reigster_Model_is_null,
+                    success = false,
+                };
+            }
+
+
+
             if (string.IsNullOrWhiteSpace(model.Email))
             {
-                throw new AppException(lang.Missing_username);
+                return new UserManagerResponse
+                {
+                    message = lang.Missing_username,
+                    success = false,
+                };
+
             }
 
             if (string.IsNullOrWhiteSpace(model.Password))
             {
-                throw new AppException(lang.Missing_password);
+                return new UserManagerResponse
+                {
+                    message = lang.Missing_password,
+                    success = false,
+                };
             }
 
             if (model.Password.Length < 6)
             {
-                throw new AppException(lang.Password_length_should_be_6_characters_or_more);
+                return new UserManagerResponse
+                {
+                    message = lang.Password_length_should_be_6_characters_or_more,
+                    success = false,
+                };
             }
 
             if (model.Password != model.ConfirmPassword)
-                throw new AppException(lang.PasswordNotMatch);
+                return new UserManagerResponse
+                {
+                    message = lang.PasswordNotMatch,
+                    success = false,
+                };
 
 
 
             var appUser = await _userManger.FindByEmailAsync(model.Email);
             if (appUser != null && appUser.Email == model.Email)
             {
-
-                throw new AppException(lang.Either_username_and_or_email_already_exists);
+                return new UserManagerResponse
+                {
+                    message = lang.Either_username_and_or_email_already_exists,
+                    success = false,
+                };
             }
 
             appUser = await _userManger.FindByNameAsync(model.Username);
             if (appUser != null && appUser.UserName == model.Username)
             {
-                throw new AppException(lang.Either_username_and_or_email_already_exists);
+                return new UserManagerResponse
+                {
+                    message = lang.Either_username_and_or_email_already_exists,
+                    success = false,
+                };
+
             }
             string VerificationCode = RandomGenerator.RandomPassword();
 
@@ -198,25 +232,28 @@ namespace Pos.Service
 
                         ExceptionError(ex);
                     }
-                    throw new AppException(lang.Cant_send_activation_email_please_try_registration_later);
+                    return new UserManagerResponse
+                    {
+                        message = lang.Cant_send_activation_email_please_try_registration_later,
+                        success = false,
+                    };
+                    
                 }
-
-
 
                 return new UserManagerResponse
                 {
 
-                    Message = lang.Your_registration_completed_successfully + ", " + lang.Please_check_your_email_to_activtate_your_email,
+                    message = lang.Your_registration_completed_successfully + ", " + lang.Please_check_your_email_to_activtate_your_email,
                     //EmailConfirmed = User.EmailConfirmed,
-                    IsSuccess = true,
+                    success = true,
                 };
             }
 
             return new UserManagerResponse
             {
 
-                Message = lang.An_error_occurred_while_processing_your_request,
-                IsSuccess = false,
+                message = lang.An_error_occurred_while_processing_your_request,
+                success = false,
             };
 
         }
@@ -321,8 +358,8 @@ namespace Pos.Service
             }
             return new UserManagerResponse
             {
-                IsSuccess = true,
-                Message = lang.Please_check_your_email_to_reset_your_password,
+                success = true,
+                message = lang.Please_check_your_email_to_reset_your_password,
             };
         }
 
@@ -350,14 +387,14 @@ namespace Pos.Service
             {
                 return new UserManagerResponse
                 {
-                    Message = "Update Successfully!",
-                    IsSuccess = true,
+                    message = "Update Successfully!",
+                    success = true,
                 };
             }
             return new UserManagerResponse
             {
-                Message = "Something went wrong",
-                IsSuccess = false,
+                message = "Something went wrong",
+                success = false,
                 Errors = result.Errors.Select(e => e.Description),
             };
         }
@@ -370,15 +407,15 @@ namespace Pos.Service
             {
                 return new UserManagerResponse
                 {
-                    Message = "Delete Successfully!",
-                    IsSuccess = true,
+                    message = "Delete Successfully!",
+                    success = true,
                 };
             }
             return new UserManagerResponse
             {
              
-                Message =    lang.An_error_occurred_while_processing_your_request,
-                IsSuccess = false,
+                message =    lang.An_error_occurred_while_processing_your_request,
+                success = false,
                 Errors = result.Errors.Select(e => e.Description),
             };
         }
@@ -390,8 +427,8 @@ namespace Pos.Service
             {
                 return new UserManagerResponse
                 {
-                    Message = lang.Invalid_email,
-                    IsSuccess = false,
+                    message = lang.Invalid_email,
+                    success = false,
                 };
             }
             string Resetcode;
@@ -403,14 +440,14 @@ namespace Pos.Service
                 await _userManger.UpdateAsync(user);
                 return new UserManagerResponse
                 {
-                    Message = lang.Your_password_has_been_reset_Please,
-                    IsSuccess = true,
+                    message = lang.Your_password_has_been_reset_Please,
+                    success = true,
                 };
             }
             return new UserManagerResponse
             {
-                Message = lang.An_error_occurred_while_processing_your_request,
-                IsSuccess = false,
+                message = lang.An_error_occurred_while_processing_your_request,
+                success = false,
             };
 
         }
