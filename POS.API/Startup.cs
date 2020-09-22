@@ -68,8 +68,12 @@ namespace POS.API.CORE
                           options.UseSqlServer(Configuration.GetConnectionString("DefaultPosConnection")));
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
-
-
+            var lockoutOptions = new LockoutOptions()
+            {
+                AllowedForNewUsers = false,
+                DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5),
+                MaxFailedAccessAttempts = 5
+            };
             services.AddIdentityCore<ApplicationUser>(options =>
             {
                 options.Password.RequireDigit = false;
@@ -77,7 +81,9 @@ namespace POS.API.CORE
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 6;
                 options.Password.RequireNonAlphanumeric = false;
-             
+                options.Lockout = lockoutOptions;
+
+
             }).AddRoles<IdentityRole>()
                 //.AddClaimsPrincipalFactory<UserClaimsPrincipalFactory<ApplicationUser, IdentityRole>>()
                 .AddEntityFrameworkStores<PosDbContext>()
