@@ -4,6 +4,7 @@ using Ninject;
 using POS.Data.Repository;
 using Pos.Service.Base;
 using POS.Service.Services;
+using POS.Data.IRepository;
 
 namespace POS.IService.Base
 {
@@ -34,7 +35,8 @@ namespace POS.IService.Base
                                                    new CountryRepository(databaseFactory),
                                                    new ItemGroupsRepository(databaseFactory),
                                                    new LookUpRepository(databaseFactory),
-                                                   new MobileDataRepository(databaseFactory)
+                                                   new MobileDataRepository(databaseFactory),
+                                                   new DeleteRecordRepository(databaseFactory)
                                                 //new AspNetUserRolesRepository(databaseFactory)
                                                 );
                 }

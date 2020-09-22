@@ -33,16 +33,18 @@ namespace POS.API.CORE.Controllers
     public class OperationsController : ControllerBase
     {
         private IlookUpService loockUpService;
-        private  IMobileDataService AllDataService;
+        private IDeleteRecordService DeleteRecord;
+        private IMobileDataService AllDataService;
         private ImagesPath imagesPath;
 
 
 
-        public OperationsController(IlookUpService _loockUpService, ImagesPath _imagesPath,IMobileDataService _AllDataService)
+        public OperationsController(IlookUpService _loockUpService, ImagesPath _imagesPath,IMobileDataService _AllDataService,IDeleteRecordService _DeleteRecord)
         {
             loockUpService = _loockUpService;
             AllDataService = _AllDataService;
             imagesPath = _imagesPath;
+            DeleteRecord = _DeleteRecord;
         }
         [AllowAnonymous]
         [HttpPost("UploadImage")]
@@ -149,6 +151,31 @@ namespace POS.API.CORE.Controllers
             return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
 
+        }
+        [HttpPost("DeleteRecord")]
+        public IActionResult DeleteRecords(string TableNme, string TableKey, int RowID, string DeletedBy)
+        {
+            try
+            {
+
+                var data = DeleteRecord.DeleteRecord(TableNme, TableKey, RowID, DeletedBy);
+                if (data != 1)
+                {
+                    return Ok( new { success = false, message = lang.Deleted_Faild });
+                }
+                else
+                {
+                    return Ok( new { success = true, message = lang.Deleted_successfully });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+                // return error message if there was an exception
+
+            }
+            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
 
     }
