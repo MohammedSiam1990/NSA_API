@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Steander.Core.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace Pos.IService
 {
@@ -25,7 +26,7 @@ namespace Pos.IService
         Task<ApplicationUser> GetUserAsync(string Id);
         Task<UserManagerResponse> UpdateUserAsync(string Id, UserDto user);
         Task<UserManagerResponse> DeletetUserAsync(string Id);
-
+        Task<UserManagerResponse> ChangePassword(string userName, string OldPassword, string NewPassword);
 
     }
 }

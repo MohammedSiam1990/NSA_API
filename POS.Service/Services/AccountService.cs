@@ -435,5 +435,32 @@ namespace Pos.Service
             };
 
         }
+
+
+        public async Task<UserManagerResponse> ChangePassword(string userName, string OldPassword, string NewPassword)
+        {
+            ApplicationUser user =await _userManger.FindByNameAsync(userName);
+            var result =await _userManger.ChangePasswordAsync(user, OldPassword, NewPassword);
+            if (!result.Succeeded)
+            {
+
+                foreach (var error in result.Errors)
+                {
+                    if (error.Description == "Incorrect password.")
+                    {
+                        return new UserManagerResponse {message= lang.Incorrect_current_password,success = false };
+                    }
+                    else
+                    {
+                        return new UserManagerResponse { message = lang.An_error_occurred_while_processing_your_request, success = false };
+                    }
+                }
+            }
+            return new UserManagerResponse
+            {
+                message = lang.Your_password_has_been_changed,
+                success = false,
+            };
+        }
     }
 }
