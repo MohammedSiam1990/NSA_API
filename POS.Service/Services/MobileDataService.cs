@@ -1,4 +1,5 @@
-﻿using POS.Data.Entities;
+﻿
+using POS.Data.Dto;
 using POS.IService.Base;
 using POS.Service.IService;
 using System;
@@ -11,9 +12,11 @@ namespace POS.Service.Services
 {
     public class MobileDataService : BaseService, IMobileDataService
     {
-        public List<MobileData> GetMobileData(int CompanyID, string BrandImageURL, string BranchImageURL, string ItemGroupImageURL)
+        public List<GetMobileData> GetMobileData(int CompanyID, string BrandImageURL, string BranchImageURL, string ItemGroupImageURL)
         {
             return PosService.MobileDataRepository.GetMobileData(CompanyID, BrandImageURL, BranchImageURL, ItemGroupImageURL);
         }
+
+ 
     }
 }

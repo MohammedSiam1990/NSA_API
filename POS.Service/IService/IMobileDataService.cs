@@ -1,4 +1,4 @@
-﻿using POS.Data.Entities;
+﻿using POS.Data.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,6 @@ namespace POS.Service.IService
 {
     public interface IMobileDataService
     {
-        List<MobileData> GetMobileData(int CompanyID,string BrandImageURL,string BranchImageURL,string ItemGroupImageURL);
-
+        List<GetMobileData> GetMobileData(int CompanyID,string BrandImageURL,string BranchImageURL,string ItemGroupImageURL);
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Steander.Core.Entities;
 using POS.Data.Dto.Account;
-using POS.Data.Entities;
+using POS.Data.Dto;
 
 namespace POS.Data.DataContext
 {
@@ -36,28 +36,24 @@ namespace POS.Data.DataContext
             }
         }
 
-        //protected readonly IConfiguration Configuration;
     
-        [Obsolete]
+        #region DbQuery Call Procedure
+         [Obsolete]
         public virtual DbQuery<GetBranches> GetBranches { get; set; }
         [Obsolete]
         public virtual DbQuery<Lookups> GetLookups { get; set; }
         [Obsolete]
-        public virtual DbQuery<MobileData> GetAllData { get; set; }
-
+        public virtual DbQuery<GetMobileData> GetMobileData { get; set; }
 
         [Obsolete]
         public virtual DbQuery<GetBrands> GetBrands { get; set; }
 
         [Obsolete]
         public virtual DbQuery<GetProcItemGroups> GetProcItemGroups { get; set; }
+        #endregion
 
-        //public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
-        //public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
-        //public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
-        //public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
-        //public virtual DbSet<Users> Users { get; set; }
-        //public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+
+        #region DbSet Entity
         public virtual DbSet<BranchServices> BranchServices { get; set; }
         public virtual DbSet<Branches> Branches { get; set; }
         public virtual DbSet<Brands> Brands { get; set; }
@@ -68,6 +64,16 @@ namespace POS.Data.DataContext
         public virtual DbSet<ItemGroup> ItemGroup { get; set; }
         //public virtual DbSet<Lookups> Lookups { get; set; }
         public virtual DbSet<MajorService> MajorService { get; set; }
+        #endregion
+        
+        
+        //public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        //public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        //public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        //public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
+        //public virtual DbSet<Users> Users { get; set; }
+        //public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        //protected readonly IConfiguration Configuration;
         //public virtual DbSet<MajorServiceTypes> MajorServiceTypes { get; set; }
         //public virtual DbSet<Menu> Menu { get; set; }
         //public virtual DbSet<MigrationHistory> MigrationHistory { get; set; }

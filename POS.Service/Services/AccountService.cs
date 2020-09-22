@@ -1,7 +1,6 @@
 ﻿using POS.Entities;
 using Pos.IService;
 using POS.IService.Base;
-using POS.Dto;
 using System;
 using POS.Core.Common;
 using System.Linq.Dynamic;
@@ -375,7 +374,8 @@ namespace Pos.Service
             }
             return new UserManagerResponse
             {
-                Message = "Something went wrong",
+             
+                Message =    lang.An_error_occurred_while_processing_your_request,
                 IsSuccess = false,
                 Errors = result.Errors.Select(e => e.Description),
             };

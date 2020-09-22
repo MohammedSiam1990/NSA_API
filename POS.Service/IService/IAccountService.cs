@@ -1,6 +1,5 @@
 ﻿using POS.Data.DataContext;
 using POS.Data.Dto;
-using POS.Dto;
 using POS.Entities;
 using Steander.Core.DTOs;
 using System;

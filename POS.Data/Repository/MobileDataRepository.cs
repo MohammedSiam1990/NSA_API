@@ -1,7 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using POS.Data.DataContext;
-using POS.Data.Entities;
+using POS.Data.Dto;
+
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
 using System;
@@ -11,7 +12,7 @@ using System.Text;
 
 namespace POS.Data.Repository
 {
-    public class MobileDataRepository : Repository<MobileData>, IMobileDataRepository
+    public class MobileDataRepository : Repository<GetMobileData>, IMobileDataRepository
     {
 
         public MobileDataRepository(IDatabaseFactory databaseFactory)
@@ -21,13 +22,13 @@ namespace POS.Data.Repository
         }
 
         [Obsolete]
-        public List<MobileData> GetMobileData(int CompanyID, string BrandImageURL, string BranchImageURL, string ItemGroupImageURL)
+        public List<GetMobileData> GetMobileData(int CompanyID, string BrandImageURL, string BranchImageURL, string ItemGroupImageURL)
         {
             using (var DbContext = new PosDbContext())
             {
 
                 string Sql = "EXEC Get_all_data_json @CompanyID,@BrandImageURL,@BranchImageURL,@ItemGroupImageURL";
-                var data = DbContext.GetAllData.FromSqlRaw(Sql,
+                var data = DbContext.GetMobileData.FromSqlRaw(Sql,
                     new SqlParameter("@CompanyID", CompanyID),
                     new SqlParameter("@BrandImageURL", BrandImageURL),
                     new SqlParameter("@BranchImageURL", BranchImageURL),

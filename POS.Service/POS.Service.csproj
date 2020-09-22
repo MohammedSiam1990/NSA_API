@@ -145,7 +145,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dto\RegisterDto.cs" />
     <Compile Include="Helpers\AppException.cs" />
     <Compile Include="Helpers\PagedListSortModel.cs" />
     <Compile Include="Helpers\PagedResponse.cs" />
@@ -200,6 +199,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dto\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

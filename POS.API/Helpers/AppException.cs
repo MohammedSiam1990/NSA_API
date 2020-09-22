@@ -1,3 +1,4 @@
+using Exceptions;
 using System;
 using System.Globalization;
 
@@ -9,8 +10,14 @@ namespace POS.API.Helpers
     {
         public AppException() : base() {}
 
-        public AppException(string message) : base(message) { }
-
+        public AppException(string message) : base(message){
+               Exception ex = new Exception(message);
+               ExceptionError.SaveException(ex);
+        }
+        public AppException(string message ,Exception ex) : base(message)
+        {
+            ExceptionError.SaveException(ex);
+        }
         public AppException(string message, params object[] args) 
             : base(String.Format(CultureInfo.CurrentCulture, message, args))
         {
