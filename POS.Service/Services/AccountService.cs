@@ -101,38 +101,72 @@ namespace Pos.Service
 
 
             if (model == null)
-                throw new AppException(lang.Reigster_Model_is_null);
+            {
+                return new UserManagerResponse
+                {
+                    message = lang.Reigster_Model_is_null,
+                    success = false,
+                };
+            }
+
+
+
             if (string.IsNullOrWhiteSpace(model.Email))
             {
-                throw new AppException(lang.Missing_username);
+                return new UserManagerResponse
+                {
+                    message = lang.Missing_username,
+                    success = false,
+                };
+
             }
 
             if (string.IsNullOrWhiteSpace(model.Password))
             {
-                throw new AppException(lang.Missing_password);
+                return new UserManagerResponse
+                {
+                    message = lang.Missing_password,
+                    success = false,
+                };
             }
 
             if (model.Password.Length < 6)
             {
-                throw new AppException(lang.Password_length_should_be_6_characters_or_more);
+                return new UserManagerResponse
+                {
+                    message = lang.Password_length_should_be_6_characters_or_more,
+                    success = false,
+                };
             }
 
             if (model.Password != model.ConfirmPassword)
-                throw new AppException(lang.PasswordNotMatch);
+                return new UserManagerResponse
+                {
+                    message = lang.PasswordNotMatch,
+                    success = false,
+                };
 
 
 
             var appUser = await _userManger.FindByEmailAsync(model.Email);
             if (appUser != null && appUser.Email == model.Email)
             {
-
-                throw new AppException(lang.Either_username_and_or_email_already_exists);
+                return new UserManagerResponse
+                {
+                    message = lang.Either_username_and_or_email_already_exists,
+                    success = false,
+                };
             }
 
             appUser = await _userManger.FindByNameAsync(model.Username);
             if (appUser != null && appUser.UserName == model.Username)
             {
-                throw new AppException(lang.Either_username_and_or_email_already_exists);
+                return new UserManagerResponse
+                {
+                    message = lang.Either_username_and_or_email_already_exists,
+                    success = false,
+                };
+
             }
             string VerificationCode = RandomGenerator.RandomPassword();
 
@@ -144,7 +178,8 @@ namespace Pos.Service
                 CompanyEmail = model.Email,
                 StatusId = 1,
                 ImageName = model.ImageName,
-                CreationDate = DateTime.Now
+                CreationDate = DateTime.Now,
+                
             };
             PosService.CompaniesRepository.AddCompany(company);
 
@@ -161,9 +196,9 @@ namespace Pos.Service
                 LockoutEnabled = false,
                 CompanyId = company.CompanyId,
                 UserType = 1,
+                
                 // VerificationCode = VerificationCode
             };
-
             var result = await _userManger.CreateAsync(identityUser, model.Password);
 
             if (result.Succeeded)
@@ -179,10 +214,11 @@ namespace Pos.Service
                 var callbackUrl = emailConfig.AppUrl + "?userId=" + User.Id + "&code=" + code + "&lang=" + model.Lang;
 
 
-                var Body = lang.Please_activate_your_account_by_clicking + " <a href=\"" + callbackUrl + "\">" + lang.Here + "</a>";
+                var Body = lang.Please_activate_your_account_by_clicking + "<a href=\"" + callbackUrl + "\"> " + lang.Here + "</a>";
+                
                 var Subject = lang.Activare_your_account;
 
-                string url = $"{emailConfig.AppUrl}/api/auth/confirmemail?userid={identityUser.Id}&token={validEmailToken}";
+                //string url = $"{emailConfig.AppUrl}/api/auth/confirmemail?userid={identityUser.Id}&token={validEmailToken}";
                 bool isMessageSent = mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, false, emailConfig.From, identityUser.Email, Subject, Body, emailConfig.From, emailConfig.Password);
 
                 if (isMessageSent == false)
@@ -196,17 +232,20 @@ namespace Pos.Service
 
                         ExceptionError(ex);
                     }
-                    throw new AppException(lang.Cant_send_activation_email_please_try_registration_later);
+                    return new UserManagerResponse
+                    {
+                        message = lang.Cant_send_activation_email_please_try_registration_later,
+                        success = false,
+                    };
+                    
                 }
-
-
 
                 return new UserManagerResponse
                 {
 
                     message = lang.Your_registration_completed_successfully + ", " + lang.Please_check_your_email_to_activtate_your_email,
                     //EmailConfirmed = User.EmailConfirmed,
-                    IsSuccess = true,
+                    success = true,
                 };
             }
 
@@ -285,7 +324,7 @@ namespace Pos.Service
 
         public async Task<bool> ConfirmEmailAsync(string userId, string code)
         {
-            var User = await _userManger.FindByEmailAsync(userId);
+            var User = await _userManger.FindByIdAsync(userId);
             var result = _userManger.ConfirmEmailAsync(User, code);
             return true;
         }

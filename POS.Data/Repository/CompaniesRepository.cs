@@ -120,17 +120,6 @@ namespace POS.Data.Repository
         }
 
     
-        public List<Companies> GetCompanyBy(Expression<Func<Companies, bool>> where)
-        {
-            try
-            {
-                return base.GetMany(where).ToList();
-
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
-        }
+      
     }
 }
