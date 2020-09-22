@@ -186,10 +186,10 @@ namespace StanderApi.Controllers
 
                 var result = await _accountService.ForgetPasswordAsync(Email, Lang);
 
-                if (result.IsSuccess)
-                    return Ok(new { message = result.message, success = result.IsSuccess });
+                if (result.success)
+                    return Ok(new { message = result.message, success = result.success });
                 else
-                    return BadRequest(new { message = result.message, success = result.IsSuccess });
+                    return BadRequest(new { message = result.message, success = result.success });
             }
             catch (Exception ex)
             {
@@ -218,10 +218,10 @@ namespace StanderApi.Controllers
                 {
                     var result = await _accountService.ResetPassword(model);
 
-                    if (result.IsSuccess)
-                        return Ok(new { message = result.message, success = result.IsSuccess });
+                    if (result.success)
+                        return Ok(new { message = result.message, success = result.success });
                     else
-                        return BadRequest(new { message = result.message, success = result.IsSuccess });
+                        return BadRequest(new { message = result.message, success = result.success });
                 }
 
             }
@@ -310,10 +310,10 @@ namespace StanderApi.Controllers
                var userName  = HttpContext.User.Identity.Name;
                 var result = await _accountService.ChangePassword(userName, model.OldPassword,  model.NewPassword);
 
-                if (result.IsSuccess)
-                            return Ok(new { message = result.message, success = result.IsSuccess });
+                if (result.success)
+                            return Ok(new { message = result.message, success = result.success });
                 else     
-                    return BadRequest( new { message = result.message, success = result.IsSuccess });
+                    return BadRequest( new { message = result.message, success = result.success });
                      
             }
             catch (Exception ex)

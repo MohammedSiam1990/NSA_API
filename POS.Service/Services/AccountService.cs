@@ -253,7 +253,7 @@ namespace Pos.Service
             {
 
                 message = lang.An_error_occurred_while_processing_your_request,
-                IsSuccess = false,
+                success = false,
             };
 
         }
@@ -358,7 +358,7 @@ namespace Pos.Service
             }
             return new UserManagerResponse
             {
-                IsSuccess = true,
+                success = true,
                 message = lang.Please_check_your_email_to_reset_your_password,
             };
         }
@@ -388,13 +388,13 @@ namespace Pos.Service
                 return new UserManagerResponse
                 {
                     message = "Update Successfully!",
-                    IsSuccess = true,
+                    success = true,
                 };
             }
             return new UserManagerResponse
             {
                 message = "Something went wrong",
-                IsSuccess = false,
+                success = false,
                 Errors = result.Errors.Select(e => e.Description),
             };
         }
@@ -408,14 +408,14 @@ namespace Pos.Service
                 return new UserManagerResponse
                 {
                     message = "Delete Successfully!",
-                    IsSuccess = true,
+                    success = true,
                 };
             }
             return new UserManagerResponse
             {
              
                 message =    lang.An_error_occurred_while_processing_your_request,
-                IsSuccess = false,
+                success = false,
                 Errors = result.Errors.Select(e => e.Description),
             };
         }
@@ -428,7 +428,7 @@ namespace Pos.Service
                 return new UserManagerResponse
                 {
                     message = lang.Invalid_email,
-                    IsSuccess = false,
+                    success = false,
                 };
             }
             string Resetcode;
@@ -441,13 +441,13 @@ namespace Pos.Service
                 return new UserManagerResponse
                 {
                     message = lang.Your_password_has_been_reset_Please,
-                    IsSuccess = true,
+                    success = true,
                 };
             }
             return new UserManagerResponse
             {
                 message = lang.An_error_occurred_while_processing_your_request,
-                IsSuccess = false,
+                success = false,
             };
 
         }
@@ -464,18 +464,18 @@ namespace Pos.Service
                 {
                     if (error.Description == "Incorrect password.")
                     {
-                        return new UserManagerResponse {message= lang.Incorrect_current_password,IsSuccess = false };
+                        return new UserManagerResponse {message= lang.Incorrect_current_password,success = false };
                     }
                     else
                     {
-                        return new UserManagerResponse { message = lang.An_error_occurred_while_processing_your_request, IsSuccess = false };
+                        return new UserManagerResponse { message = lang.An_error_occurred_while_processing_your_request, success = false };
                     }
                 }
             }
             return new UserManagerResponse
             {
                 message = lang.Your_password_has_been_changed,
-                IsSuccess = false,
+                success = false,
             };
         }
     }
