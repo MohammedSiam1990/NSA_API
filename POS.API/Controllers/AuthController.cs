@@ -57,14 +57,15 @@ namespace StanderApi.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _accountService.RegisterUserAsync(model);
-
-
-
-
-
-                if (result.success)
+                try
+                { 
+                
                     return Ok(result); // Status Code: 200 
-                else
+                }
+                catch(Exception ex)
+                {
+                    ExceptionError.SaveException(ex);
+                }
                 return BadRequest(result);
             }
             else
