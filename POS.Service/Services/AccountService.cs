@@ -307,12 +307,12 @@ namespace Pos.Service
 
             var code = await _userManger.GeneratePasswordResetTokenAsync(user);
 
-            var callbackUrl = emailConfig.AppUrl+ "ResetPassword.html?code=" + code + "&Lang=" + Lang;
+            var callbackUrl = emailConfig.AppUrl + "ResetPassword.html?code=" + code + "&Lang=" + Lang;
 
             var Body = lang.To_reset_your_password_click + "<a href=\"" + callbackUrl + "\"> " + lang.Here + "</a>";
             var Subject = lang.Reset_your_password;
             bool isMessageSent = false;
-             isMessageSent = mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, false, emailConfig.From, Email, Subject, Body, emailConfig.From, emailConfig.Password);
+            isMessageSent = mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, false, emailConfig.From, Email, Subject, Body, emailConfig.From, emailConfig.Password);
 
             if (isMessageSent == false)
             {
