@@ -62,7 +62,7 @@
   <ItemGroup>
     <Folder Include="uploads\Brand\" />
     <Folder Include="uploads\Branch\" />
-    <Folder Include="uploads\Comapny\" />
+    <Folder Include="uploads\Comapany\" />
     <Folder Include="uploads\Item\" />
     <Folder Include="uploads\ItemGroup\" />
   </ItemGroup>
