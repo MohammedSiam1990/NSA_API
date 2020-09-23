@@ -75,7 +75,7 @@ namespace POS.API.CORE.Controllers
                 }
 
 
-                return Ok(new { message = "Data is Not Complete" });
+                return Ok(new { success = false, message = "Data is Not Complete" });
             }
             catch (Exception ex)
             {
@@ -111,7 +111,7 @@ namespace POS.API.CORE.Controllers
                 // create user
               var Company=  CompaniesService.GetCompany(CompanyId);
                 var CompanyDto = Mapper.Map<CompaniesModel>(Company);
-                return Ok(new { CompanyDto, message = "Success" });
+                return Ok(new { datalist = CompanyDto, message = "Success" , success = true });
             }
             catch (Exception ex)
             {
@@ -130,7 +130,7 @@ namespace POS.API.CORE.Controllers
                 // create user
                var  companies = CompaniesService.GetCompanies();
                 var companiesDto = Mapper.Map<List<CompaniesModel>>(companies);
-                return Ok(new { companiesDto, message = "Success" });
+                return Ok(new { datalist = companiesDto, message = "Success", success = true });
             }
             catch (Exception ex)
             {
