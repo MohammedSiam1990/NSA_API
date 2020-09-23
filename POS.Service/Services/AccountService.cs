@@ -54,15 +54,14 @@ namespace Pos.Service
      
         public static void ExceptionError(Exception ex)
         {
-
             try
             {
-                var file_name = Environment.CurrentDirectory + "/LOG/log.txt";// HostingEnvironment.MapPath(@"~/LOG/log.txt");
-                if (!Directory.Exists(Environment.CurrentDirectory + "/LOG/"))
-                // System.Web.Hosting.HostingEnvironment.MapPath(@"~/LOG")))
+                var file_name = Path.Combine(@"LOG/log.txt");
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), file_name);
 
+                if (!Directory.Exists(Path.Combine(@"LOG")))
                 {
-                    Directory.CreateDirectory(Environment.CurrentDirectory + "/LOG/");
+                    Directory.CreateDirectory(Path.Combine(@"LOG"));
                 }
                 if (!System.IO.File.Exists(file_name))
                 {
@@ -326,11 +325,15 @@ namespace Pos.Service
             {
                 var User = await _userManger.FindByIdAsync(userId);
                 var result = await _userManger.ConfirmEmailAsync(User, code);
+                if (!result.Succeeded)
+                {
+                    return false;
+                }
                 return true;
             }
             catch (Exception ex)
             {
-
+                ExceptionError(ex);
             }
             return true;
         }

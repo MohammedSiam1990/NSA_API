@@ -149,7 +149,7 @@ namespace StanderApi.Controllers
                 if (await result)
                     return Ok(new { message = lang.Your_registration_completed_successfully, success = true });
                 else
-                    return Ok(new { message = lang.An_error_occurred_while_processing_your_request });
+                    return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
             }
             catch (Exception ex)
             {
