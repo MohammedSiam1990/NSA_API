@@ -71,11 +71,11 @@ namespace POS.API.CORE.Controllers
                 // Edit Company
                 {
                     CompaniesService.UpdateCompany(Company);
-                    return Ok(new { success = false, message = lang.Update_operation_failed });
+                    return Ok(new { success = true, message = lang.Updated_successfully_completed });
                 }
 
 
-                return Ok(new { success = false, message = "Data is Not Complete" });
+                return Ok(new { success = false, message = lang.Update_operation_failed });
             }
             catch (Exception ex)
             {
