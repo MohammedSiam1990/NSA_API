@@ -71,8 +71,8 @@ namespace POS.API.CORE.Controllers
                 ExceptionError.SaveException(ex);
 
             }
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
-            return BadRequest(new { success = false, message =lang.An_error_occurred_while_processing_your_request });
         }
 
         [HttpPost("Save_Brand")]
@@ -110,8 +110,8 @@ namespace POS.API.CORE.Controllers
                 ExceptionError.SaveException(ex);
 
             }
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
-            return BadRequest(new { success = false, message =lang.An_error_occurred_while_processing_your_request });
         }
     }
 

@@ -72,7 +72,7 @@ namespace POS.API.CORE.Controllers
 
             }
 
-            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
         }
 
@@ -110,7 +110,7 @@ namespace POS.API.CORE.Controllers
                 // return error message if there was an exception
 
             }
-            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
     }
 }

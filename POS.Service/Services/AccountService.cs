@@ -1,4 +1,4 @@
-﻿using POS.Entities;
+﻿ using POS.Entities;
 using Pos.IService;
 using POS.IService.Base;
 using System;
@@ -260,13 +260,22 @@ namespace Pos.Service
 
             if (!user.EmailConfirmed)
             {
-                throw new AppException(lang.Your_account_is_not_activated_please_activate_it);
+                return new LoginResponseDto
+                {
+                    message = lang.Your_account_is_not_activated_please_activate_it,
+                    success = false
+                };
+
             }
 
 
             if (user.LockoutEnabled == true)
             {
-                throw new AppException(lang.Your_account_is_locked_please_try_later);
+                return new LoginResponseDto
+                {
+                    message = lang.Your_account_is_locked_please_try_later,
+                    success = false
+                };
             }
 
             var result = await _userManger.CheckPasswordAsync(user, model.Password);
@@ -324,12 +333,22 @@ namespace Pos.Service
             var user = await _userManger.FindByEmailAsync(Email);
             if (user == null)
             {
-                throw new AppException(lang.Invalid_email);
+                return new UserManagerResponse
+                {
+                    message = lang.Invalid_email,
+                    success = false
+                };
+
 
             }
             else if (!(await _userManger.IsEmailConfirmedAsync(user)))
             {
-                throw new AppException(lang.Confirm_your_email);
+                return new UserManagerResponse
+                {
+                    message = lang.Confirm_your_email,
+                    success = false
+                };
+
             }
 
             var Resetcode = await _userManger.GeneratePasswordResetTokenAsync(user);

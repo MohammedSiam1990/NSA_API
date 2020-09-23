@@ -103,16 +103,16 @@ namespace StanderApi.Controllers
                         return Ok(result);
                     }
 
-                    return BadRequest(result);
+                    return Ok(result);
                 }
-                return BadRequest(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+                return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
 
             }
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
             }
-            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
         }
 
@@ -130,7 +130,7 @@ namespace StanderApi.Controllers
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
                 if (userId == "" || code == "")
                 {
-                    return BadRequest(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+                    return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
                 
                 }
              
@@ -149,13 +149,13 @@ namespace StanderApi.Controllers
                 if (await result)
                     return Ok(new { message = lang.Your_registration_completed_successfully, success = true });
                 else
-                    return BadRequest(new { message = lang.An_error_occurred_while_processing_your_request });
+                    return Ok(new { message = lang.An_error_occurred_while_processing_your_request });
             }
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
             }
-            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
 
         // api/auth/ForgetPassword
@@ -175,12 +175,12 @@ namespace StanderApi.Controllers
                 if (result.success)
                     return Ok(new { message = result.message, success = result.success });
                 else
-                    return BadRequest(new { message = result.message, success = result.success });
+                    return Ok(new { message = result.message, success = result.success });
             }
             catch (Exception ex)
             {
 
-                return BadRequest(new { message = lang.An_error_occurred_while_processing_your_request, ex = ex });
+                return Ok(new { message = lang.An_error_occurred_while_processing_your_request, ex = ex });
 
             }
 
@@ -207,7 +207,7 @@ namespace StanderApi.Controllers
                     if (result.success)
                         return Ok(new { message = result.message, success = result.success });
                     else
-                        return BadRequest(new { message = result.message, success = result.success });
+                        return Ok(new { message = result.message, success = result.success });
                 }
 
             }
@@ -215,7 +215,7 @@ namespace StanderApi.Controllers
             {
                 ExceptionError.SaveException(ex);
             }
-            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
 
         }
@@ -229,7 +229,7 @@ namespace StanderApi.Controllers
         //     var result = await _accountService.GetAllUsersAsync();
         //     var resultDto = _mapper.Map<IList<UserDto>>(result);
         //     return Ok(resultDto);
-        //     //return BadRequest();
+        //     //return Ok();
         // }
 
 
@@ -240,7 +240,7 @@ namespace StanderApi.Controllers
             var result = await _accountService.GetUserAsync(Id);
             //var resultDto = _mapper.Map<UserDto>(result);
             return Ok(result);
-            //return BadRequest();
+            //return Ok();
         }
 
         [HttpPut("User/{Id}")]
@@ -299,7 +299,7 @@ namespace StanderApi.Controllers
                 if (result.success)
                             return Ok(new { message = result.message, success = result.success });
                 else     
-                    return BadRequest( new { message = result.message, success = result.success });
+                    return Ok( new { message = result.message, success = result.success });
                      
             }
             catch (Exception ex)
