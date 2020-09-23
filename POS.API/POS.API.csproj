@@ -6,18 +6,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DTO\**" />
     <Compile Remove="Resources\**" />
     <Compile Remove="uploads\BrandImageOffer\**" />
     <Compile Remove="uploads\Company\**" />
     <Compile Remove="uploads\MajorService\**" />
+    <Content Remove="DTO\**" />
     <Content Remove="Resources\**" />
     <Content Remove="uploads\BrandImageOffer\**" />
     <Content Remove="uploads\Company\**" />
     <Content Remove="uploads\MajorService\**" />
+    <EmbeddedResource Remove="DTO\**" />
     <EmbeddedResource Remove="Resources\**" />
     <EmbeddedResource Remove="uploads\BrandImageOffer\**" />
     <EmbeddedResource Remove="uploads\Company\**" />
     <EmbeddedResource Remove="uploads\MajorService\**" />
+    <None Remove="DTO\**" />
     <None Remove="Resources\**" />
     <None Remove="uploads\BrandImageOffer\**" />
     <None Remove="uploads\Company\**" />
@@ -56,7 +60,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\" />
     <Folder Include="uploads\Brand\" />
     <Folder Include="uploads\Branch\" />
     <Folder Include="uploads\Comapny\" />

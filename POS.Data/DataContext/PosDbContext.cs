@@ -56,16 +56,16 @@ namespace POS.Data.DataContext
 
 
         #region DbSet Entity
-        public virtual DbSet<BranchServices> BranchServices { get; set; }
+        //public virtual DbSet<BranchServices> BranchServices { get; set; }
         public virtual DbSet<Branches> Branches { get; set; }
         public virtual DbSet<Brands> Brands { get; set; }
-        public virtual DbSet<City> City { get; set; }
+        //public virtual DbSet<City> City { get; set; }
         public virtual DbSet<Companies> Companies { get; set; }
-        public virtual DbSet<Country> Country { get; set; }
-        public virtual DbSet<Currency> Currency { get; set; }
+        //public virtual DbSet<Country> Country { get; set; }
+        //public virtual DbSet<Currency> Currency { get; set; }
         public virtual DbSet<ItemGroup> ItemGroup { get; set; }
         //public virtual DbSet<Lookups> Lookups { get; set; }
-        public virtual DbSet<MajorService> MajorService { get; set; }
+        //public virtual DbSet<MajorService> MajorService { get; set; }
         #endregion
         
         

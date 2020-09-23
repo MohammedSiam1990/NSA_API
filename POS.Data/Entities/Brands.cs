@@ -32,11 +32,11 @@ namespace POS.Entities
         public string DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
 
-        public virtual City City { get; set; }
+        //public virtual City City { get; set; }
         public virtual Companies Company { get; set; }
-        public virtual Country Country { get; set; }
-        public virtual Currency Currency { get; set; }
-        public virtual MajorService MajorService { get; set; }
+        //public virtual Country Country { get; set; }
+        //public virtual Currency Currency { get; set; }
+        //public virtual MajorService MajorService { get; set; }
         public virtual ICollection<Branches> Branches { get; set; }
         public virtual ICollection<ItemGroup> ItemGroup { get; set; }
     }

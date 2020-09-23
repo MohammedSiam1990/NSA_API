@@ -55,7 +55,8 @@ namespace POS.Data.Repository
         {
             try
             {
-                var QueryCity = base.Table().Include(e => e.City).ToList();
+                //var QueryCity = base.Table().Include(e => e.City).ToList();
+                List<Branches> QueryCity = new List<Branches>() ;
                 base.DbContext.Dispose();
                 base.DbContext = null;
                 return QueryCity;
