@@ -55,7 +55,8 @@ namespace POS.Data.Repository
         {
             try
             {
-                var QueryCity = base.Table().Include(e => e.City).ToList();
+                //var QueryCity = base.Table().Include(e => e.City).ToList();
+                List<Branches> QueryCity = new List<Branches>() ;
                 base.DbContext.Dispose();
                 base.DbContext = null;
                 return QueryCity;
@@ -142,16 +143,16 @@ namespace POS.Data.Repository
                                       new SqlParameter("@BranchNameAr",Branch.BranchNameAr )    ,
                                       new SqlParameter("@BrandId", Branch.BrandId )    ,
                                       new SqlParameter("@StatusId",Branch.StatusId ?? (object)DBNull.Value)    ,
-                                      new SqlParameter("@TypeId",  Branch.TypeId ?? (object)DBNull.Value)  ,
-                                      new SqlParameter("@Address",Branch.Address )    ,
+                                      new SqlParameter("@TypeId",  Branch.TypeId )  ,
+                                      new SqlParameter("@Address",Branch.Address ?? (object)DBNull.Value)    ,
                                       new SqlParameter("@CountryId", Branch.CountryId ?? (object)DBNull.Value)   ,
                                       new SqlParameter("@CityId",  Branch.CityId ?? (object)DBNull.Value)   ,
                                       new SqlParameter("@CurrencyId",  Branch.CurrencyId ?? (object)DBNull.Value)   ,
-                                      new SqlParameter("@ImageName", Branch.ImageName)    ,
-                                      new SqlParameter("@InsertedBy",  Branch.InsertedBy)   , 
-                                      new SqlParameter("@ModifiedBy", Branch.ModifiedBy)    , 
-                                      new SqlParameter("@Latitude",Branch.Latitude )    ,
-                                      new SqlParameter("@Longitude",Branch.Longitude  )    });
+                                      new SqlParameter("@ImageName", Branch.ImageName ?? (object)DBNull.Value)    ,
+                                      new SqlParameter("@InsertedBy",  Branch.InsertedBy ?? (object)DBNull.Value)   , 
+                                      new SqlParameter("@ModifiedBy", Branch.ModifiedBy ?? (object)DBNull.Value)    , 
+                                      new SqlParameter("@Latitude",Branch.Latitude ?? (object)DBNull.Value)    ,
+                                      new SqlParameter("@Longitude",Branch.Longitude  ?? (object)DBNull.Value)    });
                 return result;
             }
          

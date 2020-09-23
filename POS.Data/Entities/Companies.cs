@@ -27,9 +27,6 @@ namespace POS.Entities
         public string ModifiedBy { get; set; }
         public int? StatusId { get; set; }
 
-        public virtual City City { get; set; }
-        public virtual Country Country { get; set; }
-        public virtual Currency Currency { get; set; }
         //public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
         public virtual ICollection<Brands> Brands { get; set; }
     }

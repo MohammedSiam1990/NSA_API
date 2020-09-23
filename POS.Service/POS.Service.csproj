@@ -151,33 +151,27 @@
     <Compile Include="Helpers\IPagedList.cs" />
     <Compile Include="Helpers\PagedList.cs" />
     <Compile Include="Helpers\PagedListModel.cs" />
+    <Compile Include="IService\IDeleteRecordService.cs" />
     <Compile Include="IService\IMobileDataService.cs" />
     <Compile Include="IService\IMailService.cs" />
     <Compile Include="IService\IBranchService.cs" />
-    <Compile Include="IService\ICitiesService.cs" />
-    <Compile Include="IService\ICountriesService.cs" />
     <Compile Include="IService\IBrandService.cs" />
     <Compile Include="IService\ICompaniesService.cs" />
     <Compile Include="IService\IAccountService.cs" />
     <Compile Include="IService\IItemGroupsService.cs" />
     <Compile Include="IService\IlookUpService.cs" />
-    <Compile Include="IService\IMajorServicesService.cs" />
-    <Compile Include="IService\IServiceCategoryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Base\BaseService.cs" />
     <Compile Include="Base\PosService.cs" />
+    <Compile Include="Services\DeleteRecordService.cs" />
     <Compile Include="Services\MobileDataService.cs" />
     <Compile Include="Services\MailService.cs" />
     <Compile Include="Services\BranchService.cs" />
-    <Compile Include="Services\CitiesService.cs" />
-    <Compile Include="Services\CountriesService.cs" />
     <Compile Include="Services\BrandService.cs" />
     <Compile Include="Services\CompaniesService.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\ItemGroupsService.cs" />
     <Compile Include="Services\LookUpService.cs" />
-    <Compile Include="Services\MajorServicesService.cs" />
-    <Compile Include="Services\ServiceCategoryService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\POS.Common\POS.Common.csproj">

@@ -56,7 +56,7 @@ namespace POS.API.CORE.Controllers
                 // return error message if there was an exception
                 ExceptionError.SaveException(ex);
             }
-            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
         }
 
@@ -71,18 +71,18 @@ namespace POS.API.CORE.Controllers
                 // Edit Company
                 {
                     CompaniesService.UpdateCompany(Company);
-                    return Ok(new { success = false, message = lang.Update_operation_failed });
+                    return Ok(new { success = true, message = lang.Updated_successfully_completed });
                 }
 
 
-                return Ok(new { message = "Data is Not Complete" });
+                return Ok(new { success = false, message = lang.Update_operation_failed });
             }
             catch (Exception ex)
             {
                 // return error message if there was an exception
                 ExceptionError.SaveException(ex);
             }
-            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
         }
 
@@ -98,7 +98,7 @@ namespace POS.API.CORE.Controllers
             catch (Exception ex)
             {
                 // return error message if there was an exception
-                return BadRequest(new { message = ex.Message });
+                return Ok(new { message = ex.Message });
             }
         }
      
@@ -111,14 +111,16 @@ namespace POS.API.CORE.Controllers
                 // create user
               var Company=  CompaniesService.GetCompany(CompanyId);
                 var CompanyDto = Mapper.Map<CompaniesModel>(Company);
-                return Ok(new { CompanyDto, message = "Success" });
+                CompanyDto.ImageName = imagesPath.comapny + CompanyDto.ImageName;
+
+                return Ok(new { datalist = CompanyDto, message = "Success" , success = true });
             }
             catch (Exception ex)
             {
                 // return error message if there was an exception
                 ExceptionError.SaveException(ex);
             }
-            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
         }
 
@@ -130,14 +132,14 @@ namespace POS.API.CORE.Controllers
                 // create user
                var  companies = CompaniesService.GetCompanies();
                 var companiesDto = Mapper.Map<List<CompaniesModel>>(companies);
-                return Ok(new { companiesDto, message = "Success" });
+                return Ok(new { datalist = companiesDto, message = "Success", success = true });
             }
             catch (Exception ex)
             {
                 // return error message if there was an exception
                 ExceptionError.SaveException(ex);
             }
-            return BadRequest(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
         }
 

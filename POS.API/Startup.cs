@@ -203,10 +203,11 @@ namespace POS.API.CORE
                 services.AddScoped<ICompaniesService, CompaniesService>();
                 services.AddScoped<IBrandService, BrandService>();
                 services.AddScoped<IBranchService, BranchService>();
-                services.AddScoped<IMajorServicesService, MajorServicesService>();
+                //services.AddScoped<IMajorServicesService, MajorServicesService>();
                 services.AddScoped<IItemGroupsService, ItemGroupsService>();
                 services.AddScoped<IlookUpService, LookUpService>();
                 services.AddScoped<IMobileDataService, MobileDataService>();
+                services.AddScoped<IDeleteRecordService, DeleteRecordService>();
        
         }
 

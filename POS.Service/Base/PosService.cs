@@ -11,29 +11,31 @@ namespace Pos.Service.Base
         //public IUsersRepository UsersRepository { get; set; }
         //public IAccountRepository AccountRepository { get; set; }
         public IBrandRepository BrandRepository { get; set; }
-        public IMajorServiceRepository MajorServiceRepository { get; set; }
+        //public IMajorServiceRepository MajorServiceRepository { get; set; }
       
         public IBranchRepository BranchRepository { get; set; }
-        public ICityRepository CityRepository { get; set; }
-        public ICountryRepository CountryRepository { get; set; }
-        public IMajorServiceTypesRepository MajorServiceTypesRepository { get; set; }
+        //public ICityRepository CityRepository { get; set; }
+        //public ICountryRepository CountryRepository { get; set; }
+        //public IMajorServiceTypesRepository MajorServiceTypesRepository { get; set; }
         public IItemGroupsRepository ItemGroupsRepository { get; set; }
         public IlookUpRepository LookUpRepository { get; set; }
         public IMobileDataRepository MobileDataRepository { get; set; }
+        public IDeleteRecordRepository DeleteRecordRepository { get; set; }
         //public IAspNetUserRolesRepository AspNetUserRolesRepository { get; set; }
         [Inject]
         public PosServices(          ICompaniesRepository _CompaniesRepository,
                                      //IUsersRepository _UsersRepository,
                                      //IAccountRepository _AccountRepository,
                                      IBrandRepository _BrandRepository,
-                                     IMajorServiceRepository _MajorServiceRepository,
-                                     IMajorServiceTypesRepository _IMajorServiceTypesRepository,
+                                     //IMajorServiceRepository _MajorServiceRepository,
+                                     //IMajorServiceTypesRepository _IMajorServiceTypesRepository,
                                      IBranchRepository _BranchRepository,
-                                     ICityRepository _CityRepository,
-                                     ICountryRepository _CountryRepository,
+                                     //ICityRepository _CityRepository,
+                                     //ICountryRepository _CountryRepository,
                                      IItemGroupsRepository _ItemGroupsRepository,
                                      IlookUpRepository _lookUpRepository,
-                                     IMobileDataRepository _MobileDataRepository
+                                     IMobileDataRepository _MobileDataRepository,
+                                     IDeleteRecordRepository _DeleteRecordRepository
                             //IAspNetUserRolesRepository _AspNetUserRolesRepository
                             )
         {
@@ -41,14 +43,15 @@ namespace Pos.Service.Base
             //UsersRepository = _UsersRepository;
             //AccountRepository = _AccountRepository;
             BrandRepository = _BrandRepository;
-            MajorServiceRepository = _MajorServiceRepository;
-            MajorServiceTypesRepository = _IMajorServiceTypesRepository;
+            //MajorServiceRepository = _MajorServiceRepository;
+            //MajorServiceTypesRepository = _IMajorServiceTypesRepository;
             BranchRepository = _BranchRepository;
-            CityRepository = _CityRepository;
-            CountryRepository = _CountryRepository;
+            //CityRepository = _CityRepository;
+            //CountryRepository = _CountryRepository;
             ItemGroupsRepository = _ItemGroupsRepository;
             LookUpRepository = _lookUpRepository;
             MobileDataRepository = _MobileDataRepository;
+            DeleteRecordRepository = _DeleteRecordRepository;
             //AspNetUserRolesRepository = _AspNetUserRolesRepository;
         }
 

@@ -1,4 +1,4 @@
-﻿using POS.Entities;
+﻿ using POS.Entities;
 using Pos.IService;
 using POS.IService.Base;
 using System;
@@ -51,33 +51,17 @@ namespace Pos.Service
             mailService = _mailService;
             emailConfig = _emailConfig;
         }
-        public static string CheckLanguage(string lang)
-        {
-            try
-            {
-                if (lang.ToLower() == "en")
-                    return "en";
-                if (lang.ToLower() == "ar")
-                    return "ar";
-                return "en";
-            }
-            catch (Exception ex)
-            {
-                ExceptionError(ex);
-            }
-            return "en";
-        }
+     
         public static void ExceptionError(Exception ex)
         {
-
             try
             {
-                var file_name = Environment.CurrentDirectory + "/LOG/log.txt";// HostingEnvironment.MapPath(@"~/LOG/log.txt");
-                if (!Directory.Exists(Environment.CurrentDirectory + "/LOG/"))
-                // System.Web.Hosting.HostingEnvironment.MapPath(@"~/LOG")))
+                var file_name = Path.Combine(@"LOG/log.txt");
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), file_name);
 
+                if (!Directory.Exists(Path.Combine(@"LOG")))
                 {
-                    Directory.CreateDirectory(Environment.CurrentDirectory + "/LOG/");
+                    Directory.CreateDirectory(Path.Combine(@"LOG"));
                 }
                 if (!System.IO.File.Exists(file_name))
                 {
@@ -95,7 +79,6 @@ namespace Pos.Service
 
         public async Task<UserManagerResponse> RegisterUserAsync(RegisterViewModel model)
         {
-            model.Lang = CheckLanguage(model.Lang);
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(model.Lang);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(model.Lang);
 
@@ -266,18 +249,32 @@ namespace Pos.Service
 
             if (user == null)
             {
-                throw new AppException(lang.The_username_or_password_is_incorrect);
+                return new LoginResponseDto
+                {
+                    message = lang.The_username_or_password_is_incorrect,
+                    success = false
+                };
+
             }
 
             if (!user.EmailConfirmed)
             {
-                throw new AppException(lang.Your_account_is_not_activated_please_activate_it);
+                return new LoginResponseDto
+                {
+                    message = lang.Your_account_is_not_activated_please_activate_it,
+                    success = false
+                };
+
             }
 
 
             if (user.LockoutEnabled == true)
             {
-                throw new AppException(lang.Your_account_is_locked_please_try_later);
+                return new LoginResponseDto
+                {
+                    message = lang.Your_account_is_locked_please_try_later,
+                    success = false
+                };
             }
 
             var result = await _userManger.CheckPasswordAsync(user, model.Password);
@@ -324,8 +321,20 @@ namespace Pos.Service
 
         public async Task<bool> ConfirmEmailAsync(string userId, string code)
         {
-            var User = await _userManger.FindByIdAsync(userId);
-            var result = _userManger.ConfirmEmailAsync(User, code);
+            try
+            {
+                var User = await _userManger.FindByIdAsync(userId);
+                var result = await _userManger.ConfirmEmailAsync(User, code);
+                if (!result.Succeeded)
+                {
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ExceptionError(ex);
+            }
             return true;
         }
 
@@ -335,12 +344,22 @@ namespace Pos.Service
             var user = await _userManger.FindByEmailAsync(Email);
             if (user == null)
             {
-                throw new AppException(lang.Invalid_email);
+                return new UserManagerResponse
+                {
+                    message = lang.Invalid_email,
+                    success = false
+                };
+
 
             }
             else if (!(await _userManger.IsEmailConfirmedAsync(user)))
             {
-                throw new AppException(lang.Confirm_your_email);
+                return new UserManagerResponse
+                {
+                    message = lang.Confirm_your_email,
+                    success = false
+                };
+
             }
 
             var Resetcode = await _userManger.GeneratePasswordResetTokenAsync(user);
@@ -354,7 +373,12 @@ namespace Pos.Service
 
             if (isMessageSent == false)
             {
-                throw new AppException(lang.Cant_send_forgot_password_email_please_try_later);
+                return new UserManagerResponse
+                {
+                    success = true,
+                    message = lang.Cant_send_forgot_password_email_please_try_later,
+                };
+
             }
             return new UserManagerResponse
             {

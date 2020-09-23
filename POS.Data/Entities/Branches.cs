@@ -8,7 +8,6 @@ namespace POS.Entities
     {
         public Branches()
         {
-            BranchServices = new HashSet<BranchServices>();
         }
         [Key]
 
@@ -34,9 +33,5 @@ namespace POS.Entities
         public DateTime? DeletedDate { get; set; }
 
         public virtual Brands Brand { get; set; }
-        public virtual City City { get; set; }
-        public virtual Country Country { get; set; }
-        public virtual Currency Currency { get; set; }
-        public virtual ICollection<BranchServices> BranchServices { get; set; }
     }
 }
