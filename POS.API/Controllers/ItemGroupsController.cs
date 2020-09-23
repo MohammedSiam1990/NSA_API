@@ -91,6 +91,12 @@ namespace POS.API.Controllers
 
                 if (data != 1)
                 {
+                    if (data == -1)
+                    {
+                        return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
+                    }
+
                     if (data == -2)
                     {
                         return Ok( new { success = false, message = lang.English_name_already_exists, repeated = "ItemGroupName" });

@@ -13,7 +13,7 @@ using System.Text;
 
 namespace POS.Data.Repository
 {
-   public class ItemGroupsRepository : Repository<ItemGroup>, IItemGroupsRepository
+    public class ItemGroupsRepository : Repository<ItemGroup>, IItemGroupsRepository
     {
         public ItemGroupsRepository(IDatabaseFactory databaseFactory)
         : base(databaseFactory)
@@ -39,11 +39,13 @@ namespace POS.Data.Repository
         {
             using (var DbContext = new PosDbContext())
             {
-                string Sql = "EXEC SaveItemGroups @ItemGroupID, @ItemGroupNum, @ItemGroupName," +
-                    " @ItemGroupNameAr ,@ItemGroupMobileName" + ", @ItemGroupNameMobileAr, @BrandID," +
-                    " @StatusID, @TypeID,  @CreateDate, @InsertedBy" + ", @LastModifyDate,  @ModifiedBy";
-                int result = DbContext.Database.ExecuteSqlCommand(Sql,
-                                   new object[] {
+                try
+                {
+                    string Sql = "EXEC SaveItemGroups @ItemGroupID, @ItemGroupNum, @ItemGroupName," +
+                        " @ItemGroupNameAr ,@ItemGroupMobileName" + ", @ItemGroupNameMobileAr, @BrandID," +
+                        " @StatusID, @TypeID,  @CreateDate, @InsertedBy" + ", @LastModifyDate,  @ModifiedBy";
+                    int result = DbContext.ReturnResult.FromSqlRaw(Sql,
+                                       new object[] {
                                       new SqlParameter("@ItemGroupID", itemGroup.ItemGroupId),
                                       new SqlParameter("@ItemGroupNum", itemGroup.ItemGroupNum )   ,
                                       new SqlParameter("@ItemGroupName", itemGroup.ItemGroupName )   ,
@@ -56,10 +58,17 @@ namespace POS.Data.Repository
                                       new SqlParameter("@CreateDate", itemGroup.CreateDate )   ,
                                       new SqlParameter("@InsertedBy",  itemGroup.InsertedBy ?? (object)DBNull.Value)   ,
                                       new SqlParameter("@LastModifyDate",  itemGroup.LastModifyDate ?? (object)DBNull.Value)  ,
-                                      new SqlParameter("@ModifiedBy", itemGroup.ModifiedBy ?? (object)DBNull.Value)  });
-                return result;
+                                      new SqlParameter("@ModifiedBy", itemGroup.ModifiedBy ?? (object)DBNull.Value)  }).AsEnumerable().FirstOrDefault().ReturnValue;
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    Exceptions.ExceptionError.SaveException(ex);
+                }
+                return -1;
+
             }
-          
+
         }
 
         [Obsolete]
@@ -75,6 +84,6 @@ namespace POS.Data.Repository
             }
         }
     }
-    
-    
+
+
 }

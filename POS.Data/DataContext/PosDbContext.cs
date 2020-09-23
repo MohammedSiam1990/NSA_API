@@ -43,6 +43,8 @@ namespace POS.Data.DataContext
         [Obsolete]
         public virtual DbQuery<Lookups> GetLookups { get; set; }
         [Obsolete]
+        public virtual DbQuery<ReturnResult> ReturnResult { get; set; }
+        [Obsolete]
         public virtual DbQuery<GetMobileData> GetMobileData { get; set; }
         [Obsolete]
         public virtual DbQuery<DeleteRecord> DeleteRecord { get; set; }

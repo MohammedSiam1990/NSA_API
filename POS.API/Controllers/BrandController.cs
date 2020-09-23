@@ -85,7 +85,6 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
                 var Brand = Mapper.Map<Brands>(model);
-                BrandService.SaveProcBrands(Brand);
                 var data = BrandService.SaveProcBrands(Brand);
                 if (data != 1)
                 {

@@ -157,10 +157,10 @@ namespace POS.Data.Repository
         {
             using (var DbContext = new PosDbContext())
             {
-
+                try { 
                 string Sql = "EXEC SaveBrands @BrandID,@BrandName,@BrandNameAr,@StatusID,@MajorServiceID,@CountryID,@CityID,@CurrencyID,@InsertedBy,@ModifiedBy,@TaxNo,@ImageName,@companyID,@IsDefault";
-
-                int result = DbContext.Database.ExecuteSqlCommand(Sql, new object[] {
+                    
+                    int result = DbContext.ReturnResult.FromSqlRaw(Sql, new object[] {
                                                 new SqlParameter("@BrandID", Brands.BrandId),
                                                 new SqlParameter("@BrandName"  ,Brands.BrandName),
                                                 new SqlParameter("@BrandNameAr" , Brands.BrandNameAr),
@@ -174,9 +174,17 @@ namespace POS.Data.Repository
                                                 new SqlParameter("@TaxNo"   , Brands.TaxNo ?? (object)DBNull.Value),
                                                 new SqlParameter("@ImageName"    , Brands.ImageName ?? (object)DBNull.Value),
                                                 new SqlParameter("@CompanyId"  , Brands.CompanyId ?? (object)DBNull.Value),
-                                                new SqlParameter("@IsDefault"   , Brands.IsDefault)
-                                            });
-                return result;
+                                                new SqlParameter("@IsDefault"   , Brands.IsDefault ?? (object)DBNull.Value)
+                                            }).AsEnumerable().FirstOrDefault().ReturnValue;
+
+                return  result;
+                }
+
+                catch(Exception e)
+                {
+                    Exceptions.ExceptionError.SaveException(e);
+                }
+                return -1;
             }
         }
 
