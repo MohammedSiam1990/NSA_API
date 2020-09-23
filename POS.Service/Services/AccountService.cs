@@ -322,8 +322,16 @@ namespace Pos.Service
 
         public async Task<bool> ConfirmEmailAsync(string userId, string code)
         {
-            var User = await _userManger.FindByIdAsync(userId);
-            var result = _userManger.ConfirmEmailAsync(User, code);
+            try
+            {
+                var User = await _userManger.FindByIdAsync(userId);
+                var result = await _userManger.ConfirmEmailAsync(User, code);
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+            }
             return true;
         }
 
@@ -362,7 +370,12 @@ namespace Pos.Service
 
             if (isMessageSent == false)
             {
-                throw new AppException(lang.Cant_send_forgot_password_email_please_try_later);
+                return new UserManagerResponse
+                {
+                    success = true,
+                    message = lang.Cant_send_forgot_password_email_please_try_later,
+                };
+
             }
             return new UserManagerResponse
             {
