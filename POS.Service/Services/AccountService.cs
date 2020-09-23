@@ -187,14 +187,9 @@ namespace Pos.Service
 
             if (result.Succeeded)
             {
-                var confirmEmailToken = await _userManger.GenerateEmailConfirmationTokenAsync(identityUser);
-
-                var encodedEmailToken = Encoding.UTF8.GetBytes(confirmEmailToken);
-                var validEmailToken = WebEncoders.Base64UrlEncode(encodedEmailToken);
-
                 var User = await _userManger.FindByEmailAsync(model.Email);
 
-                string code = await this._userManger.GenerateEmailConfirmationTokenAsync(User);
+                string code = await _userManger.GenerateEmailConfirmationTokenAsync(User);
                 var callbackUrl = emailConfig.AppUrl + "?userId=" + User.Id + "&code=" + code + "&lang=" + model.Lang;
 
 
@@ -202,8 +197,7 @@ namespace Pos.Service
                 
                 var Subject = lang.Activare_your_account;
 
-                //string url = $"{emailConfig.AppUrl}/api/auth/confirmemail?userid={identityUser.Id}&token={validEmailToken}";
-                bool isMessageSent = mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, false, emailConfig.From, identityUser.Email, Subject, Body, emailConfig.From, emailConfig.Password);
+                 bool isMessageSent = mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, false, emailConfig.From, identityUser.Email, Subject, Body, emailConfig.From, emailConfig.Password);
 
                 if (isMessageSent == false)
                 {
@@ -248,10 +242,11 @@ namespace Pos.Service
             var user = await _userManger.FindByEmailAsync(model.Username);
 
 
-            if (user == null)
+            return new LoginResponseDto
             {
-                throw new AppException(lang.The_username_or_password_is_incorrect);
-            }
+                message = lang.The_username_or_password_is_incorrect,
+                success = false,
+            };
 
             if (!user.EmailConfirmed)
             {
