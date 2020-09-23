@@ -54,9 +54,9 @@ namespace POS.Data.Repository
                                       new SqlParameter("@StatusID",  itemGroup.StatusId ?? (object)DBNull.Value)  ,
                                       new SqlParameter("@TypeID",itemGroup.TypeId ?? (object)DBNull.Value)    ,
                                       new SqlParameter("@CreateDate", itemGroup.CreateDate )   ,
-                                      new SqlParameter("@InsertedBy",  itemGroup.InsertedBy)   ,
-                                      new SqlParameter("@LastModifyDate",  itemGroup.LastModifyDate)  ,
-                                      new SqlParameter("@ModifiedBy", itemGroup.ModifiedBy)  });
+                                      new SqlParameter("@InsertedBy",  itemGroup.InsertedBy ?? (object)DBNull.Value)   ,
+                                      new SqlParameter("@LastModifyDate",  itemGroup.LastModifyDate ?? (object)DBNull.Value)  ,
+                                      new SqlParameter("@ModifiedBy", itemGroup.ModifiedBy ?? (object)DBNull.Value)  });
                 return result;
             }
           

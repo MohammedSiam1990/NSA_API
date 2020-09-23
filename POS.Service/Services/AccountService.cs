@@ -250,7 +250,12 @@ namespace Pos.Service
 
             if (user == null)
             {
-                throw new AppException(lang.The_username_or_password_is_incorrect);
+                return new LoginResponseDto
+                {
+                    message = lang.The_username_or_password_is_incorrect,
+                    success = false
+                };
+
             }
 
             if (!user.EmailConfirmed)
