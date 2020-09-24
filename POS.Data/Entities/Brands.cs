@@ -6,11 +6,6 @@ namespace POS.Entities
 {
     public partial class Brands
     {
-        public Brands()
-        {
-            Branches = new HashSet<Branches>();
-            ItemGroup = new HashSet<ItemGroup>();
-        }
         [Key]
 
         public int BrandId { get; set; }
@@ -37,7 +32,5 @@ namespace POS.Entities
         //public virtual Country Country { get; set; }
         //public virtual Currency Currency { get; set; }
         //public virtual MajorService MajorService { get; set; }
-        public virtual ICollection<Branches> Branches { get; set; }
-        public virtual ICollection<ItemGroup> ItemGroup { get; set; }
     }
 }

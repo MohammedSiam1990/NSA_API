@@ -6,9 +6,6 @@ namespace POS.Entities
 {
     public partial class Branches
     {
-        public Branches()
-        {
-        }
         [Key]
 
         public int BranchId { get; set; }
@@ -32,6 +29,5 @@ namespace POS.Entities
         public string DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
 
-        public virtual Brands Brand { get; set; }
     }
 }

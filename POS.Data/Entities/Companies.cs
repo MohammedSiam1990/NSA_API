@@ -6,11 +6,6 @@ namespace POS.Entities
 {
     public partial class Companies
     {
-        public Companies()
-        {
-            //AspNetUsers = new HashSet<AspNetUsers>();
-            Brands = new HashSet<Brands>();
-        }
         [Key]
         public int CompanyId { get; set; }
         public string CompanyName { get; set; }
@@ -27,7 +22,5 @@ namespace POS.Entities
         public string ModifiedBy { get; set; }
         public int? StatusId { get; set; }
 
-        //public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
-        public virtual ICollection<Brands> Brands { get; set; }
     }
 }

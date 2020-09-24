@@ -22,8 +22,6 @@ namespace POS.Entities
         public string DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
 
-        public virtual Brands Brand { get; set; }
-
         public string GroupColor { get; set; }
     }
 }
