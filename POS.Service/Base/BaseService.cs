@@ -33,7 +33,8 @@ namespace POS.IService.Base
                                                    new ItemGroupsRepository(databaseFactory),
                                                    new LookUpRepository(databaseFactory),
                                                    new MobileDataRepository(databaseFactory),
-                                                   new DeleteRecordRepository(databaseFactory)
+                                                   new DeleteRecordRepository(databaseFactory),
+                                                    new UomRepository(databaseFactory)
                                                 //new AspNetUserRolesRepository(databaseFactory)
                                                 );
                 }
