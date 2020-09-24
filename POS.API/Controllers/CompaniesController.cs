@@ -111,9 +111,9 @@ namespace POS.API.CORE.Controllers
                 // create user
               var Company=  CompaniesService.GetCompany(CompanyId);
                 var CompanyDto = Mapper.Map<CompaniesModel>(Company);
-                CompanyDto.ImageName = imagesPath.comapny + CompanyDto.ImageName;
+                CompanyDto.ImageName = imagesPath.Comapny + CompanyDto.ImageName;
 
-                return Ok(new { datalist = CompanyDto, message = "Success" , success = true });
+                return Ok(new { datalist = CompanyDto, message = "" , success = true });
             }
             catch (Exception ex)
             {
@@ -132,7 +132,7 @@ namespace POS.API.CORE.Controllers
                 // create user
                var  companies = CompaniesService.GetCompanies();
                 var companiesDto = Mapper.Map<List<CompaniesModel>>(companies);
-                return Ok(new { datalist = companiesDto, message = "Success", success = true });
+                return Ok(new { datalist = companiesDto, message = "", success = true });
             }
             catch (Exception ex)
             {

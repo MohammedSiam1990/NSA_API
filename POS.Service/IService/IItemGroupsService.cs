@@ -11,6 +11,6 @@ namespace POS.Service.IService
    public interface IItemGroupsService
     {
         int SaveItemGroup(ItemGroup Branch);
-       List< GetProcItemGroups> GetProcItemGroups(int BrandID, string ImageName);
+       List< GetItemGroups> GetProcItemGroups(int BrandID, string ImageName);
     }
 }

@@ -51,7 +51,7 @@ namespace POS.API.Controllers
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
 
-                var data = itemGroupsService.GetProcItemGroups(BrandID, imagesPath.itemGroup);
+                var data = itemGroupsService.GetProcItemGroups(BrandID, imagesPath.ItemGroup);
 
                 if (data!= null)
                 {

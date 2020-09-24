@@ -9,6 +9,6 @@ namespace POS.Data.IRepository
   public interface IItemGroupsRepository
     {
         int SaveItemGroup(ItemGroup Branch);
-        List<GetProcItemGroups> GetProcItemGroups(int BrandID, string ImageName);
+        List<GetItemGroups> GetProcItemGroups(int BrandID, string ImageName);
     }
 }

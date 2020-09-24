@@ -41,7 +41,7 @@ namespace POS.Data.DataContext
          [Obsolete]
         public virtual DbQuery<GetBranches> GetBranches { get; set; }
         [Obsolete]
-        public virtual DbQuery<Lookups> GetLookups { get; set; }
+        public virtual DbQuery<GetLookUp> GetLookups { get; set; }
         [Obsolete]
         public virtual DbQuery<ReturnResult> ReturnResult { get; set; }
         [Obsolete]
@@ -53,7 +53,7 @@ namespace POS.Data.DataContext
         public virtual DbQuery<GetBrands> GetBrands { get; set; }
 
         [Obsolete]
-        public virtual DbQuery<GetProcItemGroups> GetProcItemGroups { get; set; }
+        public virtual DbQuery<GetItemGroups> GetProcItemGroups { get; set; }
         #endregion
 
 

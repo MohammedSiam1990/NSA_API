@@ -7,11 +7,11 @@ namespace ImagesService
 {
     public class ImagesPath
     {
-        public string brand { get; set; }
-        public string branch { get; set; }
-        public string comapny { get; set; }
-        public string item { get; set; }
-        public string itemGroup { get; set; }
+        public string Brand { get; set; }
+        public string Branch { get; set; }
+        public string Comapny { get; set; }
+        public string Item { get; set; }
+        public string ItemGroup { get; set; }
         
     }   
 }

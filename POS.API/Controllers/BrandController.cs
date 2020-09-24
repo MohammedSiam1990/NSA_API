@@ -50,7 +50,7 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = BrandService.GetProcBrands(CompanyId, imagesPath.brand);
+                var data = BrandService.GetProcBrands(CompanyId, imagesPath.Brand);
                 if (data != null)
                 {
                     if (data.Count() == 0)
