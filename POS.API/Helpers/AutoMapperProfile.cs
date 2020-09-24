@@ -22,6 +22,8 @@ namespace POS.API.Helpers
             CreateMap<ItemGroupsModel, ItemGroup>();
             CreateMap<Uom, UomModel>();
             CreateMap<UomModel, Uom>();
+            CreateMap<Tax, TaxModel>();
+            CreateMap<TaxModel, Tax>();
 
         }
     }

@@ -57,7 +57,9 @@ namespace POS.Data.DataContext
         public virtual DbQuery<GetItemGroups> GetProcItemGroups { get; set; }
         [Obsolete]
         public virtual DbQuery<GetUoms> GetUoms { get; set; }
-        
+        [Obsolete]
+        public virtual DbQuery<GetTaxes> GetTaxes { get; set; }
+
         #endregion
 
 

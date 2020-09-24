@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Exceptions;
-using ImagesService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using POS.API.Models;
@@ -18,29 +17,29 @@ namespace POS.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UomController : ControllerBase
+    public class TaxController : ControllerBase
     {
-        private IUomService uomService;
+        private ITaxService taxService;
         private IMapper Mapper;
 
-        public UomController( IUomService _uomService,
+        public TaxController(ITaxService _taxService,
                               IMapper mapper
                                 )
         {
-            uomService = _uomService;
+            taxService =_taxService;
             Mapper = mapper;
         }
 
 
-        [HttpGet("GetUoms")]
-        public IActionResult GetUoms(int companyId = 0, string Lang = "en")
+        [HttpGet("GetTaxes")]
+        public IActionResult GetTaxes(int companyId = 0, string Lang = "en")
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = uomService.GetProcUoms(companyId);
+                var data = taxService.GetProcTaxes(companyId);
                 if (data != null)
                 {
                     if (data.Count() == 0)
@@ -62,16 +61,16 @@ namespace POS.API.Controllers
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
 
-        [HttpPost("Save_Uom")]
-        public IActionResult Save_Uom(UomModel model, string Lang = "en")
+        [HttpPost("Save_Tax")]
+        public IActionResult Save_Tax(TaxModel model, string Lang = "en")
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var uom = Mapper.Map<Uom>(model);
-                var data = uomService.SaveProcUom(uom);
+                var tax = Mapper.Map<Tax>(model);
+                var data = taxService.SaveProcTax(tax);
                 if (data != 1)
                 {
                     if (data == -1)
@@ -82,11 +81,11 @@ namespace POS.API.Controllers
 
                     if (data == -2)
                     {
-                        return Ok(new { success = false, message = lang.English_name_already_exists, repeated = "UomName" });
+                        return Ok(new { success = false, message = lang.English_name_already_exists, repeated = "taxName" });
                     }
                     if (data == -3)
                     {
-                        return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "UomNameAr" });
+                        return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "taxNameAr" });
                     }
                 }
                 else
