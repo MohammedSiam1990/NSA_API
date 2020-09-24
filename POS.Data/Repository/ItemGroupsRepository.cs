@@ -29,7 +29,7 @@ namespace POS.Data.Repository
                 {
                     string Sql = "EXEC SaveItemGroups @ItemGroupID, @ItemGroupNum, @ItemGroupName," +
                         " @ItemGroupNameAr ,@ItemGroupMobileName" + ", @ItemGroupMobileNameAr, @BrandID," +
-                        " @StatusID, @TypeID,  @CreateDate, @InsertedBy" + ", @LastModifyDate,  @ModifiedBy, @GroupColor";
+                        " @StatusID, @TypeID,  @CreateDate, @InsertedBy" + ", @LastModifyDate,  @ModifiedBy, @GroupColor,@ImageName";
                     int result = DbContext.ReturnResult.FromSqlRaw(Sql,
                                        new object[] {
                                       new SqlParameter("@ItemGroupID", itemGroup.ItemGroupId),
@@ -41,11 +41,13 @@ namespace POS.Data.Repository
                                       new SqlParameter("@BrandID",itemGroup.BrandId )    ,
                                       new SqlParameter("@StatusID",  itemGroup.StatusId ?? (object)DBNull.Value)  ,
                                       new SqlParameter("@TypeID",itemGroup.TypeId ?? (object)DBNull.Value)    ,
-                                      new SqlParameter("@CreateDate", itemGroup.CreateDate )   ,
+                                      new SqlParameter("@CreateDate", itemGroup.CreateDate ?? (object)DBNull.Value)   ,
                                       new SqlParameter("@InsertedBy",  itemGroup.InsertedBy ?? (object)DBNull.Value)   ,
                                       new SqlParameter("@LastModifyDate",  itemGroup.LastModifyDate ?? (object)DBNull.Value)  ,
                                       new SqlParameter("@ModifiedBy", itemGroup.ModifiedBy ?? (object)DBNull.Value),
-                                      new SqlParameter("@GroupColor", itemGroup.GroupColor ?? (object)DBNull.Value)}).AsEnumerable().FirstOrDefault().ReturnValue;
+                                      new SqlParameter("@GroupColor", itemGroup.GroupColor ?? (object)DBNull.Value),
+                                      new SqlParameter("@ImageName", itemGroup.ImageName ?? (object)DBNull.Value)
+                                       }).AsEnumerable().FirstOrDefault().ReturnValue;
                     return result;
                 }
                 catch (Exception ex)
