@@ -111,7 +111,7 @@ namespace POS.API.CORE.Controllers
                 // create user
               var Company=  CompaniesService.GetCompany(CompanyId);
                 var CompanyDto = Mapper.Map<CompaniesModel>(Company);
-                CompanyDto.ImageName = imagesPath.comapny + CompanyDto.ImageName;
+                CompanyDto.ImageName = imagesPath.Comapny + CompanyDto.ImageName;
 
                 return Ok(new { datalist = CompanyDto, message = "" , success = true });
             }

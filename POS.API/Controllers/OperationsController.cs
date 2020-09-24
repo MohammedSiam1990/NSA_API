@@ -132,7 +132,7 @@ namespace POS.API.CORE.Controllers
 
             try
             {
-                var data = AllDataService.GetMobileData(CompanyID, imagesPath.brand, imagesPath.branch, imagesPath.itemGroup);
+                var data = AllDataService.GetMobileData(CompanyID, imagesPath.Brand, imagesPath.Branch, imagesPath.ItemGroup);
 
                 if (data == null)
                 {
