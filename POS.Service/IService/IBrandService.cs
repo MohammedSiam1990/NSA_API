@@ -13,16 +13,6 @@ namespace Pos.IService
 {
   public  interface IBrandService
     {
-        Brands GetBrand(int BrandId);
-       List<Brands> GetBrandsByCompany(int CompanyId);
-        List<Brands> GetBrands();
-        bool ValidateBrand(Brands Brand);
-        void AddBrand(Brands Brand);
-        void UpdateBrand(Brands Brand);
-        void DeleteBrand(int BrandId);
-        void ResetDefaultBrand( int CompanyId,string UserId,int BrandId);
-        bool ValidateCodeorNameAlreadyExist(int BrandId, int CompanyId, string BrandCode, string BrandName);
-        PagedList<Brands> GetBrandsByCompany(List<Brands> Brands, PagedListModel model);
 
         int SaveProcBrands(Brands Branch);
         List<GetBrands> GetProcBrands(int CompanyId, string ImageURL);

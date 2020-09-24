@@ -1,10 +1,7 @@
-﻿using POS.Data;
-using POS.Data.Infrastructure;
-using Ninject;
-using POS.Data.Repository;
+﻿using Ninject;
 using Pos.Service.Base;
-using POS.Service.Services;
-using POS.Data.IRepository;
+using POS.Data.Infrastructure;
+using POS.Data.Repository;
 
 namespace POS.IService.Base
 {
@@ -24,7 +21,7 @@ namespace POS.IService.Base
                 {
                     var databaseFactory = new DatabaseFactory();
 
-                    _PosService = new PosServices( new CompaniesRepository(databaseFactory),
+                    _PosService = new PosServices(new CompaniesRepository(databaseFactory),
                                                    //new UsersRepository(databaseFactory),
                                                    //new AccountRepository(databaseFactory),
                                                    new BrandRepository(databaseFactory),

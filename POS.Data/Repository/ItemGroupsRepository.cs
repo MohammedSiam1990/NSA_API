@@ -8,8 +8,6 @@ using POS.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 
 namespace POS.Data.Repository
 {
@@ -21,18 +19,6 @@ namespace POS.Data.Repository
 
         }
 
-        [Obsolete]
-        public GetBranches GetProcBranches(int BrandID, string ImageURL)
-        {
-            using (var DbContext = new PosDbContext())
-            {
-
-                string Sql = "EXEC GetBranches @BrandID,@ImageURL";
-                return DbContext.GetBranches.FromSqlRaw(Sql, new SqlParameter("@BrandID", BrandID),
-                                                              new SqlParameter("@ImageURL", ImageURL)
-                                                       ).AsEnumerable().FirstOrDefault();
-            }
-        }
 
         [Obsolete]
         public int SaveItemGroup(ItemGroup itemGroup)
@@ -72,7 +58,7 @@ namespace POS.Data.Repository
         }
 
         [Obsolete]
-        public List<GetProcItemGroups> GetProcItemGroups(int BrandID, string ImageName)
+        public List<GetItemGroups> GetProcItemGroups(int BrandID, string ImageName)
         {
             using (var DbContext = new PosDbContext())
             {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace POS.Data.Dto.Account
 {
-    public class GetProcItemGroups
+    public class GetItemGroups
     {
         public int ItemGroupID { get; set; }
         public string ItemGroupNum { get; set; }

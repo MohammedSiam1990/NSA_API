@@ -1,18 +1,17 @@
 ﻿using Ninject;
 using POS.Data.IRepository;
-using POS.Service.IService;
 
 namespace Pos.Service.Base
 {
 
-    public  class PosServices
+    public class PosServices
     {
         public ICompaniesRepository CompaniesRepository { get; set; }
         //public IUsersRepository UsersRepository { get; set; }
         //public IAccountRepository AccountRepository { get; set; }
         public IBrandRepository BrandRepository { get; set; }
         //public IMajorServiceRepository MajorServiceRepository { get; set; }
-      
+
         public IBranchRepository BranchRepository { get; set; }
         //public ICityRepository CityRepository { get; set; }
         //public ICountryRepository CountryRepository { get; set; }
@@ -23,7 +22,7 @@ namespace Pos.Service.Base
         public IDeleteRecordRepository DeleteRecordRepository { get; set; }
         //public IAspNetUserRolesRepository AspNetUserRolesRepository { get; set; }
         [Inject]
-        public PosServices(          ICompaniesRepository _CompaniesRepository,
+        public PosServices(ICompaniesRepository _CompaniesRepository,
                                      //IUsersRepository _UsersRepository,
                                      //IAccountRepository _AccountRepository,
                                      IBrandRepository _BrandRepository,

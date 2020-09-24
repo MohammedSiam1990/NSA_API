@@ -16,7 +16,7 @@ namespace POS.Service.Services
           return  PosService.ItemGroupsRepository.SaveItemGroup(itemGroup);
         }
 
-        public List<GetProcItemGroups> GetProcItemGroups(int BrandID, string ImageName)
+        public List<GetItemGroups> GetProcItemGroups(int BrandID, string ImageName)
         {
             return PosService.ItemGroupsRepository.GetProcItemGroups(BrandID, ImageName);
         }
