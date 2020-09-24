@@ -18,5 +18,8 @@ namespace POS.Data.Dto.Account
         public string ImageName { get; set; }
         public DateTime? CreateDate { get; set; }
         public DateTime? LastModifyDate { get; set; }
+        public string StatusName { get; set; }
+        public string StatusNameAr { get; set; }
+
     }
 }
