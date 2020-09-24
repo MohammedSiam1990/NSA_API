@@ -13,7 +13,7 @@ namespace POS.API.Models
         public string ItemGroupName { get; set; }
         public string ItemGroupNameAr { get; set; }
         public string ItemGroupMobileName { get; set; }
-        public string ItemGroupNameMobileAr { get; set; }
+        public string ItemGroupMobileNameAr { get; set; }
         public int? BrandId { get; set; }
         public int? StatusId { get; set; }
         public byte? TypeId { get; set; }
@@ -24,5 +24,7 @@ namespace POS.API.Models
         public string ModifiedBy { get; set; }
         public string DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
+        public string GroupColor { get; set; }
+
     }
 }

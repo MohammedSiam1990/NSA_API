@@ -10,7 +10,7 @@ namespace POS.Entities
         public string ItemGroupName { get; set; }
         public string ItemGroupNameAr { get; set; }
         public string ItemGroupMobileName { get; set; }
-        public string ItemGroupNameMobileAr { get; set; }
+        public string ItemGroupMobileNameAr { get; set; }
         public int? BrandId { get; set; }
         public int? StatusId { get; set; }
         public byte? TypeId { get; set; }
@@ -23,5 +23,7 @@ namespace POS.Entities
         public DateTime? DeletedDate { get; set; }
 
         public virtual Brands Brand { get; set; }
+
+        public string GroupColor { get; set; }
     }
 }

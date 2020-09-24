@@ -28,8 +28,8 @@ namespace POS.Data.Repository
                 try
                 {
                     string Sql = "EXEC SaveItemGroups @ItemGroupID, @ItemGroupNum, @ItemGroupName," +
-                        " @ItemGroupNameAr ,@ItemGroupMobileName" + ", @ItemGroupNameMobileAr, @BrandID," +
-                        " @StatusID, @TypeID,  @CreateDate, @InsertedBy" + ", @LastModifyDate,  @ModifiedBy";
+                        " @ItemGroupNameAr ,@ItemGroupMobileName" + ", @ItemGroupMobileNameAr, @BrandID," +
+                        " @StatusID, @TypeID,  @CreateDate, @InsertedBy" + ", @LastModifyDate,  @ModifiedBy, @GroupColor";
                     int result = DbContext.ReturnResult.FromSqlRaw(Sql,
                                        new object[] {
                                       new SqlParameter("@ItemGroupID", itemGroup.ItemGroupId),
@@ -37,14 +37,15 @@ namespace POS.Data.Repository
                                       new SqlParameter("@ItemGroupName", itemGroup.ItemGroupName )   ,
                                       new SqlParameter("@ItemGroupNameAr",itemGroup.ItemGroupNameAr )   ,
                                       new SqlParameter("@ItemGroupMobileName",itemGroup.ItemGroupMobileName )    ,
-                                      new SqlParameter("@ItemGroupNameMobileAr", itemGroup.ItemGroupNameMobileAr)    ,
+                                      new SqlParameter("@ItemGroupMobileNameAr", itemGroup.ItemGroupMobileNameAr)    ,
                                       new SqlParameter("@BrandID",itemGroup.BrandId )    ,
                                       new SqlParameter("@StatusID",  itemGroup.StatusId ?? (object)DBNull.Value)  ,
                                       new SqlParameter("@TypeID",itemGroup.TypeId ?? (object)DBNull.Value)    ,
                                       new SqlParameter("@CreateDate", itemGroup.CreateDate )   ,
                                       new SqlParameter("@InsertedBy",  itemGroup.InsertedBy ?? (object)DBNull.Value)   ,
                                       new SqlParameter("@LastModifyDate",  itemGroup.LastModifyDate ?? (object)DBNull.Value)  ,
-                                      new SqlParameter("@ModifiedBy", itemGroup.ModifiedBy ?? (object)DBNull.Value)  }).AsEnumerable().FirstOrDefault().ReturnValue;
+                                      new SqlParameter("@ModifiedBy", itemGroup.ModifiedBy ?? (object)DBNull.Value),
+                                      new SqlParameter("@GroupColor", itemGroup.GroupColor ?? (object)DBNull.Value)}).AsEnumerable().FirstOrDefault().ReturnValue;
                     return result;
                 }
                 catch (Exception ex)
@@ -60,6 +61,9 @@ namespace POS.Data.Repository
         [Obsolete]
         public List<GetItemGroups> GetProcItemGroups(int BrandID, string ImageName)
         {
+            try
+            {
+            
             using (var DbContext = new PosDbContext())
             {
 
@@ -68,6 +72,12 @@ namespace POS.Data.Repository
                                                               new SqlParameter("@ImageURL", ImageName)
                                                        ).ToList();
             }
+            }
+            catch(Exception e)
+            {
+                Exceptions.ExceptionError.SaveException(e);
+            }
+            return null;
         }
     }
 

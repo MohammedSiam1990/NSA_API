@@ -11,7 +11,7 @@ namespace POS.Data.Dto.Account
         public string ItemGroupName { get; set; }
         public string ItemGroupNameAr { get; set; }
         public string ItemGroupMobileName { get; set; }
-        public string ItemGroupNameMobileAr { get; set; }
+        public string ItemGroupMobileNameAr { get; set; }
         public int? BrandID { get; set; }
         public int? StatusID { get; set; }
         public byte? TypeID { get; set; }
@@ -20,6 +20,7 @@ namespace POS.Data.Dto.Account
         public DateTime? LastModifyDate { get; set; }
         public string StatusName { get; set; }
         public string StatusNameAr { get; set; }
+        public string GroupColor { get; set; }
 
     }
 }
