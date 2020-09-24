@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Steander.Core.Entities;
 using POS.Data.Dto.Account;
 using POS.Data.Dto;
+using POS.Data.Dto.Procedure;
 
 namespace POS.Data.DataContext
 {
@@ -54,6 +55,9 @@ namespace POS.Data.DataContext
 
         [Obsolete]
         public virtual DbQuery<GetItemGroups> GetProcItemGroups { get; set; }
+        [Obsolete]
+        public virtual DbQuery<GetUoms> GetUoms { get; set; }
+        
         #endregion
 
 

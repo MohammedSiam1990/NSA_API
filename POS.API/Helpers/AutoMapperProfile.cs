@@ -1,6 +1,7 @@
 using AutoMapper;
 using POS.Account;
 using POS.API.Models;
+using POS.Data.Entities;
 using POS.Entities;
 using POS.Models;
 using System.Linq;
@@ -19,6 +20,8 @@ namespace POS.API.Helpers
             CreateMap<BranchesModel, Branches>();
             CreateMap<ItemGroup, ItemGroupsModel>();
             CreateMap<ItemGroupsModel, ItemGroup>();
+            CreateMap<Uom, UomModel>();
+            CreateMap<UomModel, Uom>();
 
         }
     }
