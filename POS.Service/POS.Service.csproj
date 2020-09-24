@@ -145,7 +145,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\AppException.cs" />
     <Compile Include="Helpers\PagedListSortModel.cs" />
     <Compile Include="Helpers\PagedResponse.cs" />
     <Compile Include="Helpers\IPagedList.cs" />
