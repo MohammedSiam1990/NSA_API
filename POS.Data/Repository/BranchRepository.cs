@@ -61,11 +61,18 @@ namespace POS.Data.Repository
         {
             using (var DbContext = new PosDbContext())
             {
+                try
+                {
+                    string Sql = "EXEC GetBranches @BrandID,@ImageURL";
+                    return DbContext.GetBranches.FromSql(Sql, new SqlParameter("@BrandID", BrandID),
+                                                             new SqlParameter("@ImageURL", ImageURL)).ToList();
+                }
+                catch (Exception ex)
+                {
+                    Exceptions.ExceptionError.SaveException(ex);
+                }
+                return null;
 
-                string Sql = "EXEC GetBranches @BrandID,@ImageURL";
-                return DbContext.GetBranches.FromSql(Sql, new SqlParameter("@BrandID", BrandID),
-                                                              new SqlParameter("@ImageURL", ImageURL)
-                                                       ).ToList();
             }
         }
     }

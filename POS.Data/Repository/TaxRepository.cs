@@ -8,7 +8,6 @@ using POS.Data.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace POS.Data.Repository
 {
@@ -25,9 +24,18 @@ namespace POS.Data.Repository
         {
             using (var DbContext = new PosDbContext())
             {
-                string Sql = "EXEC GetTax @CompanyID";
-                return DbContext.GetTaxes.FromSql(Sql, new SqlParameter("@CompanyID", CompanyID)
-                                                       ).ToList();
+                try
+                {
+                    string Sql = "EXEC GetTax @CompanyID";
+                    return DbContext.GetTaxes.FromSql(Sql, new SqlParameter("@CompanyID", CompanyID)
+                                                           ).ToList();
+                }
+                catch (Exception ex)
+                {
+                    Exceptions.ExceptionError.SaveException(ex);
+                }
+                return null;
+
             }
         }
 
@@ -50,7 +58,7 @@ namespace POS.Data.Repository
                                       new SqlParameter("@SpecialTax", tax.SpecialTax )    ,
                                       new SqlParameter("@CompanyID",  tax.CompanyID )  ,
                                       new SqlParameter("@InsertedBy",tax.InsertedBy ?? (object)DBNull.Value)    ,
-                                      new SqlParameter("@CreateDate", tax.CreateDate)   ,
+                                      new SqlParameter("@CreateDate", tax.CreateDate ?? (object)DBNull.Value)   ,
                                       new SqlParameter("@ModifiedBy",  tax.ModifiedBy ?? (object)DBNull.Value)   ,
                                       new SqlParameter("@LastModifyDate",  tax.LastModifyDate) }).AsEnumerable().FirstOrDefault().ReturnValue;
                     return result;
@@ -65,5 +73,5 @@ namespace POS.Data.Repository
         }
 
     }
- 
+
 }

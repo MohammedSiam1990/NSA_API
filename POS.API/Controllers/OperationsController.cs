@@ -1,29 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
-using Pos.IService;
-using POS.Models;
-using Pos.Service;
-using POS.Entities;
-using System.Linq;
-using POS.Common;
-using static POS.Common.Enums;
-using System.Globalization;
-using System.Threading;
+﻿using Exceptions;
 using ImagesService;
-using Exceptions;
-using System.IO;
-using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using POS.Services;
-using POS.Service.IService;
 using POS.Core.Resources;
-using AutoMapper.Configuration;
-using System.Text;
+using POS.Service.IService;
+using System;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Net.Http.Headers;
+using System.Threading;
 
 namespace POS.API.CORE.Controllers
 {
@@ -39,7 +27,7 @@ namespace POS.API.CORE.Controllers
 
 
 
-        public OperationsController(IlookUpService _loockUpService, ImagesPath _imagesPath,IMobileDataService _AllDataService,IDeleteRecordService _DeleteRecord)
+        public OperationsController(IlookUpService _loockUpService, ImagesPath _imagesPath, IMobileDataService _AllDataService, IDeleteRecordService _DeleteRecord)
         {
             loockUpService = _loockUpService;
             AllDataService = _AllDataService;
@@ -74,13 +62,13 @@ namespace POS.API.CORE.Controllers
                         }
                         if (i < Request.Form.Files.Count())
                         {
-                            ImagesNameList[i] =  fileName;
+                            ImagesNameList[i] = fileName;
                             i++;
 
                         }
 
                     }
-                    return Ok(new { success = true, message = lang.Upload_image_successful, filePath = "http://posapi.opos.me/" + "uploads/" + FolderName + "/" , ImagesName = ImagesNameList });
+                    return Ok(new { success = true, message = lang.Upload_image_successful, filePath = "http://posapi.opos.me/" + "uploads/" + FolderName + "/", ImagesName = ImagesNameList });
 
                 }
                 else
@@ -161,11 +149,11 @@ namespace POS.API.CORE.Controllers
                 var data = DeleteRecord.DeleteRecord(TableNme, TableKey, RowID, DeletedBy);
                 if (data != 1)
                 {
-                    return Ok( new { success = false, message = lang.Deleted_Faild });
+                    return Ok(new { success = false, message = lang.Deleted_Faild });
                 }
                 else
                 {
-                    return Ok( new { success = true, message = lang.Deleted_successfully });
+                    return Ok(new { success = true, message = lang.Deleted_successfully });
                 }
 
             }

@@ -8,7 +8,6 @@ using POS.Data.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace POS.Data.Repository
 {
@@ -25,9 +24,18 @@ namespace POS.Data.Repository
         {
             using (var DbContext = new PosDbContext())
             {
-                string Sql = "EXEC GetUOM @CompanyID";
-                return DbContext.GetUoms.FromSql(Sql, new SqlParameter("@CompanyID", CompanyID)
-                                                       ).ToList();
+                try
+                {
+                    string Sql = "EXEC GetUOM @CompanyID";
+                    return DbContext.GetUoms.FromSql(Sql, new SqlParameter("@CompanyID", CompanyID)
+                                                           ).ToList();
+                }
+                catch (Exception ex)
+                {
+                    Exceptions.ExceptionError.SaveException(ex);
+                }
+                return null;
+
             }
         }
 
@@ -38,8 +46,8 @@ namespace POS.Data.Repository
             {
                 try
                 {
-                    string Sql = "EXEC SaveUOM @UOMID , @UOMName, @UOMNameAr, @Tag, @StatusID" 
-                        +", @CompanyID, @InsertedBy, @CreateDate,  @ModifiedBy, @LastModifyDate";
+                    string Sql = "EXEC SaveUOM @UOMID , @UOMName, @UOMNameAr, @Tag, @StatusID"
+                        + ", @CompanyID, @InsertedBy, @CreateDate,  @ModifiedBy, @LastModifyDate";
                     int result = DbContext.ReturnResult.FromSqlRaw(Sql,
                                        new object[] {
                                       new SqlParameter("@UOMID", uom.UOMID ),
@@ -49,7 +57,7 @@ namespace POS.Data.Repository
                                       new SqlParameter("@StatusID", uom.StatusID )    ,
                                       new SqlParameter("@CompanyID",  uom.CompanyID )  ,
                                       new SqlParameter("@InsertedBy",uom.InsertedBy ?? (object)DBNull.Value)    ,
-                                      new SqlParameter("@CreateDate", uom.CreateDate)   ,
+                                      new SqlParameter("@CreateDate", uom.CreateDate ?? (object)DBNull.Value)   ,
                                       new SqlParameter("@ModifiedBy",  uom.ModifiedBy ?? (object)DBNull.Value)   ,
                                       new SqlParameter("@LastModifyDate",  uom.LastModifyDate) }).AsEnumerable().FirstOrDefault().ReturnValue;
                     return result;

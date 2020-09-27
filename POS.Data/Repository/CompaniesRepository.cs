@@ -1,6 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore;
-using POS.API.Helpers;
+﻿using POS.API.Helpers;
 using POS.Data.DataContext;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
@@ -8,8 +6,6 @@ using POS.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using static POS.Common.Enums;
 
 namespace POS.Data.Repository
 {
@@ -103,7 +99,7 @@ namespace POS.Data.Repository
         {
             try
             {
-                if (Company.CompanyName != "" )
+                if (Company.CompanyName != "")
                     return true;
                 else
                     return false;
@@ -116,10 +112,19 @@ namespace POS.Data.Repository
 
         public List<Companies> GetCompanies()
         {
-            return base.GetAll().ToList();
+            try
+            {
+                return base.GetAll().ToList();
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ExceptionError.SaveException(ex);
+            }
+            return null;
+
         }
 
-    
-      
+
+
     }
 }

@@ -1,18 +1,15 @@
 ﻿using AutoMapper;
+using Exceptions;
 using ImagesService;
 using Microsoft.AspNetCore.Mvc;
 using POS.API.Models;
+using POS.Core.Resources;
 using POS.Entities;
 using POS.Service.IService;
-using POS.Service.Services;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
-using Exceptions;
-using POS.Core.Resources;
 
 namespace POS.API.Controllers
 {
@@ -41,19 +38,16 @@ namespace POS.API.Controllers
         [HttpGet("GetItemGroups")]
         public IActionResult GetItemGroups(int BrandID, string Lang = "en")
         {
-          
+
             try
             {
-
-
-
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
 
                 var data = itemGroupsService.GetProcItemGroups(BrandID, imagesPath.ItemGroup);
 
-                if (data!= null)
+                if (data != null)
                 {
                     if (data.Count() == 0)
                     {
@@ -78,7 +72,7 @@ namespace POS.API.Controllers
 
 
         [HttpPost("SaveItemGroups")]
-        public  IActionResult SaveItemGroups(ItemGroupsModel model, string Lang = "en")
+        public IActionResult SaveItemGroups(ItemGroupsModel model, string Lang = "en")
         {
             try
             {
@@ -86,8 +80,8 @@ namespace POS.API.Controllers
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
                 var ItemGroup = Mapper.Map<ItemGroup>(model);
-               
-                var data  = itemGroupsService.SaveItemGroup(ItemGroup);
+
+                var data = itemGroupsService.SaveItemGroup(ItemGroup);
 
                 if (data != 1)
                 {
@@ -99,7 +93,7 @@ namespace POS.API.Controllers
 
                     if (data == -2)
                     {
-                        return Ok( new { success = false, message = lang.English_name_already_exists, repeated = "ItemGroupName" });
+                        return Ok(new { success = false, message = lang.English_name_already_exists, repeated = "ItemGroupName" });
                     }
                     if (data == -3)
                     {
@@ -107,7 +101,7 @@ namespace POS.API.Controllers
                     }
                     if (data == -4)
                     {
-                        return Ok(new { success = false, message =lang.English_group_name_for_mobile_already_exists, repeated = "ItemGroupMobileName" });
+                        return Ok(new { success = false, message = lang.English_group_name_for_mobile_already_exists, repeated = "ItemGroupMobileName" });
                     }
                     if (data == -5)
                     {

@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Exceptions;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using POS.API.Models;
 using POS.Core.Resources;
 using POS.Data.Entities;
 using POS.Service.IService;
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
 
 namespace POS.API.Controllers
 {
@@ -26,7 +23,7 @@ namespace POS.API.Controllers
                               IMapper mapper
                                 )
         {
-            taxService =_taxService;
+            taxService = _taxService;
             Mapper = mapper;
         }
 

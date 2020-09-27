@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace POS.Data.Entities
 {
-   public class Tax
+    public class Tax
     {
         public int TaxID { get; set; }
         public string TaxName { get; set; }

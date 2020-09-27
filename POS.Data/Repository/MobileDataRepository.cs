@@ -2,13 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using POS.Data.DataContext;
 using POS.Data.Dto;
-
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace POS.Data.Repository
 {
@@ -26,15 +24,23 @@ namespace POS.Data.Repository
         {
             using (var DbContext = new PosDbContext())
             {
+                try
+                {
+                    string Sql = "EXEC Get_all_data_json @CompanyID,@BrandImageURL,@BranchImageURL,@ItemGroupImageURL";
+                    var data = DbContext.GetMobileData.FromSqlRaw(Sql,
+                        new SqlParameter("@CompanyID", CompanyID),
+                        new SqlParameter("@BrandImageURL", BrandImageURL),
+                        new SqlParameter("@BranchImageURL", BranchImageURL),
+                        new SqlParameter("@ItemGroupImageURL", ItemGroupImageURL)).ToList();
 
-                string Sql = "EXEC Get_all_data_json @CompanyID,@BrandImageURL,@BranchImageURL,@ItemGroupImageURL";
-                var data = DbContext.GetMobileData.FromSqlRaw(Sql,
-                    new SqlParameter("@CompanyID", CompanyID),
-                    new SqlParameter("@BrandImageURL", BrandImageURL),
-                    new SqlParameter("@BranchImageURL", BranchImageURL),
-                    new SqlParameter("@ItemGroupImageURL", ItemGroupImageURL)).ToList();
+                    return data;
+                }
+                catch (Exception ex)
+                {
+                    Exceptions.ExceptionError.SaveException(ex);
+                }
+                return null;
 
-                return data;
             }
         }
     }

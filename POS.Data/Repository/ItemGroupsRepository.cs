@@ -65,17 +65,17 @@ namespace POS.Data.Repository
         {
             try
             {
-            
-            using (var DbContext = new PosDbContext())
-            {
 
-                string Sql = "EXEC GetItemGroups @BrandID,@ImageURL";
-                return DbContext.GetProcItemGroups.FromSql(Sql, new SqlParameter("@BrandID", BrandID),
-                                                              new SqlParameter("@ImageURL", ImageName)
-                                                       ).ToList();
+                using (var DbContext = new PosDbContext())
+                {
+
+                    string Sql = "EXEC GetItemGroups @BrandID,@ImageURL";
+                    return DbContext.GetProcItemGroups.FromSql(Sql, new SqlParameter("@BrandID", BrandID),
+                                                                  new SqlParameter("@ImageURL", ImageName)
+                                                           ).ToList();
+                }
             }
-            }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Exceptions.ExceptionError.SaveException(e);
             }

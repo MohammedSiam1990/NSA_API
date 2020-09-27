@@ -1,16 +1,12 @@
 ﻿using POS.Data.Dto.Account;
 using POS.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace POS.Service.IService
 {
-   public interface IItemGroupsService
+    public interface IItemGroupsService
     {
         int SaveItemGroup(ItemGroup Branch);
-       List< GetItemGroups> GetProcItemGroups(int BrandID, string ImageName);
+        List<GetItemGroups> GetProcItemGroups(int BrandID, string ImageName);
     }
 }

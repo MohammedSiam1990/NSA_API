@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Exceptions;
-using MailKit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +8,11 @@ using POS.Core;
 using POS.Core.Resources;
 using POS.Data.Dto;
 using Steander.Core.DTOs;
+using System;
+using System.Globalization;
+using System.Net;
+using System.Threading;
+using System.Threading.Tasks;
 
 
 namespace StanderApi.Controllers
@@ -49,7 +46,7 @@ namespace StanderApi.Controllers
                 if (ModelState.IsValid)
                 {
                     var result = await _accountService.RegisterUserAsync(model);
-                    return Ok(result); 
+                    return Ok(result);
                 }
                 else
                 {
@@ -63,8 +60,8 @@ namespace StanderApi.Controllers
             return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
         }
         // /api/auth/login
-       
-         [HttpPost("Login")]
+
+        [HttpPost("Login")]
         public async Task<IActionResult> LoginAsync([FromBody]LoginViewModel model)
         {
             try
@@ -131,9 +128,9 @@ namespace StanderApi.Controllers
                 if (userId == "" || code == "")
                 {
                     return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
-                
+
                 }
-             
+
                 if (string.IsNullOrWhiteSpace(userId))
                 {
                     return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
@@ -144,7 +141,7 @@ namespace StanderApi.Controllers
                     return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
                 }
 
-               
+
                 var result = _accountService.ConfirmEmailAsync(userId, code);
                 if (await result)
                     return Ok(new { message = lang.Your_registration_completed_successfully, success = true });
@@ -179,10 +176,10 @@ namespace StanderApi.Controllers
             }
             catch (Exception ex)
             {
-
-                return Ok(new { message = lang.An_error_occurred_while_processing_your_request, ex = ex });
+                ExceptionError.SaveException(ex);
 
             }
+            return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
 
         }
 
@@ -245,9 +242,9 @@ namespace StanderApi.Controllers
 
         [HttpPut("User/{Id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<IActionResult> UpdateUser(string Id , UserDto userDto)
+        public async Task<IActionResult> UpdateUser(string Id, UserDto userDto)
         {
-            var result= await _accountService.UpdateUserAsync(Id, userDto);
+            var result = await _accountService.UpdateUserAsync(Id, userDto);
             return Ok(result);
         }
 
@@ -259,7 +256,7 @@ namespace StanderApi.Controllers
             return Ok(result);
         }
         [HttpPost("ChangePassword")]
-               public async Task<IActionResult> ChangePassword(ChangePasswordBindingModel model)
+        public async Task<IActionResult> ChangePassword(ChangePasswordBindingModel model)
         {
             try
             {
@@ -293,18 +290,18 @@ namespace StanderApi.Controllers
                 {
                     return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
                 }
-               var userName  = HttpContext.User.Identity.Name;
-                var result = await _accountService.ChangePassword(userName, model.OldPassword,  model.NewPassword);
+                var userName = HttpContext.User.Identity.Name;
+                var result = await _accountService.ChangePassword(userName, model.OldPassword, model.NewPassword);
 
                 if (result.success)
-                            return Ok(new { message = result.message, success = result.success });
-                else     
-                    return Ok( new { message = result.message, success = result.success });
-                     
+                    return Ok(new { message = result.message, success = result.success });
+                else
+                    return Ok(new { message = result.message, success = result.success });
+
             }
             catch (Exception ex)
             {
-              ExceptionError.SaveException(ex);
+                ExceptionError.SaveException(ex);
             }
             return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
         }

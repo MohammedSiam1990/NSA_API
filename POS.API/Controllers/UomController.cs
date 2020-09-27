@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Exceptions;
-using ImagesService;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using POS.API.Models;
 using POS.Core.Resources;
 using POS.Data.Entities;
 using POS.Service.IService;
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
 
 namespace POS.API.Controllers
 {
@@ -23,7 +19,7 @@ namespace POS.API.Controllers
         private IUomService uomService;
         private IMapper Mapper;
 
-        public UomController( IUomService _uomService,
+        public UomController(IUomService _uomService,
                               IMapper mapper
                                 )
         {
@@ -79,7 +75,6 @@ namespace POS.API.Controllers
                         return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
                     }
-
                     if (data == -2)
                     {
                         return Ok(new { success = false, message = lang.English_name_already_exists, repeated = "UomName" });
@@ -99,7 +94,6 @@ namespace POS.API.Controllers
             {
                 ExceptionError.SaveException(ex);
                 // return error message if there was an exception
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }

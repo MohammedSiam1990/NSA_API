@@ -1,12 +1,9 @@
-﻿using POS.Data.DataContext;
-using POS.Data.Dto;
-using POS.Entities;
+﻿using POS.Data.Dto;
 using Steander.Core.DTOs;
+using Steander.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Steander.Core.Entities;
-using Microsoft.AspNetCore.Identity;
 
 namespace Pos.IService
 {
@@ -19,7 +16,7 @@ namespace Pos.IService
 
         Task<bool> ConfirmEmailAsync(string userId, string code);
 
-        Task<UserManagerResponse> ForgetPasswordAsync(String Email ,string Lang);
+        Task<UserManagerResponse> ForgetPasswordAsync(String Email, string Lang);
         Task<UserManagerResponse> ResetPassword(ResetPasswordViewModel model);
         IList<ApplicationUser> GetAllUsersAsync();
 

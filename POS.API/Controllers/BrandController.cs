@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
-using Pos.IService;
-using POS.Entities;
-using Pos.Service;
-using POS.Models;
-using System.Linq;
-using POS.Common;
-using POS.API.Helpers;
-using POS.API.Models;
-using System.Threading;
-using System.Globalization;
-using ImagesService;
+﻿using AutoMapper;
 using Exceptions;
+using ImagesService;
+using Microsoft.AspNetCore.Mvc;
+using Pos.IService;
 using POS.Core.Resources;
+using POS.Entities;
+using POS.Models;
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
 
 namespace POS.API.CORE.Controllers
 {
@@ -28,16 +22,16 @@ namespace POS.API.CORE.Controllers
         private ImagesPath imagesPath;
         private IBrandService BrandService;
 
-   
+
         private IMapper Mapper;
-    
-        public BrandController(  IBrandService _BrandService,
+
+        public BrandController(IBrandService _BrandService,
                          ImagesPath _imagesPath,
                                  IMapper mapper)
         {
             BrandService = _BrandService;
             imagesPath = _imagesPath;
-            Mapper = mapper; 
+            Mapper = mapper;
         }
 
 
@@ -46,7 +40,6 @@ namespace POS.API.CORE.Controllers
         {
             try
             {
-                
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
@@ -55,7 +48,7 @@ namespace POS.API.CORE.Controllers
                 {
                     if (data.Count() == 0)
                     {
-                        return Ok(new { success = true, message =lang.No_data_available, datalist = data.ToList() });
+                        return Ok(new { success = true, message = lang.No_data_available, datalist = data.ToList() });
                     }
                     else
                     {
@@ -80,7 +73,7 @@ namespace POS.API.CORE.Controllers
         {
             try
             {
-               
+
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
@@ -90,21 +83,21 @@ namespace POS.API.CORE.Controllers
                 {
                     if (data == -1)
                     {
-                        return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request});
+                        return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
                     }
                     if (data == -2)
                     {
-                        return Ok(new { success = false, message =lang.English_name_already_exists, repeated = "BrandName" });
+                        return Ok(new { success = false, message = lang.English_name_already_exists, repeated = "BrandName" });
                     }
                     if (data == -3)
                     {
-                        return Ok(new { success = false, message =lang.Arabic_name_already_exists, repeated = "BrandNameAr" });
+                        return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "BrandNameAr" });
                     }
                 }
                 else
                 {
-                    return Ok(new { success = true, message =lang.Saved_successfully_completed });
+                    return Ok(new { success = true, message = lang.Saved_successfully_completed });
                 }
 
             }

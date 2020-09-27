@@ -1,15 +1,13 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
-using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
-using Pos.IService;
-using Pos.Service;
-using POS.Models;
-using System.Collections.Generic;
-using POS.Entities;
-using ImagesService;
-using POS.Core.Resources;
+﻿using AutoMapper;
 using Exceptions;
+using ImagesService;
+using Microsoft.AspNetCore.Mvc;
+using Pos.IService;
+using POS.Core.Resources;
+using POS.Entities;
+using POS.Models;
+using System;
+using System.Collections.Generic;
 
 namespace POS.API.CORE.Controllers
 {
@@ -23,7 +21,7 @@ namespace POS.API.CORE.Controllers
 
         private ICompaniesService CompaniesService;
         private IMapper Mapper;
-    
+
         public CompaniesController(
             ICompaniesService _CompaniesService,
             ImagesPath _imagesPath,
@@ -34,7 +32,7 @@ namespace POS.API.CORE.Controllers
             imagesPath = _imagesPath;
         }
 
-       
+
         [HttpPost("AddCompany")]
         public IActionResult Add([FromBody]CompaniesModel model)
         {
@@ -46,7 +44,7 @@ namespace POS.API.CORE.Controllers
                 // create Company
                 {
                     CompaniesService.AddCompany(Company);
-                return Ok(new { message = "Add Company Success" });
+                    return Ok(new { message = "Add Company Success" });
                 }
 
                 return Ok(new { message = "Data is Not Complete" });
@@ -92,8 +90,8 @@ namespace POS.API.CORE.Controllers
 
             try
             {
-                    CompaniesService.DeleteCompany(CompanyId);
-                    return Ok(new { message = "Delete Company Success" });
+                CompaniesService.DeleteCompany(CompanyId);
+                return Ok(new { message = "Delete Company Success" });
             }
             catch (Exception ex)
             {
@@ -101,19 +99,19 @@ namespace POS.API.CORE.Controllers
                 return Ok(new { message = ex.Message });
             }
         }
-     
-        
+
+
         [HttpGet("GetCompany")]
         public IActionResult GetCompany(int CompanyId)
         {
-       try
+            try
             {
                 // create user
-              var Company=  CompaniesService.GetCompany(CompanyId);
+                var Company = CompaniesService.GetCompany(CompanyId);
                 var CompanyDto = Mapper.Map<CompaniesModel>(Company);
                 CompanyDto.ImageName = imagesPath.Comapny + CompanyDto.ImageName;
 
-                return Ok(new { datalist = CompanyDto, message = "" , success = true });
+                return Ok(new { datalist = CompanyDto, message = "", success = true });
             }
             catch (Exception ex)
             {
@@ -127,10 +125,10 @@ namespace POS.API.CORE.Controllers
         [HttpGet("GetCompanies")]
         public IActionResult GetCompanies()
         {
-       try
+            try
             {
                 // create user
-               var  companies = CompaniesService.GetCompanies();
+                var companies = CompaniesService.GetCompanies();
                 var companiesDto = Mapper.Map<List<CompaniesModel>>(companies);
                 return Ok(new { datalist = companiesDto, message = "", success = true });
             }

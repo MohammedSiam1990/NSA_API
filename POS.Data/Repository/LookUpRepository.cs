@@ -22,11 +22,19 @@ namespace POS.Data.Repository
         {
             using (var DbContext = new PosDbContext())
             {
+                try
+                {
+                    string Sql = "EXEC Get_Json_Lookups @langID";
+                    var data = DbContext.GetLookups.FromSqlRaw(Sql, new SqlParameter("@langID", Lang)).AsEnumerable().FirstOrDefault().LookupsData;
 
-                string Sql = "EXEC Get_Json_Lookups @langID";
-                var data = DbContext.GetLookups.FromSqlRaw(Sql, new SqlParameter("@langID", Lang)).AsEnumerable().FirstOrDefault().LookupsData;
+                    return data.ToString();
+                }
+                catch (Exception ex)
+                {
+                    Exceptions.ExceptionError.SaveException(ex);
+                }
+                return null;
 
-                return data.ToString();
             }
 
         }

@@ -2,13 +2,12 @@
 using POS.Entities;
 using POS.IService.Base;
 using System.Collections.Generic;
-using static POS.Common.Enums;
 
 namespace Pos.Service
 {
     public class CompaniesService : BaseService, ICompaniesService
     {
-        public void AddCompany( Companies Company)
+        public void AddCompany(Companies Company)
         {
             PosService.CompaniesRepository.AddCompany(Company);
         }
@@ -20,11 +19,11 @@ namespace Pos.Service
 
         public Companies GetCompany(int CompanyId)
         {
-           return PosService.CompaniesRepository.GetCompany(CompanyId);
+            return PosService.CompaniesRepository.GetCompany(CompanyId);
         }
-      public List<Companies> GetCompanies()
+        public List<Companies> GetCompanies()
         {
-           return PosService.CompaniesRepository.GetCompanies();
+            return PosService.CompaniesRepository.GetCompanies();
         }
         public void SaveCompany(Companies Company)
         {
@@ -38,10 +37,10 @@ namespace Pos.Service
 
         public bool ValidateCompany(Companies Company)
         {
-           return PosService.CompaniesRepository.ValidateCompany(Company);
+            return PosService.CompaniesRepository.ValidateCompany(Company);
         }
 
-      
+
 
     }
 }

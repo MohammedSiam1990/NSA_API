@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
-using Pos.IService;
-using POS.Models;
-using Pos.Service;
-using POS.Entities;
-using System.Linq;
-using POS.Common;
-using static POS.Common.Enums;
-using System.Globalization;
-using System.Threading;
-using ImagesService;
+﻿using AutoMapper;
 using Exceptions;
+using ImagesService;
+using Microsoft.AspNetCore.Mvc;
+using Pos.IService;
 using POS.Core.Resources;
+using POS.Entities;
+using POS.Models;
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
 
 namespace POS.API.CORE.Controllers
 {

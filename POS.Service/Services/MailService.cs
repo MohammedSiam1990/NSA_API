@@ -1,11 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
-
 using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace POS.Service.Services
 {
@@ -20,7 +16,7 @@ namespace POS.Service.Services
 
 
 
-        public bool  SendEmailAsync(string Smtp, int Port, bool EnableSsl, string From, string To, string Subject, string body, string CredentialEmail, string CredentialPassword)
+        public bool SendEmailAsync(string Smtp, int Port, bool EnableSsl, string From, string To, string Subject, string body, string CredentialEmail, string CredentialPassword)
         {
             MailAddress to = new MailAddress(To);
             MailAddress from = new MailAddress(From);
@@ -45,7 +41,7 @@ namespace POS.Service.Services
             catch (SmtpException ex)
             {
                 Console.WriteLine(ex.ToString());
-               return false;
+                return false;
             }
         }
 
