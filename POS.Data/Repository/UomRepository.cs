@@ -54,12 +54,12 @@ namespace POS.Data.Repository
                                       new SqlParameter("@UOMName", uom.UOMName )   ,
                                       new SqlParameter("@UOMNameAr",uom.UOMNameAr )   ,
                                       new SqlParameter("@Tag",uom.Tag )    ,
-                                      new SqlParameter("@StatusID", uom.StatusID )    ,
+                                      new SqlParameter("@StatusID", uom.StatusID ?? (object)DBNull.Value)     ,
                                       new SqlParameter("@CompanyID",  uom.CompanyID )  ,
                                       new SqlParameter("@InsertedBy",uom.InsertedBy ?? (object)DBNull.Value)    ,
                                       new SqlParameter("@CreateDate", uom.CreateDate ?? (object)DBNull.Value)   ,
                                       new SqlParameter("@ModifiedBy",  uom.ModifiedBy ?? (object)DBNull.Value)   ,
-                                      new SqlParameter("@LastModifyDate",  uom.LastModifyDate) }).AsEnumerable().FirstOrDefault().ReturnValue;
+                                      new SqlParameter("@LastModifyDate",  uom.LastModifyDate ?? (object)DBNull.Value)  }).AsEnumerable().FirstOrDefault().ReturnValue;
                     return result;
                 }
                 catch (Exception ex)

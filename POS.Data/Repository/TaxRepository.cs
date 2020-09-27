@@ -54,13 +54,13 @@ namespace POS.Data.Repository
                                       new SqlParameter("@TaxName", tax.TaxName )   ,
                                       new SqlParameter("@TaxNameAr",tax.TaxNameAr )   ,
                                       new SqlParameter("@TaxVal",tax.TaxVal )    ,
-                                      new SqlParameter("@StatusID", tax.StatusID )    ,
+                                      new SqlParameter("@StatusID", tax.StatusID ?? (object)DBNull.Value)     ,
                                       new SqlParameter("@SpecialTax", tax.SpecialTax )    ,
                                       new SqlParameter("@CompanyID",  tax.CompanyID )  ,
                                       new SqlParameter("@InsertedBy",tax.InsertedBy ?? (object)DBNull.Value)    ,
                                       new SqlParameter("@CreateDate", tax.CreateDate ?? (object)DBNull.Value)   ,
                                       new SqlParameter("@ModifiedBy",  tax.ModifiedBy ?? (object)DBNull.Value)   ,
-                                      new SqlParameter("@LastModifyDate",  tax.LastModifyDate) }).AsEnumerable().FirstOrDefault().ReturnValue;
+                                      new SqlParameter("@LastModifyDate",  tax.LastModifyDate ?? (object)DBNull.Value)  }).AsEnumerable().FirstOrDefault().ReturnValue;
                     return result;
                 }
                 catch (Exception ex)

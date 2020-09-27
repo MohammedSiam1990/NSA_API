@@ -47,7 +47,7 @@ namespace POS.API.CORE.Controllers
                 var folderName = Path.Combine("uploads", FolderName);
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
                 string[] ImagesNameList = new string[Request.Form.Files.Count()];
-
+                
                 if (Request.Form.Files.Count() > 0)
                 {
                     int i = 0;
