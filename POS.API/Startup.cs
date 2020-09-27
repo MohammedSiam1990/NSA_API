@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using EmailService;
 using ImagesService;
@@ -15,8 +9,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,7 +17,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Newtonsoft.Json.Serialization;
 using Pos.IService;
 using Pos.Service;
 using POS.API.Helpers;
@@ -34,6 +25,11 @@ using POS.Service.IService;
 using POS.Service.Services;
 using POS.Services;
 using Steander.Core.Entities;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Text;
 
 namespace POS.API.CORE
 {
@@ -135,7 +131,8 @@ namespace POS.API.CORE
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services.AddLocalization(opts => {
+            services.AddLocalization(opts =>
+            {
                 opts.ResourcesPath = "Resources";
             });
 
@@ -176,18 +173,23 @@ namespace POS.API.CORE
 
                 };
             });
-                #endregion
+            #endregion
 
 
-                var emailConfig = Configuration
-                    .GetSection("EmailConfiguration")
-                    .Get<EmailConfiguration>();
-                services.AddSingleton(emailConfig);
+            var emailConfig = Configuration
+                .GetSection("EmailConfiguration")
+                .Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
 
             var imagesPathConfig = Configuration
                   .GetSection("ImagesPath")
                   .Get<ImagesPath>();
             services.AddSingleton(imagesPathConfig);
+
+            var SettingConfig = Configuration
+                  .GetSection("Setting")
+                  .Get<Setting>();
+            services.AddSingleton(SettingConfig);
 
 
             //services.AddScoped<IEmailSender, EmailSender>();
@@ -197,19 +199,19 @@ namespace POS.API.CORE
                     o.MultipartBodyLengthLimit = int.MaxValue;
                     o.MemoryBufferThreshold = int.MaxValue;
                 });
-                // configure DI for application services
-                services.AddScoped<IMailService, MailService>();
-                services.AddScoped<IAccountService, AccountService>();
-                services.AddScoped<ICompaniesService, CompaniesService>();
-                services.AddScoped<IBrandService, BrandService>();
-                services.AddScoped<IBranchService, BranchService>();
-                //services.AddScoped<IMajorServicesService, MajorServicesService>();
-                services.AddScoped<IItemGroupsService, ItemGroupsService>();
-                services.AddScoped<IlookUpService, LookUpService>();
-                services.AddScoped<IMobileDataService, MobileDataService>();
-                services.AddScoped<IDeleteRecordService, DeleteRecordService>();
-                services.AddScoped<IUomService, UomService>();
-                services.AddScoped<ITaxService, TaxService>();
+            // configure DI for application services
+            services.AddScoped<IMailService, MailService>();
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<ICompaniesService, CompaniesService>();
+            services.AddScoped<IBrandService, BrandService>();
+            services.AddScoped<IBranchService, BranchService>();
+            //services.AddScoped<IMajorServicesService, MajorServicesService>();
+            services.AddScoped<IItemGroupsService, ItemGroupsService>();
+            services.AddScoped<IlookUpService, LookUpService>();
+            services.AddScoped<IMobileDataService, MobileDataService>();
+            services.AddScoped<IDeleteRecordService, DeleteRecordService>();
+            services.AddScoped<IUomService, UomService>();
+            services.AddScoped<ITaxService, TaxService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

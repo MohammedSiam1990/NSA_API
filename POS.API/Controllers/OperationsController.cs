@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using POS.API.Helpers;
 using POS.Core.Resources;
 using POS.Service.IService;
 using System;
@@ -24,15 +25,16 @@ namespace POS.API.CORE.Controllers
         private IDeleteRecordService DeleteRecord;
         private IMobileDataService AllDataService;
         private ImagesPath imagesPath;
+        private Setting Setting;
 
 
-
-        public OperationsController(IlookUpService _loockUpService, ImagesPath _imagesPath, IMobileDataService _AllDataService, IDeleteRecordService _DeleteRecord)
+        public OperationsController(IlookUpService _loockUpService, ImagesPath _imagesPath, IMobileDataService _AllDataService, IDeleteRecordService _DeleteRecord, Setting _Setting)
         {
             loockUpService = _loockUpService;
             AllDataService = _AllDataService;
             imagesPath = _imagesPath;
             DeleteRecord = _DeleteRecord;
+            Setting = _Setting;
         }
         [AllowAnonymous]
         [HttpPost("UploadImage")]
@@ -47,9 +49,9 @@ namespace POS.API.CORE.Controllers
                 var folderName = Path.Combine("uploads", FolderName);
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
                 string[] ImagesNameList = new string[Request.Form.Files.Count()];
-                
-                 //if (Request.ContentLength > Int32.Parse(WebConfigurationManager.AppSettings["FileSize"]))
-                 //   return new { success = false, message = lang.Your_file_was_not_uploaded_because + "," + lang.It_exceeds_the + WebConfigurationManager.AppSettings["FileSize"] + " KB " + lang.Size_limit };
+
+                if (Request.ContentLength > Setting.imagefilesize)
+                    return Ok(new { success = false, message = lang.Your_file_was_not_uploaded_because + "," + lang.It_exceeds_the + Setting.imagefilesize + " KB " + lang.Size_limit });
 
                 if (Request.Form.Files.Count() > 0)
                 {
@@ -71,7 +73,7 @@ namespace POS.API.CORE.Controllers
                         }
 
                     }
-                    return Ok(new { success = true, message = lang.Upload_image_successful, filePath = "http://posapi.opos.me/" + "uploads/" + FolderName + "/", ImagesName = ImagesNameList });
+                    return Ok(new { success = true, message = lang.Upload_image_successful, filePath = Setting.APIwebPath + "uploads/" + FolderName + "/", ImagesName = ImagesNameList });
 
                 }
                 else

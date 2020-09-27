@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Mail;
-using System.Text;
-
-namespace EmailService
+﻿namespace EmailService
 {
     public class EmailConfiguration
     {
