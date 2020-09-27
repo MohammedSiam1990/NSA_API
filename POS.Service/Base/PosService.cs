@@ -1,5 +1,6 @@
 ﻿using Ninject;
 using POS.Data.IRepository;
+using POS.Service.IService;
 
 namespace Pos.Service.Base
 {
@@ -22,6 +23,7 @@ namespace Pos.Service.Base
         public IDeleteRecordRepository DeleteRecordRepository { get; set; }
         public IUomRepository uomRepository { get; set; }
         public ITaxRepository taxRepository { get; set; }
+        public IBranchServicesRepository BranchServicesRepository { get; set; }
         //public IAspNetUserRolesRepository AspNetUserRolesRepository { get; set; }
         [Inject]
         public PosServices(ICompaniesRepository _CompaniesRepository,
@@ -38,7 +40,8 @@ namespace Pos.Service.Base
                                      IMobileDataRepository _MobileDataRepository,
                                      IDeleteRecordRepository _DeleteRecordRepository,
                                      IUomRepository _uomRepository,
-                                     ITaxRepository _taxRepository
+                                     ITaxRepository _taxRepository,
+                                     IBranchServicesRepository _BranchServicesRepository
                             //IAspNetUserRolesRepository _AspNetUserRolesRepository
                             )
         {
@@ -57,6 +60,7 @@ namespace Pos.Service.Base
             DeleteRecordRepository = _DeleteRecordRepository;
             uomRepository = _uomRepository;
             taxRepository = _taxRepository;
+            BranchServicesRepository=_BranchServicesRepository;
             //AspNetUserRolesRepository = _AspNetUserRolesRepository;
         }
 

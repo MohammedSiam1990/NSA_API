@@ -4,15 +4,13 @@ using POS.Data.DataContext;
 using POS.Data.Dto.Procedure;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
-using POS.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace POS.Data.Repository
 {
-    class BranchServicesRepository : Repository<GetBranchServices>, IBranchServicesRepository
+    public class BranchServicesRepository : Repository<GetBranchServices>, IBranchServicesRepository
     {
         public BranchServicesRepository(IDatabaseFactory databaseFactory)
         : base(databaseFactory)
@@ -27,7 +25,7 @@ namespace POS.Data.Repository
             {
                 try
                 {
-                    string Sql = "EXEC GetBranches @BranchID";
+                    string Sql = "EXEC GetBranchServices @BranchID";
                     return DbContext.GetBranchServices.FromSql(Sql, new SqlParameter("@BranchID", BranchID)).ToList();
                 }
                 catch (Exception ex)
@@ -47,7 +45,7 @@ namespace POS.Data.Repository
             {
                 try
                 {
-                    string Sql = "EXEC SaveBranches @BranchID , @BranchNum, @BranchName, @BranchNameAr, @BrandID, @StatusID, @TypeID, @Address,  @CountryID, @CityID, @CurrencyID,  @ImageName, @InsertedBy, @ModifiedBy, @Latitude, @Longitude ";
+                    string Sql = "EXEC SaveBranchServices @BranchID , @ServiceTypeID ";
                     int result = DbContext.ReturnResult.FromSqlRaw(Sql,
                                        new object[] {
                                       new SqlParameter("@BranchID", BranchID ),

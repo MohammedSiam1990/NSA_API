@@ -1,6 +1,7 @@
 ﻿using Ninject;
 using Pos.Service.Base;
 using POS.Data.Infrastructure;
+using POS.Data.IRepository;
 using POS.Data.Repository;
 
 namespace POS.IService.Base
@@ -35,7 +36,8 @@ namespace POS.IService.Base
                                                    new MobileDataRepository(databaseFactory),
                                                    new DeleteRecordRepository(databaseFactory),
                                                    new UomRepository(databaseFactory),
-                                                    new TaxRepository(databaseFactory)
+                                                    new TaxRepository(databaseFactory),
+                                                    new BranchServicesRepository(databaseFactory)
                                                 //new AspNetUserRolesRepository(databaseFactory)
                                                 );
                 }
