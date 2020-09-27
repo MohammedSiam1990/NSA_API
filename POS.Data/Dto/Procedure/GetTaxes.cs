@@ -21,5 +21,8 @@ namespace POS.Data.Dto.Procedure
         public DateTime? CreateDate { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime? LastModifyDate { get; set; }
+        public string StatusName { get; set; }
+        public string StatusNameAr { get; set; }
+
     }
 }
