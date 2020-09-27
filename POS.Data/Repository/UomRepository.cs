@@ -47,19 +47,17 @@ namespace POS.Data.Repository
                 try
                 {
                     string Sql = "EXEC SaveUOM @UOMID , @UOMName, @UOMNameAr, @Tag, @StatusID"
-                        + ", @CompanyID, @InsertedBy, @CreateDate,  @ModifiedBy, @LastModifyDate";
+                        + ", @CompanyID, @InsertedBy,  @ModifiedBy";
                     int result = DbContext.ReturnResult.FromSqlRaw(Sql,
                                        new object[] {
                                       new SqlParameter("@UOMID", uom.UOMID ),
                                       new SqlParameter("@UOMName", uom.UOMName )   ,
                                       new SqlParameter("@UOMNameAr",uom.UOMNameAr )   ,
-                                      new SqlParameter("@Tag",uom.Tag )    ,
+                                      new SqlParameter("@Tag",uom.Tag ?? (object)DBNull.Value)    ,
                                       new SqlParameter("@StatusID", uom.StatusID ?? (object)DBNull.Value)     ,
-                                      new SqlParameter("@CompanyID",  uom.CompanyID )  ,
+                                      new SqlParameter("@CompanyID",  uom.CompanyID ?? (object)DBNull.Value)    ,
                                       new SqlParameter("@InsertedBy",uom.InsertedBy ?? (object)DBNull.Value)    ,
-                                      new SqlParameter("@CreateDate", uom.CreateDate ?? (object)DBNull.Value)   ,
-                                      new SqlParameter("@ModifiedBy",  uom.ModifiedBy ?? (object)DBNull.Value)   ,
-                                      new SqlParameter("@LastModifyDate",  uom.LastModifyDate ?? (object)DBNull.Value)  }).AsEnumerable().FirstOrDefault().ReturnValue;
+                                      new SqlParameter("@ModifiedBy",  uom.ModifiedBy ?? (object)DBNull.Value) }).AsEnumerable().FirstOrDefault().ReturnValue;
                     return result;
                 }
                 catch (Exception ex)
