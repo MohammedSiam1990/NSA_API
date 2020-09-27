@@ -4,7 +4,7 @@ using System.Text;
 
 namespace POS.Data.Entities
 {
- public  class Uom
+    public class Uom
     {
         public int UOMID { get; set; }
         public string UOMName { get; set; }

@@ -48,6 +48,9 @@ namespace POS.API.CORE.Controllers
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
                 string[] ImagesNameList = new string[Request.Form.Files.Count()];
                 
+                 //if (Request.ContentLength > Int32.Parse(WebConfigurationManager.AppSettings["FileSize"]))
+                 //   return new { success = false, message = lang.Your_file_was_not_uploaded_because + "," + lang.It_exceeds_the + WebConfigurationManager.AppSettings["FileSize"] + " KB " + lang.Size_limit };
+
                 if (Request.Form.Files.Count() > 0)
                 {
                     int i = 0;
