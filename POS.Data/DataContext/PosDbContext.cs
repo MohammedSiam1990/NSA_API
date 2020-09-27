@@ -41,6 +41,8 @@ namespace POS.Data.DataContext
         #region DbQuery Call Procedure
          [Obsolete]
         public virtual DbQuery<GetBranches> GetBranches { get; set; }
+         [Obsolete]
+        public virtual DbQuery<GetBranchServices> GetBranchServices { get; set; }
         [Obsolete]
         public virtual DbQuery<GetLookUp> GetLookups { get; set; }
         [Obsolete]
