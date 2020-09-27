@@ -194,7 +194,7 @@ namespace Pos.Service
                     var Subject = lang.Activare_your_account;
 
                     //string url = $"{emailConfig.AppUrl}/api/auth/confirmemail?userid={identityUser.Id}&token={validEmailToken}";
-                    bool isMessageSent = mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, false, emailConfig.From, identityUser.Email, Subject, Body, emailConfig.From, emailConfig.Password);
+                    bool isMessageSent = mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, emailConfig.EnableSsl, emailConfig.From, identityUser.Email, Subject, Body, emailConfig.From, emailConfig.Password);
 
                     if (isMessageSent == false)
                     {
