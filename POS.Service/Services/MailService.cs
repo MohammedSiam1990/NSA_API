@@ -17,7 +17,7 @@ namespace POS.Service.Services
 
 
 
-        public bool SendEmailAsync(string Smtp, int Port, bool EnableSsl, string From, string To, string Subject, string body, string CredentialEmail, string CredentialPassword)
+        public bool SendEmailAsync(string Smtp, int Port, bool EnableSsl, string From, string To, string Subject, string body, string CredentialEmail, string CredentialPassword,bool UseDefaultCredentials)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace POS.Service.Services
                     EnableSsl = EnableSsl
                 };
 
-                client.UseDefaultCredentials = false;
+                client.UseDefaultCredentials = UseDefaultCredentials;
                 client.Credentials = new NetworkCredential(CredentialEmail, CredentialPassword);
                 client.Send(message);
                 return true;
