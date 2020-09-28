@@ -3,15 +3,18 @@ using Exceptions;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Pos.IService;
 using POS.Core;
 using POS.Core.Resources;
+using POS.Data;
 using POS.Data.Dto;
 using Steander.Core.DTOs;
 using System;
 using System.Globalization;
 using System.Net;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,11 +26,13 @@ namespace StanderApi.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        private readonly UserManager<ApplicationUser> _userManager;
+
         private IAccountService _accountService;
         //private IMailService _mailService;
         private readonly IMapper _mapper;
         //private IConfiguration _configuration;
-        public AuthController(IAccountService accountService,
+        public AuthController(IAccountService accountService, UserManager<ApplicationUser> userManager,
             //IMailService mailService,
             IMapper mapper
             //IConfiguration configuration
@@ -37,6 +42,8 @@ namespace StanderApi.Controllers
             //_mailService = mailService;
             _mapper = mapper;
             //_configuration = configuration;
+            _userManager = userManager;
+
         }
 
         // /api/auth/register
@@ -294,8 +301,9 @@ namespace StanderApi.Controllers
                 {
                     return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
                 }
-                var userName = HttpContext.User.Identity.Name;
-                var result = await _accountService.ChangePassword(userName, model.OldPassword, model.NewPassword);
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
+
+                var result = await _accountService.ChangePassword(userId, model.OldPassword, model.NewPassword);
 
                 if (result.success)
                     return Ok(new { message = result.message, success = result.success });
