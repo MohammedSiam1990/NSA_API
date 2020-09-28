@@ -16,7 +16,7 @@ using System.Threading;
 
 namespace POS.API.CORE.Controllers
 {
-    //  [Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class OperationsController : ControllerBase
@@ -36,7 +36,7 @@ namespace POS.API.CORE.Controllers
             DeleteRecord = _DeleteRecord;
             Setting = _Setting;
         }
-        [AllowAnonymous]
+
         [HttpPost("UploadImage")]
         public IActionResult UploadImage(string FolderName, string Lang = "en")
         {
@@ -88,7 +88,7 @@ namespace POS.API.CORE.Controllers
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
         }
-
+        [AllowAnonymous]
         [HttpGet("GetLookup")]
         public IActionResult GetLookup(string Lang = "en")
         {

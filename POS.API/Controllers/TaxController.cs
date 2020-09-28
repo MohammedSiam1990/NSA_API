@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using POS.API.Models;
 using POS.Core.Resources;
@@ -12,6 +13,7 @@ using System.Threading;
 
 namespace POS.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TaxController : ControllerBase

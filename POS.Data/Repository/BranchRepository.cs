@@ -26,7 +26,7 @@ namespace POS.Data.Repository
             {
                 try
                 {
-                    string Sql = "EXEC SaveBranches @BranchID , @BranchNum, @BranchName, @BranchNameAr, @BrandID, @StatusID, @TypeID, @Address,  @CountryID, @CityID, @CurrencyID,  @ImageName, @InsertedBy, @ModifiedBy, @Latitude, @Longitude ";
+                    string Sql = "EXEC SaveBranches @BranchID , @BranchNum, @BranchName, @BranchNameAr, @BrandID, @StatusID, @TypeID, @Address,  @CountryID, @CityID, @CurrencyID,  @ImageName, @InsertedBy, @ModifiedBy, @Latitude, @Longitude,@ServiceTypeID ";
                     int result = DbContext.ReturnResult.FromSqlRaw(Sql,
                                        new object[] {
                                       new SqlParameter("@BranchId", Branch.BranchId ),
@@ -44,7 +44,9 @@ namespace POS.Data.Repository
                                       new SqlParameter("@InsertedBy",  Branch.InsertedBy ?? (object)DBNull.Value)   ,
                                       new SqlParameter("@ModifiedBy", Branch.ModifiedBy ?? (object)DBNull.Value)    ,
                                       new SqlParameter("@Latitude",Branch.Latitude ?? (object)DBNull.Value)    ,
-                                      new SqlParameter("@Longitude",Branch.Longitude  ?? (object)DBNull.Value)}).AsEnumerable().FirstOrDefault().ReturnValue;
+                                      new SqlParameter("@Longitude",Branch.Longitude  ?? (object)DBNull.Value),
+                                      new SqlParameter("@ServiceTypeID",Branch.ServiceTypeID  ?? (object)DBNull.Value)
+                                       }).AsEnumerable().FirstOrDefault().ReturnValue;
                     return result;
                 }
                 catch (Exception ex)

@@ -20,23 +20,25 @@ namespace POS.Entities
         public int? CityId { get; set; }
         public int? CurrencyId { get; set; }
         public string ImageName { get; set; }
-       // public int CompanyId { get; set; }
-      
+        // public int CompanyId { get; set; }
+
         //  public string InsertedBy { get; set; }
         public DateTime? CreateDate { get; set; }
 
-      //  public string ModifiedBy { get; set; }
+        //  public string ModifiedBy { get; set; }
         public DateTime? LastModifyDate { get; set; }
         public float? Latitude { get; set; }
         public float? Longitude { get; set; }
 
-     //   public string DeletedBy { get; set; }
-     //   public DateTime? DeletedDate { get; set; }
-        public string  StatusName { get; set; }
+        //   public string DeletedBy { get; set; }
+        //   public DateTime? DeletedDate { get; set; }
+        public string StatusName { get; set; }
         public string StatusNameAr { get; set; }
-        public int  BrandID { get; set; }
+        public int BrandID { get; set; }
         public string BrandName { get; set; }
         public string BrandNameAr { get; set; }
-       public string  TaxNo{ get; set; }
+        public string TaxNo { get; set; }
+        public string ServiceTypeID { get; set; }
+
     }
 }

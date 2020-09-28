@@ -194,7 +194,7 @@ namespace Pos.Service
                     var Subject = lang.Activare_your_account;
 
                     //string url = $"{emailConfig.AppUrl}/api/auth/confirmemail?userid={identityUser.Id}&token={validEmailToken}";
-                    bool isMessageSent = mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, emailConfig.EnableSsl, emailConfig.From, identityUser.Email, Subject, Body, emailConfig.From, emailConfig.Password);
+                    bool isMessageSent = mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, emailConfig.EnableSsl, emailConfig.From, identityUser.Email, Subject, Body, emailConfig.From, emailConfig.Password,emailConfig.UseDefaultCredentials);
 
                     if (isMessageSent == false)
                     {
@@ -375,7 +375,7 @@ namespace Pos.Service
                 var Body = lang.To_reset_your_password_click + "<a href=\"" + callbackUrl + "\"> " + lang.Here + "</a>";
                 var Subject = lang.Reset_your_password;
                 bool isMessageSent = false;
-                isMessageSent = mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, false, emailConfig.From, Email, Subject, Body, emailConfig.From, emailConfig.Password);
+                isMessageSent = mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, false, emailConfig.From, Email, Subject, Body, emailConfig.From, emailConfig.Password, emailConfig.UseDefaultCredentials);
 
                 if (isMessageSent == false)
                 {

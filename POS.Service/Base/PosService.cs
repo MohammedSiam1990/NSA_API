@@ -1,5 +1,6 @@
 ﻿using Ninject;
 using POS.Data.IRepository;
+using POS.Service.IService;
 
 namespace Pos.Service.Base
 {

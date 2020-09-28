@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Exceptions;
 using ImagesService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pos.IService;
 using POS.Core.Resources;
@@ -11,7 +12,7 @@ using System.Collections.Generic;
 
 namespace POS.API.CORE.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CompaniesController : ControllerBase
