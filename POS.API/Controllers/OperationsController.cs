@@ -2,17 +2,21 @@
 using ImagesService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using POS.API.Helpers;
 using POS.Core.Resources;
+using POS.Data;
 using POS.Service.IService;
 using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Security.Claims;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace POS.API.CORE.Controllers
 {
@@ -27,14 +31,19 @@ namespace POS.API.CORE.Controllers
         private ImagesPath imagesPath;
         private Setting Setting;
 
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public OperationsController(IlookUpService _loockUpService, ImagesPath _imagesPath, IMobileDataService _AllDataService, IDeleteRecordService _DeleteRecord, Setting _Setting)
+
+
+        public OperationsController(IlookUpService _loockUpService, ImagesPath _imagesPath, IMobileDataService _AllDataService, IDeleteRecordService _DeleteRecord, Setting _Setting, UserManager<ApplicationUser> userManager)
         {
             loockUpService = _loockUpService;
             AllDataService = _AllDataService;
             imagesPath = _imagesPath;
             DeleteRecord = _DeleteRecord;
             Setting = _Setting;
+            _userManager = userManager;
+
         }
 
         [HttpPost("UploadImage")]
@@ -146,12 +155,15 @@ namespace POS.API.CORE.Controllers
 
         }
         [HttpPost("DeleteRecord")]
-        public IActionResult DeleteRecords(string TableNme, string TableKey, int RowID, string DeletedBy)
+        public async Task<IActionResult> DeleteRecords(string TableNme, string TableKey, int RowID, string DeletedBy)
         {
             try
             {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var userName = User.FindFirstValue(ClaimTypes.Name);
 
-                var data = DeleteRecord.DeleteRecord(TableNme, TableKey, RowID, DeletedBy);
+
+                var data = DeleteRecord.DeleteRecord(TableNme, TableKey, RowID, userId);
                 if (data != 1)
                 {
                     return Ok(new { success = false, message = lang.Deleted_Faild });
