@@ -63,6 +63,7 @@ namespace POS.API.CORE.Controllers
         public IActionResult Update([FromBody]CompaniesModel model)
         {
             // map model to entity
+            model.ModificationDate = DateTime.Now;
             var Company = Mapper.Map<Companies>(model);
             try
             {
