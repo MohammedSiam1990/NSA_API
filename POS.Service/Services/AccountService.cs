@@ -508,11 +508,11 @@ namespace Pos.Service
         }
 
 
-        public async Task<UserManagerResponse> ChangePassword(string userName, string OldPassword, string NewPassword)
+        public async Task<UserManagerResponse> ChangePassword(string UserID, string OldPassword, string NewPassword)
         {
             try
             {
-                ApplicationUser user = await _userManger.FindByNameAsync(userName);
+                ApplicationUser user = await _userManger.FindByIdAsync(UserID);
                 var result = await _userManger.ChangePasswordAsync(user, OldPassword, NewPassword);
                 if (!result.Succeeded)
                 {
@@ -537,7 +537,7 @@ namespace Pos.Service
             return new UserManagerResponse
             {
                 message = lang.Your_password_has_been_changed,
-                success = false,
+                success = true,
             };
         }
     }
