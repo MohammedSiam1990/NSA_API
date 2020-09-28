@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Exceptions;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -319,11 +318,11 @@ namespace StanderApi.Controllers
         }
 
        [HttpPost("IdentityApplicationUser")]
-        [System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+
         public async Task<IActionResult> IdentityApplicationUser()
         {
-            var userName = HttpContext.User.Identity.Name;
-            var user  = await _accountService.IdentityApplicationUser( userName);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user  = await _accountService.IdentityApplicationUser( userId);
             return Ok(user);
         }
     }

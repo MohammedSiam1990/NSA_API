@@ -543,7 +543,7 @@ namespace Pos.Service
 
         public async Task<ApplicationUser> IdentityApplicationUser(string userName)
         {
-            var user = await _userManger.FindByNameAsync(userName);
+            var user = await _userManger.FindByIdAsync(userName);
             return user;
         }
     }
