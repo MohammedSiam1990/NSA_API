@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 
 namespace StanderApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -38,6 +39,7 @@ namespace StanderApi.Controllers
         }
 
         // /api/auth/register
+        [AllowAnonymous]
         [HttpPost("Register")]
         public async Task<IActionResult> RegisterAsync([FromBody]RegisterViewModel model)
         {
@@ -60,7 +62,7 @@ namespace StanderApi.Controllers
             return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
         }
         // /api/auth/login
-
+        [AllowAnonymous]
         [HttpPost("Login")]
         public async Task<IActionResult> LoginAsync([FromBody]LoginViewModel model)
         {
@@ -156,6 +158,7 @@ namespace StanderApi.Controllers
         }
 
         // api/auth/ForgetPassword
+        [AllowAnonymous]
         [HttpPost("ForgetPassword")]
         public async Task<IActionResult> ForgetPassword(String Email, string Lang)
         {
@@ -182,7 +185,7 @@ namespace StanderApi.Controllers
             return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
 
         }
-
+        [AllowAnonymous]
         [HttpPost("ResetPassword")]
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model, string Lang = "en")
         {
