@@ -42,8 +42,6 @@ namespace POS.Data.DataContext
          [Obsolete]
         public virtual DbQuery<GetBranches> GetBranches { get; set; }
          [Obsolete]
-        public virtual DbQuery<GetBranchServices> GetBranchServices { get; set; }
-        [Obsolete]
         public virtual DbQuery<GetLookUp> GetLookups { get; set; }
         [Obsolete]
         public virtual DbQuery<ReturnResult> ReturnResult { get; set; }

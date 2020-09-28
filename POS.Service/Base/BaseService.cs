@@ -36,8 +36,7 @@ namespace POS.IService.Base
                                                    new MobileDataRepository(databaseFactory),
                                                    new DeleteRecordRepository(databaseFactory),
                                                    new UomRepository(databaseFactory),
-                                                    new TaxRepository(databaseFactory),
-                                                    new BranchServicesRepository(databaseFactory)
+                                                    new TaxRepository(databaseFactory)
                                                 //new AspNetUserRolesRepository(databaseFactory)
                                                 );
                 }
