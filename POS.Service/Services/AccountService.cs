@@ -540,5 +540,11 @@ namespace Pos.Service
                 success = false,
             };
         }
+
+        public async Task<ApplicationUser> IdentityApplicationUser(string userName)
+        {
+            var user = await _userManger.FindByNameAsync(userName);
+            return user;
+        }
     }
 }

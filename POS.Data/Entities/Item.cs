@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace POS.Data.Entities
+namespace POS.Entities
 {
     public partial class Item
     {
@@ -31,5 +31,6 @@ namespace POS.Data.Entities
         public DateTime? LastModifyDate { get; set; }
         public string DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
+        public ICollection<ItemUom> ItemUoms { get; set; }
     }
 }

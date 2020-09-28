@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace POS.Data.Entities
+namespace POS.Entities
 {
     public partial class ItemUom
     {
         public long ItemUomid { get; set; }
-        public long ItemId { get; set; }
+      
         public int Uomid { get; set; }
         public string Name { get; set; }
         public string NameAr { get; set; }
@@ -18,5 +18,8 @@ namespace POS.Data.Entities
         public bool? Component { get; set; }
         public bool? Purchase { get; set; }
         public decimal? Equivalent { get; set; }
+        public long ItemId { get; set; }
+        public Item item { get; set; }
+        public ICollection<Sku> Skus { get; set; }
     }
 }

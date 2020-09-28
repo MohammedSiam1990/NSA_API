@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Exceptions;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -309,6 +310,13 @@ namespace StanderApi.Controllers
             return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
         }
 
-
+       [HttpPost("IdentityApplicationUser")]
+        [System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        public async Task<IActionResult> IdentityApplicationUser()
+        {
+            var userName = HttpContext.User.Identity.Name;
+            var user  = await _accountService.IdentityApplicationUser( userName);
+            return Ok(user);
+        }
     }
 }

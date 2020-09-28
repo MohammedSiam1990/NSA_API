@@ -11,6 +11,7 @@ using Steander.Core.Entities;
 using POS.Data.Dto.Account;
 using POS.Data.Dto;
 using POS.Data.Dto.Procedure;
+using POS.Data.Entities;
 
 namespace POS.Data.DataContext
 {
@@ -74,9 +75,12 @@ namespace POS.Data.DataContext
         public virtual DbSet<ItemGroup> ItemGroup { get; set; }
         //public virtual DbSet<Lookups> Lookups { get; set; }
         //public virtual DbSet<MajorService> MajorService { get; set; }
+        public virtual DbSet<Item> Item { get; set; }
+        public virtual DbSet<ItemUom> ItemUom { get; set; }
+        public virtual DbSet<Sku> Sku { get; set; }
         #endregion
-        
-        
+
+
         //public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         //public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         //public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
@@ -90,7 +94,7 @@ namespace POS.Data.DataContext
         //public virtual DbSet<States> States { get; set; }
         //public virtual DbSet<Test> Test { get; set; }
 
-    
+
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
