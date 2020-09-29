@@ -143,7 +143,6 @@ namespace Pos.Service
                     };
 
                 }
-                string VerificationCode = RandomGenerator.RandomPassword();
 
                 var company = new Companies
                 {

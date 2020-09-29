@@ -22,7 +22,7 @@ namespace POS.Data.DataContext
 
         public PosDbContext()
         {
-           
+
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -37,12 +37,14 @@ namespace POS.Data.DataContext
             }
         }
 
-    
+
         #region DbQuery Call Procedure
-         [Obsolete]
+        [Obsolete]
         public virtual DbQuery<GetBranches> GetBranches { get; set; }
-         [Obsolete]
+        [Obsolete]
         public virtual DbQuery<GetLookUp> GetLookups { get; set; }
+        [Obsolete]
+        public virtual DbQuery<GetItems> GetItems { get; set; }
         [Obsolete]
         public virtual DbQuery<ReturnResult> ReturnResult { get; set; }
         [Obsolete]
@@ -75,8 +77,8 @@ namespace POS.Data.DataContext
         //public virtual DbSet<Lookups> Lookups { get; set; }
         //public virtual DbSet<MajorService> MajorService { get; set; }
         #endregion
-        
-        
+
+
         //public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         //public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         //public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
@@ -90,7 +92,7 @@ namespace POS.Data.DataContext
         //public virtual DbSet<States> States { get; set; }
         //public virtual DbSet<Test> Test { get; set; }
 
-    
+
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{

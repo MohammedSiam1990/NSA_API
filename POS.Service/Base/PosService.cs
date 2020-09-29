@@ -23,6 +23,7 @@ namespace Pos.Service.Base
         public IDeleteRecordRepository DeleteRecordRepository { get; set; }
         public IUomRepository uomRepository { get; set; }
         public ITaxRepository taxRepository { get; set; }
+        public IItemDataRepository ItemDataRepository { get; set; }
         //public IAspNetUserRolesRepository AspNetUserRolesRepository { get; set; }
         [Inject]
         public PosServices(ICompaniesRepository _CompaniesRepository,
@@ -39,7 +40,8 @@ namespace Pos.Service.Base
                                      IMobileDataRepository _MobileDataRepository,
                                      IDeleteRecordRepository _DeleteRecordRepository,
                                      IUomRepository _uomRepository,
-                                     ITaxRepository _taxRepository
+                                     ITaxRepository _taxRepository,
+                                     IItemDataRepository _ItemDataRepository
                             //IAspNetUserRolesRepository _AspNetUserRolesRepository
                             )
         {
@@ -58,6 +60,7 @@ namespace Pos.Service.Base
             DeleteRecordRepository = _DeleteRecordRepository;
             uomRepository = _uomRepository;
             taxRepository = _taxRepository;
+            ItemDataRepository = _ItemDataRepository;
             //AspNetUserRolesRepository = _AspNetUserRolesRepository;
         }
 
