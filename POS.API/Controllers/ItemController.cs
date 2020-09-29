@@ -41,6 +41,8 @@ namespace POS.API.Controllers
 
                 var data = ItemService.GetItems(BrandID, imagesPath.Item);
 
+
+
                 if (data == null)
                 {
                     return Ok(new { success = false, message = lang.No_data_available });
