@@ -109,10 +109,21 @@ namespace POS.Data.Repository
 
             var item = GetById(e => e.ItemId != model.ItemId && (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemName || e.MobileName == model.MobileName || e.MobileNameAr == model.MobileNameAr)
             );
-            if (item.ItemName == model.ItemName)
-                return -1;
 
-                    return 0;
+            if (item == null) return 0;
+
+            if (item.ItemName == model.ItemName )
+             return -2;
+            else if (item.ItemName == model.ItemNameAr )
+             return -3;
+            else if(item.MobileName == model.MobileName)
+             return -4;
+            else if(item.MobileNameAr == model.MobileNameAr)
+            return -5;
+
+
+            return 0;
+                    
         }
     }
 }
