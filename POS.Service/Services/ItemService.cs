@@ -13,11 +13,11 @@ namespace Pos.Service
             PosService.ItemRepository.AddItem(Item);
         }
 
-   
 
-        public Item GetItem(long ItemId)
+
+        public string GetItems(int BrandID, string ImageURL)
         {
-            return PosService.ItemRepository.GetItem(e => e.ItemId == ItemId);
+            return PosService.ItemDataRepository.GetProcItemData(BrandID, ImageURL);
         }
 
         public List<Item> GetItemAll()
