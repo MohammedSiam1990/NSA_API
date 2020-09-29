@@ -37,7 +37,7 @@ namespace Pos.Service
 
         public int ValidateNameAlreadyExist(Item model)
         {
-            return PosService.ItemRepository.ValidateNameAlreadyExist(e => e.ItemId != model.ItemId && (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemName || e.MobileName== model.MobileName|| e.MobileNameAr == model.MobileNameAr),model);
+            return PosService.ItemRepository.ValidateNameAlreadyExist(model);
         }
     }
 }
