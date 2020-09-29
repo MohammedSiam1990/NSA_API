@@ -96,13 +96,12 @@ namespace POS.Data.Repository
             }
         }
 
-        public int ValidateNameAlreadyExist(Expression<Func<Item, bool>> where,Item model)
+        public int ValidateNameAlreadyExist(Item model)
         {
-            var where  = e.ItemId != model.ItemId && (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemName || e.MobileName == model.MobileName || e.MobileNameAr == model.MobileNameAr);
 
 
-            var item= GetById(e => e.ItemId != model.ItemId && (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemName || e.MobileName == model.MobileName || e.MobileNameAr == model.MobileNameAr);
-
+            var item = GetById(e => e.ItemId != model.ItemId && (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemName || e.MobileName == model.MobileName || e.MobileNameAr == model.MobileNameAr)
+            );
             if (item.ItemName == model.ItemName)
                 return -1;
 

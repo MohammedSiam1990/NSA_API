@@ -12,6 +12,6 @@ namespace POS.Data.IRepository
         bool ValidateItem(Item Item);
         void AddItem(Item Item);
         void UpdateItem(Item Item);
-        int ValidateNameAlreadyExist(Expression<Func<Item, bool>> where, Item model);
+        int ValidateNameAlreadyExist( Item model);
     }
 }
