@@ -208,6 +208,11 @@
       <DependentUpon>lang.ar.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\lang.Designer.cs" />
+    <Compile Include="Resources\lang1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lang.resx</DependentUpon>
+    </Compile>
     <Compile Include="ScreenAction.cs" />
     <Compile Include="UserDetail.cs" />
     <Compile Include="UserSession.cs" />
@@ -226,7 +231,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>lang.ar1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\lang.resx" />
+    <EmbeddedResource Include="Resources\lang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
