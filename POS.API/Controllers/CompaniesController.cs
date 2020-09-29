@@ -9,6 +9,8 @@ using POS.Entities;
 using POS.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
 
 namespace POS.API.CORE.Controllers
 {
@@ -35,9 +37,12 @@ namespace POS.API.CORE.Controllers
 
 
         [HttpPost("AddCompany")]
-        public IActionResult Add([FromBody]CompaniesModel model)
+        public IActionResult Add([FromBody]CompaniesModel model, string Lang = "en")
         {
             // map model to entity
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
             var Company = Mapper.Map<Companies>(model);
             try
             {
@@ -60,10 +65,9 @@ namespace POS.API.CORE.Controllers
         }
 
         [HttpPost("UpdateCompany")]
-        public IActionResult Update([FromBody]CompaniesModel model)
+        public IActionResult Update([FromBody]CompaniesModel model, string Lang = "en")
         {
             // map model to entity
-            model.ModificationDate = DateTime.Now;
             var Company = Mapper.Map<Companies>(model);
             try
             {
