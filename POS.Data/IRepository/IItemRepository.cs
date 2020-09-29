@@ -1,12 +1,17 @@
-﻿using POS.Data.Entities;
-using POS.Entities;
+﻿using POS.Entities;
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
-namespace POS.Data.Repository
+namespace POS.Data.IRepository
 {
-    internal interface IItemRepository
+    public interface IItemRepository
     {
-        int SaveProcBrand(Item Branch);
-        List<GetBrands> GetProcBrand(int CompanyId, string ImageURL);
+        List<Item> GetItemAll(Expression<Func<Item, bool>> where);
+        Item GetItem(Expression<Func<Item, bool>> where);
+        bool ValidateItem(Item Item);
+        void AddItem(Item Item);
+        void UpdateItem(Item Item);
+        bool ValidateNameAlreadyExist(Expression<Func<Item, bool>> where);
     }
 }

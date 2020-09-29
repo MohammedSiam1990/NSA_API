@@ -29,7 +29,7 @@ namespace POS.IService.Base
                                                    //new MajorServiceRepository(databaseFactory),
                                                    //new MajorServiceTypesRepository(databaseFactory),
                                                    new BranchRepository(databaseFactory),
-                                                   //new CityRepository(databaseFactory),
+                                                   new ItemRepository(databaseFactory),
                                                    //new CountryRepository(databaseFactory),
                                                    new ItemGroupsRepository(databaseFactory),
                                                    new LookUpRepository(databaseFactory),

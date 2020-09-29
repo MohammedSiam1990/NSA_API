@@ -1,6 +1,5 @@
 ﻿using Ninject;
 using POS.Data.IRepository;
-using POS.Service.IService;
 
 namespace Pos.Service.Base
 {
@@ -14,7 +13,7 @@ namespace Pos.Service.Base
         //public IMajorServiceRepository MajorServiceRepository { get; set; }
 
         public IBranchRepository BranchRepository { get; set; }
-        //public ICityRepository CityRepository { get; set; }
+        public IItemRepository ItemRepository { get; set; }
         //public ICountryRepository CountryRepository { get; set; }
         //public IMajorServiceTypesRepository MajorServiceTypesRepository { get; set; }
         public IItemGroupsRepository ItemGroupsRepository { get; set; }
@@ -32,7 +31,7 @@ namespace Pos.Service.Base
                                      //IMajorServiceRepository _MajorServiceRepository,
                                      //IMajorServiceTypesRepository _IMajorServiceTypesRepository,
                                      IBranchRepository _BranchRepository,
-                                     //ICityRepository _CityRepository,
+                                     IItemRepository _ItemRepository,
                                      //ICountryRepository _CountryRepository,
                                      IItemGroupsRepository _ItemGroupsRepository,
                                      IlookUpRepository _lookUpRepository,
@@ -50,7 +49,7 @@ namespace Pos.Service.Base
             //MajorServiceRepository = _MajorServiceRepository;
             //MajorServiceTypesRepository = _IMajorServiceTypesRepository;
             BranchRepository = _BranchRepository;
-            //CityRepository = _CityRepository;
+            ItemRepository = _ItemRepository;
             //CountryRepository = _CountryRepository;
             ItemGroupsRepository = _ItemGroupsRepository;
             LookUpRepository = _lookUpRepository;
