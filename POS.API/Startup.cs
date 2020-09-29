@@ -212,6 +212,8 @@ namespace POS.API.CORE
             services.AddScoped<IDeleteRecordService, DeleteRecordService>();
             services.AddScoped<IUomService, UomService>();
             services.AddScoped<ITaxService, TaxService>();
+            services.AddScoped<IItemService, ItemService>();
+            services.AddScoped<IItemUomService, ItemUomService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
