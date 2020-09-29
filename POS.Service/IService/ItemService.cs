@@ -11,6 +11,6 @@ namespace Pos.IService
         bool ValidateItem(Item Item);
         void AddItem(Item Item);
         void UpdateItem(Item Item);
-        bool ValidateNameAlreadyExist(Item model);
+        int ValidateNameAlreadyExist(Item model);
     }
 }

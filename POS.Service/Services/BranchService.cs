@@ -5,39 +5,17 @@ using System.Collections.Generic;
 
 namespace Pos.Service
 {
-    public class ItemService : BaseService, IItemService
+    public class BranchService : BaseService, IBranchService
     {
 
-        public void AddItem(Item Item)
+        public int SaveProcBranch(Branches Branch)
         {
-            PosService.ItemRepository.AddItem(Item);
+            return PosService.BranchRepository.SaveProcBranch(Branch);
         }
 
-   
-
-        public Item GetItem(long ItemId)
+        public List<GetBranches> GetProcBranches(int BrandID, string ImageURL)
         {
-            return PosService.ItemRepository.GetItem(e => e.ItemId == ItemId);
-        }
-
-        public List<Item> GetItemAll()
-        {
-            return PosService.ItemRepository.GetItemAll(e => true);
-        }
-
-        public void UpdateItem(Item Item)
-        {
-            PosService.ItemRepository.UpdateItem(Item);
-        }
-
-        public bool ValidateItem(Item Item)
-        {
-            return PosService.ItemRepository.ValidateItem(Item);
-        }
-
-        public bool ValidateNameAlreadyExist(Item model)
-        {
-            return PosService.ItemRepository.ValidateNameAlreadyExist(e => e.ItemId != model.ItemId && (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemName || e.MobileName== model.MobileName|| e.MobileNameAr == model.MobileNameAr));
+            return PosService.BranchRepository.GetProcBranches(BrandID, ImageURL);
         }
     }
 }

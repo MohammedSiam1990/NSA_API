@@ -96,9 +96,14 @@ namespace POS.Data.Repository
             }
         }
 
-        public bool ValidateNameAlreadyExist(Expression<Func<Item, bool>> where)
+        public int ValidateNameAlreadyExist(Expression<Func<Item, bool>> where,Item model)
         {
-            return Exists(where);
+            var item= GetById(where);
+
+            if (item.ItemName == model.ItemName)
+                return -1;
+
+                    return 0;
         }
     }
 }
