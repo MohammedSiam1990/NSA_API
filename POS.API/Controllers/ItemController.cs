@@ -73,7 +73,39 @@ namespace POS.API.CORE.Controllers
 
         }
 
+        [HttpGet("GetItem")]
+        public IActionResult GetItemAll(string Lang = "en",long ItemId )
+        {
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
+                var data = ItemService.GetItem(ItemId);//BrandID, imagesPath.Item
+                if (data != null)
+                {
+                    if (data == null)
+                    {
+                        return Ok(new { success = true, message = lang.No_data_available , datalist = data });
+                    }
+                    else
+                    {
+                        return Ok(new { success = true, message = "", datalist = data });
+                    }
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                // return error message if there was an exception
+                ExceptionError.SaveException(ex);
+
+            }
+
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
+        }
         [HttpPost("SaveItem")]
         public IActionResult SaveItem(ItemModel model, string Lang = "en")
         {
@@ -84,26 +116,27 @@ namespace POS.API.CORE.Controllers
 
                 var Item = Mapper.Map<Item>(model);
 
-                 ItemService.AddItem(Item);
-                int data= 0; 
+                
+                int data = ItemService.ValidateNameAlreadyExist(Item); 
                 if (data != 1)
                 {
                     if (data == -1)
-                    {
                         return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
-                    }
-
-                    if (data == -2)
-                    {
+                    else if (data == -2)
                         return Ok(new { success = false, message = lang.English_name_already_exists, repeated = "ItemName" });
-                    }
-                    if (data == -3)
-                    {
+                    else if (data == -3)
                         return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "ItemNameAr" });
-                    }
+                    else if (data == -4)
+                        return Ok(new { success = false, message = lang.English_name_already_exists, repeated = "MobilName" });
+                    else if (data == -5)
+                        return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "MobilNameAr" });
                 }
                 else
                 {
+                    if (Item.ItemId == 0)
+                    ItemService.AddItem(Item);
+                    else
+                    ItemService.UpdateItem(Item);
                     return Ok(new { success = true, message = lang.Saved_successfully_completed });
                 }
 
