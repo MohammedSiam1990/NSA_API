@@ -16,11 +16,11 @@ namespace POS.API.Controllers
     [ApiController]
     [Route("api/[controller]")]
 
-    public class ItemsController : Controller
+    public class ItemController : Controller
     {
         private IItemService ItemService;
 
-        public ItemsController(IItemService _ItemService)
+        public ItemController(IItemService _ItemService)
         {
             ItemService = _ItemService;
         }
