@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Exceptions;
+using ImagesService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -19,15 +20,17 @@ namespace POS.API.Controllers
     public class ItemController : Controller
     {
         private IItemService ItemService;
+        private ImagesPath imagesPath;
 
-        public ItemController(IItemService _ItemService)
+        public ItemController(IItemService _ItemService, ImagesPath _imagesPath)
         {
             ItemService = _ItemService;
+            imagesPath = _imagesPath;
         }
 
         [AllowAnonymous]
-        [HttpGet("GetItem")]
-        public IActionResult GetItem(int BrandID, string ImageURL,string Lang="en")
+        [HttpGet("GetItems")]
+        public IActionResult GetItems(int BrandID,string Lang="en")
         {
 
             try
@@ -36,7 +39,7 @@ namespace POS.API.Controllers
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
 
-                var data = ItemService.GetItems(BrandID, ImageURL);
+                var data = ItemService.GetItems(BrandID, imagesPath.Item);
 
                 if (data == null)
                 {
