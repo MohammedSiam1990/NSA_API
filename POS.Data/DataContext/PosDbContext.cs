@@ -45,6 +45,9 @@ namespace POS.Data.DataContext
         [Obsolete]
         public virtual DbQuery<GetLookUp> GetLookups { get; set; }
         [Obsolete]
+        public virtual DbQuery<GetRemarksTemplate> GetRemarksTemplate { get; set; }
+
+        [Obsolete]
         public virtual DbQuery<GetItems> GetItems { get; set; }
         [Obsolete]
         public virtual DbQuery<ReturnResult> ReturnResult { get; set; }
