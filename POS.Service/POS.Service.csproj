@@ -160,6 +160,7 @@
     <Compile Include="IService\IAccountService.cs" />
     <Compile Include="IService\IItemGroupsService.cs" />
     <Compile Include="IService\IlookUpService.cs" />
+    <Compile Include="IService\IRemarksTemplateService.cs" />
     <Compile Include="IService\ITaxService.cs" />
     <Compile Include="IService\IItemService.cs" />
     <Compile Include="IService\IUomService.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\ItemGroupsService.cs" />
     <Compile Include="Services\LookUpService.cs" />
+    <Compile Include="Services\RemarksTemplateService.cs" />
     <Compile Include="Services\TaxService.cs" />
     <Compile Include="Services\UomService.cs" />
   </ItemGroup>

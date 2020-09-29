@@ -48,11 +48,7 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-
                 var data = ItemService.GetItems(BrandID, imagesPath.Item);
-
-
-
                 if (data == null)
                 {
                     return Ok(new { success = false, message = lang.No_data_available });
@@ -86,7 +82,7 @@ namespace POS.API.CORE.Controllers
                 {
                     if (data.Count() == 0)
                     {
-                        return Ok(new { success = true, message = lang.No_data_available , datalist = data.ToList() });
+                        return Ok(new { success = true, message = lang.No_data_available, datalist = data.ToList() });
                     }
                     else
                     {
@@ -118,8 +114,8 @@ namespace POS.API.CORE.Controllers
 
                 var Item = Mapper.Map<Item>(model);
 
-                 ItemService.AddItem(Item);
-                int data= 0; 
+                ItemService.AddItem(Item);
+                int data = 0;
                 if (data != 1)
                 {
                     if (data == -1)
