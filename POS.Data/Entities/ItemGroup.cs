@@ -15,7 +15,7 @@ namespace POS.Entities
         public int? StatusId { get; set; }
         public byte? TypeId { get; set; }
         public string ImageName { get; set; }
-        public DateTime? CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; } 
         public string InsertedBy { get; set; }
         public DateTime? LastModifyDate { get; set; }
         public string ModifiedBy { get; set; }

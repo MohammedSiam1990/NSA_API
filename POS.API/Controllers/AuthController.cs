@@ -299,9 +299,8 @@ namespace StanderApi.Controllers
                 {
                     return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
                 }
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); 
-
-                var result = await _accountService.ChangePassword(userId, model.OldPassword, model.NewPassword);
+                var UserID = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var result = await _accountService.ChangePassword(UserID, model.OldPassword, model.NewPassword);
 
                 if (result.success)
                     return Ok(new { message = result.message, success = result.success });

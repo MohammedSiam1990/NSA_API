@@ -23,7 +23,7 @@ namespace Pos.IService
         Task<ApplicationUser> GetUserAsync(string Id);
         Task<UserManagerResponse> UpdateUserAsync(string Id, UserDto user);
         Task<UserManagerResponse> DeletetUserAsync(string Id);
-        Task<UserManagerResponse> ChangePassword(string userName, string OldPassword, string NewPassword);
+        Task<UserManagerResponse> ChangePassword(string UserID, string OldPassword, string NewPassword);
         Task<ApplicationUser> IdentityApplicationUser(string userName);
     }
 }
