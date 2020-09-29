@@ -23,6 +23,7 @@ namespace Pos.Service.Base
         public IDeleteRecordRepository DeleteRecordRepository { get; set; }
         public IUomRepository uomRepository { get; set; }
         public ITaxRepository taxRepository { get; set; }
+        public IItemDataRepository ItemDataRepository { get; set; }
         public IItemUomRepository itemUomRepository { get; set; }
         //public IAspNetUserRolesRepository AspNetUserRolesRepository { get; set; }
         [Inject]
@@ -41,6 +42,7 @@ namespace Pos.Service.Base
                                      IDeleteRecordRepository _DeleteRecordRepository,
                                      IUomRepository _uomRepository,
                                      ITaxRepository _taxRepository,
+                                     IItemDataRepository _ItemDataRepository,
                                      IItemUomRepository _itemUomRepository
                             //IAspNetUserRolesRepository _AspNetUserRolesRepository
                             )
@@ -60,6 +62,7 @@ namespace Pos.Service.Base
             DeleteRecordRepository = _DeleteRecordRepository;
             uomRepository = _uomRepository;
             taxRepository = _taxRepository;
+            ItemDataRepository = _ItemDataRepository;
             itemUomRepository = _itemUomRepository;
             //AspNetUserRolesRepository = _AspNetUserRolesRepository;
         }

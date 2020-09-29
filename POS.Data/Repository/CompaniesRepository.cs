@@ -20,6 +20,7 @@ namespace POS.Data.Repository
         {
             try
             {
+                Company.CreationDate = DateTime.Now;
                 Add(Company);
                 PosDbContext.SaveChanges();
             }
@@ -34,7 +35,7 @@ namespace POS.Data.Repository
 
             try
             {
-
+                Company.ModificationDate = DateTime.Now;
                 Update(Company);
 
                 PosDbContext.SaveChanges();

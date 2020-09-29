@@ -151,6 +151,7 @@
     <Compile Include="Helpers\PagedList.cs" />
     <Compile Include="Helpers\PagedListModel.cs" />
     <Compile Include="IService\IDeleteRecordService.cs" />
+    <Compile Include="IService\IItemService.cs" />
     <Compile Include="IService\IItemUomService.cs" />
     <Compile Include="IService\IMobileDataService.cs" />
     <Compile Include="IService\IMailService.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="Base\BaseService.cs" />
     <Compile Include="Base\PosService.cs" />
     <Compile Include="Services\DeleteRecordService.cs" />
+    <Compile Include="Services\ItemService.cs" />
     <Compile Include="Services\ItemUomService.cs" />
     <Compile Include="Services\MobileDataService.cs" />
     <Compile Include="Services\MailService.cs" />
