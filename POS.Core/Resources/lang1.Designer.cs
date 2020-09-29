@@ -376,6 +376,15 @@ namespace POS.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your registration is Fail.
+        /// </summary>
+        public static string Reigster_Model_is_null {
+            get {
+                return ResourceManager.GetString("Reigster_Model_is_null", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset your password.
         /// </summary>
         public static string Reset_your_password {

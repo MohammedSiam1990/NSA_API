@@ -222,6 +222,9 @@
   <data name="Please_check_your_email_to_reset_your_password" xml:space="preserve">
     <value>Please check your email to reset your password.</value>
   </data>
+  <data name="Reigster_Model_is_null" xml:space="preserve">
+    <value>Your registration is Fail</value>
+  </data>
   <data name="Reset_your_password" xml:space="preserve">
     <value>Reset your password</value>
   </data>

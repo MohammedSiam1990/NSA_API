@@ -207,7 +207,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>lang.ar.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\lang.Designer.cs" />
+    <Compile Include="Resources\lang_.Designer.cs" />
     <Compile Include="Resources\lang1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
