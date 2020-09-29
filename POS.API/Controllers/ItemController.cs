@@ -107,39 +107,7 @@ namespace POS.API.CORE.Controllers
 
         }
 
-        [HttpGet("GetItem")]
-        public IActionResult GetItemAll(string Lang = "en",long ItemId )
-        {
-            try
-            {
-                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
-
-                var data = ItemService.GetItem(ItemId);//BrandID, imagesPath.Item
-                if (data != null)
-                {
-                    if (data == null)
-                    {
-                        return Ok(new { success = true, message = lang.No_data_available , datalist = data });
-                    }
-                    else
-                    {
-                        return Ok(new { success = true, message = "", datalist = data });
-                    }
-
-                }
-            }
-
-            catch (Exception ex)
-            {
-                // return error message if there was an exception
-                ExceptionError.SaveException(ex);
-
-            }
-
-            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
-
-        }
+    
         [HttpPost("SaveItem")]
         public IActionResult SaveItem(ItemModel model, string Lang = "en")
         {
