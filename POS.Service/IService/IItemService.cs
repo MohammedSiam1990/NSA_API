@@ -1,14 +1,16 @@
-﻿using System;
+﻿using POS.Entities;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace POS.Service.IService
+using System.Linq.Expressions;
+namespace Pos.IService
 {
     public interface IItemService
     {
-        string GetItems(int BrandID, string ImageURL);
-
+        Item GetItem(long ItemId);
+        List<Item> GetItemAll();
+        bool ValidateItem(Item Item);
+        void AddItem(Item Item);
+        void UpdateItem(Item Item);
+        int ValidateNameAlreadyExist(Item model);
     }
 }
