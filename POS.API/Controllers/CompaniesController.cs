@@ -67,6 +67,9 @@ namespace POS.API.CORE.Controllers
         [HttpPost("UpdateCompany")]
         public IActionResult Update([FromBody]CompaniesModel model, string Lang = "en")
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
             // map model to entity
             var Company = Mapper.Map<Companies>(model);
             try
