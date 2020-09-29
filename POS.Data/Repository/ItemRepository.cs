@@ -37,20 +37,27 @@ namespace POS.Data.Repository
             }
         }
 
-      public  Item GetItem(Expression<Func<Item, bool>> where)
+        [Obsolete]
+        public string GetProcItemData(int BrandID, string ImageURL)
         {
-            try
+            using (var DbContext = new PosDbContext())
             {
-                var QueryItem = base.Table().Where(where)
-                    .Include(e => e.ItemUoms).ThenInclude(e => e.Skus).FirstOrDefault();
-                base.DbContext.Dispose();
-                base.DbContext = null;
-                return QueryItem;
+                try
+                {
+                    string Sql = "EXEC GetItems @BrandID,@ImageURL";
+                    var data = DbContext.GetItems.FromSqlRaw(Sql, new SqlParameter("@BrandID", BrandID),
+                        new SqlParameter("@ImageURL", ImageURL ?? (object)DBNull.Value)).AsEnumerable().FirstOrDefault().ItemData;
+
+                    return data.ToString();
+                }
+                catch (Exception ex)
+                {
+                    Exceptions.ExceptionError.SaveException(ex);
+                }
+                return null;
+
             }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+
         }
         public void AddItem(Item Item)
         {
