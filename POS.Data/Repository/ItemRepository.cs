@@ -65,7 +65,7 @@ namespace POS.Data.Repository
             {
 
                 Add(Item);
-                PosDbContext.SaveChanges();
+              //  PosDbContext.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -107,10 +107,10 @@ namespace POS.Data.Repository
         {
 
 
-            var item = GetById(e => e.ItemId != model.ItemId && (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemName || e.MobileName == model.MobileName || e.MobileNameAr == model.MobileNameAr)
+            var item = GetById(e => e.ItemId != model.ItemId && (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemName || e.MobileName == model.MobileName || e.MobileNameAr == model.MobileNameAr || e.ItemNum == model.ItemNum)
             );
 
-            if (item == null) return 0;
+            if (item == null) return 1;
 
             if (item.ItemName == model.ItemName )
              return -2;
@@ -120,9 +120,10 @@ namespace POS.Data.Repository
              return -4;
             else if(item.MobileNameAr == model.MobileNameAr)
             return -5;
+            else if(item.ItemNum == model.ItemNum)
+            return -6;
 
-
-            return 0;
+            return 1;
                     
         }
     }

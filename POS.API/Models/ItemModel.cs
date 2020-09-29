@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POS.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,6 +34,7 @@ namespace POS.API.Models
         public DateTime? LastModifyDate { get; set; }
         public string DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
-        public List<ItemUomModel> ItemUomModel { get; set; }
+        public List<ItemUomModel> ItemUoms { get; set; }
+       
     }
 }

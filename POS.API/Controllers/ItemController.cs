@@ -120,9 +120,8 @@ namespace POS.API.CORE.Controllers
 
                 
                 int data = ItemService.ValidateNameAlreadyExist(Item); 
-                if (data != 1)
-                {
-                    if (data == -1)
+
+              if    (data == -1)
                         return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
                     else if (data == -2)
                         return Ok(new { success = false, message = lang.English_name_already_exists, repeated = "ItemName" });
@@ -132,8 +131,9 @@ namespace POS.API.CORE.Controllers
                         return Ok(new { success = false, message = lang.English_name_already_exists, repeated = "MobilName" });
                     else if (data == -5)
                         return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "MobilNameAr" });
-                }
-                else
+                    else if (data == -6)
+                        return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "ItemNum" });
+              else
                 {
                     if (Item.ItemId == 0)
                     ItemService.AddItem(Item);
