@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace POS.Entities
+namespace POS.API.Models
 {
-    public partial class ItemUom
+    public class ItemUomModel
     {
-        public ItemUom()
-        {
-            Skus = new HashSet<Sku>();
-        }
         public long ItemUomid { get; set; }
         public int Uomid { get; set; }
         public string Name { get; set; }
@@ -22,7 +20,5 @@ namespace POS.Entities
         public bool? Purchase { get; set; }
         public decimal? Equivalent { get; set; }
         public long ItemId { get; set; }
-        public virtual Item Item { get; set; }
-        public virtual ICollection<Sku> Skus { get; set; }
     }
 }
