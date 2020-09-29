@@ -132,7 +132,7 @@ namespace POS.API.CORE.Controllers
                     else if (data == -5)
                         return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "MobilNameAr" });
                     else if (data == -6)
-                        return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "ItemNum" });
+                        return Ok(new { success = false, message = lang.Code_already_exists, repeated = "ItemNum" });
               else
                 {
                     if (Item.ItemId == 0)
