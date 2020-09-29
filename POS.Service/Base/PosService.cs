@@ -1,6 +1,5 @@
 ﻿using Ninject;
 using POS.Data.IRepository;
-using POS.Service.IService;
 
 namespace Pos.Service.Base
 {
@@ -14,7 +13,7 @@ namespace Pos.Service.Base
         //public IMajorServiceRepository MajorServiceRepository { get; set; }
 
         public IBranchRepository BranchRepository { get; set; }
-        //public ICityRepository CityRepository { get; set; }
+        public IItemRepository ItemRepository { get; set; }
         //public ICountryRepository CountryRepository { get; set; }
         //public IMajorServiceTypesRepository MajorServiceTypesRepository { get; set; }
         public IItemGroupsRepository ItemGroupsRepository { get; set; }
@@ -24,6 +23,7 @@ namespace Pos.Service.Base
         public IUomRepository uomRepository { get; set; }
         public ITaxRepository taxRepository { get; set; }
         public IItemDataRepository ItemDataRepository { get; set; }
+        public IItemUomRepository itemUomRepository { get; set; }
         //public IAspNetUserRolesRepository AspNetUserRolesRepository { get; set; }
         [Inject]
         public PosServices(ICompaniesRepository _CompaniesRepository,
@@ -33,7 +33,7 @@ namespace Pos.Service.Base
                                      //IMajorServiceRepository _MajorServiceRepository,
                                      //IMajorServiceTypesRepository _IMajorServiceTypesRepository,
                                      IBranchRepository _BranchRepository,
-                                     //ICityRepository _CityRepository,
+                                     IItemRepository _ItemRepository,
                                      //ICountryRepository _CountryRepository,
                                      IItemGroupsRepository _ItemGroupsRepository,
                                      IlookUpRepository _lookUpRepository,
@@ -41,7 +41,8 @@ namespace Pos.Service.Base
                                      IDeleteRecordRepository _DeleteRecordRepository,
                                      IUomRepository _uomRepository,
                                      ITaxRepository _taxRepository,
-                                     IItemDataRepository _ItemDataRepository
+                                     IItemDataRepository _ItemDataRepository,
+                                     IItemUomRepository _itemUomRepository
                             //IAspNetUserRolesRepository _AspNetUserRolesRepository
                             )
         {
@@ -52,7 +53,7 @@ namespace Pos.Service.Base
             //MajorServiceRepository = _MajorServiceRepository;
             //MajorServiceTypesRepository = _IMajorServiceTypesRepository;
             BranchRepository = _BranchRepository;
-            //CityRepository = _CityRepository;
+            ItemRepository = _ItemRepository;
             //CountryRepository = _CountryRepository;
             ItemGroupsRepository = _ItemGroupsRepository;
             LookUpRepository = _lookUpRepository;
@@ -61,6 +62,7 @@ namespace Pos.Service.Base
             uomRepository = _uomRepository;
             taxRepository = _taxRepository;
             ItemDataRepository = _ItemDataRepository;
+            itemUomRepository = _itemUomRepository;
             //AspNetUserRolesRepository = _AspNetUserRolesRepository;
         }
 

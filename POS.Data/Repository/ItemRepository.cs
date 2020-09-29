@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using POS.API.Helpers;
 using POS.Data.DataContext;
 using POS.Data.Entities;
 using POS.Data.Infrastructure;
@@ -9,74 +10,95 @@ using POS.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace POS.Data.Repository
 {
-    public class ItemRepository : Repository<Items>, IItemRepository
+    public class ItemRepository : Repository<Item>, IItemRepository
     {
         public ItemRepository(IDatabaseFactory databaseFactory)
         : base(databaseFactory)
         {
 
         }
-
-        [Obsolete]
-        public int SaveProcItem(Item Items)
+        public List<Item> GetItemAll(Expression<Func<Item, bool>> where)
         {
-            using (var DbContext = new PosDbContext())
+            try
             {
-                try
-                {
-                    string Sql = "EXEC SaveItems @ItemID,@ItemName,@ItemNameAr,@StatusID,@MajorServiceID,@CountryID,@CityID,@CurrencyID,@InsertedBy,@ModifiedBy,@TaxNo,@ImageName,@companyID,@IsDefault";
-
-                    int result = DbContext.ReturnResult.FromSqlRaw(Sql, new object[] {
-                                                new SqlParameter("@ItemID", Items.ItemId),
-                                                new SqlParameter("@ItemName"  ,Items.ItemName),
-                                                new SqlParameter("@ItemNameAr" , Items.ItemNameAr),
-                                                new SqlParameter("@StatusId" , Items.StatusId ?? (object)DBNull.Value),
-                                                new SqlParameter("@MajorServiceId" , Items.MajorServiceId),
-                                                new SqlParameter("@CountryId" , Items.CountryId ?? (object)DBNull.Value),
-                                                new SqlParameter("@CityId" , Items.CityId ?? (object)DBNull.Value),
-                                                new SqlParameter("@CurrencyId" , Items.CurrencyId ?? (object)DBNull.Value),
-                                                new SqlParameter("@InsertedBy"  , Items.InsertedBy ?? (object)DBNull.Value), //  User.Identity.GetUserId(),
-                                                new SqlParameter("@ModifiedBy"  , Items.ModifiedBy ?? (object)DBNull.Value), //  User.Identity.GetUserId(),
-                                                new SqlParameter("@TaxNo"   , Items.TaxNo ?? (object)DBNull.Value),
-                                                new SqlParameter("@ImageName"    , Items.ImageName ?? (object)DBNull.Value),
-                                                new SqlParameter("@CompanyId"  , Items.CompanyId ?? (object)DBNull.Value),
-                                                new SqlParameter("@IsDefault"   , Items.IsDefault ?? (object)DBNull.Value)
-                                            }).AsEnumerable().FirstOrDefault().ReturnValue;
-
-                    return result;
-                }
-
-                catch (Exception e)
-                {
-                    Exceptions.ExceptionError.SaveException(e);
-                }
-                return -1;
+                var QueryItem = base.Table().Where(where)
+                    .Include(e => e.ItemUoms).ThenInclude(e => e.Skus).ToList();
+                base.DbContext.Dispose();
+                base.DbContext = null;
+                return QueryItem;
+            }
+            catch (Exception ex)
+            {
+                throw new AppException(ex.Message);
             }
         }
 
-        [Obsolete]
-        public List<GetItems> GetProcItem(int CompanyID, string ImageURL)
+      public  Item GetItem(Expression<Func<Item, bool>> where)
         {
-            using (var DbContext = new PosDbContext())
+            try
             {
-                try
-                {
-                    string Sql = "EXEC GetItems @CompanyID,@ImageURL";
-                    return DbContext.GetItems.FromSql(Sql, new SqlParameter("@CompanyID", CompanyID),
-                                                       new SqlParameter("@ImageURL", ImageURL)).ToList();
-                }
-                catch (Exception ex)
-                {
-                    Exceptions.ExceptionError.SaveException(ex);
-                }
-                return null;
+                var QueryItem = base.Table().Where(where)
+                    .Include(e => e.ItemUoms).ThenInclude(e => e.Skus).FirstOrDefault();
+                base.DbContext.Dispose();
+                base.DbContext = null;
+                return QueryItem;
+            }
+            catch (Exception ex)
+            {
+                throw new AppException(ex.Message);
+            }
+        }
+        public void AddItem(Item Item)
+        {
+            try
+            {
 
+                Add(Item);
+                PosDbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new AppException(ex.Message);
+            }
+        }
+
+        public void UpdateItem(Item Item)
+        {
+            try
+            {
+                Update(Item);
+                PosDbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new AppException(ex.Message);
             }
         }
 
 
+
+        public bool ValidateItem(Item Item)
+        {
+            try
+            {
+                if (Item.ItemName != "" || Item.ItemNameAr != "")
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                throw new AppException(ex.Message);
+            }
+        }
+
+        public bool ValidateNameAlreadyExist(Expression<Func<Item, bool>> where)
+        {
+            return Exists(where);
+        }
     }
 }

@@ -1,18 +1,21 @@
-﻿using POS.IService.Base;
-using POS.Service.IService;
-using System;
+﻿using Pos.IService;
+using POS.Entities;
+using POS.IService.Base;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace POS.Service.Services
+namespace Pos.Service
 {
-    public class ItemService : BaseService,IItemService
+    public class BranchService : BaseService, IBranchService
     {
-        public string GetItems(int BrandID, string ImageURL)
+
+        public int SaveProcBranch(Branches Branch)
         {
-            return PosService.ItemDataRepository.GetProcItemData(BrandID, ImageURL);
+            return PosService.BranchRepository.SaveProcBranch(Branch);
+        }
+
+        public List<GetBranches> GetProcBranches(int BrandID, string ImageURL)
+        {
+            return PosService.BranchRepository.GetProcBranches(BrandID, ImageURL);
         }
     }
 }

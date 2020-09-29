@@ -29,7 +29,7 @@ namespace POS.IService.Base
                                                    //new MajorServiceRepository(databaseFactory),
                                                    //new MajorServiceTypesRepository(databaseFactory),
                                                    new BranchRepository(databaseFactory),
-                                                   //new CityRepository(databaseFactory),
+                                                   new ItemRepository(databaseFactory),
                                                    //new CountryRepository(databaseFactory),
                                                    new ItemGroupsRepository(databaseFactory),
                                                    new LookUpRepository(databaseFactory),
@@ -37,7 +37,9 @@ namespace POS.IService.Base
                                                    new DeleteRecordRepository(databaseFactory),
                                                    new UomRepository(databaseFactory),
                                                    new TaxRepository(databaseFactory),
-                                                   new ItemDataRepository(databaseFactory)
+                                                   new ItemDataRepository(databaseFactory),
+                       
+                                                    new ItemUomRepository(databaseFactory)
                                                 //new AspNetUserRolesRepository(databaseFactory)
                                                 );
                 }
