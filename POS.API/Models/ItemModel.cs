@@ -33,6 +33,6 @@ namespace POS.API.Models
         public DateTime? LastModifyDate { get; set; }
         public string DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
-        //public ICollection<ItemUom> ItemUoms { get; set; }
+        public List<ItemUomModel> ItemUomModel { get; set; }
     }
 }
