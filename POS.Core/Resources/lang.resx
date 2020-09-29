@@ -135,6 +135,9 @@
   <data name="Cant_send_forgot_password_email_please_try_later" xml:space="preserve">
     <value>Cant send forgot password email please try later</value>
   </data>
+  <data name="Code_already_exists" xml:space="preserve">
+    <value>Code Already Exists</value>
+  </data>
   <data name="Confirm_your_email" xml:space="preserve">
     <value>Confirm Your Email</value>
   </data>

@@ -202,7 +202,17 @@
     <Compile Include="PrimaryKeyAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\lang.ar.Designer.cs" />
+    <Compile Include="Resources\lang.ar1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lang.ar.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\lang.Designer.cs" />
+    <Compile Include="Resources\lang1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lang.resx</DependentUpon>
+    </Compile>
     <Compile Include="ScreenAction.cs" />
     <Compile Include="UserDetail.cs" />
     <Compile Include="UserSession.cs" />

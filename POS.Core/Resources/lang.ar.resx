@@ -135,6 +135,9 @@
   <data name="Cant_send_forgot_password_email_please_try_later" xml:space="preserve">
     <value>لا يمكن ارسال بريد الكتروني لتغيير كلمة المرور, يرجى المحاولة لاحقا</value>
   </data>
+  <data name="Code_already_exists" xml:space="preserve">
+    <value>الكود موجود بالفعل</value>
+  </data>
   <data name="Confirm_your_email" xml:space="preserve">
     <value>قم بتأكيد بريدك الإلكتروني</value>
   </data>
