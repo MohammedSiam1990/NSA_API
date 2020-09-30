@@ -115,13 +115,21 @@ namespace POS.API.CORE.Controllers
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
-
+  
                 var Item = Mapper.Map<Item>(model);
 
                 
                 int data = ItemService.ValidateNameAlreadyExist(Item); 
 
-              if    (data == -1)
+                  if (data == 1)
+                    {
+                        if (Item.ItemId == 0)
+                        ItemService.AddItem(Item);
+                        else
+                        ItemService.UpdateItem(Item);
+                        return Ok(new { success = true, message = lang.Saved_successfully_completed });
+                    }
+                    else if(data == -1)
                         return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
                     else if (data == -2)
                         return Ok(new { success = false, message = lang.English_name_already_exists, repeated = "ItemName" });
@@ -132,15 +140,7 @@ namespace POS.API.CORE.Controllers
                     else if (data == -5)
                         return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "MobilNameAr" });
                     else if (data == -6)
-                        return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "ItemNum" });
-              else
-                {
-                    if (Item.ItemId == 0)
-                    ItemService.AddItem(Item);
-                    else
-                    ItemService.UpdateItem(Item);
-                    return Ok(new { success = true, message = lang.Saved_successfully_completed });
-                }
+                        return Ok(new { success = false, message = lang.Code_already_exists, repeated = "ItemNum" });
 
             }
             catch (Exception ex)
