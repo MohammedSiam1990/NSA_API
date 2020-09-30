@@ -21,6 +21,6 @@ namespace POS.API.Models
         public decimal? Equivalent { get; set; }
         public long ItemId { get; set; }
         
-        public List<SkuModel> Skus { get; set; }
+        public  List<SkuModel> Skus { get; set; }
     }
 }
