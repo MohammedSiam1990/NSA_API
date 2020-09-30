@@ -16,7 +16,7 @@ using System.Threading;
 
 namespace POS.API.CORE.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class OperationsController : ControllerBase
@@ -26,15 +26,18 @@ namespace POS.API.CORE.Controllers
         private IMobileDataService AllDataService;
         private ImagesPath imagesPath;
         private Setting Setting;
+        private IAllDataJsonByBrandIDService AllDataJsonByBrandIDService;
 
 
-        public OperationsController(IlookUpService _loockUpService, ImagesPath _imagesPath, IMobileDataService _AllDataService, IDeleteRecordService _DeleteRecord, Setting _Setting)
+        public OperationsController(IlookUpService _loockUpService, ImagesPath _imagesPath, IMobileDataService _AllDataService, IDeleteRecordService _DeleteRecord,
+            Setting _Setting, IAllDataJsonByBrandIDService _AllDataJsonByBrandIDService)
         {
             loockUpService = _loockUpService;
             AllDataService = _AllDataService;
             imagesPath = _imagesPath;
             DeleteRecord = _DeleteRecord;
             Setting = _Setting;
+            AllDataJsonByBrandIDService = _AllDataJsonByBrandIDService;
         }
 
         [HttpPost("UploadImage")]
@@ -126,6 +129,32 @@ namespace POS.API.CORE.Controllers
             try
             {
                 var data = AllDataService.GetMobileData(CompanyID, imagesPath.Brand, imagesPath.Branch, imagesPath.ItemGroup);
+
+                if (data == null)
+                {
+                    return Ok(new { success = false, message = lang.No_data_available });
+                }
+                else
+                {
+                    return Ok(new { success = true, message = "", datalist = data.ToList() });
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+
+            }
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
+
+        } 
+        [HttpGet("GetAllDataJsonByBrandID")]
+        public IActionResult GetAllDataJsonByBrandID(int BrandID)
+        {
+
+            try
+            {
+                var data = AllDataJsonByBrandIDService.GetAllDataJsonByBrandID(BrandID, imagesPath.Brand, imagesPath.Branch, imagesPath.ItemGroup);
 
                 if (data == null)
                 {
