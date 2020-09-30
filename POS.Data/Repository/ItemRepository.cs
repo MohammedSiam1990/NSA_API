@@ -63,7 +63,7 @@ namespace POS.Data.Repository
         {
             try
             {
-
+                Item.CreateDate = DateTime.Now;
                 Add(Item);
               //  PosDbContext.SaveChanges();
             }
@@ -77,6 +77,7 @@ namespace POS.Data.Repository
         {
             try
             {
+                Item.LastModifyDate = DateTime.Now;
                 Update(Item);
                 PosDbContext.SaveChanges();
             }
