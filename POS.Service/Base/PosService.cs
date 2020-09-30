@@ -25,6 +25,7 @@ namespace Pos.Service.Base
         public IItemDataRepository ItemDataRepository { get; set; }
         public IItemUomRepository itemUomRepository { get; set; }
         public IRemarksTemplateRepository RemarksTemplateRepository { get; set; }
+        public IAllDataJsonByBrandIDRepository AllDataJsonByBrandIDRepository { get; set; }
         //public IAspNetUserRolesRepository AspNetUserRolesRepository { get; set; }
         [Inject]
         public PosServices(ICompaniesRepository _CompaniesRepository,
@@ -44,7 +45,8 @@ namespace Pos.Service.Base
                                      ITaxRepository _taxRepository,
                                      IItemDataRepository _ItemDataRepository,
                                      IItemUomRepository _itemUomRepository,
-                                     IRemarksTemplateRepository _RemarksTemplateRepository
+                                     IRemarksTemplateRepository _RemarksTemplateRepository,
+                                     IAllDataJsonByBrandIDRepository _AllDataJsonByBrandIDRepository
                             //IAspNetUserRolesRepository _AspNetUserRolesRepository
                             )
         {
@@ -66,6 +68,7 @@ namespace Pos.Service.Base
             ItemDataRepository = _ItemDataRepository;
             itemUomRepository = _itemUomRepository;
             RemarksTemplateRepository = _RemarksTemplateRepository;
+            AllDataJsonByBrandIDRepository = _AllDataJsonByBrandIDRepository;
             //AspNetUserRolesRepository = _AspNetUserRolesRepository;
         }
 

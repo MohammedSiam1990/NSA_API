@@ -8,7 +8,7 @@ namespace POS.Service.Services
 {
     public class MobileDataService : BaseService, IMobileDataService
     {
-        public List<GetMobileData> GetMobileData(int CompanyID, string BrandImageURL, string BranchImageURL, string ItemGroupImageURL)
+        public string GetMobileData(int CompanyID, string BrandImageURL, string BranchImageURL, string ItemGroupImageURL)
         {
             return PosService.MobileDataRepository.GetMobileData(CompanyID, BrandImageURL, BranchImageURL, ItemGroupImageURL);
         }

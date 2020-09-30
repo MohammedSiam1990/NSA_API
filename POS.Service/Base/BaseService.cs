@@ -39,7 +39,8 @@ namespace POS.IService.Base
                                                    new TaxRepository(databaseFactory),
                                                    new ItemDataRepository(databaseFactory),
                                                    new ItemUomRepository(databaseFactory),
-                                                   new RemarksTemplateRepository(databaseFactory)
+                                                   new RemarksTemplateRepository(databaseFactory),
+                                                   new AllDataJsonByBrandIDRepository(databaseFactory)
                                                 //new AspNetUserRolesRepository(databaseFactory)
                                                 );
                 }

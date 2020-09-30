@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace POS.Data.Dto
+namespace POS.Data.Dto.Procedure
 {
-    public partial class GetMobileData
+    public partial class GetAllDataJsonByBrandID
     {
-        public GetMobileData()
+        public GetAllDataJsonByBrandID()
         {
-
+            
         }
         public string Data { get; set; }
-
     }
 }
