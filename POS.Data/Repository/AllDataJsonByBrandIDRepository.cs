@@ -20,7 +20,7 @@ namespace POS.Data.Repository
         }
 
         [Obsolete]
-        public List<GetAllDataJsonByBrandID> GetAllDataJsonByBrandID(int BrandID, string BrandImageURL, string BranchImageURL, string ItemGroupImageURL)
+        public string GetAllDataJsonByBrandID(int BrandID, string BrandImageURL, string BranchImageURL, string ItemGroupImageURL)
         {
             
             using (var DbContext = new PosDbContext())
@@ -32,9 +32,9 @@ namespace POS.Data.Repository
                         new SqlParameter("@BrandID", BrandID),
                         new SqlParameter("@BrandImageURL", BrandImageURL),
                         new SqlParameter("@BranchImageURL", BranchImageURL),
-                        new SqlParameter("@ItemGroupImageURL", ItemGroupImageURL)).ToList();
+                        new SqlParameter("@ItemGroupImageURL", ItemGroupImageURL)).AsEnumerable().FirstOrDefault().Data;
 
-                    return data;
+                    return data.ToString();
                 }
                 catch (Exception ex)
                 {

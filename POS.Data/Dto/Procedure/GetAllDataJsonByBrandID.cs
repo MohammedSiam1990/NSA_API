@@ -10,12 +10,6 @@ namespace POS.Data.Dto.Procedure
         {
             
         }
-        public string BrandsData { get; set; }
-        public string BranchsData { get; set; }
-        public string ItemsGroup { get; set; }
-        public string Departments { get; set; }
-        public string GeneralTax { get; set; }
-        public string SpecialTax { get; set; }
-        public string RemarksTemplate { get; set; }
+        public string Data { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace POS.Service.IService
 {
     public interface IAllDataJsonByBrandIDService
     {
-        List<GetAllDataJsonByBrandID> GetAllDataJsonByBrandID(int BrandID, string BrandImageURL, string BranchImageURL, string ItemGroupImageURL);
+        string GetAllDataJsonByBrandID(int BrandID, string BrandImageURL, string BranchImageURL, string ItemGroupImageURL);
 
     }
 }

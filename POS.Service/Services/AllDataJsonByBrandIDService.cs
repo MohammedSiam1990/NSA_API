@@ -11,7 +11,7 @@ namespace POS.Service.Services
 {
     public class AllDataJsonByBrandIDService : BaseService, IAllDataJsonByBrandIDService
     {
-        public List<GetAllDataJsonByBrandID> GetAllDataJsonByBrandID(int BrandID, string BrandImageURL, string BranchImageURL, string ItemGroupImageURL)
+        public string GetAllDataJsonByBrandID(int BrandID, string BrandImageURL, string BranchImageURL, string ItemGroupImageURL)
         {
             return PosService.AllDataJsonByBrandIDRepository.GetAllDataJsonByBrandID(BrandID, BrandImageURL, BrandImageURL, ItemGroupImageURL);
         }
