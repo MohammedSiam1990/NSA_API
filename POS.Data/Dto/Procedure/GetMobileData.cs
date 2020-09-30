@@ -10,9 +10,7 @@ namespace POS.Data.Dto
         {
 
         }
-        public string BrandsData { get; set; }
-        public string BranchsData { get; set; }
-        public string ItemsGroup { get; set; }
+        public string Data { get; set; }
 
     }
 }

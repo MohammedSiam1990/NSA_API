@@ -7,6 +7,6 @@ namespace POS.Data.IRepository
 {
     public interface IMobileDataRepository
     {
-        List<GetMobileData> GetMobileData(int CompanyID, string BrandImageURL, string BranchImageURL, string ItemGroupImageURL);       
+        string GetMobileData(int CompanyID, string BrandImageURL, string BranchImageURL, string ItemGroupImageURL);
     }
 }
