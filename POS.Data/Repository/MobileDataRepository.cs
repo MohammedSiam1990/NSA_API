@@ -27,7 +27,8 @@ namespace POS.Data.Repository
                 try
                 {
                     string Sql = "EXEC Get_all_data_json @CompanyID,@BrandImageURL,@BranchImageURL,@ItemGroupImageURL";
-                    var data = DbContext.GetMobileData.FromSqlRaw(Sql,
+                    DbContext.Database.SetCommandTimeout(0);
+                     var data = DbContext.GetMobileData.FromSqlRaw(Sql,
                         new SqlParameter("@CompanyID", CompanyID),
                         new SqlParameter("@BrandImageURL", BrandImageURL),
                         new SqlParameter("@BranchImageURL", BranchImageURL),

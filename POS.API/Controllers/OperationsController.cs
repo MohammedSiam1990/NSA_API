@@ -122,6 +122,7 @@ namespace POS.API.CORE.Controllers
 
 
         }
+        [DisableRequestSizeLimit]
         [HttpGet("GetMobileData")]
         public IActionResult GetMobileData(int CompanyID)
         {
