@@ -88,6 +88,14 @@ namespace POS.API.CORE
                 .AddDefaultUI();
 
 
+            //services.Configure<FormOptions>(options =>
+            //{
+            //    options.ValueLengthLimit = int.MaxValue;
+            //    options.MultipartBodyLengthLimit = long.MaxValue; // <-- ! long.MaxValue
+            //    options.MultipartBoundaryLengthLimit = int.MaxValue;
+            //    options.MultipartHeadersCountLimit = int.MaxValue;
+            //    options.MultipartHeadersLengthLimit = int.MaxValue;
+            //});
 
 
 
