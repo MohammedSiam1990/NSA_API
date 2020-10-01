@@ -21,11 +21,9 @@ namespace POS.Data.DataContext
     {
 
         public PosDbContext(DbContextOptions<PosDbContext> options) : base(options) { }
-        public TimeSpan Timeout { get; set; }
         
         public PosDbContext()
         {
-            Database.SetCommandTimeout(3600);
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
