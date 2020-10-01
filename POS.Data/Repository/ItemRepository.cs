@@ -115,7 +115,7 @@ namespace POS.Data.Repository
 
             if (item.ItemName == model.ItemName )
              return -2;
-            else if (item.ItemName == model.ItemNameAr )
+            else if (item.ItemNameAr == model.ItemNameAr )
              return -3;
             else if(item.MobileName == model.MobileName)
              return -4;

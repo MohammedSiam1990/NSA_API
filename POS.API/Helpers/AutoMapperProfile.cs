@@ -30,6 +30,10 @@ namespace POS.API.Helpers
             CreateMap<ItemModel, Item>();
             CreateMap<Sku, SkuModel>();
             CreateMap<SkuModel, Sku>();
+            CreateMap<RemarksTemplateDetails, RemarksTemplateDetailsModel>();
+            CreateMap<RemarksTemplateDetailsModel, RemarksTemplateDetails>();
+            CreateMap<RemarksTemplate, RemarksTemplateModel>();
+            CreateMap<RemarksTemplateModel, RemarksTemplate>();
         }
     }
 }
