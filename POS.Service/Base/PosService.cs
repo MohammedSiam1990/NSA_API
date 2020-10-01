@@ -7,15 +7,9 @@ namespace Pos.Service.Base
     public class PosServices
     {
         public ICompaniesRepository CompaniesRepository { get; set; }
-        //public IUsersRepository UsersRepository { get; set; }
-        //public IAccountRepository AccountRepository { get; set; }
         public IBrandRepository BrandRepository { get; set; }
-        //public IMajorServiceRepository MajorServiceRepository { get; set; }
-
         public IBranchRepository BranchRepository { get; set; }
         public IItemRepository ItemRepository { get; set; }
-        //public ICountryRepository CountryRepository { get; set; }
-        //public IMajorServiceTypesRepository MajorServiceTypesRepository { get; set; }
         public IItemGroupsRepository ItemGroupsRepository { get; set; }
         public IlookUpRepository LookUpRepository { get; set; }
         public IMobileDataRepository MobileDataRepository { get; set; }
@@ -26,17 +20,13 @@ namespace Pos.Service.Base
         public IItemUomRepository itemUomRepository { get; set; }
         public IRemarksTemplateRepository RemarksTemplateRepository { get; set; }
         public IAllDataJsonByBrandIDRepository AllDataJsonByBrandIDRepository { get; set; }
-        //public IAspNetUserRolesRepository AspNetUserRolesRepository { get; set; }
+        public ISkuRepository SkuRepository { get; set; }
         [Inject]
-        public PosServices(ICompaniesRepository _CompaniesRepository,
-                                     //IUsersRepository _UsersRepository,
-                                     //IAccountRepository _AccountRepository,
+        public PosServices(      
+                                     ICompaniesRepository _CompaniesRepository,
                                      IBrandRepository _BrandRepository,
-                                     //IMajorServiceRepository _MajorServiceRepository,
-                                     //IMajorServiceTypesRepository _IMajorServiceTypesRepository,
                                      IBranchRepository _BranchRepository,
                                      IItemRepository _ItemRepository,
-                                     //ICountryRepository _CountryRepository,
                                      IItemGroupsRepository _ItemGroupsRepository,
                                      IlookUpRepository _lookUpRepository,
                                      IMobileDataRepository _MobileDataRepository,
@@ -46,19 +36,14 @@ namespace Pos.Service.Base
                                      IItemDataRepository _ItemDataRepository,
                                      IItemUomRepository _itemUomRepository,
                                      IRemarksTemplateRepository _RemarksTemplateRepository,
-                                     IAllDataJsonByBrandIDRepository _AllDataJsonByBrandIDRepository
-                            //IAspNetUserRolesRepository _AspNetUserRolesRepository
+                                     IAllDataJsonByBrandIDRepository _AllDataJsonByBrandIDRepository,
+                                     ISkuRepository _SkuRepository
                             )
         {
             CompaniesRepository = _CompaniesRepository;
-            //UsersRepository = _UsersRepository;
-            //AccountRepository = _AccountRepository;
             BrandRepository = _BrandRepository;
-            //MajorServiceRepository = _MajorServiceRepository;
-            //MajorServiceTypesRepository = _IMajorServiceTypesRepository;
             BranchRepository = _BranchRepository;
             ItemRepository = _ItemRepository;
-            //CountryRepository = _CountryRepository;
             ItemGroupsRepository = _ItemGroupsRepository;
             LookUpRepository = _lookUpRepository;
             MobileDataRepository = _MobileDataRepository;
@@ -69,7 +54,7 @@ namespace Pos.Service.Base
             itemUomRepository = _itemUomRepository;
             RemarksTemplateRepository = _RemarksTemplateRepository;
             AllDataJsonByBrandIDRepository = _AllDataJsonByBrandIDRepository;
-            //AspNetUserRolesRepository = _AspNetUserRolesRepository;
+            SkuRepository = _SkuRepository;
         }
 
     }

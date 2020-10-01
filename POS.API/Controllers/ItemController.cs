@@ -119,27 +119,38 @@ namespace POS.API.CORE.Controllers
                 var Item = Mapper.Map<Item>(model);
 
                 
-                int data = ItemService.ValidateNameAlreadyExist(Item); 
+                int ItemData = ItemService.ValidateItemAlreadyExist(Item); 
 
-                  if (data == 1)
-                    {
-                        if (Item.ItemId == 0)
-                        ItemService.AddItem(Item);
+                  if (ItemData == 1)
+                     {
+                         string SkuAlert;
+                        var skuId = ItemService.ValidateSkuAlreadyExist(Lang,Item, out SkuAlert);
+                        if (skuId != 7)
+                        {
+                            if (Item.ItemId == 0)
+                                ItemService.AddItem(Item);
+                            else
+                                ItemService.UpdateItem(Item);
+                            return Ok(new { success = true, message = lang.Saved_successfully_completed });
+                        }
                         else
-                        ItemService.UpdateItem(Item);
-                        return Ok(new { success = true, message = lang.Saved_successfully_completed });
+                        {
+                        return Ok(new { success = false, message = lang.Code_already_exists
+                            , repeated = string.Format("SkuCode:{0}", SkuAlert)
+                        });
+                         }   
                     }
-                    else if(data == -1)
+                    else if(ItemData == -1)
                         return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
-                    else if (data == -2)
+                    else if (ItemData == -2)
                         return Ok(new { success = false, message = lang.English_name_already_exists, repeated = "ItemName" });
-                    else if (data == -3)
+                    else if (ItemData == -3)
                         return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "ItemNameAr" });
-                    else if (data == -4)
+                    else if (ItemData == -4)
                         return Ok(new { success = false, message = lang.English_name_already_exists, repeated = "MobilName" });
-                    else if (data == -5)
+                    else if (ItemData == -5)
                         return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "MobilNameAr" });
-                    else if (data == -6)
+                    else if (ItemData == -6)
                         return Ok(new { success = false, message = lang.Code_already_exists, repeated = "ItemNum" });
 
             }

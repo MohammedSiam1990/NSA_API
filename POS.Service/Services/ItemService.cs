@@ -1,4 +1,5 @@
 ﻿using Pos.IService;
+using POS.Core;
 using POS.Entities;
 using POS.IService.Base;
 using System.Collections.Generic;
@@ -35,9 +36,29 @@ namespace Pos.Service
             return PosService.ItemRepository.ValidateItem(Item);
         }
 
-        public int ValidateNameAlreadyExist(Item model)
+        public int ValidateItemAlreadyExist(Item model)
         {
             return PosService.ItemRepository.ValidateNameAlreadyExist(model);
+        }
+
+        public int ValidateSkuAlreadyExist(string Lang, Item model, out string SkuAlert)
+        {
+            int Id = 1; 
+            SkuAlert = "";
+            foreach (var ItemUom in model.ItemUoms)
+            {
+                foreach (var Sku in ItemUom.Skus)
+                {
+                     var SkuExists = PosService.SkuRepository.ValidateNameAlreadyExist(model.BrandId, Sku);
+                    if (SkuExists != null)
+                    {
+                        SkuAlert = "SkuCode:"+ SkuExists.Code +", ItemNum:"+ SkuExists.ItemUom.Item.ItemNum +
+                      Lang =="en" ? " , ItemName:" + SkuExists.ItemUom.Item.ItemName  : " , ItemNameAr:" + SkuExists.ItemUom.Item.ItemNameAr;
+                        return -7;
+                    }
+                }
+            }
+            return Id;
         }
     }
 }

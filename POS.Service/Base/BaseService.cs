@@ -23,14 +23,9 @@ namespace POS.IService.Base
                     var databaseFactory = new DatabaseFactory();
 
                     _PosService = new PosServices(new CompaniesRepository(databaseFactory),
-                                                   //new UsersRepository(databaseFactory),
-                                                   //new AccountRepository(databaseFactory),
                                                    new BrandRepository(databaseFactory),
-                                                   //new MajorServiceRepository(databaseFactory),
-                                                   //new MajorServiceTypesRepository(databaseFactory),
                                                    new BranchRepository(databaseFactory),
                                                    new ItemRepository(databaseFactory),
-                                                   //new CountryRepository(databaseFactory),
                                                    new ItemGroupsRepository(databaseFactory),
                                                    new LookUpRepository(databaseFactory),
                                                    new MobileDataRepository(databaseFactory),
@@ -40,8 +35,8 @@ namespace POS.IService.Base
                                                    new ItemDataRepository(databaseFactory),
                                                    new ItemUomRepository(databaseFactory),
                                                    new RemarksTemplateRepository(databaseFactory),
-                                                   new AllDataJsonByBrandIDRepository(databaseFactory)
-                                                //new AspNetUserRolesRepository(databaseFactory)
+                                                   new AllDataJsonByBrandIDRepository(databaseFactory),
+                                                   new SkuRepository(databaseFactory)
                                                 );
                 }
                 return _PosService;
