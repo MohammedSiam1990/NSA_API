@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace POS.Entities
+namespace POS.API.Models
 {
-    public partial class RemarksTemplateDetails
+    public class RemarksTemplateDetailsModel
     {
-        [Key]
         public int RemarksTemplateDetailsD { get; set; }
         public string RemarkName1 { get; set; }
         public string RemarkName2 { get; set; }
@@ -14,7 +15,5 @@ namespace POS.Entities
         public int? ItemId { get; set; }
         public decimal? Price { get; set; }
         public decimal? Calories { get; set; }
-        public int RemarksTemplateId { get; set; }
-        public virtual RemarksTemplate RemarksTemplates { get; set; }
     }
 }

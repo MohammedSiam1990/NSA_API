@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace POS.Entities
+namespace POS.API.Models
 {
-    public partial class RemarksTemplate
+    public class RemarksTemplateModel
     {
         public int RemarksTemplateId { get; set; }
         public string RemarksTemplateName { get; set; }
@@ -16,6 +18,6 @@ namespace POS.Entities
         public DateTime? ModifyDate { get; set; }
         public string DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
-        public virtual ICollection<RemarksTemplateDetails> RemarksTemplateDetails { get; set; }
+        public virtual List<RemarksTemplateDetailsModel> RemarksTemplateDetails{ get; set; }
     }
 }
