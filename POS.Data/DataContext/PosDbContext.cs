@@ -12,6 +12,7 @@ using POS.Data.Dto.Account;
 using POS.Data.Dto;
 using POS.Data.Dto.Procedure;
 using POS.Data.Entities;
+using System.Net.Http;
 
 namespace POS.Data.DataContext
 {
@@ -20,10 +21,11 @@ namespace POS.Data.DataContext
     {
 
         public PosDbContext(DbContextOptions<PosDbContext> options) : base(options) { }
-
+        public TimeSpan Timeout { get; set; }
+        
         public PosDbContext()
         {
-
+            Database.SetCommandTimeout(3600);
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
