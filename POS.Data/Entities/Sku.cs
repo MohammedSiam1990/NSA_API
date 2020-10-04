@@ -7,6 +7,7 @@ namespace POS.Entities
     {
         public long? Skuid { get; set; }
         public string Code { get; set; }
+        public int BrandID { get; set; }
         public long? ItemUomid { get; set; }
         public ItemUom ItemUom { get; set; }
     }
