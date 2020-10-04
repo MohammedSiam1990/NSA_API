@@ -10,7 +10,6 @@ namespace POS.Entities
             Skus = new HashSet<Sku>();
         }
         public long ItemUomid { get; set; }
-        public int Uomid { get; set; }
         public string Name { get; set; }
         public decimal? Cost { get; set; }
         public decimal? Price { get; set; }

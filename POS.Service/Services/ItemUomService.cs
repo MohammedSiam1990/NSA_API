@@ -48,10 +48,6 @@ namespace POS.Service.Services
             return PosService.itemUomRepository.ValidateCodeorNameAlreadyExist(e => e.ItemUomid != ItemUomid && (e.Name == Name));
         }
 
-        public bool ValidateCodeorNameArAlreadyExist(long ItemUomid, string NameAr)
-        {
-            return PosService.itemUomRepository.ValidateCodeorNameAlreadyExist(e => e.ItemUomid != ItemUomid && (e.NameAr == NameAr));
-        }
 
         public bool ValidateitemUom(ItemUom itemUom)
         {

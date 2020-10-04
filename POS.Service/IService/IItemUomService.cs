@@ -18,6 +18,6 @@ namespace POS.Service.IService
         void UpdateItemUom(ItemUom itemUom);
         void DeleteItemUom(long itemUomId);
         bool ValidateCodeorNameAlreadyExist(long ItemUomid, string Name);
-        bool ValidateCodeorNameArAlreadyExist(long ItemUomid, string NameAr);
+       
     }
 }

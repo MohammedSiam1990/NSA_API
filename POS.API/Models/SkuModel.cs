@@ -10,6 +10,7 @@ namespace POS.API.Models
     {
         public long? Skuid { get; set; }
         public string Code { get; set; }
+        public int BrandID { get; set; }
         public long? ItemUomid { get; set; }
     }
 }
