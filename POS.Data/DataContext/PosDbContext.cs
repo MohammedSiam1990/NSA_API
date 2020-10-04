@@ -54,6 +54,9 @@ namespace POS.Data.DataContext
         [Obsolete]
         public virtual DbQuery<GetMobileData> GetMobileData { get; set; }
         [Obsolete]
+        public virtual DbQuery<GetUOMName> GetUOMName { get; set; }
+
+        [Obsolete]
         public virtual DbQuery<GetAllDataJsonByBrandID> GetAllDataJsonByBrandID { get; set; }
 
         [Obsolete]

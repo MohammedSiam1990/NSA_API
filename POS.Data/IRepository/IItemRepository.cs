@@ -13,5 +13,7 @@ namespace POS.Data.IRepository
         void AddItem(Item Item);
         void UpdateItem(Item Item);
         int ValidateNameAlreadyExist( Item model);
+        string GetUOMName(int BrandID);
+
     }
 }

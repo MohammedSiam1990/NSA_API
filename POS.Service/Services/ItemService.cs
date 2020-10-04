@@ -60,5 +60,11 @@ namespace Pos.Service
             }
             return Id;
         }
+
+        public string GetUOMName(int BrandID)
+        {
+            return PosService.ItemRepository.GetUOMName(BrandID);
+
+        }
     }
 }
