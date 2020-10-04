@@ -21,6 +21,7 @@ namespace Pos.Service.Base
         public IRemarksTemplateRepository RemarksTemplateRepository { get; set; }
         public IAllDataJsonByBrandIDRepository AllDataJsonByBrandIDRepository { get; set; }
         public ISkuRepository SkuRepository { get; set; }
+        public IGetUOMNameRepository GetUOMNameRepository { get; set; }
         [Inject]
         public PosServices(      
                                      ICompaniesRepository _CompaniesRepository,
@@ -37,7 +38,8 @@ namespace Pos.Service.Base
                                      IItemUomRepository _itemUomRepository,
                                      IRemarksTemplateRepository _RemarksTemplateRepository,
                                      IAllDataJsonByBrandIDRepository _AllDataJsonByBrandIDRepository,
-                                     ISkuRepository _SkuRepository
+                                     ISkuRepository _SkuRepository,
+                                     IGetUOMNameRepository _GetUOMNameRepository
                             )
         {
             CompaniesRepository = _CompaniesRepository;
@@ -55,6 +57,7 @@ namespace Pos.Service.Base
             RemarksTemplateRepository = _RemarksTemplateRepository;
             AllDataJsonByBrandIDRepository = _AllDataJsonByBrandIDRepository;
             SkuRepository = _SkuRepository;
+            GetUOMNameRepository = _GetUOMNameRepository;
         }
 
     }

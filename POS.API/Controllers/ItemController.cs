@@ -9,6 +9,7 @@ using POS.API.Models;
 using POS.Core.Resources;
 using POS.Entities;
 using POS.Models;
+using POS.Service.IService;
 using System;
 using System.Globalization;
 using System.Linq;
@@ -16,26 +17,27 @@ using System.Threading;
 
 namespace POS.API.CORE.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     [ApiController]
     [Route("api/[controller]")]
     public class ItemController : ControllerBase
     {
         private ImagesPath imagesPath;
         private IItemService ItemService;
-
+        private IGetUOMNameService UOMNames;
         private IMapper Mapper;
 
         public ItemController(
                                       IItemService _ItemService,
                                        ImagesPath _imagesPath,
-                                      IMapper mapper
+                                      IMapper mapper,
+                                      IGetUOMNameService _UOMNames
                                 )
         {
             ItemService = _ItemService;
             imagesPath = _imagesPath;
             Mapper = mapper;
-
+            UOMNames = _UOMNames;
         }
 
         [AllowAnonymous]
@@ -72,6 +74,39 @@ namespace POS.API.CORE.Controllers
 
         }
 
+        [AllowAnonymous]
+        [HttpGet("GetUOMNames")]
+        public IActionResult GetUOMNames(int BrandID, string Lang = "en")
+        {
+
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
+
+                var data = UOMNames.GetUOMName(BrandID);
+
+
+
+                if (data == null)
+                {
+                    return Ok(new { success = false, message = lang.No_data_available });
+                }
+                else
+                {
+                    return Ok(new { success = true, message = "", datalist = JsonConvert.DeserializeObject(data) });
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+
+            }
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
+
+        }
 
         [HttpGet("GetItemAll")]
         public IActionResult GetItemAll(string Lang = "en")

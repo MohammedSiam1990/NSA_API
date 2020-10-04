@@ -224,6 +224,7 @@ namespace POS.API.CORE
             services.AddScoped<IItemUomService, ItemUomService>();
             services.AddScoped<IRemarksTemplateService,RemarksTemplateService>();
             services.AddScoped<IAllDataJsonByBrandIDService, AllDataJsonByBrandIDService>(); 
+            services.AddScoped<IGetUOMNameService, GetUOMNameService>(); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -152,6 +152,7 @@
     <Compile Include="Helpers\PagedListModel.cs" />
     <Compile Include="IService\IAllDataJsonByBrandIDService.cs" />
     <Compile Include="IService\IDeleteRecordService.cs" />
+    <Compile Include="IService\IGetUOMNameService.cs" />
     <Compile Include="IService\IItemUomService.cs" />
     <Compile Include="IService\IMobileDataService.cs" />
     <Compile Include="IService\IMailService.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Services\AllDataJsonByBrandIDService.cs" />
     <Compile Include="Services\BranchService.cs" />
     <Compile Include="Services\DeleteRecordService.cs" />
+    <Compile Include="Services\GetUOMNameService.cs" />
     <Compile Include="Services\ItemUomService.cs" />
     <Compile Include="Services\MobileDataService.cs" />
     <Compile Include="Services\MailService.cs" />

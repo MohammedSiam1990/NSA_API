@@ -36,7 +36,8 @@ namespace POS.IService.Base
                                                    new ItemUomRepository(databaseFactory),
                                                    new RemarksTemplateRepository(databaseFactory),
                                                    new AllDataJsonByBrandIDRepository(databaseFactory),
-                                                   new SkuRepository(databaseFactory)
+                                                   new SkuRepository(databaseFactory),
+                                                   new GetUOMNameRepository(databaseFactory)
                                                 );
                 }
                 return _PosService;
