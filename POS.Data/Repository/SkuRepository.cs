@@ -24,12 +24,12 @@ namespace POS.Data.Repository
 
 
 
-        public Sku ValidateNameAlreadyExist(int? BrandId,Sku model)
+        public Sku ValidateNameAlreadyExist(Sku model)
         {
             try
             {
                 var Sku = base.Table()
-                    .Where(e => e.Skuid != model.Skuid && e.ItemUom.Item.BrandId == BrandId &&  (e.Code == model.Code))
+                    .Where(e => e.Skuid != model.Skuid && e.BrandID == model.BrandID &&  (e.Code == model.Code))
                     .Include(e => e.ItemUom).ThenInclude(e => e.Item).FirstOrDefault();
                 base.DbContext.Dispose();
                 base.DbContext = null;

@@ -49,7 +49,7 @@ namespace Pos.Service
             {
                 foreach (var Sku in ItemUom.Skus)
                 {
-                     var SkuExists = PosService.SkuRepository.ValidateNameAlreadyExist(model.BrandId, Sku);
+                     var SkuExists = PosService.SkuRepository.ValidateNameAlreadyExist( Sku);
                     if (SkuExists != null)
                     {
                         SkuAlert = "SkuCode:"+ SkuExists.Code +", ItemNum:"+ SkuExists.ItemUom.Item.ItemNum +

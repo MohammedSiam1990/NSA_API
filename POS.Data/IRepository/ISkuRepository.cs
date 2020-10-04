@@ -7,6 +7,6 @@ namespace POS.Data.IRepository
 {
     public interface ISkuRepository
     {
-        Sku ValidateNameAlreadyExist(int? BrandId, Sku model);
+        Sku ValidateNameAlreadyExist( Sku model);
     }
 }
