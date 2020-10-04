@@ -24,20 +24,17 @@ namespace POS.API.CORE.Controllers
     {
         private ImagesPath imagesPath;
         private IItemService ItemService;
-        private IGetUOMNameService UOMNames;
         private IMapper Mapper;
 
         public ItemController(
                                       IItemService _ItemService,
                                        ImagesPath _imagesPath,
-                                      IMapper mapper,
-                                      IGetUOMNameService _UOMNames
+                                      IMapper mapper
                                 )
         {
             ItemService = _ItemService;
             imagesPath = _imagesPath;
             Mapper = mapper;
-            UOMNames = _UOMNames;
         }
 
         [AllowAnonymous]
@@ -85,7 +82,7 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
 
-                var data = UOMNames.GetUOMName(BrandID);
+                var data = ItemService.GetUOMName(BrandID);
 
 
 

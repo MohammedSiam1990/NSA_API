@@ -127,5 +127,29 @@ namespace POS.Data.Repository
             return 1;
                     
         }
+
+        [Obsolete]
+        public string GetUOMName(int BrandID)
+        {
+            using (var DbContext = new PosDbContext())
+            {
+                try
+                {
+                    string Sql = "EXEC Get_UOM_Name @BrandID";
+                    DbContext.Database.SetCommandTimeout(0);
+                    var data = DbContext.GetUOMName.FromSqlRaw(Sql,
+                       new SqlParameter("@BrandID", BrandID)).AsEnumerable().FirstOrDefault().Data;
+
+                    return data.ToString();
+                }
+                catch (Exception ex)
+                {
+                    Exceptions.ExceptionError.SaveException(ex);
+                }
+                return null;
+
+            }
+
+        }
     }
 }

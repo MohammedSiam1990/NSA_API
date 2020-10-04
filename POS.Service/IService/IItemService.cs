@@ -13,5 +13,7 @@ namespace Pos.IService
         void UpdateItem(Item Item);
         int ValidateItemAlreadyExist(Item model);
         int ValidateSkuAlreadyExist(string Lang,Item model,out string SkuAlert);
+        string GetUOMName(int BrandID);
+
     }
 }
