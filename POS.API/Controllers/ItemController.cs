@@ -157,20 +157,17 @@ namespace POS.API.CORE.Controllers
                      {
                          string SkuAlert;
                         var skuId = ItemService.ValidateSkuAlreadyExist(Lang,Item, out SkuAlert);
-                        if (skuId != 7)
+                        if (skuId != -7)
                         {
                             if (Item.ItemId == 0)
                                 ItemService.AddItem(Item);
                             else
                                 ItemService.UpdateItem(Item);
+
                             return Ok(new { success = true, message = lang.Saved_successfully_completed });
                         }
                         else
-                        {
-                        return Ok(new { success = false, message = lang.Code_already_exists
-                            , repeated = string.Format("SkuCode:{0}", SkuAlert)
-                        });
-                         }   
+                        return Ok(new { success = false, message = lang.Barcode_already_exists  , repeated =  SkuAlert }); 
                     }
                     else if(ItemData == -1)
                         return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });

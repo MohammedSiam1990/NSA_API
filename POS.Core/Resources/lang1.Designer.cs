@@ -97,6 +97,15 @@ namespace POS.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Barcode Already Exists.
+        /// </summary>
+        public static string Barcode_already_exists {
+            get {
+                return ResourceManager.GetString("Barcode_already_exists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can&apos;t send activation email, please try registration later.
         /// </summary>
         public static string Cant_send_activation_email_please_try_registration_later {

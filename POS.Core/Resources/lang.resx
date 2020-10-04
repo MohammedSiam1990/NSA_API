@@ -129,6 +129,9 @@
   <data name="Arabic_name_already_exists" xml:space="preserve">
     <value>Arabic Name Already Exists</value>
   </data>
+  <data name="Barcode_already_exists" xml:space="preserve">
+    <value>Barcode Already Exists</value>
+  </data>
   <data name="Cant_send_activation_email_please_try_registration_later" xml:space="preserve">
     <value>Can't send activation email, please try registration later</value>
   </data>

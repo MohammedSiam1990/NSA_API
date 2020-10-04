@@ -24,7 +24,7 @@ namespace POS.Data.Repository
 
 
 
-        public Sku ValidateNameAlreadyExist(Sku model)
+        public Sku ValidateAlreadyExist(Sku model)
         {
             try
             {

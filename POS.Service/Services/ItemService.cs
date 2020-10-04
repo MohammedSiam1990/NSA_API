@@ -49,11 +49,15 @@ namespace Pos.Service
             {
                 foreach (var Sku in ItemUom.Skus)
                 {
-                     var SkuExists = PosService.SkuRepository.ValidateNameAlreadyExist( Sku);
+                     var SkuExists = PosService.SkuRepository.ValidateAlreadyExist( Sku);
                     if (SkuExists != null)
                     {
-                        SkuAlert = "SkuCode:"+ SkuExists.Code +", ItemNum:"+ SkuExists.ItemUom.Item.ItemNum +
-                      Lang =="en" ? " , ItemName:" + SkuExists.ItemUom.Item.ItemName  : " , ItemNameAr:" + SkuExists.ItemUom.Item.ItemNameAr;
+                        SkuAlert = "SkuCode:" + SkuExists.Code + ", ItemNum:" + SkuExists.ItemUom.Item.ItemNum;
+                        if (Lang == "en")
+                            SkuAlert += " , ItemName:" + SkuExists.ItemUom.Item.ItemName;
+                        else
+                            SkuAlert += " , ItemNameAr:" + SkuExists.ItemUom.Item.ItemNameAr;
+
                         return -7;
                     }
                 }

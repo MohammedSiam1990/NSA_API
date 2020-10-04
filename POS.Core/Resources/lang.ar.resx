@@ -129,6 +129,9 @@
   <data name="Arabic_name_already_exists" xml:space="preserve">
     <value>الاسم العربي موجود بالفعل</value>
   </data>
+  <data name="Barcode_already_exists" xml:space="preserve">
+    <value>الباركود موجود بالفعل</value>
+  </data>
   <data name="Cant_send_activation_email_please_try_registration_later" xml:space="preserve">
     <value>لا يمكن ارسال ايميل التفعيل, يرجى محاولة التسجيل لاحقا</value>
   </data>
