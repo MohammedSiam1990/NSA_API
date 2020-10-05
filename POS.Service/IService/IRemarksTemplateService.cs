@@ -14,5 +14,6 @@ namespace POS.Service.IService
         void AddRemarksTemplate(RemarksTemplate remarksTemplate);
         void UpdateRemarksTemplate(RemarksTemplate remarksTemplate);
         int ValidateNameAlreadyExist(RemarksTemplate remarksTemplate);
+        void DeleteRemarksTemplateDetails(int RemarksTemplateId);
     }
 }

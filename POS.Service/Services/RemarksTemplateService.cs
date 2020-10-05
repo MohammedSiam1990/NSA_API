@@ -26,6 +26,11 @@ namespace POS.Service.Services
             PosService.RemarksTemplateRepository.UpdateRemarksTemplate(remarksTemplate);
         }
 
+        public void DeleteRemarksTemplateDetails(int RemarksTemplateId)
+        {
+            PosService.RemarksTemplateDetailsRepository.DeleteRemarksTemplateDetails(RemarksTemplateId);
+        
+        }
         public int ValidateNameAlreadyExist(RemarksTemplate remarksTemplate)
         {
          return  PosService.RemarksTemplateRepository.ValidateNameAlreadyExist(remarksTemplate);
