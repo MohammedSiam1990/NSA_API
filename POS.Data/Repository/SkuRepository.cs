@@ -27,7 +27,8 @@ namespace POS.Data.Repository
       
             try
             {
-                base.Delete(e => e.ItemUom.ItemId == ItemId);
+                var Skus = GetMany(e => e.ItemUom.ItemId == ItemId).ToList();
+                base.DeleteRange(Skus);
             }
             catch (Exception ex)
             {

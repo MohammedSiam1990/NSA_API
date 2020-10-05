@@ -73,6 +73,7 @@ namespace Pos.Service
 
         public void DeleteSku(long ItemId)
         {
+            
             PosService.SkuRepository.DeleteSku(ItemId);
         }
     }
