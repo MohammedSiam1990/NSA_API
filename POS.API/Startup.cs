@@ -218,7 +218,6 @@ namespace POS.API.CORE
             services.AddScoped<IlookUpService, LookUpService>();
             services.AddScoped<IMobileDataService, MobileDataService>();
             services.AddScoped<IDeleteRecordService, DeleteRecordService>();
-            services.AddScoped<IUomService, UomService>();
             services.AddScoped<ITaxService, TaxService>();
             services.AddScoped<IItemService, ItemService>();
             services.AddScoped<IItemUomService, ItemUomService>();
