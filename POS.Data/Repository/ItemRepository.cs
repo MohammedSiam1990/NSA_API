@@ -79,7 +79,7 @@ namespace POS.Data.Repository
             {
                 Item.LastModifyDate = DateTime.Now;
                 Update(Item);
-                PosDbContext.SaveChanges();
+               // PosDbContext.SaveChanges();
             }
             catch (Exception ex)
             {
