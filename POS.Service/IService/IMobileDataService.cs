@@ -5,6 +5,6 @@ namespace POS.Service.IService
 {
     public interface IMobileDataService
     {
-        string GetMobileData(int CompanyID, string BrandImageURL, string BranchImageURL, string ItemGroupImageURL);
+        string GetMobileData(int CompanyID, string BrandImageURL, string BranchImageURL, string ItemGroupImageURL,string ItemImageURL);
     }
 }
