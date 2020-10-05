@@ -30,7 +30,6 @@ namespace POS.IService.Base
                                                    new LookUpRepository(databaseFactory),
                                                    new MobileDataRepository(databaseFactory),
                                                    new DeleteRecordRepository(databaseFactory),
-                                                   new UomRepository(databaseFactory),
                                                    new TaxRepository(databaseFactory),
                                                    new ItemDataRepository(databaseFactory),
                                                    new ItemUomRepository(databaseFactory),
