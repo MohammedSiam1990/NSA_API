@@ -14,6 +14,6 @@ namespace Pos.IService
         int ValidateItemAlreadyExist(Item model);
         int ValidateSkuAlreadyExist(string Lang,Item model,out string SkuAlert);
         string GetUOMName(int BrandID);
-
+        void DeleteSku(long ItemId);
     }
 }

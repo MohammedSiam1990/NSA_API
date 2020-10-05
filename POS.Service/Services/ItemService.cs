@@ -49,7 +49,7 @@ namespace Pos.Service
             {
                 foreach (var Sku in ItemUom.Skus)
                 {
-                     var SkuExists = PosService.SkuRepository.ValidateAlreadyExist( Sku);
+                     var SkuExists = PosService.SkuRepository.ValidateAlreadyExist( Sku, model.ItemId);
                     if (SkuExists != null)
                     {
                         SkuAlert = "SkuCode:" + SkuExists.Code + ", ItemNum:" + SkuExists.ItemUom.Item.ItemNum;
@@ -69,6 +69,11 @@ namespace Pos.Service
         {
             return PosService.ItemRepository.GetUOMName(BrandID);
 
+        }
+
+        public void DeleteSku(long ItemId)
+        {
+            PosService.SkuRepository.DeleteSku(ItemId);
         }
     }
 }

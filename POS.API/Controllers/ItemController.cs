@@ -162,8 +162,10 @@ namespace POS.API.CORE.Controllers
                             if (Item.ItemId == 0)
                                 ItemService.AddItem(Item);
                             else
-                                ItemService.UpdateItem(Item);
-
+                                  {
+                                        ItemService.DeleteSku(Item.ItemId);
+                                        ItemService.UpdateItem(Item);
+                                  }
                             return Ok(new { success = true, message = lang.Saved_successfully_completed });
                         }
                         else

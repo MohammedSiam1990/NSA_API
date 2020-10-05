@@ -22,14 +22,25 @@ namespace POS.Data.Repository
 
         }
 
+        public void DeleteSku(long ItemId)
+        {
+      
+            try
+            {
+                base.Delete(e => e.ItemUom.ItemId == ItemId);
+            }
+            catch (Exception ex)
+            {
+                throw new AppException(ex.Message);
+            }
+        }
 
-
-        public Sku ValidateAlreadyExist(Sku model)
+        public Sku ValidateAlreadyExist(Sku model,long ItemId)
         {
             try
             {
                 var Sku = base.Table()
-                    .Where(e => e.Skuid != model.Skuid && e.BrandID == model.BrandID &&  (e.Code == model.Code))
+                    .Where(e => e.Skuid != model.Skuid && e.ItemUom.Item.ItemId != ItemId && e.ItemUom.Item.StatusId !=3 && e.BrandID == model.BrandID &&  (e.Code == model.Code))
                     .Include(e => e.ItemUom).ThenInclude(e => e.Item).FirstOrDefault();
                 base.DbContext.Dispose();
                 base.DbContext = null;
