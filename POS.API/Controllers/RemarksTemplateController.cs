@@ -78,7 +78,10 @@ namespace POS.API.Controllers
                     if (remarksTemplate.RemarksTemplateId == 0)
                         RemarksTemplateService.AddRemarksTemplate(remarksTemplate);
                     else
+                    {
+                        RemarksTemplateService.DeleteRemarksTemplateDetails(remarksTemplate.RemarksTemplateId);
                         RemarksTemplateService.UpdateRemarksTemplate(remarksTemplate);
+                    }
                     return Ok(new { success = true, message = lang.Saved_successfully_completed });
                 }
                 else if (data == -1)

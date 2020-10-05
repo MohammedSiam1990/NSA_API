@@ -18,6 +18,7 @@ namespace Pos.Service.Base
         public IItemDataRepository ItemDataRepository { get; set; }
         public IItemUomRepository itemUomRepository { get; set; }
         public IRemarksTemplateRepository RemarksTemplateRepository { get; set; }
+        public IRemarksTemplateDetailsRepository RemarksTemplateDetailsRepository { get; set; }
         public IAllDataJsonByBrandIDRepository AllDataJsonByBrandIDRepository { get; set; }
         public ISkuRepository SkuRepository { get; set; }
         [Inject]
@@ -34,6 +35,7 @@ namespace Pos.Service.Base
                                      IItemDataRepository _ItemDataRepository,
                                      IItemUomRepository _itemUomRepository,
                                      IRemarksTemplateRepository _RemarksTemplateRepository,
+                                     IRemarksTemplateDetailsRepository _RemarksTemplateDetailsRepository,
                                      IAllDataJsonByBrandIDRepository _AllDataJsonByBrandIDRepository,
                                      ISkuRepository _SkuRepository
                             )
@@ -50,6 +52,7 @@ namespace Pos.Service.Base
             ItemDataRepository = _ItemDataRepository;
             itemUomRepository = _itemUomRepository;
             RemarksTemplateRepository = _RemarksTemplateRepository;
+            RemarksTemplateDetailsRepository = _RemarksTemplateDetailsRepository;
             AllDataJsonByBrandIDRepository = _AllDataJsonByBrandIDRepository;
             SkuRepository = _SkuRepository;
         }
