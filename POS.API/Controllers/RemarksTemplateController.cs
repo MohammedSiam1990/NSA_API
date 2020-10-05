@@ -63,8 +63,8 @@ namespace POS.API.Controllers
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
 
-        [HttpPost("SaveItem")]
-        public IActionResult SaveItem(RemarksTemplateModel model, string Lang = "en")
+        [HttpPost("SaveRemarksTemplates")]
+        public IActionResult SaveRemarksTemplates(RemarksTemplateModel model, string Lang = "en")
         {
             try
             {
@@ -99,5 +99,7 @@ namespace POS.API.Controllers
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
+
+
     }
 }
