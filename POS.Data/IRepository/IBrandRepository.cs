@@ -9,6 +9,6 @@ namespace POS.Data.IRepository
     public interface IBrandRepository
     {
         int SaveProcBrand(Brands Branch);
-        List<GetBrands> GetProcBrand(int CompanyId, string ImageURL);
+        string GetProcBrand(int CompanyId, string ImageURL);
     }
 }
