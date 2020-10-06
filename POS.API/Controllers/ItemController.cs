@@ -92,7 +92,7 @@ namespace POS.API.CORE.Controllers
                 }
                 else
                 {
-                    return Ok(new { success = true, message = "", datalist = JsonConvert.DeserializeObject(data) });
+                    return Ok(new { success = true, message = "", datalist = data });
                 }
             }
             catch (Exception ex)
