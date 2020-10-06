@@ -448,6 +448,15 @@ namespace POS.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This tax is linked with the items please disconnect the link.
+        /// </summary>
+        public static string This_tax_is_linked_with_items {
+            get {
+                return ResourceManager.GetString("This_tax_is_linked_with_items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To reset your password click.
         /// </summary>
         public static string To_reset_your_password_click {
