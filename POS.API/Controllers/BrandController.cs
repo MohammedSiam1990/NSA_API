@@ -3,6 +3,7 @@ using Exceptions;
 using ImagesService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Pos.IService;
 using POS.Core.Resources;
 using POS.Entities;
@@ -14,7 +15,7 @@ using System.Threading;
 
 namespace POS.API.CORE.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     [ApiController]
     [Route("api/[controller]")]
     public class BrandController : ControllerBase
@@ -49,11 +50,11 @@ namespace POS.API.CORE.Controllers
                 {
                     if (data.Count() == 0)
                     {
-                        return Ok(new { success = true, message = lang.No_data_available, datalist = data.ToList() });
+                        return Ok(new { success = true, message = lang.No_data_available, datalist = JsonConvert.DeserializeObject(data) });
                     }
                     else
                     {
-                        return Ok(new { success = true, message = "", datalist = data.ToList() });
+                        return Ok(new { success = true, message = "", datalist = JsonConvert.DeserializeObject(data) });
                     }
 
                 }

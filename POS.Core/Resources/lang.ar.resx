@@ -132,6 +132,12 @@
   <data name="Barcode_already_exists" xml:space="preserve">
     <value>الباركود موجود بالفعل</value>
   </data>
+  <data name="Cannot_apply_this_tax_as_general_tax_because_it _linked_as_special_tax" xml:space="preserve">
+    <value>لا يمكن تطبيق هذه الضريبة كضريبة عامة لأنها مرتبطة كضريبة خاصة</value>
+  </data>
+  <data name="Cannot_apply_this_tax_as_special_tax_because_it _linked_as_general_tax" xml:space="preserve">
+    <value>لا يمكن تطبيق هذه الضريبة كضريبة خاصة لأنها مرتبطة كضريبة عامة</value>
+  </data>
   <data name="Cant_send_activation_email_please_try_registration_later" xml:space="preserve">
     <value>لا يمكن ارسال ايميل التفعيل, يرجى محاولة التسجيل لاحقا</value>
   </data>

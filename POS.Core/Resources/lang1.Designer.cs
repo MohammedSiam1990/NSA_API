@@ -106,6 +106,24 @@ namespace POS.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot apply this tax as general  tax because it linked as special tax.
+        /// </summary>
+        public static string Cannot_apply_this_tax_as_general_tax_because_it__linked_as_special_tax {
+            get {
+                return ResourceManager.GetString("Cannot_apply_this_tax_as_general_tax_because_it _linked_as_special_tax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot apply this tax as special tax because it linked as general tax.
+        /// </summary>
+        public static string Cannot_apply_this_tax_as_special_tax_because_it__linked_as_general_tax {
+            get {
+                return ResourceManager.GetString("Cannot_apply_this_tax_as_special_tax_because_it _linked_as_general_tax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can&apos;t send activation email, please try registration later.
         /// </summary>
         public static string Cant_send_activation_email_please_try_registration_later {

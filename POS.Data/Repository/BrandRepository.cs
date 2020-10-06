@@ -57,15 +57,16 @@ namespace POS.Data.Repository
         }
 
         [Obsolete]
-        public List<GetBrands> GetProcBrand(int CompanyID, string ImageURL)
+        public string GetProcBrand(int CompanyID, string ImageURL)
         {
             using (var DbContext = new PosDbContext())
             {
                 try
                 {
                     string Sql = "EXEC GetBrands @CompanyID,@ImageURL";
-                    return DbContext.GetBrands.FromSql(Sql, new SqlParameter("@CompanyID", CompanyID),
-                                                       new SqlParameter("@ImageURL", ImageURL)).ToList();
+                    var data= DbContext.GetBrands.FromSql(Sql, new SqlParameter("@CompanyID", CompanyID),
+                                                       new SqlParameter("@ImageURL", ImageURL)).AsEnumerable().FirstOrDefault().Data;
+                    return data.ToString();
                 }
                 catch (Exception ex)
                 {

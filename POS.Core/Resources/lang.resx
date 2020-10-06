@@ -132,6 +132,12 @@
   <data name="Barcode_already_exists" xml:space="preserve">
     <value>Barcode Already Exists</value>
   </data>
+  <data name="Cannot_apply_this_tax_as_general_tax_because_it _linked_as_special_tax" xml:space="preserve">
+    <value>Cannot apply this tax as general  tax because it linked as special tax</value>
+  </data>
+  <data name="Cannot_apply_this_tax_as_special_tax_because_it _linked_as_general_tax" xml:space="preserve">
+    <value>Cannot apply this tax as special tax because it linked as general tax</value>
+  </data>
   <data name="Cant_send_activation_email_please_try_registration_later" xml:space="preserve">
     <value>Can't send activation email, please try registration later</value>
   </data>
