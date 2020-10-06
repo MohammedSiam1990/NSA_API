@@ -89,6 +89,7 @@ namespace POS.Data.DataContext
         public virtual DbSet<Sku> Sku { get; set; }
         public virtual DbSet<RemarksTemplateDetails> RemarksTemplateDetails { get; set; }
         public virtual DbSet<RemarksTemplate> RemarksTemplate { get; set; }
+        public virtual DbSet<BranchWorkStations> BranchWorkStations { get; set; }
         #endregion
 
 
