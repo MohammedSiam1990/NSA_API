@@ -6,6 +6,6 @@ namespace Pos.IService
     public interface IBranchService
     {
         int SaveProcBranch(Branches Branch);
-        List<GetBranches> GetProcBranches(int BrandID, string ImageURL);
+        string GetProcBranches(int BrandID, string ImageURL);
     }
 }

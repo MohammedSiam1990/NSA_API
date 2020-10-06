@@ -13,7 +13,7 @@ namespace Pos.Service
             return PosService.BranchRepository.SaveProcBranch(Branch);
         }
 
-        public List<GetBranches> GetProcBranches(int BrandID, string ImageURL)
+        public string GetProcBranches(int BrandID, string ImageURL)
         {
             return PosService.BranchRepository.GetProcBranches(BrandID, ImageURL);
         }

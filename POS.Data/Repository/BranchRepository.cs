@@ -59,15 +59,16 @@ namespace POS.Data.Repository
 
         }
         [Obsolete]
-        public List<GetBranches> GetProcBranches(int BrandID, string ImageURL)
+        public string GetProcBranches(int BrandID, string ImageURL)
         {
             using (var DbContext = new PosDbContext())
             {
                 try
                 {
                     string Sql = "EXEC GetBranches @BrandID,@ImageURL";
-                    return DbContext.GetBranches.FromSql(Sql, new SqlParameter("@BrandID", BrandID),
-                                                             new SqlParameter("@ImageURL", ImageURL)).ToList();
+                    var data = DbContext.GetBranches.FromSql(Sql, new SqlParameter("@BrandID", BrandID),
+                                                             new SqlParameter("@ImageURL", ImageURL)).AsEnumerable().FirstOrDefault().Data;
+                    return data.ToString();
                 }
                 catch (Exception ex)
                 {
