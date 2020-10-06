@@ -34,10 +34,12 @@ namespace POS.IService.Base
                                                    new ItemDataRepository(databaseFactory),
                                                    new ItemUomRepository(databaseFactory),
                                                    new RemarksTemplateRepository(databaseFactory),
+                                                   new RemarksTemplateDetailsRepository(databaseFactory),
                                                    new AllDataJsonByBrandIDRepository(databaseFactory),
                                                    new SkuRepository(databaseFactory)
                                                 );
                 }
+
                 return _PosService;
             }
         }
