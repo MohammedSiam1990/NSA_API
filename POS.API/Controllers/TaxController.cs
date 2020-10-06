@@ -86,6 +86,11 @@ namespace POS.API.Controllers
                     {
                         return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "taxNameAr" });
                     }
+                    if (data == -4)
+                    {
+                        return Ok(new { success = false, message = lang.This_tax_is_linked_with_items});
+                    }
+
                 }
                 else
                 {
