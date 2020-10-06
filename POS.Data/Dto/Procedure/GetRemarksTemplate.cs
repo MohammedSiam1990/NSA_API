@@ -10,6 +10,6 @@ namespace POS.Data.Dto.Procedure
         {
 
         }
-        public string RemarksTemplateData { get; set; }
+        public string Data { get; set; }
     }
 }
