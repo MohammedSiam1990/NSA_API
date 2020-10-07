@@ -43,7 +43,7 @@ namespace POS.Data.Repository
                 try
                 {
                     string Sql = "EXEC GetRemarksTemplateData @BrandID";
-                    var data = DbContext.GetRemarksTemplate.FromSqlRaw(Sql, new SqlParameter("@BrandID", BrandID)).AsEnumerable().FirstOrDefault().Data;
+                    var data = DbContext.JsonData.FromSqlRaw(Sql, new SqlParameter("@BrandID", BrandID)).AsEnumerable().FirstOrDefault().Data;
 
                     return data.ToString();
                 }

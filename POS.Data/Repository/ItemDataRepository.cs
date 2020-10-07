@@ -11,7 +11,7 @@ using System.Text;
 
 namespace POS.Data.Repository
 {
-    public class ItemDataRepository : Repository<GetItems>, IItemDataRepository
+    public class ItemDataRepository : Repository<JsonData>, IItemDataRepository
     {
         public ItemDataRepository(IDatabaseFactory databaseFactory)
         : base(databaseFactory)
@@ -27,8 +27,8 @@ namespace POS.Data.Repository
                 try
                 {
                     string Sql = "EXEC GetItems @BrandID,@ImageURL";
-                    var data = DbContext.GetItems.FromSqlRaw(Sql, new SqlParameter("@BrandID", BrandID),
-                        new SqlParameter("@ImageURL", ImageURL ?? (object)DBNull.Value)).AsEnumerable().FirstOrDefault().ItemData;
+                    var data = DbContext.JsonData.FromSqlRaw(Sql, new SqlParameter("@BrandID", BrandID),
+                        new SqlParameter("@ImageURL", ImageURL ?? (object)DBNull.Value)).AsEnumerable().FirstOrDefault().Data;
 
                     return data.ToString();
                 }

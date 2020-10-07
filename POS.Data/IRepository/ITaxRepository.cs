@@ -9,6 +9,6 @@ namespace POS.Data.IRepository
     public interface ITaxRepository
     {
         int SaveProcTax(Tax tax);
-        List<GetTaxes> GetProcTaxes(int CompanyID);
+        string GetProcTaxes(int CompanyID);
     }
 }

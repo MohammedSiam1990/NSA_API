@@ -7,6 +7,6 @@ namespace POS.Service.IService
     public interface ITaxService
     {
         int SaveProcTax(Tax tax);
-        List<GetTaxes> GetProcTaxes(int CompanyID);
+        string GetProcTaxes(int CompanyID);
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using POS.Data.DataContext;
 using POS.Data.Dto;
+using POS.Data.Dto.Procedure;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
 using System;
@@ -10,7 +11,7 @@ using System.Linq;
 
 namespace POS.Data.Repository
 {
-    public class MobileDataRepository : Repository<GetMobileData>, IMobileDataRepository
+    public class MobileDataRepository : Repository<JsonData>, IMobileDataRepository
     {
 
         public MobileDataRepository(IDatabaseFactory databaseFactory)
@@ -29,7 +30,7 @@ namespace POS.Data.Repository
                     
                     string Sql = "EXEC Get_all_data_json @CompanyID,@BrandImageURL,@BranchImageURL,@ItemGroupImageURL,@ItemImageURL";
                     DbContext.Database.SetCommandTimeout(0);
-                     var data = DbContext.GetMobileData.FromSqlRaw(Sql,
+                     var data = DbContext.JsonData.FromSqlRaw(Sql,
                         new SqlParameter("@CompanyID", CompanyID),
                         new SqlParameter("@BrandImageURL", BrandImageURL),
                         new SqlParameter("@BranchImageURL", BranchImageURL),

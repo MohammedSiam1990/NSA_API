@@ -64,7 +64,7 @@ namespace POS.Data.Repository
                 try
                 {
                     string Sql = "EXEC GetBrands @CompanyID,@ImageURL";
-                    var data= DbContext.GetBrands.FromSql(Sql, new SqlParameter("@CompanyID", CompanyID),
+                    var data= DbContext.JsonData.FromSql(Sql, new SqlParameter("@CompanyID", CompanyID),
                                                        new SqlParameter("@ImageURL", ImageURL)).AsEnumerable().FirstOrDefault().Data;
                     return data.ToString();
                 }

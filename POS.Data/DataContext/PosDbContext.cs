@@ -8,7 +8,6 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Steander.Core.Entities;
-using POS.Data.Dto.Account;
 using POS.Data.Dto;
 using POS.Data.Dto.Procedure;
 using POS.Data.Entities;
@@ -40,35 +39,13 @@ namespace POS.Data.DataContext
 
 
         #region DbQuery Call Procedure
-        [Obsolete]
-        public virtual DbQuery<GetBranches> GetBranches { get; set; }
-        [Obsolete]
-        public virtual DbQuery<GetLookUp> GetLookups { get; set; }
-        [Obsolete]
-        public virtual DbQuery<GetRemarksTemplate> GetRemarksTemplate { get; set; }
 
-        [Obsolete]
-        public virtual DbQuery<GetItems> GetItems { get; set; }
         [Obsolete]
         public virtual DbQuery<ReturnResult> ReturnResult { get; set; }
-        [Obsolete]
-        public virtual DbQuery<GetMobileData> GetMobileData { get; set; }
-        [Obsolete]
-        public virtual DbQuery<GetUOMName> GetUOMName { get; set; }
+
 
         [Obsolete]
-        public virtual DbQuery<GetAllDataJsonByBrandID> GetAllDataJsonByBrandID { get; set; }
-
-        [Obsolete]
-        public virtual DbQuery<DeleteRecord> DeleteRecord { get; set; }
-
-        [Obsolete]
-        public virtual DbQuery<GetBrands> GetBrands { get; set; }
-
-        [Obsolete]
-        public virtual DbQuery<GetItemGroups> GetProcItemGroups { get; set; }
-        [Obsolete]
-        public virtual DbQuery<GetTaxes> GetTaxes { get; set; }
+        public virtual DbQuery<JsonData> JsonData { get; set; }
 
         #endregion
 

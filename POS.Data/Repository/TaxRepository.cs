@@ -20,15 +20,16 @@ namespace POS.Data.Repository
         }
 
         [Obsolete]
-        public List<GetTaxes> GetProcTaxes(int CompanyID)
+        public string GetProcTaxes(int CompanyID)
         {
             using (var DbContext = new PosDbContext())
             {
                 try
                 {
                     string Sql = "EXEC GetTax @CompanyID";
-                    return DbContext.GetTaxes.FromSql(Sql, new SqlParameter("@CompanyID", CompanyID)
-                                                           ).ToList();
+                    var data= DbContext.JsonData.FromSql(Sql, new SqlParameter("@CompanyID", CompanyID)
+                                                           ).AsEnumerable().FirstOrDefault().Data;
+                    return data.ToString();
                 }
                 catch (Exception ex)
                 {

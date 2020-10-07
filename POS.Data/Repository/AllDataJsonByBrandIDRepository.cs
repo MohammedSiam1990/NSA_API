@@ -11,7 +11,7 @@ using System.Text;
 
 namespace POS.Data.Repository
 {
-    public class AllDataJsonByBrandIDRepository : Repository<GetAllDataJsonByBrandID>, IAllDataJsonByBrandIDRepository
+    public class AllDataJsonByBrandIDRepository : Repository<JsonData>, IAllDataJsonByBrandIDRepository
     {
         public AllDataJsonByBrandIDRepository(IDatabaseFactory databaseFactory)
         : base(databaseFactory)
@@ -28,7 +28,7 @@ namespace POS.Data.Repository
                 try
                 {
                     string Sql = "EXEC Get_all_data_json_by_brandID @BrandID,@BrandImageURL,@BranchImageURL,@ItemGroupImageURL";
-                    var data = DbContext.GetAllDataJsonByBrandID.FromSqlRaw(Sql,
+                    var data = DbContext.JsonData.FromSqlRaw(Sql,
                         new SqlParameter("@BrandID", BrandID),
                         new SqlParameter("@BrandImageURL", BrandImageURL),
                         new SqlParameter("@BranchImageURL", BranchImageURL),

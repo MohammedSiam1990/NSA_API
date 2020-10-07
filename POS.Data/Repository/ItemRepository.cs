@@ -45,8 +45,8 @@ namespace POS.Data.Repository
                 try
                 {
                     string Sql = "EXEC GetItems @BrandID,@ImageURL";
-                    var data = DbContext.GetItems.FromSqlRaw(Sql, new SqlParameter("@BrandID", BrandID),
-                        new SqlParameter("@ImageURL", ImageURL ?? (object)DBNull.Value)).AsEnumerable().FirstOrDefault().ItemData;
+                    var data = DbContext.JsonData.FromSqlRaw(Sql, new SqlParameter("@BrandID", BrandID),
+                        new SqlParameter("@ImageURL", ImageURL ?? (object)DBNull.Value)).AsEnumerable().FirstOrDefault().Data;
 
                     return data.ToString();
                 }
@@ -137,7 +137,7 @@ namespace POS.Data.Repository
                 {
                     string Sql = "EXEC Get_UOM_Name @BrandID";
                     DbContext.Database.SetCommandTimeout(0);
-                    var data = DbContext.GetUOMName.FromSqlRaw(Sql,
+                    var data = DbContext.JsonData.FromSqlRaw(Sql,
                        new SqlParameter("@BrandID", BrandID)).AsEnumerable().FirstOrDefault().Data;
 
                     return data.ToString();

@@ -1,7 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using POS.Data.DataContext;
-using POS.Data.Dto.Account;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
 using POS.Entities;
@@ -60,7 +59,7 @@ namespace POS.Data.Repository
         }
 
         [Obsolete]
-        public List<GetItemGroups> GetProcItemGroups(int BrandID, string ImageName)
+        public string GetProcItemGroups(int BrandID, string ImageName)
         {
             try
             {
@@ -69,9 +68,10 @@ namespace POS.Data.Repository
                 {
 
                     string Sql = "EXEC GetItemGroups @BrandID,@ImageURL";
-                    return DbContext.GetProcItemGroups.FromSql(Sql, new SqlParameter("@BrandID", BrandID),
+                    var data= DbContext.JsonData.FromSql(Sql, new SqlParameter("@BrandID", BrandID),
                                                                   new SqlParameter("@ImageURL", ImageName)
-                                                           ).ToList();
+                                                           ).AsEnumerable().FirstOrDefault().Data;
+                    return data.ToString();
                 }
             }
             catch (Exception e)

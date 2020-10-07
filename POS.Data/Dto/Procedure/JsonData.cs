@@ -4,12 +4,13 @@ using System.Text;
 
 namespace POS.Data.Dto.Procedure
 {
-   public partial class GetRemarksTemplate
+    public partial class JsonData
     {
-        public GetRemarksTemplate()
+        public JsonData()
         {
 
         }
-        public string Data { get; set; }
+
+        public string  Data { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace POS.Service.Services
             return PosService.taxRepository.SaveProcTax(tax);
         }
 
-        public List<GetTaxes> GetProcTaxes(int CompanyID)
+        public string GetProcTaxes(int CompanyID)
         {
             return PosService.taxRepository.GetProcTaxes(CompanyID);
         }
