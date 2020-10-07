@@ -28,12 +28,12 @@ namespace POS.Data.Repository
                 {
                     string Sql = "EXEC DeleteRecords @TableNme,@TableKey,@RowID,@DeletedBy";
 
-                    int result = DbContext.ReturnResult.FromSqlRaw(Sql, new object[] {
+                    int result = DbContext.Database.ExecuteSqlCommand(Sql, new object[] {
                                                 new SqlParameter("@TableNme", TableNme),
                                                 new SqlParameter("@TableKey"  ,TableKey),
                                                 new SqlParameter("@RowID" ,RowID ),
                                                 new SqlParameter("@DeletedBy" ,DeletedBy ),
-                                            }).AsEnumerable().FirstOrDefault().ReturnValue;
+                                            });
 
                     return result;
                 }
