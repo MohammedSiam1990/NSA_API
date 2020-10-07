@@ -264,6 +264,9 @@
   <data name="This_tax_is_linked_with_items" xml:space="preserve">
     <value>This tax is linked with the items please disconnect the link</value>
   </data>
+  <data name="This_user_not_authorized_to_login" xml:space="preserve">
+    <value>This user not authorized to login</value>
+  </data>
   <data name="To_reset_your_password_click" xml:space="preserve">
     <value>To reset your password click</value>
   </data>

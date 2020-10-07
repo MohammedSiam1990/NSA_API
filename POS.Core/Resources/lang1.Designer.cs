@@ -502,6 +502,15 @@ namespace POS.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This user not authorized to login.
+        /// </summary>
+        public static string This_user_not_authorized_to_login {
+            get {
+                return ResourceManager.GetString("This_user_not_authorized_to_login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To reset your password click.
         /// </summary>
         public static string To_reset_your_password_click {

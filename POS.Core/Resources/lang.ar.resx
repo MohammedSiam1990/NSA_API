@@ -267,6 +267,9 @@
   <data name="This_tax_is_linked_with_items" xml:space="preserve">
     <value>هذه الضريبة مرتبطة مع عناصر الرجاء فك الأرتباط</value>
   </data>
+  <data name="This_user_not_authorized_to_login" xml:space="preserve">
+    <value>هذا المستخدم غير مصرح له بتسجيل الدخول</value>
+  </data>
   <data name="To_reset_your_password_click" xml:space="preserve">
     <value>لإسترجاع كلمة المرور اضغط</value>
   </data>

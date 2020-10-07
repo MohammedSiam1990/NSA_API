@@ -271,6 +271,16 @@ namespace Pos.Service
                     };
                 }
 
+                if (user.UserType != model.UserType)
+                {
+                    return new LoginResponseDto
+                    {
+                        message = lang.This_user_not_authorized_to_login,
+                        success = false
+                    };
+                }
+
+
                 var result = await _userManger.CheckPasswordAsync(user, model.Password);
 
                 if (!result)
