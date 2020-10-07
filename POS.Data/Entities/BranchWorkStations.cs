@@ -10,6 +10,7 @@ namespace POS.Data.Entities
         [Key]
         public int BranchWorkstationID { get; set; }
         public int BranchID { get; set; }
+        public int CompanyID { get; set; }
         public string WorkstationName { get; set; }
         public string Serial { get; set; }
         public string Mac { get; set; }
