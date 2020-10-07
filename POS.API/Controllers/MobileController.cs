@@ -111,9 +111,9 @@ namespace POS.API.Controllers
             {
                 var data = AllDataService.UpdateSerialNumber(CompanyID, Serial, Mac);
 
-                if (data == 1)
+                if (data >= 1)
                 {
-                    return Ok(new { success = true, message = "" });
+                    return Ok(new { success = true, message = "",WorkStationID=data });
                 }
                 else if (data == -2)
                 {
