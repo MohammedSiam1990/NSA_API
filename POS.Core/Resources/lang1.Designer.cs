@@ -466,6 +466,33 @@ namespace POS.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This serial is related to another company, you can&apos;t use it.
+        /// </summary>
+        public static string This_serial_is_related_to_another_company_you_can_t_use_it {
+            get {
+                return ResourceManager.GetString("This_serial_is_related_to_another_company_you_can\'t_use_it", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This serial is used by another workstation.
+        /// </summary>
+        public static string This_serial_is_used_by_another_workstation {
+            get {
+                return ResourceManager.GetString("This_serial_is_used_by_another_workstation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This serial number does not exists.
+        /// </summary>
+        public static string This_serial_number_does_not_exists {
+            get {
+                return ResourceManager.GetString("This_serial_number_does_not_exists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This tax is linked with the items please disconnect the link.
         /// </summary>
         public static string This_tax_is_linked_with_items {

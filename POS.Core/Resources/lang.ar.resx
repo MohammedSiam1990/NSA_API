@@ -255,6 +255,15 @@
   <data name="This_Email_doesnt_exist" xml:space="preserve">
     <value>هذا البريد الإلكتروني غير موجود</value>
   </data>
+  <data name="This_serial_is_related_to_another_company_you_can't_use_it" xml:space="preserve">
+    <value>الرقم التسلسلي المدخل مرتبط مع شركة اخرى،لا يمكنك استخدامه</value>
+  </data>
+  <data name="This_serial_is_used_by_another_workstation" xml:space="preserve">
+    <value>الرقم التسلسلي المدخل مستخدم من قبل محطة عمل اخرى</value>
+  </data>
+  <data name="This_serial_number_does_not_exists" xml:space="preserve">
+    <value>هذا الرقم التسلسلي غير موجود</value>
+  </data>
   <data name="This_tax_is_linked_with_items" xml:space="preserve">
     <value>هذه الضريبة مرتبطة مع عناصر الرجاء فك الأرتباط</value>
   </data>

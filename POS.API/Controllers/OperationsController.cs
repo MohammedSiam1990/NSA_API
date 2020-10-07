@@ -23,17 +23,15 @@ namespace POS.API.CORE.Controllers
     {
         private IlookUpService loockUpService;
         private IDeleteRecordService DeleteRecord;
-        private IMobileDataService AllDataService;
         private ImagesPath imagesPath;
         private Setting Setting;
         private IAllDataJsonByBrandIDService AllDataJsonByBrandIDService;
 
 
-        public OperationsController(IlookUpService _loockUpService, ImagesPath _imagesPath, IMobileDataService _AllDataService, IDeleteRecordService _DeleteRecord,
+        public OperationsController(IlookUpService _loockUpService, ImagesPath _imagesPath, IDeleteRecordService _DeleteRecord,
             Setting _Setting, IAllDataJsonByBrandIDService _AllDataJsonByBrandIDService)
         {
             loockUpService = _loockUpService;
-            AllDataService = _AllDataService;
             imagesPath = _imagesPath;
             DeleteRecord = _DeleteRecord;
             Setting = _Setting;
@@ -122,33 +120,7 @@ namespace POS.API.CORE.Controllers
 
 
         }
-        [DisableRequestSizeLimit]
-        [HttpGet("GetMobileData")]
-        public IActionResult GetMobileData(int CompanyID)
-        {
 
-            try
-            {
-                var data = AllDataService.GetMobileData(CompanyID, imagesPath.Brand, imagesPath.Branch, imagesPath.ItemGroup,imagesPath.Item);
-
-                if (data == null)
-                {
-                    return Ok(new { success = false, message = lang.No_data_available });
-                }
-                else
-                {
-                    return Ok(new { success = true, message = "", datalist = JsonConvert.DeserializeObject(data) });
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionError.SaveException(ex);
-
-            }
-            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
-
-
-        } 
         [HttpGet("GetAllDataJsonByBrandID")]
         public IActionResult GetAllDataJsonByBrandID(int BrandID)
         {
