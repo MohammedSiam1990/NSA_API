@@ -252,6 +252,15 @@
   <data name="This_Email_doesnt_exist" xml:space="preserve">
     <value>This Email doesnt exist</value>
   </data>
+  <data name="This_serial_is_related_to_another_company_you_can't_use_it" xml:space="preserve">
+    <value>This serial is related to another company, you can't use it</value>
+  </data>
+  <data name="This_serial_is_used_by_another_workstation" xml:space="preserve">
+    <value>This serial is used by another workstation</value>
+  </data>
+  <data name="This_serial_number_does_not_exists" xml:space="preserve">
+    <value>This serial number does not exists</value>
+  </data>
   <data name="This_tax_is_linked_with_items" xml:space="preserve">
     <value>This tax is linked with the items please disconnect the link</value>
   </data>
