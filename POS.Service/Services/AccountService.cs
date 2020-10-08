@@ -240,7 +240,7 @@ namespace Pos.Service
         {
             try
             {
-                var user = await _userManger.FindByEmailAsync(model.Username);
+                var user = await _userManger.FindByNameAsync(model.Username);
                 if (user == null)
                 {
                     return new LoginResponseDto
@@ -381,7 +381,6 @@ namespace Pos.Service
                 var Resetcode = await _userManger.GeneratePasswordResetTokenAsync(user);
 
                 var callbackUrl = emailConfig.AppUrl + "?Resetcode=" + Resetcode + "&Lang=" + Lang;
-
                 //var Body = lang.To_reset_your_password_click + "<a href=\"" + callbackUrl + "\"> " + lang.Here + "</a>";
                 var Subject = lang.Reset_your_password;
                 bool isMessageSent = false;
