@@ -1,9 +1,12 @@
-﻿using POS.API.Helpers;
+﻿using Microsoft.EntityFrameworkCore;
+using POS.API.Helpers;
+using POS.Data.DataContext;
 using POS.Data.Entities;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace POS.Data.Repository
@@ -27,6 +30,26 @@ namespace POS.Data.Repository
             catch (Exception ex)
             {
                 throw new AppException(ex.Message);
+            }
+        }
+
+        [Obsolete]
+        public string GetPendingWorkStations()
+        {
+            using (var DbContext = new PosDbContext())
+            {
+                try
+                {
+                    string Sql = "EXEC GetPendingWorkStations";
+                    var data = DbContext.JsonData.FromSql(Sql).AsEnumerable().FirstOrDefault().Data;
+                    return data.ToString();
+                }
+                catch (Exception ex)
+                {
+                    Exceptions.ExceptionError.SaveException(ex);
+                }
+                return null;
+
             }
         }
 
