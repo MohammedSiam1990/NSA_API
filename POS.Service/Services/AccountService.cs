@@ -305,22 +305,42 @@ namespace Pos.Service
                     signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256));
 
                 string tokenAsString = new JwtSecurityTokenHandler().WriteToken(token);
-                var Company = CompaniesService.GetCompany(user.CompanyId);
-
-
-                return new LoginResponseDto
+                Companies Company =null;
+                if (user.CompanyId != null)
                 {
-                    UserId = user.Id,
-                    UserName = user.UserName,
-                    Email = user.Email,
-                    Token = tokenAsString,
-                    message = "Login Successfully",
-                    status = true,
-                    companyId = user.CompanyId.ToString(),
-                    Name = user.Name,
-                    CompanyNameEn = Company.CompanyName,
-                    CompanyNameAr = Company.CompanyNameAr
-                };
+                    Company = CompaniesService.GetCompany(user.CompanyId.Value);
+                    return new LoginResponseDto
+                    {
+                        UserId = user.Id,
+                        UserName = user.UserName,
+                        Email = user.Email,
+                        Token = tokenAsString,
+                        message = "Login Successfully",
+                        status = true,
+                        companyId = user.CompanyId.ToString(),
+                        Name = user.Name,
+                        CompanyNameEn = Company.CompanyName,
+                        CompanyNameAr = Company.CompanyNameAr
+                    };
+
+
+                }
+                else if(user.CompanyId == null && user.UserType==2)
+                {
+                    return new LoginResponseDto
+                    {
+                        UserId = user.Id,
+                        UserName = user.UserName,
+                        Email = user.Email,
+                        Token = tokenAsString,
+                        message = "Login Successfully",
+                        status = true,
+                        Name = user.Name,
+                    };
+
+
+                }
+
             }
             catch (Exception ex)
             {
