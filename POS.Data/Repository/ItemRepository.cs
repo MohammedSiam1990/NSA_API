@@ -108,7 +108,7 @@ namespace POS.Data.Repository
         {
 
 
-            var item = GetById(e => e.ItemId != model.ItemId && e.StatusId != 3 && (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemName || e.MobileName == model.MobileName || e.MobileNameAr == model.MobileNameAr || e.ItemNum == model.ItemNum)
+            var item = GetById(e => e.ItemId != model.ItemId && e.StatusId != 3 && e.BrandId == model.BrandId && (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemName || e.MobileName == model.MobileName || e.MobileNameAr == model.MobileNameAr || e.ItemNum == model.ItemNum)
             );
 
             if (item == null) return 1;
