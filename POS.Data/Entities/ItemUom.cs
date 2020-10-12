@@ -20,7 +20,6 @@ namespace POS.Entities
         public bool? Purchase { get; set; }
         public decimal? Equivalent { get; set; }
         public long ItemId { get; set; }
-        public string SkuCode { get; set; }
         public virtual Item Item { get; set; }
         public virtual ICollection<Sku> Skus { get; set; }
     }
