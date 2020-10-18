@@ -39,7 +39,7 @@ namespace POS.API.Controllers
         }
 
         [HttpGet("GetMenu")]
-        public IActionResult GetMenu(int BrandID, string Lang = "en")
+        public IActionResult GetMenu( string Lang = "en")
         {
 
             try

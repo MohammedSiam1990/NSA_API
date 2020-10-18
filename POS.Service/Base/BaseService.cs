@@ -37,7 +37,8 @@ namespace POS.IService.Base
                                                    new RemarksTemplateDetailsRepository(databaseFactory),
                                                    new AllDataJsonByBrandIDRepository(databaseFactory),
                                                    new SkuRepository(databaseFactory),
-                                                   new BranchWorkStationsRepository(databaseFactory)
+                                                   new BranchWorkStationsRepository(databaseFactory),
+                                                   new MenuRepository (databaseFactory)
                                                 );
                 }
 
