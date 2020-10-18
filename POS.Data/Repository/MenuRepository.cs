@@ -26,7 +26,8 @@ namespace POS.Data.Repository
         {
             try
             {
-                var QMenu = base.Table() .Include(e => e.InverseMenuParent).ToList();
+                var QMenu = base.Table() .Include(e => e.InverseMenuParent)
+                    .ThenInclude(e=>e.InverseMenuParent).Where(e=>e.MenuParentId == null).ToList();
                 base.DbContext.Dispose();
                 base.DbContext = null;
                 return QMenu;
