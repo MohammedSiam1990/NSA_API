@@ -36,6 +36,9 @@ namespace POS.API.Helpers
             CreateMap<RemarksTemplateModel, RemarksTemplate>();
             CreateMap<BranchWorkStations, BranchWorkStationsModel>();
             CreateMap<BranchWorkStationsModel, BranchWorkStations>();
+            CreateMap<Menu, MenuModel>();
+            CreateMap<MenuModel, Menu>();
+
             
         }
     }
