@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -9,6 +10,7 @@ using Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Pos.IService;
 using POS.API.Models;
 using POS.Core.Resources;
 using POS.Data.Entities;
@@ -21,11 +23,15 @@ namespace POS.API.Controllers
     public class BranchWorkStationsController : ControllerBase
     {
         private IBranchWorkStationsService BranchWorkStationsService;
+        private IAccountService _accountService;
+
         private IMapper Mapper;
-        public BranchWorkStationsController(IBranchWorkStationsService _BranchWorkStationsService, IMapper mapper)
+        public BranchWorkStationsController(IAccountService accountService, IBranchWorkStationsService _BranchWorkStationsService, IMapper mapper)
         {
             BranchWorkStationsService = _BranchWorkStationsService;
             Mapper = mapper;
+            _accountService = accountService;
+
         }
 
         [HttpPost("SaveBranchWorkStations")]
@@ -37,14 +43,16 @@ namespace POS.API.Controllers
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
                 var branchWorkStations = Mapper.Map<BranchWorkStations>(model);
                 int data = BranchWorkStationsService.ValidateNameAlreadyExist(branchWorkStations);
-
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var user = _accountService.GetUserAsync(userId);
+                var userType = (user.Result.UserType);
                 if (data == 1)
                 {
                     if (branchWorkStations.BranchWorkstationID == 0)
                         BranchWorkStationsService.AddBranchWorkStations(branchWorkStations);
                     else
                     {
-                        BranchWorkStationsService.UpdateBranchWorkStations(branchWorkStations);
+                        BranchWorkStationsService.UpdateBranchWorkStations(branchWorkStations, userType);
                     }
                     return Ok(new { success = true, message = lang.Saved_successfully_completed });
                 }

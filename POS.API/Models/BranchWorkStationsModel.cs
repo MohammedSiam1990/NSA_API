@@ -15,8 +15,10 @@ namespace POS.API.Models
         public string Mac { get; set; }
         public int StatusID { get; set; }
         public string CreatedBy { get; set; }
-        public DateTime CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; }
         public string ApprovedBy { get; set; }
-        public DateTime ApprovedDate { get; set; }
+        public DateTime? ApprovedDate { get; set; }
+        public string ModifiedBy { get; set; }
+        public DateTime? LastModifyDate { get; set; }
     }
 }

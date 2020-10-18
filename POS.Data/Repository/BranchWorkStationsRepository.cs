@@ -53,12 +53,26 @@ namespace POS.Data.Repository
             }
         }
 
-        public void UpdateBranchWorkStations(BranchWorkStations branchWorkStations)
+        public void UpdateBranchWorkStations(BranchWorkStations branchWorkStations , int? UserType)
         {
             try
             {
-                Update(branchWorkStations);
-                PosDbContext.SaveChanges();
+                if (branchWorkStations.StatusID == 7 && UserType==2)
+                {
+                    branchWorkStations.ApprovedDate = DateTime.Now;
+                    branchWorkStations.Serial = Guid.NewGuid().ToString("D");
+                    Update(branchWorkStations);
+                    PosDbContext.SaveChanges();
+
+                }
+                else if((branchWorkStations.StatusID == 7 || branchWorkStations.StatusID == 6) && (UserType==1 || UserType==2))
+                {
+                    branchWorkStations.LastModifyDate = DateTime.Now;
+                    Update(branchWorkStations);
+                    PosDbContext.SaveChanges();
+
+                }
+
             }
             catch (Exception ex)
             {
@@ -85,7 +99,7 @@ namespace POS.Data.Repository
         {
 
             var branchWorkStations = GetById(e => e.BranchWorkstationID != model.BranchWorkstationID
-            && (e.WorkstationName == model.WorkstationName));
+            && (e.WorkstationName == model.WorkstationName) && e.StatusID != 3);
 
             if (branchWorkStations == null) return 1;
 
