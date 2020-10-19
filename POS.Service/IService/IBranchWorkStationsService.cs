@@ -13,7 +13,7 @@ namespace POS.Service.IService
         void AddBranchWorkStations(BranchWorkStations branchWorkStations);
         void UpdateBranchWorkStations(BranchWorkStations branchWorkStations,int? UserType);
         int ValidateNameAlreadyExist(BranchWorkStations branchWorkStations);
-        string GetWorkStations(int BranchID);
+        string GetWorkStations();
 
     }
 }

@@ -35,14 +35,14 @@ namespace POS.Data.Repository
         }
 
         [Obsolete]
-        public string GetWorkStations(int BranchID)
+        public string GetWorkStations()
         {
             using (var DbContext = new PosDbContext())
             {
                 try
                 {
-                    string Sql = "EXEC GetWorkStations @BranchID";
-                    var data = DbContext.JsonData.FromSql(Sql,new object[] { new SqlParameter("@BranchID", BranchID) }).AsEnumerable().FirstOrDefault().Data;
+                    string Sql = "EXEC GetWorkStations ";
+                    var data = DbContext.JsonData.FromSql(Sql).AsEnumerable().FirstOrDefault().Data;
                     return data.ToString();
                 }
                 catch (Exception ex)

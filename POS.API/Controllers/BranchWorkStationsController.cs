@@ -70,14 +70,14 @@ namespace POS.API.Controllers
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
         [HttpGet("GetWorkStations")]
-        public IActionResult GetWorkStations(int BranchID, string Lang = "en")
+        public IActionResult GetWorkStations( string Lang = "en")
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = BranchWorkStationsService.GetWorkStations(BranchID);
+                var data = BranchWorkStationsService.GetWorkStations();
                 if (data != null)
                 {
                     if (data.Count() == 0)
