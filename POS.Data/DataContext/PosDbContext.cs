@@ -61,7 +61,7 @@ namespace POS.Data.DataContext
         //public virtual DbSet<Country> Country { get; set; }
         //public virtual DbSet<Currency> Currency { get; set; }
         public virtual DbSet<ItemGroup> ItemGroup { get; set; }
-        //public virtual DbSet<Lookups> Lookups { get; set; }
+       
         //public virtual DbSet<MajorService> MajorService { get; set; }
         public virtual DbSet<Item> Item { get; set; }
         public virtual DbSet<ItemUom> ItemUom { get; set; }
@@ -69,6 +69,7 @@ namespace POS.Data.DataContext
         public virtual DbSet<RemarksTemplateDetails> RemarksTemplateDetails { get; set; }
         public virtual DbSet<RemarksTemplate> RemarksTemplate { get; set; }
         public virtual DbSet<BranchWorkStations> BranchWorkStations { get; set; }
+        public virtual DbSet<Menu> Menu { get; set; }
         #endregion
 
 
