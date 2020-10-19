@@ -16,9 +16,9 @@ namespace POS.Service.Services
             PosService.branchWorkStationsRepository.AddBranchWorkStations(branchWorkStations);
         }
 
-        public string GetPendingWorkStations()
+        public string GetWorkStations(int BranchID)
         {
-            return PosService.branchWorkStationsRepository.GetPendingWorkStations();
+            return PosService.branchWorkStationsRepository.GetWorkStations(BranchID);
         }
 
         public void UpdateBranchWorkStations(BranchWorkStations branchWorkStations, int? UserType)

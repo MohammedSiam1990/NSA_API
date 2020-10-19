@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using POS.API.Helpers;
 using POS.Data.DataContext;
 using POS.Data.Entities;
@@ -34,14 +35,14 @@ namespace POS.Data.Repository
         }
 
         [Obsolete]
-        public string GetPendingWorkStations()
+        public string GetWorkStations(int BranchID)
         {
             using (var DbContext = new PosDbContext())
             {
                 try
                 {
-                    string Sql = "EXEC GetPendingWorkStations";
-                    var data = DbContext.JsonData.FromSql(Sql).AsEnumerable().FirstOrDefault().Data;
+                    string Sql = "EXEC GetWorkStations @BranchID";
+                    var data = DbContext.JsonData.FromSql(Sql,new object[] { new SqlParameter("@BranchID", BranchID) }).AsEnumerable().FirstOrDefault().Data;
                     return data.ToString();
                 }
                 catch (Exception ex)

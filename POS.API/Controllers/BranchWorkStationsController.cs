@@ -69,15 +69,15 @@ namespace POS.API.Controllers
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
-        [HttpGet("GetPendingWorkStations")]
-        public IActionResult GetPendingWorkStations(string Lang = "en")
+        [HttpGet("GetWorkStations")]
+        public IActionResult GetWorkStations(int BranchID, string Lang = "en")
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = BranchWorkStationsService.GetPendingWorkStations();
+                var data = BranchWorkStationsService.GetWorkStations(BranchID);
                 if (data != null)
                 {
                     if (data.Count() == 0)

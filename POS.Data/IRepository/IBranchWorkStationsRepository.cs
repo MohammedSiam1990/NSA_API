@@ -12,6 +12,6 @@ namespace POS.Data.IRepository
         void UpdateBranchWorkStations(BranchWorkStations branchWorkStations, int? UserType);
         int ValidateNameAlreadyExist(BranchWorkStations branchWorkStations);
 
-        string GetPendingWorkStations();
+        string GetWorkStations(int BranchID);
     }
 }
