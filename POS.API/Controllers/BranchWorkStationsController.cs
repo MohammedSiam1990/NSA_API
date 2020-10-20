@@ -59,7 +59,7 @@ namespace POS.API.Controllers
                 else if (data == -1)
                     return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
                 else if (data == -2)
-                    return Ok(new { success = false, message = lang.English_name_already_exists, repeated = "branchWorkStationsName" });
+                    return Ok(new { success = false, message = lang.Name_already_exists, repeated = "branchWorkStationsName" });
             }
             catch (Exception ex)
             {

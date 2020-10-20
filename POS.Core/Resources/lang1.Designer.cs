@@ -331,6 +331,15 @@ namespace POS.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name already exists.
+        /// </summary>
+        public static string Name_already_exists {
+            get {
+                return ResourceManager.GetString("Name_already_exists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New password length should be 6 characters or more.
         /// </summary>
         public static string New_password_length_should_be_6_characters_or_more {
