@@ -160,6 +160,15 @@ namespace POS.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dear Client,your workstation.
+        /// </summary>
+        public static string Dear_Client_your_workstation {
+            get {
+                return ResourceManager.GetString("Dear_Client_your_workstation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deleted Faild.
         /// </summary>
         public static string Deleted_Faild {
@@ -444,6 +453,15 @@ namespace POS.Core.Resources {
         public static string Select_image_file_to_upload {
             get {
                 return ResourceManager.GetString("Select_image_file_to_upload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serila is :.
+        /// </summary>
+        public static string Serila_is {
+            get {
+                return ResourceManager.GetString("Serila_is", resourceCulture);
             }
         }
         

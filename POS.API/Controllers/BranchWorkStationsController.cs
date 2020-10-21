@@ -71,9 +71,10 @@ namespace POS.API.Controllers
                                 branchWorkStations.ApprovedDate = DateTime.Now;
                                 string serial= branchWorkStations.Serial = Guid.NewGuid().ToString("D");
                                 BranchWorkStationsService.UpdateBranchWorkStations(branchWorkStations);
-                                string Subject = "Serial Number";
-                                string Body = @"Your Serial Number :"+ serial;
-                                //string url = $"{emailConfig.AppUrl}/api/auth/confirmemail?userid={identityUser.Id}&token={validEmailToken}";
+                                string Subject = "workstation serial ";
+                                string Body =  lang.Dear_Client_your_workstation  + branchWorkStations.WorkstationName + lang.Serila_is + serial ;
+
+
                                 bool isMessageSent = _mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, emailConfig.EnableSsl, emailConfig.From, CreateUser.Result.Email, Subject, Body, emailConfig.From, emailConfig.Password, emailConfig.UseDefaultCredentials);
 
 

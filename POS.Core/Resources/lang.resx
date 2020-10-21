@@ -150,6 +150,9 @@
   <data name="Confirm_your_email" xml:space="preserve">
     <value>Confirm Your Email</value>
   </data>
+  <data name="Dear_Client_your_workstation" xml:space="preserve">
+    <value>Dear Client,your workstation</value>
+  </data>
   <data name="Deleted_Faild" xml:space="preserve">
     <value>Deleted Faild</value>
   </data>
@@ -245,6 +248,9 @@
   </data>
   <data name="Select_image_file_to_upload" xml:space="preserve">
     <value>Select image file to upload</value>
+  </data>
+  <data name="Serila_is" xml:space="preserve">
+    <value>Serila is :</value>
   </data>
   <data name="Size_limit" xml:space="preserve">
     <value>size limit</value>
