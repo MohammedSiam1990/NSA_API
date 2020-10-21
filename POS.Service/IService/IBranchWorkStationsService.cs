@@ -11,9 +11,9 @@ namespace POS.Service.IService
     {
         bool ValidateBranchWorkStations(BranchWorkStations branchWorkStations);
         void AddBranchWorkStations(BranchWorkStations branchWorkStations);
-        void UpdateBranchWorkStations(BranchWorkStations branchWorkStations,int? UserType);
+        void UpdateBranchWorkStations(BranchWorkStations branchWorkStations);
         int ValidateNameAlreadyExist(BranchWorkStations branchWorkStations);
-        string GetPendingWorkStations();
+        string GetWorkStations();
 
     }
 }

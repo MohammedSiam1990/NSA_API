@@ -9,9 +9,9 @@ namespace POS.Data.IRepository
     {
         bool ValidateBranchWorkStations(BranchWorkStations branchWorkStations);
         void AddBranchWorkStations(BranchWorkStations branchWorkStations);
-        void UpdateBranchWorkStations(BranchWorkStations branchWorkStations, int? UserType);
+        void UpdateBranchWorkStations(BranchWorkStations branchWorkStations);
         int ValidateNameAlreadyExist(BranchWorkStations branchWorkStations);
 
-        string GetPendingWorkStations();
+        string GetWorkStations();
     }
 }

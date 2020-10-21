@@ -16,14 +16,14 @@ namespace POS.Service.Services
             PosService.branchWorkStationsRepository.AddBranchWorkStations(branchWorkStations);
         }
 
-        public string GetPendingWorkStations()
+        public string GetWorkStations()
         {
-            return PosService.branchWorkStationsRepository.GetPendingWorkStations();
+            return PosService.branchWorkStationsRepository.GetWorkStations();
         }
 
-        public void UpdateBranchWorkStations(BranchWorkStations branchWorkStations, int? UserType)
+        public void UpdateBranchWorkStations(BranchWorkStations branchWorkStations)
         {
-            PosService.branchWorkStationsRepository.UpdateBranchWorkStations(branchWorkStations, UserType);
+            PosService.branchWorkStationsRepository.UpdateBranchWorkStations(branchWorkStations);
         }
 
         public bool ValidateBranchWorkStations(BranchWorkStations branchWorkStations)
