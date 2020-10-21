@@ -21,9 +21,9 @@ namespace POS.Service.Services
             return PosService.branchWorkStationsRepository.GetWorkStations();
         }
 
-        public void UpdateBranchWorkStations(BranchWorkStations branchWorkStations, int? UserType)
+        public void UpdateBranchWorkStations(BranchWorkStations branchWorkStations)
         {
-            PosService.branchWorkStationsRepository.UpdateBranchWorkStations(branchWorkStations, UserType);
+            PosService.branchWorkStationsRepository.UpdateBranchWorkStations(branchWorkStations);
         }
 
         public bool ValidateBranchWorkStations(BranchWorkStations branchWorkStations)

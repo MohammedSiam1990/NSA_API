@@ -106,10 +106,25 @@ namespace POS.Data.Repository
 
         public int ValidateNameAlreadyExist(Item model)
         {
+            var item = new Item();
+            if (model.MobileNameAr == "" && model.MobileName=="")
+            {
+                 item = GetById(e => e.ItemId != model.ItemId && e.StatusId != 3 && e.BrandId == model.BrandId && (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemName  || e.ItemNum == model.ItemNum));
+            }
+            else if(model.MobileNameAr == "")
+            {
+                item = GetById(e => e.ItemId != model.ItemId && e.StatusId != 3 && e.BrandId == model.BrandId && (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemName || e.MobileName == model.MobileName ||  e.ItemNum == model.ItemNum));
 
+            }
+            else if(model.MobileName == "")
+            {
+                item = GetById(e => e.ItemId != model.ItemId && e.StatusId != 3 && e.BrandId == model.BrandId && (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemName || e.ItemNum == model.ItemNum));
 
-            var item = GetById(e => e.ItemId != model.ItemId && e.StatusId != 3 && e.BrandId == model.BrandId && (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemName || e.MobileName == model.MobileName || e.MobileNameAr == model.MobileNameAr || e.ItemNum == model.ItemNum)
-            );
+            }
+            else
+            {
+                item = GetById(e => e.ItemId != model.ItemId && e.StatusId != 3 && e.BrandId == model.BrandId && (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemName || e.MobileName == model.MobileName || e.MobileNameAr == model.MobileNameAr || e.ItemNum == model.ItemNum));
+            }
 
             if (item == null) return 1;
 

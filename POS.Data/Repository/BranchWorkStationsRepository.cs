@@ -1,14 +1,11 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using POS.API.Helpers;
 using POS.Data.DataContext;
 using POS.Data.Entities;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace POS.Data.Repository
 {
@@ -19,6 +16,7 @@ namespace POS.Data.Repository
         {
 
         }
+        
 
         public void AddBranchWorkStations(BranchWorkStations branchWorkStations)
         {
@@ -54,25 +52,13 @@ namespace POS.Data.Repository
             }
         }
 
-        public void UpdateBranchWorkStations(BranchWorkStations branchWorkStations , int? UserType)
+        public void UpdateBranchWorkStations(BranchWorkStations branchWorkStations )
         {
             try
             {
-                if (branchWorkStations.StatusID == 7 && UserType==2)
-                {
-                    branchWorkStations.ApprovedDate = DateTime.Now;
-                    branchWorkStations.Serial = Guid.NewGuid().ToString("D");
                     Update(branchWorkStations);
                     PosDbContext.SaveChanges();
 
-                }
-                else if((branchWorkStations.StatusID == 7 || branchWorkStations.StatusID == 6) && (UserType==1 || UserType==2))
-                {
-                    branchWorkStations.LastModifyDate = DateTime.Now;
-                    Update(branchWorkStations);
-                    PosDbContext.SaveChanges();
-
-                }
 
             }
             catch (Exception ex)

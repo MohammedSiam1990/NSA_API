@@ -6,15 +6,19 @@ using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapper.Configuration;
+using EmailService;
 using Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Pos.IService;
+using POS.API.Helpers;
 using POS.API.Models;
 using POS.Core.Resources;
 using POS.Data.Entities;
 using POS.Service.IService;
+using POS.Service.Services;
 
 namespace POS.API.Controllers
 {
@@ -24,13 +28,18 @@ namespace POS.API.Controllers
     {
         private IBranchWorkStationsService BranchWorkStationsService;
         private IAccountService _accountService;
-
+        private IMailService _mailService;
         private IMapper Mapper;
-        public BranchWorkStationsController(IAccountService accountService, IBranchWorkStationsService _BranchWorkStationsService, IMapper mapper)
+        EmailConfiguration emailConfig;
+
+        public BranchWorkStationsController(IAccountService accountService
+    , IBranchWorkStationsService _BranchWorkStationsService, IMapper mapper, IMailService mailService, EmailConfiguration _emailConfig)
         {
             BranchWorkStationsService = _BranchWorkStationsService;
             Mapper = mapper;
             _accountService = accountService;
+            _mailService = mailService;
+            emailConfig = _emailConfig;
 
         }
 
@@ -45,14 +54,42 @@ namespace POS.API.Controllers
                 int data = BranchWorkStationsService.ValidateNameAlreadyExist(branchWorkStations);
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var user = _accountService.GetUserAsync(userId);
-                var userType = (user.Result.UserType);
+                var UserType = (user.Result.UserType);
+                var  CreateUser = _accountService.GetUserAsync(model.CreatedBy); 
+
                 if (data == 1)
                 {
                     if (branchWorkStations.BranchWorkstationID == 0)
                         BranchWorkStationsService.AddBranchWorkStations(branchWorkStations);
                     else
                     {
-                        BranchWorkStationsService.UpdateBranchWorkStations(branchWorkStations, userType);
+
+                        try
+                        {
+                            if (branchWorkStations.StatusID == 7 && UserType == 2)
+                            {
+                                branchWorkStations.ApprovedDate = DateTime.Now;
+                                string serial= branchWorkStations.Serial = Guid.NewGuid().ToString("D");
+                                BranchWorkStationsService.UpdateBranchWorkStations(branchWorkStations);
+                                string Subject = "Serial Number";
+                                string Body = @"Your Serial Number :"+ serial;
+                                //string url = $"{emailConfig.AppUrl}/api/auth/confirmemail?userid={identityUser.Id}&token={validEmailToken}";
+                                bool isMessageSent = _mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, emailConfig.EnableSsl, emailConfig.From, CreateUser.Result.Email, Subject, Body, emailConfig.From, emailConfig.Password, emailConfig.UseDefaultCredentials);
+
+
+                            }
+                            else if ((branchWorkStations.StatusID == 7 || branchWorkStations.StatusID == 6) && (UserType == 1 || UserType == 2))
+                            {
+                                branchWorkStations.LastModifyDate = DateTime.Now;
+                                BranchWorkStationsService.UpdateBranchWorkStations(branchWorkStations);
+
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new AppException(ex.Message);
+                        }
                     }
                     return Ok(new { success = true, message = lang.Saved_successfully_completed });
                 }
