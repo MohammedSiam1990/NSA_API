@@ -1,0 +1,104 @@
+<div class="mat-app-background">
+
+    <div class="fixed-topnav">
+        <div class="col-12 col-md-12 col-sm-12 ">
+            <div class=" select-account">
+                <i class="fa fa-globe" aria-hidden="true"></i>
+                <select #selectedLang (change)="switchLang(selectedLang.value)">
+                    <option *ngFor="let lang of translate.getLangs()" [value]="lang"
+                        [selected]="lang === translate.currentLang">
+                        {{lang|translate}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class=" row-direction1 loginpage">
+
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 accountformdisplay">
+            <div class="centering-div">
+
+                <div class="d-flex ">
+                    <div class="dropdown mr-1 mb-3 w-100">
+                        <div class="row d-flex justify-content-center  mb-1" style='direction: ltr;'>
+                            <div class="col-12 col-md-10 col-sm-10  d-flex justify-content-center">
+                                <div class="heading-login mb-3 ">
+                                    <img src="assets/images/arqami_logo.svg" alt="">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-direction1 mb-3 w-75 justify-content-center">
+                    <div class="col-md-12 ">
+                        <div class="form-login-container">
+                            <div class="container" style="padding:0">
+                                <div class="card-acount brand ">
+                                    <div class="card-body text-center">
+                                        <alert></alert>
+                                        <!-- <div class="alert alert-dismissible fade show alert-danger" role="alert"
+                                            id="ResultMessage">
+                                            <div id="ResultTxt">خطأ في اسم المستخدم أو كلمة السر</div>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div> -->
+                                        <div class="col-md-12 d-block">
+                                            <form class="loginFormAdmin form" [formGroup]="loginForm"
+                                                (ngSubmit)="login()">
+                                                <div class="text-left form-group mb-4">
+                                                    <label class="label-input-pos ">{{'userName'|translate}}</label>
+                                                    <input type="email" class="form-control input-sm mb-1"
+                                                        formControlName="username" nfNoSpaces>
+                                                    <control-messages [control]="loginForm.controls.username"
+                                                        [title]="'username'" [validationMessages]="validationMessages"
+                                                        [inputType]="'lg-input'">
+                                                    </control-messages>
+                                                </div>
+                                                <div class="form-group mb-4 ">
+                                                    <label class="label-input-pos ">{{'password'|translate}}</label>
+                                                    <input type="password" class="form-control input-sm mb-1"
+                                                        formControlName="password" />
+
+                                                    <control-messages [control]="loginForm.controls.password"
+                                                        [title]="'password'" [validationMessages]="validationMessages"
+                                                        [inputType]="'lg-input'"></control-messages>
+
+                                                </div>
+                                                <div class="form-group mb-6">
+                                                    <button type="submit" class="w-100 btn btn-lg  bg-lo "
+                                                        [disabled]="!loginForm.valid">{{'signIn'| translate}}</button>
+                                                </div>
+                                                <div class="form-group text-left ">
+                                                    <div class="row">
+                                                        <div class="col-6 col-md-6">
+                                                            <div class="checkbox checkbox-fill d-inline">
+                                                                <input type="checkbox" name="checkbox-fill-1"
+                                                                    formControlName="rememberMe">
+                                                                <label for="checkbox-fill-a1" class="cr ml-2">
+                                                                    {{'rememberMe' | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="col-6 col-md-6">
+                                                            <div class=" d-inline">
+                                                                <label class="w-100 text-right font-Light color_link"><a
+                                                                        (click)="showConfirmEmail()"
+                                                                        class="arqami-color">
+                                                                        {{'forgetPassword'|translate}}</a></label>
+                                                            </div>
+
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

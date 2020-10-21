@@ -1,0 +1,38 @@
+<app-modal-basic-two #basicModelTwo [contentHeight]="85" [modelType]="1" [disableAutoClose]="true">
+    <div class="app-modal-header modal-content model-forget ">
+        <h1 class="modal-title text-center ">{{'confirm_mail' | translate}}</h1>
+
+    </div>
+    <div class="app-modal-body modal-body">
+        <form class="form">
+            <div class="row">
+                <div class="col-md-11 m-auto">
+
+                    <h3 class="para-forget text-center m-0 mb-2 py-3" style="line-height: 1.3;">We have sent an email to your email address contains a Verification Code, please check your email (You may find our email in your Junk/Spam).
+                    </h3>
+                    <div class="form-group w-50 m-auto text-center">
+
+                        <input type="email" class="form-control form-control1 input-sm mb-1 text-center" placeholder=" # . # . # . # . # . # " maxlength="50" nfNoSpaces [(ngModel)]="confirmCode" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="para-forget text-center" (click)="verificationEmail()">
+                        <div class=" d-inline">
+                            <label class="w-100 text-center font-Light color_link text-blue"><a class="arqami-color">
+                  {{'Resend Verification Code '|translate}}</a></label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="app-modal-footer  modal-footer-forget justify-content-center">
+        <div class="col-md-12 mb-2">
+            <button type="button" class="btn btn1  btn-primary" (click)="emailConfirmedModel()">{{'Confirm '|translate}}</button>
+        </div>
+        <div class="col-md-12">
+            <button type="button" class="btn btn1  box-shadow-tran" (click)="hideModal()">{{'cancel'| translate}}
+      </button>
+        </div>
+    </div>
+</app-modal-basic-two>

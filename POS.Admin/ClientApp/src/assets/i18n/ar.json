@@ -1,0 +1,24 @@
+{
+  "password": "الرقم السرى",
+  "signIn":" تسجيل الدخول",
+  "rememberMe":"تذكرنى",
+  "signup":"تسجيل دخول",
+  "userName":"اسم المستخدم",
+  "forgetPassword":"هل نسيت كلمة السر؟",
+  "en":"انجليزى",
+  "ar":"عربى",
+  "Password_length":"يجب أن يكون طول كلمة المرور 6 أحرف أو أكثر",
+  "userName_Required_Message":"اسم المستخدم مطلوب",
+  "username_not_valid":"يرجى إدخال اسم المستخدم الصحيح (example@example.com)",
+  "Password_Required_Message":" يرجى ادخال كلمه المرور ",
+  "change_password":"تغير كلمه المرور",
+  "old_password":"كلمه المرور القديمه",
+  "new_password":"كلمه المرور الجديده",
+  "confirm_password":"تأكيد كلمه المرور",
+  "oldPassword_is_required":"يرجى ادخال كلمه المرور القديمه "  ,
+  "NewPassword_is_Required":"يرجى ادخال كلمه المرور الجديده",
+  "confirmPassword_required":"يرجى ادخال تاكيد كلمه المرور",
+  "confirmPassword_isMatching":"كلمة المرور وكلمة المرور التأكيدية غير متطابقين",
+  "dashboard":"الرسم البيانى"
+
+}

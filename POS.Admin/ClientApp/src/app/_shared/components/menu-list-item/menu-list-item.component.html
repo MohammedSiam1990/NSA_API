@@ -1,0 +1,20 @@
+<div id="sidebar" class="side-nav pos-sidebar " [ngClass]=" navService.isExpanded ? 'side-nav--show' : ''">
+    <div class="app-sidebar__inner mm-active" *ngFor="let item of menu ">
+        <ul class="vertical-nav-menu metismenu" id="mainMenu">
+            <li aria-disabled="true" class="app-sidebar__heading">{{item.menuKeyName}}</li>
+            <li *ngFor="let sub of item.inverseMenuParent let i=index" >
+                <a aria-disabled=" true " (click)="toggleSelection(sub)"><i class="{{sub.menuClassName}}"
+                        aria-disabled="true "></i>{{sub.menuKeyName}}<i
+                        class="metismenu-state-icon pe-7s-angle-down caret-left " *ngIf="sub.inverseMenuParent.length>0"
+                        ></i></a>
+                <ul class="mm-collapse" [ngClass]="{'mm-show':sub.selected  }"*ngIf="sub.inverseMenuParent.length>0">
+                    <li *ngFor="let subSub of sub.inverseMenuParent ">
+                        <a><i class="metismenu-icon pe-7s-shield "></i><img class="rounded-circle "
+                                src="http://pos.opos.me/assets/images/icon-svg/{{subSub.menuClassName}}"  aria-disabled="true " width="20 "
+                                height="25 ">{{subSub.menuKeyName}}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

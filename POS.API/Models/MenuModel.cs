@@ -9,6 +9,7 @@ namespace POS.API.Models
     {
         public int MenuId { get; set; }
         public string MenuKeyName { get; set; }
+        public string MenuKeyNameAr { get; set; }
         public int? MenuParentId { get; set; }
         public string MenuUrl { get; set; }
         public string MenuClassName { get; set; }
@@ -17,6 +18,7 @@ namespace POS.API.Models
         public int? MenuOrder { get; set; }
         public bool? Header { get; set; }
         public bool? Main { get; set; }
+        public int? MenuType { get; set; }
         public virtual ICollection<MenuModel> InverseMenuParent { get; set; }
     }
 }

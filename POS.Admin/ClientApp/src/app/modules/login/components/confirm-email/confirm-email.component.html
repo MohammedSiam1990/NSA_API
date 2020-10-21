@@ -1,0 +1,32 @@
+<app-modal-basic-two #basicModelTwo [contentHeight]="85" [modelType]="1">
+    <div class="app-modal-header modal-content model-forget">
+        <h1 class="modal-title text-center ">{{'Forget Password' | translate}}</h1>
+
+    </div>
+    <div class="app-modal-body p-3">
+        <form class="form" [formGroup]="form">
+            <div class="row">
+                <div class="col-md-11 m-auto">
+                    <div class="form-group  mb-3">
+                        <label class="label" for="">{{'Email'|translate}}</label>
+                        <input type="email" class="form-control form-control1 input-sm mb-1" maxlength="50" formControlName="email">
+                        <control-messages [control]="form.controls.email" [title]="'email'" [validationMessages]="validationMessages" [inputType]="'lg-input'">
+                        </control-messages>
+                    </div>
+                    <p class="para-forget text-center"> Enter your registered email address to</p>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+    <div class="app-modal-footer modal-footer modal-footer-forget moodel moodel justify-content-center">
+        <div class="col-md-12 mb-2">
+            <button type="button" class="btn btn1 btn-primary" (click)="verificationEmail()" [disabled]="!form.valid">send</button>
+        </div>
+        <div class="col-md-12">
+            <button type="button" class="btn btn1 box-shadow-tran" (click)="hideModal()" [routerLink]="['/login']">back
+        to login</button>
+        </div>
+    </div>
+</app-modal-basic-two>

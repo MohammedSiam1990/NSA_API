@@ -1,0 +1,24 @@
+{
+    "userName":"User Name",
+    "password":"Password",
+    "signIn":"Sign In",
+    "rememberMe":"Remember Me",
+    "forgetPassword":"Forget Password",
+    "en":"En",
+    "ar":"Ar",
+    "Password_length":"Password length should be 6 characters or more",
+    "userName_Required_Message":"UserName is required",
+    "username_not_valid":"Please enter valid email (example@example.com)",
+    "Password_Required_Message":"Password Is Required",
+    "change_password":"Change Password",
+    "old_password":"Old Password",
+    "new_password":"New Password",
+    "confirm_password":"Confirm Password",
+    "oldPassword_is_required":"Old Password is Required",
+    "NewPassword_is_Required":"New Password is Required",
+    "confirmPassword_required":"Confirm Password is required",
+    "confirmPassword_isMatching":"Your password and confirmation password do not match.",
+    "dashboard":"Dashboard"
+}
+
+    
