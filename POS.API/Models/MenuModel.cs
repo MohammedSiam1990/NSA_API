@@ -14,7 +14,6 @@ namespace POS.API.Models
         public string MenuUrl { get; set; }
         public string MenuClassName { get; set; }
         public string MenuImagePath { get; set; }
-        public string MenuKeyNameAr { get; set; }
         public int? StatusId { get; set; }
         public int? MenuOrder { get; set; }
         public bool? Header { get; set; }

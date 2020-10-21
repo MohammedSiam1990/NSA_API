@@ -21,8 +21,7 @@ namespace POS.Entities
         public int? MenuOrder { get; set; }
         public bool? Header { get; set; }
         public bool? Main { get; set; }
-        public string MenuKeyNameAr { get; set; }
-
+        public int? MenuType { get; set; }
         public virtual Menu MenuParent { get; set; }
         public virtual ICollection<Menu> InverseMenuParent { get; set; }
     }
