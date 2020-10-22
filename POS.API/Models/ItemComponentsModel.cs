@@ -16,7 +16,6 @@ namespace POS.API.Models
         public decimal? Qty { get; set; }
         public bool IsMain { get; set; }
         public bool IsBase { get; set; }
-        public int OrderID { get; set; }
         public string InsertedBy { get; set; }
         public DateTime CreateDate { get; set; }
     }
