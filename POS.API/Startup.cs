@@ -225,6 +225,7 @@ namespace POS.API.CORE
             services.AddScoped<IAllDataJsonByBrandIDService, AllDataJsonByBrandIDService>();
             services.AddScoped<IBranchWorkStationsService, BranchWorkStationsService>();
             services.AddScoped<IMenuService, MenuService>();
+            services.AddScoped<IItemComponentsService, ItemComponentsService>();
 
         }
 
