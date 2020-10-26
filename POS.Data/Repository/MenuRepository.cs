@@ -27,7 +27,7 @@ namespace POS.Data.Repository
             try
             {
                 var QMenu = base.Table() .Include(e => e.InverseMenuParent)
-                    .ThenInclude(e=>e.InverseMenuParent).Where(e=>e.MenuParentId == null).ToList();
+                    .ThenInclude(e=>e.InverseMenuParent).Where(e=>e.MenuParentId == null && e.MenuType==2 && e.StatusId!=3).ToList();
                 base.DbContext.Dispose();
                 base.DbContext = null;
                 return QMenu;
