@@ -15,5 +15,7 @@ namespace POS.Data.IRepository
         int ValidateNameAlreadyExist( Item model);
         string GetUOMName(int BrandID);
 
+
+
     }
 }

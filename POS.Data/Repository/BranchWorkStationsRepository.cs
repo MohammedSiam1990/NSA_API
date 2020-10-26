@@ -86,7 +86,7 @@ namespace POS.Data.Repository
         {
 
             var branchWorkStations = GetById(e => e.BranchWorkstationID != model.BranchWorkstationID
-            && (e.WorkstationName == model.WorkstationName) && e.StatusID != 3);
+            && (e.WorkstationName == model.WorkstationName)&&(e.BranchID==model.BranchID) && e.StatusID != 3);
 
             if (branchWorkStations == null) return 1;
 

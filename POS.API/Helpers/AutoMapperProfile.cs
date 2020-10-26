@@ -38,6 +38,8 @@ namespace POS.API.Helpers
             CreateMap<BranchWorkStationsModel, BranchWorkStations>();
             CreateMap<Menu, MenuModel>();
             CreateMap<MenuModel, Menu>();
+            CreateMap<ItemComponentsModel, ItemComponents>();
+            CreateMap<ItemComponents, ItemComponentsModel>();
 
             
         }
