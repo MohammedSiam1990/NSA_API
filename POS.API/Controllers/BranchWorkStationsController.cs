@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
-using AutoMapper.Configuration;
+﻿using AutoMapper;
 using EmailService;
 using Exceptions;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Pos.IService;
@@ -18,7 +9,11 @@ using POS.API.Models;
 using POS.Core.Resources;
 using POS.Data.Entities;
 using POS.Service.IService;
-using POS.Service.Services;
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading;
 
 namespace POS.API.Controllers
 {
@@ -55,7 +50,7 @@ namespace POS.API.Controllers
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var user = _accountService.GetUserAsync(userId);
                 var UserType = (user.Result.UserType);
-                var  CreateUser = _accountService.GetUserAsync(model.CreatedBy); 
+                var CreateUser = _accountService.GetUserAsync(model.CreatedBy);
 
                 if (data == 1)
                 {
@@ -69,10 +64,10 @@ namespace POS.API.Controllers
                             if (branchWorkStations.StatusID == 7 && UserType == 2)
                             {
                                 branchWorkStations.ApprovedDate = DateTime.Now;
-                                string serial= branchWorkStations.Serial = Guid.NewGuid().ToString("D");
+                                string serial = branchWorkStations.Serial = Guid.NewGuid().ToString("D");
                                 BranchWorkStationsService.UpdateBranchWorkStations(branchWorkStations);
                                 string Subject = "workstation serial ";
-                                string Body =  lang.Dear_Client_your_workstation  + branchWorkStations.WorkstationName + lang.Serila_is + serial ;
+                                string Body = lang.Dear_Client_your_workstation + branchWorkStations.WorkstationName + lang.Serila_is + serial;
 
 
                                 bool isMessageSent = _mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, emailConfig.EnableSsl, emailConfig.From, CreateUser.Result.Email, Subject, Body, emailConfig.From, emailConfig.Password, emailConfig.UseDefaultCredentials);
@@ -108,7 +103,7 @@ namespace POS.API.Controllers
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
         [HttpGet("GetWorkStations")]
-        public IActionResult GetWorkStations( string Lang = "en")
+        public IActionResult GetWorkStations(string Lang = "en")
         {
             try
             {
