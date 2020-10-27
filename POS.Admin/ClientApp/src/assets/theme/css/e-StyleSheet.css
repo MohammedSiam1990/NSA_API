@@ -8,14 +8,6 @@
     direction: ltr !important;
 }
 
-button,
-input,
-optgroup,
-select,
-textarea {
-    font-family: 'Lato', sans-serif !important;
-}
-
 
 /* new */
 
@@ -48,6 +40,15 @@ textarea {
     align-items: center;
 }
 
+.logout-mobile {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #sidebar .header {
     text-align: center;
 }
@@ -67,6 +68,17 @@ textarea {
     border-bottom: 1px solid rgba(255, 255, 255, 0.10);
     width: 170px;
     margin: 0 auto;
+}
+
+.k-grid tbody .k-button {
+    min-width: 40px;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.k-grid .k-button,
+.k-grid .k-grid-toolbar>* {
+    margin: .10em
 }
 
 .userArea {
@@ -347,7 +359,6 @@ label[for=MenuBarBranches].ie9 select {
     -ms-flex-pack: center;
     justify-content: center;
     margin-top: 15px;
-    width: 100%;
 }
 
 .chooseLang div {
@@ -361,13 +372,17 @@ label[for=MenuBarBranches].ie9 select {
     display: block;
     height: 48px;
     position: absolute;
-    opacity: 1;
     left: 48px;
     top: 0;
     -webkit-transition: 0.76s;
     -o-transition: 0.76s;
     transition: 0.76s;
     width: 48px;
+}
+
+.AR-lang {
+    background-image: url('../images/AR.png');
+    background-size: cover;
 }
 
 .k-animation-container,
@@ -382,7 +397,7 @@ label[for=MenuBarBranches].ie9 select {
 }
 
 .en-lang {
-    background: url('../../images/AR.png');
+    background: url('../images/EN.jpg');
     background-size: cover;
 }
 
@@ -754,7 +769,7 @@ label[for=MenuBarBranches].ie9 select {
 }
 
 .card-body {
-    padding: .25rem 0 !important;
+    padding: .25rem 0;
     padding-bottom: 0;
 }
 
@@ -1225,7 +1240,7 @@ button:focus {
     color: #fff;
 }
 
- :root {
+:root {
     --toggleHeight: 35px;
     --toggleWidth: 70px;
     --toggleGap: 2px;
@@ -1366,7 +1381,7 @@ select:focus {
     outline-offset: 0 !important;
 }
 
- :focus {
+:focus {
     outline: -webkit-focus-ring-color auto 0px;
 }
 
@@ -1546,7 +1561,7 @@ button:focus {
     border-color: rgba(10, 92, 128, 1);
 }
 
- :root {
+:root {
     --toggleHeight: 35px;
     --toggleWidth: 70px;
     --toggleGap: 2px;
@@ -1715,7 +1730,7 @@ a {
 }
 
 .Breadcrumb-title {
-    height: 74px;
+    height: 40px;
     background: #fff;
 }
 
@@ -1735,7 +1750,6 @@ a {
     color: rgba(10, 92, 128, 1);
     height: 100%;
     align-content: center;
-    margin-top: 63px;
 }
 
 .breadcrumb-item.active {
@@ -2012,6 +2026,10 @@ checkboxs  */
     display: none;
 }
 
+.k-grid tbody tr {
+    height: AUTO !important;
+}
+
 @media screen and (max-width: 800px) {
     .table-title {
         padding: 0px 10px;
@@ -2019,6 +2037,13 @@ checkboxs  */
     }
     .k-widget table {
         border: 0;
+    }
+    .k-grid tbody .k-button {
+        min-width: 60px;
+        display: inline-flex;
+        justify-content: center;
+        min-height: 30px;
+        font-size: 18px;
     }
     .table-title h2 {
         margin: 20px 0 0;
@@ -2031,19 +2056,16 @@ checkboxs  */
     .k-widget table tr {
         margin-bottom: 10px;
         display: block;
-        border-bottom: 2px solid #ddd;
-        border-radius: 20px;
     }
     .k-widget table tr td:last-child {
-        background-color: #313444;
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
+        background-color: #e3e6e8;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
     }
     .k-widget table tr td:nth-child(2) {
-        background-color: #313444;
-        color: #FFF;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
+        background-color: transparent;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
         font-weight: bold;
         padding-top: 1em;
     }
@@ -2495,6 +2517,12 @@ li {
         max-width: 100%;
         margin: 5.75rem auto;
     }
+    .modal-body {
+        overflow-x: hidden;
+        height: 100%;
+        overflow-y: scroll;
+        max-height: 90vh;
+    }
 }
 
 @media (min-width: 992px) {
@@ -2555,10 +2583,6 @@ li {
 .app-modal-footer {
     width: 50%;
     margin: 0 auto;
-}
-
-.basic.modal {
-    background: rgba(10, 92, 128, .5) !important;
 }
 
 .icon-margin {
@@ -2932,33 +2956,6 @@ a:not([href]):hover {
         height: 100%;
         width: 100%;
     }
-    #sidebar {
-       
-        min-width: 100%;
-        max-width: 100%;
-       
-    }
-
-    .side-nav--show {
-        transform: translateX(100%);
-        visibility: visible;
-    }
-    .side-nav {
-      
-        left: -100%;
-       
-    }
-    .main {
-        width: 100%;
-        transition: margin-left .3s ease;
-        max-width: 100%;
-    }
-
-    .vertical-nav-menu li a {
-       
-       transition: all 0s; 
-      
-    }
 }
 
 @media (max-width:600px) {
@@ -3217,7 +3214,7 @@ img {
     position: fixed;
     top: 60px;
     left: -250px;
-    background-color: #ffffff;
+    background-color: #fafbfc;
     overflow-x: hidden;
     visibility: hidden;
     transition: all .3s ease;
@@ -3235,20 +3232,36 @@ img {
     text-align: center;
 }
 
+.k-button {
+    background-image: none;
+}
+
+.k-button:hover,
+.k-button.k-state-hover {
+    background-image: none;
+}
+
+.k-button-icontext .k-icon,
+.k-button-icontext .k-image,
+.k-button-icontext .k-sprite {
+    margin: 2px;
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .main {
     width: auto;
     transition: margin-left .3s ease;
     max-width: 100%;
     height: 100%;
+    padding-top: 63px;
     position: relative;
 }
 
 .main--show {
     margin-left: 250px;
-}
-
-.main-content {
-    padding-top: 2.54237%;
 }
 
 .left-content img {
@@ -3538,12 +3551,34 @@ ul.navigation .divider {
     .heading-login {
         width: 190px;
     }
-}
-
-.en-lang {
-    display: block;
+    #sidebar {
+        min-width: 100%;
+        max-width: 100%;
+    }
+    .side-nav--show {
+        transform: translateX(100%);
+        visibility: visible;
+    }
+    .side-nav {
+        left: -100%;
+    }
+    .main {
+        width: 100%;
+        transition: margin-left .3s ease;
+        max-width: 100%;
+    }
+    .vertical-nav-menu li a {
+        transition: all 0s;
+    }
+    .w-75 {
+        width: 100% !important;
+    }
 }
 
 .AR-lang {
-    display: none !important;
+    display: block;
+}
+
+.en-lang {
+    display: none;
 }

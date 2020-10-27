@@ -11,8 +11,9 @@ import { AuthenticateModel } from '../../models/login-model';
 import { LoadingService } from 'src/app/_shared/services/loading.service';
 import { ConfirmEmailComponent } from '../confirm-email/confirm-email.component';
 import { ResentEmailComponent } from '../resent-email/resent-email.component';
-import { AuthService } from 'src/app/_shared/services/auth/authr.Service';
 import { AlertService } from 'src/app/_shared/services/alert.service';
+import { AuthService } from 'src/app/_shared/services/auth/authr.Service';
+
 
 @Component({
   selector: 'app-login',
@@ -131,5 +132,5 @@ export class LoginComponent implements OnInit {
   refresh(): void {
     window.location.reload();
   }
-  
+
 }
