@@ -1169,6 +1169,21 @@ img {
     background: white;
 }
 
+.card-body {
+    padding: .25rem 0!important;
+    padding-bottom: 0 !important;
+}
+
+.bg-lo {
+    background: rgba(10, 92, 128, 1)!important;
+    color: #fff !important;
+}
+
+.bg-lo:hover {
+    background: rgba(10, 92, 128, 0.9)!important;
+    color: #fff;
+}
+
 .hamburger span::before,
 .hamburger span::after {
     position: absolute;

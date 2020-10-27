@@ -17,7 +17,7 @@ export class LoginService {
     return this.http.post<loginTokenModel>('Auth/Login', login);
   }
 
-  reSendVerificationCode(model: VerificationEmailModel) {
+  sendEmail(model: VerificationEmailModel) {
     return this.http.post("Account/ReSendVerificationCode", model).pipe();
   }
 
