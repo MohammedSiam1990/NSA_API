@@ -148,11 +148,13 @@ namespace POS.API.CORE.Controllers
 
         }
         [HttpPost("DeleteRecord")]
-        public IActionResult DeleteRecords(string TableNme, string TableKey, int RowID, string DeletedBy)
+        public IActionResult DeleteRecords(string TableNme, string TableKey, int RowID, string DeletedBy, string Lang = "en")
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
             try
             {
-
                 var data = DeleteRecord.DeleteRecord(TableNme, TableKey, RowID, DeletedBy);
                 if (data != 1)
                 {

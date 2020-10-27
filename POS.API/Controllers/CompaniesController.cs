@@ -19,7 +19,7 @@ namespace POS.API.CORE.Controllers
     [Route("api/[controller]")]
     public class CompaniesController : ControllerBase
     {
-
+        
         private ImagesPath imagesPath;
 
         private ICompaniesService CompaniesService;

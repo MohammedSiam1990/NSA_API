@@ -1,3 +1,4 @@
+using EmailService;
 using System;
 using System.IO;
 using System.Net;
@@ -11,7 +12,7 @@ namespace Exceptions
         public static void SaveException(Exception ex, EmailConfiguration EmailSetting)
         {
             try
-            {   
+            {
                 var file_name = Path.Combine(@"LOG/log.txt");
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), file_name);
 
@@ -25,6 +26,8 @@ namespace Exceptions
                     stream.Close();
                 }
                 System.IO.File.WriteAllText(file_name, System.IO.File.ReadAllText(file_name) + DateTime.Now + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + Environment.NewLine);
+                //bool isMessageSent = mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, emailConfig.EnableSsl, emailConfig.From, identityUser.Email, Subject, Body, emailConfig.From, emailConfig.Password, emailConfig.UseDefaultCredentials);
+
                 SendEmailAsync();
             }
             catch (Exception e)

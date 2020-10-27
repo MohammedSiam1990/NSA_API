@@ -22,7 +22,7 @@ namespace POS.Data.Repository
 
         }
 
-        public List<Menu> GetMenu(int parentId)
+        public List<Menu> GetMenu()
         {
             try
             {
