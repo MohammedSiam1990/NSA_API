@@ -2150,6 +2150,12 @@ textarea.form-control.is-invalid {
     opacity: .65
 }
 
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+    background: #0a5c80;
+    color: #fff;
+}
+
 a.btn.disabled,
 fieldset:disabled a.btn {
     pointer-events: none
@@ -14923,6 +14929,7 @@ a.badge-alternate:focus {
 }
 
 .modal-dialog {
+    box-shadow: 0 0.76875rem 2.4875rem rgba(52, 58, 64, 0.3), 0 1.3375rem 1.70625rem rgba(52, 58, 64, 0.3), 0 0.55rem 0.53125rem rgba(0, 0, 0, 0.05), 0 0.225rem 0.4375rem rgba(52, 58, 64, 0.3);
     border-radius: .25rem
 }
 
@@ -23604,8 +23611,8 @@ a.fc-more:hover {
         opacity: 0;
         box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
         position: absolute;
-        right: 1%;
-        width: 98%;
+        right: 5%;
+        width: 90%;
         top: 0;
         transition: all .2s;
         background: #fff;
@@ -23649,7 +23656,7 @@ a.fc-more:hover {
         position: fixed !important;
         z-index: 50;
         right: 5% !important;
-        top: 22% !important;
+        top: 50% !important;
         width: 90% !important;
         transform: translateY(-50%) !important;
         min-width: 10px !important
@@ -23824,9 +23831,6 @@ a.fc-more:hover {
     }
     .slick-slider-sm .slick-slider .slick-next {
         left: 15px
-    }
-    .w-75 {
-        width: 100% !important;
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EmailService;
 using Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -29,17 +30,16 @@ namespace StanderApi.Controllers
         private IAccountService _accountService;
         //private IMailService _mailService;
         private readonly IMapper _mapper;
-        //private IConfiguration _configuration;
+        EmailConfiguration emailConfig;
         public AuthController(IAccountService accountService, UserManager<ApplicationUser> userManager,
-            //IMailService mailService,
+             EmailConfiguration _emailConfig,
             IMapper mapper
-            //IConfiguration configuration
             )
         {
             _accountService = accountService;
             //_mailService = mailService;
             _mapper = mapper;
-            //_configuration = configuration;
+            emailConfig = _emailConfig;
             _userManager = userManager;
 
         }
@@ -53,6 +53,7 @@ namespace StanderApi.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    model.AppUrl = emailConfig.AppUrl;
                     var result = await _accountService.RegisterUserAsync(model);
                     return Ok(result);
                 }
@@ -68,6 +69,30 @@ namespace StanderApi.Controllers
             return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
         }
         // /api/auth/login
+        [AllowAnonymous]
+        [HttpPost("RegisterAdmin")]
+        public async Task<IActionResult> RegisterAdminAsync([FromBody]RegisterViewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    model.AppUrl = emailConfig.AppUrlAdmin;
+                    var result = await _accountService.RegisterUserAsync(model);
+                    return Ok(result);
+                }
+                else
+                {
+                    return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+            }
+            return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+        }
+
         [AllowAnonymous]
         [HttpPost("Login")]
         public async Task<IActionResult> LoginAsync([FromBody]LoginViewModel model)

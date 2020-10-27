@@ -1,7 +1,14 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600&display=swap');
-* {
+﻿* {
     direction: rtl;
     font-family: 'Cairo', sans-serif;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: 'Cairo', sans-serif !important;
 }
 
 #wrapper {
@@ -292,7 +299,8 @@ ul.navigation .divider {
 .mat-h4,
 .mat-subheading-1,
 .mat-typography h4 {
-    font-family: 'Cairo', sans-serif;
+    font-family: 'Cairo', sans-serif !important;
+    ;
     font-size: 20px !important;
 }
 
@@ -414,21 +422,6 @@ ul.navigation .divider {
 .reg-color {
     background: rgba(10, 92, 128, 0.10);
     margin-top: 2px;
-}
-
-.k-grid tbody .k-button {
-    min-width: 40px;
-    display: inline-flex;
-    justify-content: center;
-}
-
-.k-grid .k-button,
-.k-grid .k-grid-toolbar>* {
-    margin: .10em
-}
-
-.k-grid tbody tr {
-    height: AUTO !important;
 }
 
 .accountformdisplay {
@@ -650,50 +643,6 @@ ul.navigation .divider {
     color: rgba(10, 92, 128, 1) !important;
     background-color: #f8f9fa00;
     transform: scale(1.04, 1.04);
-}
-
-.textbox1 {
-    position: relative;
-    outline: 0;
-    height: 32px;
-    width: 244px;
-    line-height: 32px;
-    padding: 0 10px !important;
-    background-color: rgba(255, 255, 255, 0.8) !important;
-    color: #212121 !important;
-    border: 0;
-    float: right;
-    -webkit-border-radius: 4px 0 0 4px;
-    border-radius: 4px 0 0 4px;
-}
-
-.textbox1:focus {
-    outline: 0;
-    background-color: #FFF;
-}
-
-.button1 {
-    outline: 0;
-    background: none;
-    background-color: rgba(38, 50, 56, 0.8);
-    height: 32px;
-    width: 32px;
-    text-align: center;
-    line-height: 32px;
-    border: 0;
-    color: #FFF;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: 14px;
-    text-rendering: auto;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-    transition: background-color .4s ease;
-    border-radius: 4px 0px 0px 4px;
-    padding: 0;
-    float: right;
-}
-
-.button1:hover {
-    background-color: rgba(0, 150, 136, 0.8);
 }
 
 .mat-nav-list {
@@ -1167,7 +1116,7 @@ img {
     position: fixed;
     top: 63px;
     right: -250px;
-    background-color: #fafbfc;
+    background-color: #ffffff;
     overflow-x: hidden;
     visibility: hidden;
     transition: all .3s ease;
@@ -1197,29 +1146,8 @@ img {
     margin-right: 250px;
 }
 
-.k-button {
-    background-image: none;
-    background-color: transparent;
-}
-
-.k-button:hover,
-.k-button.k-state-hover {
-    background-image: none;
-    background-color: transparent;
-}
-
-.k-button-icontext .k-icon,
-.k-button-icontext .k-image,
-.k-button-icontext .k-sprite {
-    margin: 2px;
-    float: right;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.k-grouping-header-flex>.k-indicator-container {
-    padding: 5px 12px 4px 8px;
+.main-content {
+    padding-top: 2.54237%;
 }
 
 .hamburger {
@@ -1601,7 +1529,7 @@ button:focus {
 }
 
 label[for=MenuBarBranches] select {
-    padding: 10px 6px 10px 50px;
+    padding: 4px 6px 3px 50px;
 }
 
 label[for=MenuBarBranches]::after {
@@ -1683,7 +1611,9 @@ a {
 }
 
 .Breadcrumb-title {
-    height: 50px;
+    height: 74px;
+    margin-top: 63px;
+    background: #fff;
 }
 
 .breadcrumb {
@@ -1709,9 +1639,8 @@ a {
 }
 
 .breadcrumb-item span {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 800;
-    vertical-align: middle;
 }
 
 .arqami-color {
@@ -1732,14 +1661,6 @@ a {
 span.language-label {
     font-size: 18px;
     font-weight: 500;
-}
-
-.btn-primary.active,
-.btn-primary:active,
-.btn-primary:focus,
-label-input-pos .btn-primary:hover {
-    background-color: rgba(10, 92, 128, 1) !important;
-    transform: scale(1.04, 1.04);
 }
 
 .ng-dropdown-panel .scroll-host {
@@ -2463,6 +2384,10 @@ a:not([href]) {
     margin: 0 auto;
 }
 
+.basic.modal {
+    background: rgba(10, 92, 128, .5) !important;
+}
+
 .spinner-three-bounce {
     width: 135px !important;
 }
@@ -2807,6 +2732,9 @@ input.search-field {
     .accountformdisplay {
         margin: 0px 0px 0 0 !important;
     }
+    .btn {
+        padding: .85rem 1.63rem !important;
+    }
     .heading-login {
         width: 190px;
     }
@@ -2903,33 +2831,34 @@ input.search-field {
     .para-dashboard p {
         font-size: 18px;
     }
+
     #sidebar {
+       
         min-width: 100%;
         max-width: 100%;
+       
     }
+
     .side-nav--show {
         transform: translateX(-100%);
         visibility: visible;
     }
     .side-nav {
+      
         right: -100%;
+       
     }
     .main {
         width: 100%;
         transition: margin-right .3s ease;
         max-width: 100%;
+       
     }
+
     .vertical-nav-menu li a {
-        transition: all 0s;
-    }
-    .w-75 {
-        width: 100% !important;
-    }
-    .modal-body {
-        overflow-x: hidden;
-        height: 100%;
-        overflow-y: scroll;
-        max-height: 90vh;
+       
+       transition: all 0s; 
+      
     }
 }
 
@@ -2968,6 +2897,9 @@ input.search-field {
     .card-body {
         padding: .5em;
         padding-top: 1rem;
+    }
+    .btn {
+        padding: .65rem 1.3rem !important;
     }
     .form-group {
         margin-bottom: 1.3rem !important;
@@ -3053,9 +2985,14 @@ input.search-field {
 }
 
 .AR-lang {
-    display: none;
+    background-image: url('../../images/EN.jpg');
+    background-size: cover;
 }
 
 .en-lang {
+    display: none !important;
+}
+
+.AR-lang {
     display: block;
 }

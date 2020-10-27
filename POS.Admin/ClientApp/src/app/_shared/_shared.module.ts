@@ -101,7 +101,6 @@ import { AlertComponent } from './components/alert/alert.component';
     ModalBasicTwoComponent,
     ResetPasswordComponent,
     AlertComponent
-    
   ],
   imports: [
     MatMenuModule,

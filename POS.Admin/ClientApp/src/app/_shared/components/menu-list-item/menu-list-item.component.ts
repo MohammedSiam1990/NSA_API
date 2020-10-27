@@ -44,7 +44,7 @@ export class MenuListItemComponent implements OnInit, OnDestroy {
     public menuService: MenuService,
     public authService: AuthService,
     private loadingService: LoadingService,
-    public translate: TranslateService,
+    private translate: TranslateService,
     public router: Router, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();

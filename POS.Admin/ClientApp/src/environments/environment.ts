@@ -8,7 +8,8 @@ export const environment = {
   virtualDirectory: "/",
   virtualDirectoryLanguage: "http://localhost:4200",
   TopicpageSize: 10,
-  ImgUrl: 'http://posapi.opos.me/uploads/'
+  ImgUrl: 'http://localhost:5000/uploads/'
+
 };
 /*
  * For easier debugging in development mode, you can import the following file

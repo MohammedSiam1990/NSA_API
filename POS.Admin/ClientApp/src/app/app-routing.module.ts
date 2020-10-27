@@ -13,10 +13,6 @@ const routes: Routes = [
     path: 'user', canActivateChild: [AuthGuard],
     loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule)
   },
-  {
-    path: 'work-station', canActivateChild: [AuthGuard],
-    loadChildren: () => import('./modules/work-stations/work-stations.module').then(m => m.WorkStationsModule)
-  },
   { path: '', canActivateChild: [AuthGuard], redirectTo: 'home', pathMatch: 'full' },
   { path: '**', canActivateChild: [AuthGuard], redirectTo: 'home', pathMatch: 'full' },
   {

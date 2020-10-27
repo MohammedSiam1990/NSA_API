@@ -9,19 +9,25 @@
         <div class="header__pane ml-auto show" style="display: block;">
             <div>
                 <button class="hamburger hamburger-x  button-bruger is-active">
-          <i class="menu-button-brguer fa fa-bars" aria-label="Menu"></i>
-        </button>
+                    <i class="menu-button-brguer fa fa-bars" aria-label="Menu"></i>
+                </button>
             </div>
         </div>
     </div>
-
+    <!--<div class="app-header__mobile-menu">
+            <div>
+                <button class="hamburger hamburger-x  button-bruger is-active">
+                    <i class="menu-button-brguer fa fa-bars" aria-label="Menu"></i>
+                </button>
+            </div>
+        </div>-->
     <div class="app-header__menu">
         <span>
-      <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
-        <span class="btn-icon-wrapper">
-          <i class="fa fa-ellipsis-v fa-w-6"></i>
-        </span>
-        </button>
+            <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                <span class="btn-icon-wrapper">
+                    <i class="fa fa-ellipsis-v fa-w-6"></i>
+                </span>
+            </button>
         </span>
     </div>
     <div class="app-header__content">
@@ -56,7 +62,8 @@
                             <div class="dropdown-menu dropdown-menu-right" (click)="showChangePass()">
                                 <button type="button" class="dropdown-item ">{{'change_password'| translate}}</button>
 
-
+                                <!--<h6 tabindex="-1" class="dropdown-header">Header</h6>-->
+                                <!--<div tabindex="-1" class="dropdown-divider"></div>-->
 
                             </div>
                         </div>
@@ -64,11 +71,11 @@
                             <div class="widget-heading" id="UserName">{{userName}}</div>
                             <div class="widget-subheading" id="CompanyName">{{companyNameEn}}</div>
                         </div>
-                        <div class="widget-content-right  ml-3">
-                            <button title="" type="button" class="btn-shadow  btn btn-primary " data-original-title="تسجيل خروج" (click)="logout()" style="    border-radius: 50%;
-">
-                <i class="fa text-white fa-sign-out "></i>
-              </button>
+                        <div class="widget-content-right header-user-info ml-3">
+                            <button title="" type="button" class="btn-shadow p-1 btn btn-primary btn-lg "
+                                data-original-title="تسجيل خروج" (click)="logout()">
+                                <i class="fa text-white fa-sign-out pr-1 pl-1"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
