@@ -7,6 +7,6 @@ namespace POS.Data.IRepository
 {
     public interface IMenuRepository
     {
-        List<Menu> GetMenu(int parentId);
+        List<Menu> GetMenu();
     }
 }
