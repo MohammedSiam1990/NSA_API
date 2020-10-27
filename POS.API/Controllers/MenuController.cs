@@ -46,7 +46,7 @@ namespace POS.API.Controllers
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
-                var Model = MenuService.GetMenu(0);
+                var Model = MenuService.GetMenu();
                 var data = Mapper.Map<List<MenuModel>>(Model);
                 if (data != null)
                 {
