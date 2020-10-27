@@ -41,11 +41,12 @@ export class DeleteWorkStationsComponent implements OnInit {
     this.basicModel.hide();
   }
 
-  userId:string;
+  userId: string;
   deleteWorkStations() {
     this.model.StatusID = 3;
+    var lang=this.translate.currentLang;
     this.userId = localStorage.getItem("userId");
-    this.workStationService.deleteWorkStations("BranchWorkStations","BranchWorkstationID",this.model.BranchWorkstationID,this.userId).subscribe(data => {
+    this.workStationService.deleteWorkStations("BranchWorkStations", "BranchWorkstationID", this.model.BranchWorkstationID, this.userId,lang).subscribe(data => {
       if (data.success) {
         this.onDeleted.emit();
         this.hideModal();

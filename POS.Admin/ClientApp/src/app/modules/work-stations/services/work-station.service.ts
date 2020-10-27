@@ -17,8 +17,8 @@ export class WorkStationService {
     return this.http.post<any>("BranchWorkStations/SaveBranchWorkStations?Lang=" + lang,model);
    }
 
-   deleteWorkStations(TableNme:string,TableKey:string,RowID:number,DeletedBy:string) {
-    return this.http.post<any>("Operations/DeleteRecord?" +'TableNme='+TableNme+'&'+'TableKey='+TableKey+'&'+'RowID='+RowID+'&'+'DeletedBy='+DeletedBy,null);
+   deleteWorkStations(TableNme:string,TableKey:string,RowID:number,DeletedBy:string,lang:string) {
+    return this.http.post<any>("Operations/DeleteRecord?" +'TableNme='+TableNme+'&'+'TableKey='+TableKey+'&'+'RowID='+RowID+'&'+'DeletedBy='+DeletedBy+'&'+'lang='+lang,null);
    }
  
 }

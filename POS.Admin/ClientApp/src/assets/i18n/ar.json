@@ -42,10 +42,16 @@
   "WorkStation":"محطات العمل المعلقة",
   "search_all_columns":"بحث......",
   "All":"الكل",
-  "no_records_available":"لا يوجد داتا",
+  "no_records_available":"لا يوجد بيانات",
   "itemsPage":"عناصر",
-  "of":"من"
-
+  "of":"من",
+  "yes":"نعم",
+  "email_is_required":"البريد الالكترونى مطلوب",
+  "email_not_valid":"يرجى إدخال البريد الإلكتروني الصحيح (example@example.com)",
+   "Email":"البريد الالكترونى",
+   "ReturnTo":"العوده الى ",
+   "Send":"ارسال",
+   "login":"تسجيل الدخول"
 
 
 }

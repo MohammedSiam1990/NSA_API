@@ -44,7 +44,13 @@
     "WorkStation":"Pending Workstations",
     "search_all_columns":"search......",
     "All":"All",
-    "no_records_available":"No Records Available"
+    "no_records_available":"No Records Available",
+    "email_is_required":"Email Is Required",
+    "email_not_valid":"Please enter valid email (example@example.com)",
+    "Email":"Email",
+    "ReturnTo":"ReturnTo",
+    "Send":"Send",
+    "login":"Login"
 }
 
     
