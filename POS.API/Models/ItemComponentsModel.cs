@@ -17,6 +17,6 @@ namespace POS.API.Models
         public bool IsMain { get; set; }
         public bool IsBase { get; set; }
         public string InsertedBy { get; set; }
-        public DateTime CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; }
     }
 }
