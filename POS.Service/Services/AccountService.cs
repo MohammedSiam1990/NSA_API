@@ -185,7 +185,7 @@ namespace Pos.Service
                     var User = await _userManger.FindByEmailAsync(model.Email);
 
                     string code = await this._userManger.GenerateEmailConfirmationTokenAsync(User);
-                    var callbackUrl = emailConfig.AppUrl + "?userId=" + User.Id + "&code=" + code + "&lang=" + model.Lang;
+                    var callbackUrl = model.AppUrl + "?userId=" + User.Id + "&code=" + code + "&lang=" + model.Lang;
 
 
                     //var Body = lang.Please_activate_your_account_by_clicking + "<a href=\"" + callbackUrl + "\"> " + lang.Here + "</a>";
