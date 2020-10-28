@@ -68,30 +68,6 @@ namespace StanderApi.Controllers
             }
             return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
         }
-        // /api/auth/login
-        [AllowAnonymous]
-        [HttpPost("RegisterAdmin")]
-        public async Task<IActionResult> RegisterAdminAsync([FromBody]RegisterViewModel model)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    model.AppUrl = emailConfig.AppUrlAdmin;
-                    var result = await _accountService.RegisterUserAsync(model);
-                    return Ok(result);
-                }
-                else
-                {
-                    return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionError.SaveException(ex);
-            }
-            return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
-        }
 
         [AllowAnonymous]
         [HttpPost("Login")]
@@ -201,7 +177,35 @@ namespace StanderApi.Controllers
                 if (string.IsNullOrEmpty(Email))
                     return NotFound();
 
-                var result = await _accountService.ForgetPasswordAsync(Email, Lang);
+                var result = await _accountService.ForgetPasswordAsync(Email, Lang,emailConfig.AppUrl);
+
+                if (result.success)
+                    return Ok(new { message = result.message, success = result.success });
+                else
+                    return Ok(new { message = result.message, success = result.success });
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+
+            }
+            return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+
+        }
+        // api/auth/ForgetPassword
+        [AllowAnonymous]
+        [HttpPost("ForgetPasswordAdmin")]
+        public async Task<IActionResult> ForgetPasswordAdmin(String Email, string Lang)
+        {
+            try
+            {
+                Lang = Utility.CheckLanguage(Lang);
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+                if (string.IsNullOrEmpty(Email))
+                    return NotFound();
+
+                var result = await _accountService.ForgetPasswordAsync(Email, Lang, emailConfig.AppUrlAdmin);
 
                 if (result.success)
                     return Ok(new { message = result.message, success = result.success });

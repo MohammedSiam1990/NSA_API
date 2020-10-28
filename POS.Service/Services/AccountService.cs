@@ -373,7 +373,7 @@ namespace Pos.Service
             return true;
         }
 
-        public async Task<UserManagerResponse> ForgetPasswordAsync(String Email, string Lang)
+        public async Task<UserManagerResponse> ForgetPasswordAsync(String Email, string Lang,string AppUrl)
         {
             try
             {
@@ -400,7 +400,7 @@ namespace Pos.Service
 
                 var Resetcode = await _userManger.GeneratePasswordResetTokenAsync(user);
 
-                var callbackUrl = emailConfig.AppUrl + "?Resetcode=" + Resetcode + "&Lang=" + Lang;
+                var callbackUrl = AppUrl + "?Resetcode=" + Resetcode + "&Lang=" + Lang;
                 //var Body = lang.To_reset_your_password_click + "<a href=\"" + callbackUrl + "\"> " + lang.Here + "</a>";
                 var Subject = lang.Reset_your_password;
                 bool isMessageSent = false;

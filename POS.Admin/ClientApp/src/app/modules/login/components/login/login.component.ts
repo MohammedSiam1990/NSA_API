@@ -70,10 +70,6 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  message: any;
-  showRestentEmail() {
-    this.resentEmailCom.show(this.message);
-  }
 
   username: string;
   lang: string;
@@ -106,8 +102,7 @@ export class LoginComponent implements OnInit {
         this.loadingService.hideLoading();
         this.businessException = errorsUtility.getBusinessException(err);
         if (err.error.emailConfirmedStatus == false) {
-          this.message = this.businessException.message;
-          this.showRestentEmail();
+
         }
       });
   }

@@ -30,6 +30,5 @@ namespace POS.Data.Dto
         public string ImageName { get; set; }
         public int CountryId { get; set; }
         public string AppUrl { get; set; }
-
     }
 }

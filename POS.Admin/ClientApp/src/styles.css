@@ -1434,6 +1434,10 @@
      -moz-osx-font-smoothing: grayscale;
  }
  
+ .pt-77 {
+     padding-top: 5.1rem !important;
+ }
+ 
  main,
  section {
      display: -webkit-box;
@@ -1726,7 +1730,7 @@
  }
  
  .arqami-color {
-     color: rgba(10, 92, 128, 1);
+     color: rgba(10, 92, 128, 1)!important;
  }
  
  .heading-company {

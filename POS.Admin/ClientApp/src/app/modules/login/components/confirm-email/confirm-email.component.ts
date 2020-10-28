@@ -61,7 +61,7 @@ export class ConfirmEmailComponent implements OnInit {
     // this.loginService.email = this.form.value.email;
     this.verificationEmailModel = this.form.value;
     this.loadingService.showLoading();
-    this.loginService.reSendVerificationCode(this.verificationEmailModel).subscribe(res => {
+    this.loginService.sendEmail(this.verificationEmailModel).subscribe(res => {
       // this.loadingService.hideLoading();
       this.form
       this.router.navigate(['/login/change-password']);

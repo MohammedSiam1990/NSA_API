@@ -8,6 +8,7 @@ export class AuthenticateModel {
     // Refresh_token: string;
 }
 export class VerificationEmailModel {
+    lang:string;
     email: string;
 }
 

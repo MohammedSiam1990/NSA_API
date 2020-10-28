@@ -7,10 +7,11 @@ import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { ResentEmailComponent } from './components/resent-email/resent-email.component';
 import { ConfirmVerificationCodeComponent } from './components/confirm-verification-code/confirm-verification-code.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, ConfirmEmailComponent, ForgetPasswordComponent, ResentEmailComponent, ConfirmVerificationCodeComponent],
+  declarations: [LoginComponent, ConfirmEmailComponent, ForgetPasswordComponent, ResentEmailComponent, ConfirmVerificationCodeComponent,ChangePasswordComponent],
   imports: [
     SharedModule,
     CommonModule,
