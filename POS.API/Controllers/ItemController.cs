@@ -208,9 +208,8 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
 
-                long MainItemID = model.First().MainItemID;
-                long MainItemUOMID = model.First().MainItemUOMID; 
-                ItemComponentsService.SaveItemComponents(MainItemID,MainItemUOMID,model);
+               
+                ItemComponentsService.SaveItemComponents(model);
                 //for (int i = 0; i < model.Count; ++i)
                 //{
                 //    var ItemCom = Mapper.Map<ItemComponents>(model[i]);

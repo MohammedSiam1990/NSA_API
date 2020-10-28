@@ -51,19 +51,17 @@ namespace POS.Data.Repository
 
         }
 
-        public void SaveItemComponents(long MainItemID, long MainItemUOMID, List<ItemComponents> model)
+        public void SaveItemComponents(List<ItemComponents> model)
         {
             try
             {
+                long MainItemID = model.First().MainItemID;
+                long MainItemUOMID = model.First().MainItemUOMID;
+
+
                 DbContext.Database.BeginTransaction();
                 var ItemComponent = GetMany(e => e.MainItemID == MainItemID && e.MainItemUOMID == MainItemUOMID).ToList();
                 base.DeleteRange(ItemComponent);
-
-
-                for (int i = 0; i < model.Count; ++i)
-                {
-                    model[i].CreateDate = DateTime.Now;
-                }
                 base.AddRange(model);
                 DbContext.Database.CommitTransaction();
             }
