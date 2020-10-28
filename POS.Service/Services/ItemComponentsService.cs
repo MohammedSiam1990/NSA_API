@@ -11,14 +11,15 @@ namespace POS.Service.Services
 {
     public class ItemComponentsService : BaseService, IItemComponentsService
     {
-        public void AddItemComponents(ItemComponents itemComponents)
-        {
-            PosService.ItemComponentsRepository.AddItemComponents(itemComponents);
-        }
 
-        public void DeleteItemComponents(long ItemComponentID)
+        public void SaveItemComponents(List<ItemComponents> model)
         {
-            PosService.ItemComponentsRepository.DeleteItemComponents(ItemComponentID);
+
+            for (int i = 0; i < model.Count; ++i)
+            {
+                model[i].CreateDate = DateTime.Now;
+            }
+            PosService.ItemComponentsRepository.SaveItemComponents(model);
         }
     }
 }

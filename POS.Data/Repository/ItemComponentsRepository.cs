@@ -11,36 +11,30 @@ namespace POS.Data.Repository
 {
     public class ItemComponentsRepository : Repository<ItemComponents>, IItemComponentsRepository
     {
-        
+
         public ItemComponentsRepository(IDatabaseFactory databaseFactory)
         : base(databaseFactory)
         {
 
         }
 
-        public void AddItemComponents(ItemComponents itemComponents)
+        public void SaveItemComponents(List<ItemComponents> model)
         {
             try
             {
-                itemComponents.ItemComponentID = 0;
-                itemComponents.CreateDate = DateTime.Now;
-                Add(itemComponents);
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
-        }
+                long MainItemID = model.First().MainItemID;
+                long MainItemUOMID = model.First().MainItemUOMID;
 
-        public void DeleteItemComponents(long ItemComponentID)
-        {
-            try
-            {
-                var ItemComponent = GetMany(e => e.ItemComponentID == ItemComponentID).ToList();
+
+                DbContext.Database.BeginTransaction();
+                var ItemComponent = GetMany(e => e.MainItemID == MainItemID && e.MainItemUOMID == MainItemUOMID).ToList();
                 base.DeleteRange(ItemComponent);
+                base.AddRange(model);
+                DbContext.Database.CommitTransaction();
             }
             catch (Exception ex)
             {
+                DbContext.Database.RollbackTransaction();
                 throw new AppException(ex.Message);
             }
 
