@@ -8,6 +8,7 @@
  @import "~@ng-select/ng-select/themes/default.theme.css";
  * {
      direction: ltr;
+     font-family: 'Lato', sans-serif;
  }
  
  .direction {
@@ -30,7 +31,6 @@
      max-width: 250px;
      opacity: 1;
      z-index: 5;
-     box-shadow: 0px 0px 14px 0px rgba(166, 163, 166, 0.5);
  }
  
  .page-body {
@@ -45,8 +45,23 @@
      align-items: center;
  }
  
+ .logout-mobile {
+     border-radius: 50%;
+     width: 50px;
+     height: 50px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+ 
  #sidebar .header {
      text-align: center;
+ }
+ 
+ .k-button-icontext .k-icon,
+ .k-button-icontext .k-image,
+ .k-button-icontext .k-sprite {
+     margin: 0 !important;
  }
  
  #sidebar .header img {
@@ -66,10 +81,65 @@
      margin: 0 auto;
  }
  
+ .k-grid tbody .k-button {
+     min-width: 40px;
+     display: inline-flex;
+     justify-content: center;
+ }
+ 
+ .k-grid .k-button,
+ .k-grid .k-grid-toolbar>* {
+     margin: .10em
+ }
+ 
  .userArea {
      padding: 9px 0;
      max-width: 98px;
      margin: 0 auto;
+ }
+ 
+ .textbox1 {
+     position: relative;
+     outline: 0;
+     height: 32px;
+     width: 244px;
+     line-height: 32px;
+     padding: 0 10px !important;
+     background-color: rgba(255, 255, 255, 0.8) !important;
+     color: #212121 !important;
+     border: 0;
+     float: left;
+     -webkit-border-radius: 4px 0 0 4px;
+     border-radius: 4px 0 0 4px;
+ }
+ 
+ .textbox1:focus {
+     outline: 0;
+     background-color: #FFF;
+ }
+ 
+ .button1 {
+     outline: 0;
+     background: none;
+     background-color: rgba(38, 50, 56, 0.8);
+     height: 32px;
+     width: 32px;
+     text-align: center;
+     line-height: 32px;
+     border: 0;
+     color: #FFF;
+     font: normal normal normal 14px/1 FontAwesome;
+     font-size: 14px;
+     text-rendering: auto;
+     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+     transition: background-color .4s ease;
+     border-radius: 0 4px 4px 0;
+     padding: 0;
+     float: left;
+ }
+ 
+ .button1:hover {
+     background-color: rgba(0, 150, 136, 0.8);
  }
  
  .userArea .userPicture {
@@ -344,7 +414,6 @@
      -ms-flex-pack: center;
      justify-content: center;
      margin-top: 15px;
-     width: 100%;
  }
  
  .chooseLang div {
@@ -358,13 +427,17 @@
      display: block;
      height: 48px;
      position: absolute;
-     opacity: 1;
      left: 48px;
      top: 0;
      -webkit-transition: 0.76s;
      -o-transition: 0.76s;
      transition: 0.76s;
      width: 48px;
+ }
+ 
+ .AR-lang {
+     background-image: url('assets/images/AR.png');
+     background-size: cover;
  }
  
  .k-animation-container,
@@ -376,6 +449,11 @@
  .k-widget *,
  .k-widget :before {
      box-sizing: border-box;
+ }
+ 
+ .en-lang {
+     background: url('assets/images/En.jpg');
+     background-size: cover;
  }
  /*.chooseLang .chosen {
     display: block !important;
@@ -577,6 +655,7 @@
  .mat-h4,
  .mat-subheading-1,
  .mat-typography h4 {
+     font-family: 'Lato', sans-serif;
      font-size: 20px !important;
  }
  
@@ -707,6 +786,10 @@
      font-weight: bold;
  }
  
+ .en-lang {
+     display: none;
+ }
+ 
  .login-button-tab:active,
  .login-button-tab:hover {
      background: rgba(10, 92, 128, 0.30);
@@ -739,7 +822,7 @@
  }
  
  .card-body {
-     padding: .25rem 0 !important;
+     padding: .25rem 0;
      padding-bottom: 0;
  }
  
@@ -1002,7 +1085,7 @@
  }
  
  .arqami-color {
-     color: rgba(10, 92, 128, 1);
+     color: rgba(10, 92, 128, 1)!important;
  }
  
  .heading-company {
@@ -1702,8 +1785,44 @@
      width: 160px;
  }
  
+ .k-button {
+     background-image: none;
+     background-color: #16aaff;
+     color: #fff;
+ }
+ 
+ .k-grid-header .k-header>.k-link {
+     text-align: center;
+ }
+ 
+ .k-grid td {
+     text-align: center;
+ }
+ 
+ .k-grid td.k-state-selected,
+ .k-grid tr.k-state-selected>td {
+     background-color: rgb(193 194 202 / 25%);
+ }
+ 
+ .k-button:hover,
+ .k-button.k-state-hover {
+     background-image: none;
+     background-color: #0098ef;
+     color: #fff;
+ }
+ 
+ .k-button-icontext .k-icon,
+ .k-button-icontext .k-image,
+ .k-button-icontext .k-sprite {
+     margin: 2px;
+     float: right;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+ 
  .Breadcrumb-title {
-     height: 74px;
+     height: 50px;
      background: #fff;
  }
  
@@ -1729,8 +1848,14 @@
      color: rgba(10, 92, 128, 1);
  }
  
+ .breadcrumb-item span {
+     font-size: 22px;
+     font-weight: 800;
+     vertical-align: middle;
+ }
+ 
  .arqami-color {
-     color: rgba(10, 92, 128, 1)!important;
+     color: rgba(10, 92, 128, 1);
  }
  
  .heading-company {
@@ -1989,6 +2114,10 @@ checkboxs  */
      display: none;
  }
  
+ .k-grid tbody tr {
+     height: AUTO !important;
+ }
+ 
  @media screen and (max-width: 800px) {
      .table-title {
          padding: 0px 10px;
@@ -1996,6 +2125,13 @@ checkboxs  */
      }
      .k-widget table {
          border: 0;
+     }
+     .k-grid tbody .k-button {
+         min-width: 60px;
+         display: inline-flex;
+         justify-content: center;
+         min-height: 30px;
+         font-size: 18px;
      }
      .table-title h2 {
          margin: 20px 0 0;
@@ -2008,19 +2144,16 @@ checkboxs  */
      .k-widget table tr {
          margin-bottom: 10px;
          display: block;
-         border-bottom: 2px solid #ddd;
-         border-radius: 20px;
      }
      .k-widget table tr td:last-child {
-         background-color: #313444;
-         border-bottom-left-radius: 20px;
-         border-bottom-right-radius: 20px;
+         background-color: #e3e6e8;
+         border-bottom-left-radius: 10px;
+         border-bottom-right-radius: 10px;
      }
      .k-widget table tr td:nth-child(2) {
-         background-color: #313444;
-         color: #FFF;
-         border-top-left-radius: 20px;
-         border-top-right-radius: 20px;
+         background-color: transparent;
+         border-top-left-radius: 0px;
+         border-top-right-radius: 0px;
          font-weight: bold;
          padding-top: 1em;
      }
@@ -2199,7 +2332,7 @@ checkboxs  */
  }
  
  .form-group {
-     margin-bottom: 1.51rem !important;
+     margin-bottom: 1.51rem;
  }
  
  .home-center {
@@ -2262,6 +2395,16 @@ checkboxs  */
      cursor: auto;
      background-color: #fff;
      border-color: #dee2e6;
+ }
+ 
+ @media (max-width: 767px) {
+     #sidebar {
+         min-width: 100%;
+         max-width: 100%;
+     }
+     .w-75 {
+         width: 100% !important;
+     }
  }
  
  .clearfix::after {
@@ -2470,6 +2613,12 @@ checkboxs  */
          max-width: 100%;
          margin: 5.75rem auto;
      }
+     .modal-body {
+         overflow-x: hidden;
+         height: 100%;
+         overflow-y: scroll;
+         max-height: 90vh;
+     }
  }
  
  @media (min-width: 992px) {
@@ -2530,10 +2679,6 @@ checkboxs  */
  .app-modal-footer {
      width: 50%;
      margin: 0 auto;
- }
- 
- .basic.modal {
-     background: rgba(10, 92, 128, .5) !important;
  }
  
  .icon-margin {
@@ -2785,6 +2930,10 @@ checkboxs  */
  }
  
  @media (max-width: 767px) {
+     .kendo-search {
+         width: 100%;
+         margin-bottom: 10px !important;
+     }
      .p-1,
      .pl-1,
      .pr-1,

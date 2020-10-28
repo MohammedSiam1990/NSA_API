@@ -18,7 +18,7 @@ export class LoginService {
   }
 
   sendEmail(model: VerificationEmailModel) {
-    return this.http.post("Account/ReSendVerificationCode", model).pipe();
+    return this.http.post<any>("Auth/ForgetPassword?"+'Email='+model.email+'&'+'Lang='+model.lang, null).pipe();
   }
 
   forgetPassword(model: RestPasswordModel) {
