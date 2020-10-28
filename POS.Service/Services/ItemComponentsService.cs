@@ -11,15 +11,6 @@ namespace POS.Service.Services
 {
     public class ItemComponentsService : BaseService, IItemComponentsService
     {
-        public void AddItemComponents(List<ItemComponents> itemComponents)
-        {
-            PosService.ItemComponentsRepository.AddItemComponents( itemComponents);
-        }
-
-        public void DeleteItemComponents(long MainItemID, long MainItemUOMID)
-        {
-            PosService.ItemComponentsRepository.DeleteItemComponents(MainItemID, MainItemUOMID);
-        }
 
         public void SaveItemComponents(List<ItemComponents> model)
         {

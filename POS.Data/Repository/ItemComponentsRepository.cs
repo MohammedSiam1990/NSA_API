@@ -18,39 +18,6 @@ namespace POS.Data.Repository
 
         }
 
-        public void AddItemComponents(List<ItemComponents> itemComponents)
-        {
-            try
-            {
-                //itemComponents.ItemComponentID = 0;
-                //itemComponents.CreateDate = DateTime.Now;
-                //Add(itemComponents);
-                for (int i = 0; i < itemComponents.Count; ++i)
-                {
-                    itemComponents[i].CreateDate = DateTime.Now;
-                }
-                base.AddRange(itemComponents);
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
-        }
-
-        public void DeleteItemComponents(long MainItemID, long MainItemUOMID)
-        {
-            //try
-            //{
-            //    var ItemComponent = GetMany(e => e.MainItemID == MainItemID && e.MainItemUOMID == MainItemUOMID).ToList();
-            //    base.DeleteRange(ItemComponent);
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new AppException(ex.Message);
-            //}
-
-        }
-
         public void SaveItemComponents(List<ItemComponents> model)
         {
             try

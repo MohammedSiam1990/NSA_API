@@ -9,8 +9,6 @@ namespace POS.Service.IService
 {
     public interface IItemComponentsService
     {
-        void AddItemComponents(List<ItemComponents> itemComponents);
-        void DeleteItemComponents(long MainItemID, long MainItemUOMID);
         void SaveItemComponents(List<ItemComponents> model);
 
 
