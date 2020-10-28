@@ -187,7 +187,6 @@ namespace StanderApi.Controllers
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-
             }
             return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
 

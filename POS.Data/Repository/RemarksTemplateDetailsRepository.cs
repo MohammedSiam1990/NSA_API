@@ -33,5 +33,18 @@ namespace POS.Data.Repository
                 throw new AppException(ex.Message);
             }
         }
+
+        public List<RemarksTemplateDetails> GetRemarksTemplateDetails(int RemarksTemplateID)
+        {
+            try
+            {
+                return  GetMany(e => e.RemarksTemplateId == RemarksTemplateID).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new AppException(ex.Message);
+            }
+             
+        }
     }
 }

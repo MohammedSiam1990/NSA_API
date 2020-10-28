@@ -56,21 +56,31 @@ namespace POS.Data.Repository
             }
         }
 
-        public void UpdateRemarksTemplate(RemarksTemplate remarksTemplate)
+        public void UpdateRemarksTemplate(RemarksTemplate remarksTemplate,List<RemarksTemplateDetails> DeletRemarksTemplateDetails)
         {
-            try
+            using (var context = new PosDbContext())
             {
-                remarksTemplate.ModifyDate = DateTime.Now;
-               for(int i=0;i< remarksTemplate.RemarksTemplateDetails.Count(); i++)
+                using (var transaction = context.Database.BeginTransaction())
                 {
-                    remarksTemplate.RemarksTemplateDetails.ElementAt(i).RemarksTemplateDetailsD = 0;
-                } 
-                Update(remarksTemplate);
-                PosDbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
+                    try
+                    {
+                        context.RemoveRange(DeletRemarksTemplateDetails);
+                        remarksTemplate.ModifyDate = DateTime.Now;
+                        for (int i = 0; i < remarksTemplate.RemarksTemplateDetails.Count(); i++)
+                        {
+                            remarksTemplate.RemarksTemplateDetails.ElementAt(i).RemarksTemplateDetailsD = 0;
+                        }
+                        context.Update(remarksTemplate);
+
+                        context.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new AppException(ex.Message);
+                    }
+                }
             }
         }
 
