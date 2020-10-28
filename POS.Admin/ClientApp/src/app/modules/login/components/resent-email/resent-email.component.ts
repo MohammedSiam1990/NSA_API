@@ -36,7 +36,7 @@ export class ResentEmailComponent implements OnInit {
     private loginService: LoginService,
     public translate: TranslateService,
     private authService: AuthService,
-        private router: Router,
+    private router: Router,
     private notificationService: NotificationService
   ) { }
 
@@ -50,25 +50,23 @@ export class ResentEmailComponent implements OnInit {
       email: ['', [Validators.required, Validators.pattern('^([a-zA-Z0-9_.+-]+)@([a-zA-Z0-9-]+[\.][a-zA-Z0-9-.]{1,})$')]],
     })
   }
-  
+
   reSendEmail() {
-    // this.verificationEmailModel.email = this.loginService.lang;
-    this.verificationEmailModel.email =this.form.value.email;
-    this.verificationEmailModel.lang=this.translate.currentLang;
-    debugger
+    this.verificationEmailModel.email = this.form.value.email;
+    this.verificationEmailModel.lang = this.translate.currentLang;
     this.loadingService.showLoading();
-    this.loginService.sendEmail(this.verificationEmailModel).subscribe(res => {
+    this.loginService.sendEmail(this.verificationEmailModel).subscribe(data => {
       this.loadingService.hideLoading();
-      this.notificationService.showNotification(this.translate.instant('reSendVerificationCode_Successsfully'), NotificationType.Success),
-      this.router.navigate(['/login/confirm-email']);
+      if (data.success) {
+        this.notificationService.showNotification(data.message, NotificationType.Success);
+        this.router.navigate(['/login/confirm-email']);
+      } else {
+        this.notificationService.showNotification(data.message, NotificationType.Error);
+      }
     },
-      err => {
-        this.loadingService.hideLoading();
-        this.businessException = errorsUtility.getBusinessException(err);
-        this.notificationService.showNotification(this.businessException.message, NotificationType.Error);
-      });
+    );
   }
-  
+
   switchLanguage() {
     if (this.translate.currentLang == "ar") {
       this.loadingService.showLoading();
@@ -76,7 +74,7 @@ export class ResentEmailComponent implements OnInit {
       this.translate.use("en");
       setTimeout(() => {
         this.loadingService.hideLoading();
-      },500);
+      }, 500);
     } else {
       this.loadingService.showLoading();
       this.authService.setCurrentLanguage("ar");

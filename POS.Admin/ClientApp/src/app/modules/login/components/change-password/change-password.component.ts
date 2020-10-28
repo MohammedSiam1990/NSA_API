@@ -26,7 +26,7 @@ export class ChangePasswordComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private loadingService: LoadingService,
-    private route: ActivatedRoute,
+    private ativatedRoute: ActivatedRoute,
     public translate: TranslateService,
     private alertService: AlertService,
     private loginService: LoginService,
@@ -37,6 +37,9 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit(): void {
     debugger
+    this.ativatedRoute.queryParams.subscribe(param => {
+      var token = param["Resetcode"];
+    })
     this.verificationEmailModel = new VerificationEmailModel();
   }
 
