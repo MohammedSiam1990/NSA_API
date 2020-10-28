@@ -9,8 +9,8 @@ namespace POS.Service.IService
 {
     public interface IItemComponentsService
     {
-        void AddItemComponents(ItemComponents itemComponents);
-        void DeleteItemComponents(long ItemComponentID);
+        void AddItemComponents(List<ItemComponents> itemComponents);
+        void DeleteItemComponents(long MainItemID, long MainItemUOMID);
 
     }
 }

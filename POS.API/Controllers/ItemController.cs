@@ -200,7 +200,7 @@ namespace POS.API.CORE.Controllers
 
 
         [HttpPost("SaveItemComponents")]
-        public IActionResult SaveItemComponents(List<ItemComponentsModel> model, string Lang = "en")
+        public IActionResult SaveItemComponents(List<ItemComponents> model, string Lang = "en")
         {
             try
             {
@@ -208,17 +208,16 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
 
-                long MainItemID = model.First().CompItemID;
-                long MainItemUOMID = model.First().CompItemID;
-              //  ItemComponentsService.DeleteItemComponents(MainItemID, MainItemUOMID);
+                long MainItemID = model.First().MainItemID;
+                long MainItemUOMID = model.First().MainItemUOMID; 
+                ItemComponentsService.DeleteItemComponents(MainItemID, MainItemUOMID);
 
+                ItemComponentsService.AddItemComponents(model);
 
-
-                for (int i = 0; i < model.Count; ++i)
-                {
-                    var ItemCom = Mapper.Map<ItemComponents>(model[i]);
-                        ItemComponentsService.AddItemComponents(ItemCom);
-                }
+                //for (int i = 0; i < model.Count; ++i)
+                //{
+                //    var ItemCom = Mapper.Map<ItemComponents>(model[i]);
+                //}
                 return Ok(new { success = true, message = lang.Saved_successfully_completed });
 
             }
