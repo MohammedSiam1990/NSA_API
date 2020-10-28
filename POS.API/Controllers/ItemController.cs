@@ -200,27 +200,20 @@ namespace POS.API.CORE.Controllers
 
 
         [HttpPost("SaveItemComponents")]
-        public IActionResult SaveItemComponents(List<ItemComponentsModel> model, string Lang = "en")
+        public IActionResult SaveItemComponents(List<ItemComponents> model, string Lang = "en")
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                for(int i = 0; i < model.Count; ++i)
-                {
-                    var ItemCom = Mapper.Map<ItemComponents>(model[i]);
 
-
-                    if (ItemCom.ItemComponentID == 0)
-                        ItemComponentsService.AddItemComponents(ItemCom);
-                    else
-                    {
-                        ItemComponentsService.DeleteItemComponents(ItemCom.ItemComponentID);
-                        ItemComponentsService.AddItemComponents(ItemCom);
-                    }
-
-                }
+               
+                ItemComponentsService.SaveItemComponents(model);
+                //for (int i = 0; i < model.Count; ++i)
+                //{
+                //    var ItemCom = Mapper.Map<ItemComponents>(model[i]);
+                //}
                 return Ok(new { success = true, message = lang.Saved_successfully_completed });
 
             }

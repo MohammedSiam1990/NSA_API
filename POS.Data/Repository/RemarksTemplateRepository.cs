@@ -61,6 +61,10 @@ namespace POS.Data.Repository
             try
             {
                 remarksTemplate.ModifyDate = DateTime.Now;
+               for(int i=0;i< remarksTemplate.RemarksTemplateDetails.Count(); i++)
+                {
+                    remarksTemplate.RemarksTemplateDetails.ElementAt(i).RemarksTemplateDetailsD = 0;
+                } 
                 Update(remarksTemplate);
                 PosDbContext.SaveChanges();
             }
