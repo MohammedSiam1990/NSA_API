@@ -210,10 +210,7 @@ namespace POS.API.CORE.Controllers
 
                 long MainItemID = model.First().MainItemID;
                 long MainItemUOMID = model.First().MainItemUOMID; 
-                ItemComponentsService.DeleteItemComponents(MainItemID, MainItemUOMID);
-
-                ItemComponentsService.AddItemComponents(model);
-
+                ItemComponentsService.SaveItemComponents(MainItemID,MainItemUOMID,model);
                 //for (int i = 0; i < model.Count; ++i)
                 //{
                 //    var ItemCom = Mapper.Map<ItemComponents>(model[i]);

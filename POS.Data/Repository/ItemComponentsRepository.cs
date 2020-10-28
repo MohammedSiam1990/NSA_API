@@ -11,14 +11,14 @@ namespace POS.Data.Repository
 {
     public class ItemComponentsRepository : Repository<ItemComponents>, IItemComponentsRepository
     {
-        
+
         public ItemComponentsRepository(IDatabaseFactory databaseFactory)
         : base(databaseFactory)
         {
 
         }
 
-        public void AddItemComponents(List<ItemComponents>itemComponents)
+        public void AddItemComponents(List<ItemComponents> itemComponents)
         {
             try
             {
@@ -41,13 +41,20 @@ namespace POS.Data.Repository
         {
             try
             {
-                var ItemComponent = GetMany(e => e.MainItemID == MainItemID && e.MainItemUOMID==MainItemUOMID).ToList();
+                var ItemComponent = GetMany(e => e.MainItemID == MainItemID && e.MainItemUOMID == MainItemUOMID).ToList();
                 base.DeleteRange(ItemComponent);
             }
             catch (Exception ex)
             {
                 throw new AppException(ex.Message);
             }
+
+        }
+
+        public void SaveItemComponents(long MainItemID, long MainItemUOMID, List<ItemComponents> model)
+        {
+            DeleteItemComponents(MainItemID, MainItemUOMID);
+            AddItemComponents(model);
 
         }
     }

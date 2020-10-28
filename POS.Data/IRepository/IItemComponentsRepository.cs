@@ -9,6 +9,8 @@ namespace POS.Data.IRepository
     {
         void AddItemComponents(List<ItemComponents> itemComponents);
         void DeleteItemComponents(long MainItemID, long MainItemUOMID);
+        void SaveItemComponents(long MainItemID, long MainItemUOMID, List<ItemComponents> model);
+
 
     }
 }

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace POS.Entities
 {
     public partial class RemarksTemplate
     {
+        [Key]
         public int RemarksTemplateId { get; set; }
         public string RemarksTemplateName { get; set; }
         public string RemarksTemplateNameAr { get; set; }

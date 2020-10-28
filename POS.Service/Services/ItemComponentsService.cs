@@ -20,5 +20,10 @@ namespace POS.Service.Services
         {
             PosService.ItemComponentsRepository.DeleteItemComponents(MainItemID, MainItemUOMID);
         }
+
+        public void SaveItemComponents(long MainItemID, long MainItemUOMID, List<ItemComponents> model)
+        {
+            PosService.ItemComponentsRepository.SaveItemComponents(MainItemID, MainItemUOMID, model);
+        }
     }
 }
