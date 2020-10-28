@@ -39,22 +39,39 @@ namespace POS.Data.Repository
 
         public void DeleteItemComponents(long MainItemID, long MainItemUOMID)
         {
-            try
-            {
-                var ItemComponent = GetMany(e => e.MainItemID == MainItemID && e.MainItemUOMID == MainItemUOMID).ToList();
-                base.DeleteRange(ItemComponent);
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            //try
+            //{
+            //    var ItemComponent = GetMany(e => e.MainItemID == MainItemID && e.MainItemUOMID == MainItemUOMID).ToList();
+            //    base.DeleteRange(ItemComponent);
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new AppException(ex.Message);
+            //}
 
         }
 
         public void SaveItemComponents(long MainItemID, long MainItemUOMID, List<ItemComponents> model)
         {
-            DeleteItemComponents(MainItemID, MainItemUOMID);
-            AddItemComponents(model);
+            try
+            {
+                DbContext.Database.BeginTransaction();
+                var ItemComponent = GetMany(e => e.MainItemID == MainItemID && e.MainItemUOMID == MainItemUOMID).ToList();
+                base.DeleteRange(ItemComponent);
+
+
+                for (int i = 0; i < model.Count; ++i)
+                {
+                    model[i].CreateDate = DateTime.Now;
+                }
+                base.AddRange(model);
+                DbContext.Database.CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                DbContext.Database.RollbackTransaction();
+                throw new AppException(ex.Message);
+            }
 
         }
     }
