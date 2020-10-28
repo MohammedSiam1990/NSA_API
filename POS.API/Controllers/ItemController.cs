@@ -207,19 +207,17 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                for(int i = 0; i < model.Count; ++i)
+
+                long MainItemID = model.First().CompItemID;
+                long MainItemUOMID = model.First().CompItemID;
+              //  ItemComponentsService.DeleteItemComponents(MainItemID, MainItemUOMID);
+
+
+
+                for (int i = 0; i < model.Count; ++i)
                 {
                     var ItemCom = Mapper.Map<ItemComponents>(model[i]);
-
-
-                    if (ItemCom.ItemComponentID == 0)
                         ItemComponentsService.AddItemComponents(ItemCom);
-                    else
-                    {
-                        ItemComponentsService.DeleteItemComponents(ItemCom.ItemComponentID);
-                        ItemComponentsService.AddItemComponents(ItemCom);
-                    }
-
                 }
                 return Ok(new { success = true, message = lang.Saved_successfully_completed });
 
