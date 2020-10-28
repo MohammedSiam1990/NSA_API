@@ -1,4 +1,5 @@
 ﻿using POS.API.Helpers;
+using POS.Data.DataContext;
 using POS.Data.Entities;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
@@ -20,23 +21,29 @@ namespace POS.Data.Repository
 
         public void SaveItemComponents(List<ItemComponents> model)
         {
-            try
+            using (var context = new PosDbContext())
             {
-                long MainItemID = model.First().MainItemID;
-                long MainItemUOMID = model.First().MainItemUOMID;
+                using (var transaction = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        long MainItemID = model.First().MainItemID;
+                        long MainItemUOMID = model.First().MainItemUOMID;
 
-
-                DbContext.Database.BeginTransaction();
-                var ItemComponent = GetMany(e => e.MainItemID == MainItemID && e.MainItemUOMID == MainItemUOMID).ToList();
-                base.DeleteRange(ItemComponent);
-                base.AddRange(model);
-                DbContext.Database.CommitTransaction();
+                        var ItemComponent = GetMany(e => e.MainItemID == MainItemID && e.MainItemUOMID == MainItemUOMID).ToList();
+                        base.DeleteRange(ItemComponent);
+                        base.AddRange(model);
+                        context.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new AppException(ex.Message);
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                DbContext.Database.RollbackTransaction();
-                throw new AppException(ex.Message);
-            }
+            
 
         }
     }
