@@ -23,14 +23,11 @@ namespace POS.Service.Services
 
         public void UpdateRemarksTemplate(RemarksTemplate remarksTemplate)
         {
-            PosService.RemarksTemplateRepository.UpdateRemarksTemplate(remarksTemplate);
+            var DeletRemarksTemplateDetails = PosService.RemarksTemplateDetailsRepository.GetRemarksTemplateDetails(remarksTemplate.RemarksTemplateId);
+            PosService.RemarksTemplateRepository.UpdateRemarksTemplate(remarksTemplate, DeletRemarksTemplateDetails);
         }
 
-        public void DeleteRemarksTemplateDetails(int RemarksTemplateId)
-        {
-            PosService.RemarksTemplateDetailsRepository.DeleteRemarksTemplateDetails(RemarksTemplateId);
-        
-        }
+
         public int ValidateNameAlreadyExist(RemarksTemplate remarksTemplate)
         {
          return  PosService.RemarksTemplateRepository.ValidateNameAlreadyExist(remarksTemplate);

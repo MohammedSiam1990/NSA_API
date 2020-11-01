@@ -13,7 +13,7 @@ using System.Text;
 
 namespace POS.Data.Repository
 {
-    public class RemarksTemplateRepository: Repository<RemarksTemplate>, IRemarksTemplateRepository
+    public class RemarksTemplateRepository : Repository<RemarksTemplate>, IRemarksTemplateRepository
     {
         public RemarksTemplateRepository(IDatabaseFactory databaseFactory)
         : base(databaseFactory)
@@ -56,21 +56,27 @@ namespace POS.Data.Repository
             }
         }
 
-        public void UpdateRemarksTemplate(RemarksTemplate remarksTemplate)
+        public void UpdateRemarksTemplate(RemarksTemplate remarksTemplate, List<RemarksTemplateDetails> DeletRemarksTemplateDetails)
         {
-            try
+            using (var context = new PosDbContext())
             {
-                remarksTemplate.ModifyDate = DateTime.Now;
-               for(int i=0;i< remarksTemplate.RemarksTemplateDetails.Count(); i++)
+                using (var transaction = context.Database.BeginTransaction())
                 {
-                    remarksTemplate.RemarksTemplateDetails.ElementAt(i).RemarksTemplateDetailsD = 0;
-                } 
-                Update(remarksTemplate);
-                PosDbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
+                    try
+                    {
+                        context.RemoveRange(DeletRemarksTemplateDetails);
+                        remarksTemplate.ModifyDate = DateTime.Now;
+                        context.Update(remarksTemplate);
+
+                        context.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new AppException(ex.Message);
+                    }
+                }
             }
         }
 

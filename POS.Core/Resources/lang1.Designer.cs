@@ -601,6 +601,15 @@ namespace POS.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your company account is pending,please wait until activate.
+        /// </summary>
+        public static string Your_company_account_is_pending {
+            get {
+                return ResourceManager.GetString("Your_company_account_is_pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your file wasn&apos;t uploaded because.
         /// </summary>
         public static string Your_file_was_not_uploaded_because {

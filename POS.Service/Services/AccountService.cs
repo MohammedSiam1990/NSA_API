@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Pos.IService;
-using POS.Core.Common;
 using POS.Core.Resources;
 using POS.Data.Dto;
 using POS.Entities;
@@ -150,7 +149,7 @@ namespace Pos.Service
                     CompanyName = model.CompanyName,
                     CompanyNameAr = model.CompanyNameAr,
                     CompanyEmail = model.Email,
-                    StatusId = 1,
+                    StatusId = 6,
                     ImageName = model.ImageName,
                     CreationDate = DateTime.Now,
 
@@ -194,7 +193,7 @@ namespace Pos.Service
                     var Subject = lang.Activare_your_account;
 
                     //string url = $"{emailConfig.AppUrl}/api/auth/confirmemail?userid={identityUser.Id}&token={validEmailToken}";
-                    bool isMessageSent = mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, emailConfig.EnableSsl, emailConfig.From, identityUser.Email, Subject, Body, emailConfig.From, emailConfig.Password,emailConfig.UseDefaultCredentials);
+                    bool isMessageSent = mailService.SendEmailAsync(emailConfig.SmtpServer, emailConfig.Port, emailConfig.EnableSsl, emailConfig.From, identityUser.Email, Subject, Body, emailConfig.From, emailConfig.Password, emailConfig.UseDefaultCredentials);
 
                     if (isMessageSent == false)
                     {
@@ -260,6 +259,18 @@ namespace Pos.Service
                     };
 
                 }
+                Companies Company = null;
+                Company = CompaniesService.GetCompany(user.CompanyId.Value);
+
+                if (Company.StatusId.Value == 6)
+                {
+                    return new LoginResponseDto
+                    {
+                        message = lang.Your_company_account_is_pending,
+                        success = false
+                    };
+
+                }
 
 
                 if (user.LockoutEnabled == true)
@@ -305,10 +316,9 @@ namespace Pos.Service
                     signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256));
 
                 string tokenAsString = new JwtSecurityTokenHandler().WriteToken(token);
-                Companies Company =null;
+
                 if (user.CompanyId != null)
                 {
-                    Company = CompaniesService.GetCompany(user.CompanyId.Value);
                     return new LoginResponseDto
                     {
                         UserId = user.Id,
@@ -325,7 +335,7 @@ namespace Pos.Service
 
 
                 }
-                else if(user.CompanyId == null && user.UserType==2)
+                else if (user.CompanyId == null && user.UserType == 2)
                 {
                     return new LoginResponseDto
                     {

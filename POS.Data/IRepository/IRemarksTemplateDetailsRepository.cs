@@ -8,5 +8,6 @@ namespace POS.Data.IRepository
     public interface IRemarksTemplateDetailsRepository
     {
         void DeleteRemarksTemplateDetails(int RemarksTemplateID);
+        List<RemarksTemplateDetails> GetRemarksTemplateDetails(int RemarksTemplateID);
     }
 }
