@@ -51,7 +51,8 @@
     "ReturnTo":"ReturnTo",
     "email_is_required":"Email Is Required",
     "email_not_valid":"Please enter valid email (example@example.com)",
-    "Email":"Email"
+    "Email":"Email",
+    "CountryName":"Country Name"
 }
 
     
