@@ -3,12 +3,12 @@ export class AuthenticateModel {
     lang: string;
     password: string;
     RememberMe: boolean;
-    userType:number;
+    userType: number;
     // Grant_type:string;
     // Refresh_token: string;
 }
 export class VerificationEmailModel {
-    lang:string;
+    lang: string;
     email: string;
 }
 
@@ -22,4 +22,11 @@ export class RestPasswordModel {
 export class EmailConfirmedModel {
     email: string;
     confirmCode: string;
+}
+
+export class ResetPasswordViewModel {
+    email: string;
+    password: string;
+    confirmPassword: string;
+    Resetcode: string;
 }
