@@ -253,7 +253,7 @@
     <value>Serila is :</value>
   </data>
   <data name="Size_limit" xml:space="preserve">
-    <value>size limit</value>
+    <value>size limit of image</value>
   </data>
   <data name="The_username_or_password_is_incorrect" xml:space="preserve">
     <value>The username or password is incorrect</value>

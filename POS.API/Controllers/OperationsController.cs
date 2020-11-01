@@ -52,7 +52,7 @@ namespace POS.API.CORE.Controllers
                 string[] ImagesNameList = new string[Request.Form.Files.Count()];
 
                 if (Request.ContentLength > Setting.imagefilesize)
-                    return BadRequest(new { success = false, message = lang.Your_file_was_not_uploaded_because + "," + lang.It_exceeds_the + Setting.imagefilesize + " KB " + lang.Size_limit });
+                    return BadRequest(new { success = false, message = lang.Your_file_was_not_uploaded_because + "," + lang.It_exceeds_the + lang.Size_limit +":"+ Setting.imagefilesize + " KB "  });
 
                 if (Request.Form.Files.Count() > 0)
                 {
