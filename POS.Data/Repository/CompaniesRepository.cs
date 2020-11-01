@@ -1,4 +1,5 @@
-﻿using POS.API.Helpers;
+using Microsoft.EntityFrameworkCore;
+using POS.API.Helpers;
 using POS.Data.DataContext;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
@@ -111,21 +112,24 @@ namespace POS.Data.Repository
             }
         }
 
-        public List<Companies> GetCompanies()
+    [Obsolete]
+    public string GetCompanies()
+    {
+      using (var DbContext = new PosDbContext())
+      {
+        try
         {
-            try
-            {
-                return base.GetAll().ToList();
-            }
-            catch (Exception ex)
-            {
-                Exceptions.ExceptionError.SaveException(ex);
-            }
-            return null;
-
+          string Sql = "EXEC GetCompanies ";
+          var data = DbContext.JsonData.FromSql(Sql).AsEnumerable().FirstOrDefault().Data;
+          return data.ToString();
         }
+        catch (Exception ex)
+        {
+          Exceptions.ExceptionError.SaveException(ex);
+        }
+        return null;
 
-
-
+      }
     }
+  }
 }

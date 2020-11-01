@@ -1,4 +1,4 @@
-﻿using POS.Core.Repository.Infrastructure;
+using POS.Core.Repository.Infrastructure;
 using POS.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace POS.Data.IRepository
   public  interface ICompaniesRepository
     {
         Companies GetCompany(int CompanyId);
-        List<Companies> GetCompanies();
+        string GetCompanies();
         bool ValidateCompany(Companies Company);
         void SaveCompany(Companies Company);
         void AddCompany(Companies Company);
