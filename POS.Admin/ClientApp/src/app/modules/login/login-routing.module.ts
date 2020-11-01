@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
 import { ResentEmailComponent } from './components/resent-email/resent-email.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';

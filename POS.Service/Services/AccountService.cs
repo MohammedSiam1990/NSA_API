@@ -1,4 +1,4 @@
-﻿using EmailService;
+using EmailService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
