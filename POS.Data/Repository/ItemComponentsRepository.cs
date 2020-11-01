@@ -43,7 +43,7 @@ namespace POS.Data.Repository
                     }
                 }
             }
-            
+
 
         }
     }

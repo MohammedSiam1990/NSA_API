@@ -297,6 +297,9 @@
   <data name="Your_account_is_not_activated_please_activate_it" xml:space="preserve">
     <value>Your account is not activated, please activate it</value>
   </data>
+  <data name="Your_company_account_is_pending" xml:space="preserve">
+    <value>Your company account is pending,please wait until activate</value>
+  </data>
   <data name="Your_file_was_not_uploaded_because" xml:space="preserve">
     <value>Your file wasn't uploaded because</value>
   </data>

@@ -300,6 +300,9 @@
   <data name="Your_account_is_not_activated_please_activate_it" xml:space="preserve">
     <value>حسابك غير مفعل، يرجى العمل على تفعيله</value>
   </data>
+  <data name="Your_company_account_is_pending" xml:space="preserve">
+    <value>حساب الشركة الخاص بك معلق، يرجى الإنتظار لحين التفعيل</value>
+  </data>
   <data name="Your_file_was_not_uploaded_because" xml:space="preserve">
     <value>لم يتم تحميل ملفك لأن</value>
   </data>

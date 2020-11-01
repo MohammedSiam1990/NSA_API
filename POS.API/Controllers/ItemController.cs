@@ -208,7 +208,7 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
 
-               
+
                 ItemComponentsService.SaveItemComponents(model);
                 //for (int i = 0; i < model.Count; ++i)
                 //{
