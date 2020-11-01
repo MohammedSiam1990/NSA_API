@@ -19,7 +19,7 @@ namespace POS.Entities
         public int? RemarksTemplateId { get; set; }
         public decimal? InsuranceVal { get; set; }
         public bool? NoDisc { get; set; }
-        public bool? NoPriceChange { get; set; }
+        public bool? PriceChange { get; set; }
         public bool? Weighable { get; set; }
         public string PosColor { get; set; }
         public string ImageName { get; set; }

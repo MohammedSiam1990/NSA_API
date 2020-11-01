@@ -466,7 +466,7 @@ namespace POS.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to size limit.
+        ///   Looks up a localized string similar to size limit of image.
         /// </summary>
         public static string Size_limit {
             get {

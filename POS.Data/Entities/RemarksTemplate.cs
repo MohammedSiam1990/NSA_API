@@ -18,6 +18,9 @@ namespace POS.Entities
         public DateTime? ModifyDate { get; set; }
         public string DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
+        public int NumberOfMandatory { get; set; }
+        public int UpperLimitForAdditions { get; set; }
+
         public virtual ICollection<RemarksTemplateDetails> RemarksTemplateDetails { get; set; }
     }
 }

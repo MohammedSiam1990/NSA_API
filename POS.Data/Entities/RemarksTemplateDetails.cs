@@ -16,6 +16,8 @@ namespace POS.Entities
         public decimal? Calories { get; set; }
         public decimal? Quantity { get; set; }
         public int RemarksTemplateId { get; set; }
+        public long Itemuom { get; set; }
+
         public virtual RemarksTemplate RemarksTemplates { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using POS.Entities;
+using POS.Entities;
 using System.Collections.Generic;
 
 namespace Pos.IService
@@ -6,7 +6,7 @@ namespace Pos.IService
     public interface ICompaniesService
     {
         Companies GetCompany(int CompanyId);
-        List<Companies> GetCompanies();
+        string GetCompanies();
         bool ValidateCompany(Companies Company);
         void SaveCompany(Companies Company);
         void AddCompany(Companies Company);
