@@ -72,8 +72,34 @@ namespace POS.Data.Repository
             {
                 throw new AppException(ex.Message);
             }
-        }
 
+        }
+        public int DeletCompanyeAndUser(Companies Company,AspNetUsers User)
+        {
+            int result = 0;
+            using (var context = new PosDbContext())
+            {
+                using (var transaction = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        context.Remove(Company);
+                        context.Remove(User);
+                        context.SaveChanges();
+                        transaction.Commit();
+                        result= 1;
+                    }
+                    catch (Exception ex)
+                    {
+                      
+                        transaction.Rollback();
+                        result= - 1;
+                        throw new AppException(ex.Message);
+                    }
+                }
+            }
+            return result;
+        }
         public Companies GetCompany(int CompanyId)
         {
 

@@ -12,6 +12,6 @@ namespace Pos.IService
         void AddCompany(Companies Company);
         void UpdateCompany(Companies Company);
         void DeleteCompany(int CompanyId);
-
+        int DeletCompanyeAndUser(int CompanyId);
     }
 }
