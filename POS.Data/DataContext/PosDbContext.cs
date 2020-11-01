@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Extensions.Configuration;
 using System.Configuration;
 using Microsoft.EntityFrameworkCore;
@@ -45,7 +45,6 @@ namespace POS.Data.DataContext
 
         [Obsolete]
         public virtual DbQuery<DeleteRecord> DeleteRecord { get; set; }
-
         [Obsolete]
         public virtual DbQuery<JsonData> JsonData { get; set; }
 

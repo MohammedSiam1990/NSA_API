@@ -1,4 +1,4 @@
-﻿using Pos.IService;
+using Pos.IService;
 using POS.Entities;
 using POS.IService.Base;
 using System.Collections.Generic;
@@ -21,7 +21,7 @@ namespace Pos.Service
         {
             return PosService.CompaniesRepository.GetCompany(CompanyId);
         }
-        public List<Companies> GetCompanies()
+        public string GetCompanies()
         {
             return PosService.CompaniesRepository.GetCompanies();
         }
