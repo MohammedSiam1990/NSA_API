@@ -256,7 +256,7 @@
     <value>الرقم التسلسلي هو :</value>
   </data>
   <data name="Size_limit" xml:space="preserve">
-    <value>size limit</value>
+    <value>الحد الأعلى لحجم الصورة</value>
   </data>
   <data name="The_username_or_password_is_incorrect" xml:space="preserve">
     <value>خطأ في اسم المستخدم أو كلمة السر</value>

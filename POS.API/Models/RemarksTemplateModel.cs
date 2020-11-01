@@ -18,6 +18,8 @@ namespace POS.API.Models
         public DateTime? ModifyDate { get; set; }
         public string DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
+        public int NumberOfMandatory { get; set; }
+        public int UpperLimitForAdditions { get; set; }
         public virtual List<RemarksTemplateDetailsModel> RemarksTemplateDetails{ get; set; }
     }
 }
