@@ -18,6 +18,7 @@ namespace POS.API.Models
         public bool? Purchase { get; set; }
         public decimal? Equivalent { get; set; }
         public long ItemId { get; set; }
+        public int StatusID { get; set; }
 
         public List<SkuModel> Skus { get; set; }
     }
