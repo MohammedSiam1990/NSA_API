@@ -20,7 +20,8 @@ namespace POS.Models
         public DateTime? ModificationDate { get; set; }
         public string ModifiedBy { get; set; }
         public int? StatusId { get; set; }
-
+        public string ApprovedBy { get; set; }
+        public DateTime? ApprovedDate { get; set; }
 
     }
 }
