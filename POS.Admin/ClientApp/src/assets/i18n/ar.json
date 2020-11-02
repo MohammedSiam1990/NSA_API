@@ -51,6 +51,7 @@
   "ReturnTo":"العوده الى ",
   "email_is_required":"البريد الالكترونى مطلوب",
   "email_not_valid":"يرجى إدخال البريد الإلكتروني الصحيح (example@example.com)",
-  "Email":"البريد الالكترونى"
+  "Email":"البريد الالكترونى",
+  "CountryNameAr":"اسم الدوله"
 
 }

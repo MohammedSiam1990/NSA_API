@@ -1,23 +1,19 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { PageSizeItem } from '@progress/kendo-angular-grid';
-import { MessageService } from '@progress/kendo-angular-l10n';
-import { GroupDescriptor, DataResult, process, SortDescriptor } from '@progress/kendo-data-query';
 import { LoadingService } from 'src/app/_shared/services/loading.service';
-import { BranchWorkStationsModel } from '../../models/work-stations-model';
-import { WorkStationService } from '../../services/work-station.service';
-import { ActiveWorkStationsComponent } from '../active-work-stations/active-work-stations.component';
-import { DeleteWorkStationsComponent } from '../delete-work-stations/delete-work-stations.component';
+import { companyModel } from '../../models/company';
+import { CompanyService } from '../../services/company.service';
+import { MessageService } from '@progress/kendo-angular-l10n';
+import {process } from '@progress/kendo-data-query';
 import { ExcelExportData } from '@progress/kendo-angular-excel-export';
 
-
 @Component({
-  selector: 'app-work-stations-list',
-  templateUrl: './work-stations-list.component.html',
-  styleUrls: ['./work-stations-list.component.css'],
+  selector: 'app-company-list',
+  templateUrl: './company-list.component.html',
+  styleUrls: ['./company-list.component.css'],
   providers: [MessageService],
 })
-export class WorkStationsListComponent implements OnInit {
+export class CompanyListComponent implements OnInit {
 
   public gridData: any[] = [];
   public gridViewArr: any[] = [];
@@ -27,10 +23,10 @@ export class WorkStationsListComponent implements OnInit {
 }];
   public pageSize = 25;
   private rtl = false;
-  @ViewChild("deleteWorkStationsCom") deleteWorkStationsCom: DeleteWorkStationsComponent;
-  @ViewChild("activeWorkStationsCom") activeWorkStationsCom: ActiveWorkStationsComponent;
+  // @ViewChild("deleteWorkStationsCom") deleteWorkStationsCom: DeleteWorkStationsComponent;
+  // @ViewChild("activeWorkStationsCom") activeWorkStationsCom: ActiveWorkStationsComponent;
 
-  constructor(private workStationService: WorkStationService, private loadingService: LoadingService,
+  constructor(private companyService: CompanyService, private loadingService: LoadingService,
     private messages: MessageService,
     public translate: TranslateService) {
       this.allData = this.allData.bind(this);
@@ -38,7 +34,7 @@ export class WorkStationsListComponent implements OnInit {
 
   public ngOnInit(): void {
     this.changeDir();
-    this.getWorkStations();
+    this.getCompanies();
 
   }
 
@@ -52,21 +48,22 @@ export class WorkStationsListComponent implements OnInit {
   }
 
   WorkStations: any;
-  getWorkStations(): void {
-    this.workStationService.getWorkStations(this.translate.currentLang).subscribe(res => {
+  getCompanies(): void {
+    this.companyService.getCompanies(this.translate.currentLang).subscribe(res => {
+      debugger
       this.gridData = res.datalist;
       this.gridViewArr = this.gridData;
     })
 
   }
 
-  activeWorkStations(model: BranchWorkStationsModel) {
-    this.activeWorkStationsCom.show(model);
+  activeWorkStations(model: companyModel) {
+    // this.activeWorkStationsCom.show(model);
 
   }
 
-  deleteWorkStations(model: BranchWorkStationsModel) {
-    this.deleteWorkStationsCom.show(model);
+  deleteWorkStations(model: companyModel) {
+    // this.deleteWorkStationsCom.show(model);
   }
 
   public onFilter(inputValue: string): void {
@@ -80,17 +77,12 @@ export class WorkStationsListComponent implements OnInit {
             value: inputValue
           },
           {
-            field: "BrandName",
+            field: "CompanyNameAr",
             operator: "contains",
             value: inputValue
           },
           {
-            field: "BranchName",
-            operator: "contains",
-            value: inputValue
-          },
-          {
-            field: "WorkstationName",
+            field: "CompanyEmail",
             operator: "contains",
             value: inputValue
           },
@@ -100,7 +92,12 @@ export class WorkStationsListComponent implements OnInit {
             value: inputValue
           },
           {
-            field: "CreateDateS",
+            field: "CountryName",
+            operator: "contains",
+            value: inputValue
+          },
+          {
+            field: "CountryNameAr",
             operator: "contains",
             value: inputValue
           }
@@ -114,6 +111,5 @@ export class WorkStationsListComponent implements OnInit {
         data: process(this.gridViewArr, {  sort: [{ field: 'CreateDateS', dir: 'asc' }] }).data,
     };
     return result;
-}
-
+} 
 }

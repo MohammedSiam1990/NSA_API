@@ -76,6 +76,8 @@ import { TwoDigitDecimaNumberDirective } from './directives/two-digit-decima-num
 import { ModalBasicTwoComponent } from './components/modal-basic-two/modal-basic-two.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { ExcelModule, GridModule, PDFModule } from '@progress/kendo-angular-grid';
+import { InputsModule } from '@progress/kendo-angular-inputs';
 
 @NgModule({
   declarations: [
@@ -101,6 +103,7 @@ import { AlertComponent } from './components/alert/alert.component';
     ModalBasicTwoComponent,
     ResetPasswordComponent,
     AlertComponent
+   
     
   ],
   imports: [
@@ -164,7 +167,12 @@ import { AlertComponent } from './components/alert/alert.component';
     MatTooltipModule,
     MatTreeModule,
     PortalModule,
-    ScrollingModule
+    ScrollingModule,
+    GridModule,
+    InputsModule,
+    PDFModule,
+    ExcelModule
+    
   ],
   exports: [
     NotificationComponent,
@@ -240,7 +248,11 @@ import { AlertComponent } from './components/alert/alert.component';
     PortalModule,
     ScrollingModule,
     ResetPasswordComponent,
-    AlertComponent
+    AlertComponent,
+    GridModule,
+    InputsModule,
+    PDFModule,
+    ExcelModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
