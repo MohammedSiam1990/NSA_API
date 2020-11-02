@@ -1,5 +1,6 @@
 using POS.Core.Repository.Infrastructure;
 using POS.Entities;
+using Steander.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace POS.Data.IRepository
         void AddCompany(Companies Company);
         void UpdateCompany(Companies Company);
         void  DeleteCompany(int CompanyId);
-        int DeletCompanyeAndUser(Companies Company, AspNetUsers User);
+        int DeletCompanyeAndUser(Companies Company, ApplicationUser User);
 
 
     }

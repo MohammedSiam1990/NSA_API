@@ -1,12 +1,13 @@
 ﻿using POS.Entities;
+using Steander.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace POS.Data.IRepository
 {
-    public interface IAspNetUserRepository
+    public interface IUserRepository
     {
-        AspNetUsers GetAspNetUser(int CompanyId);
+        ApplicationUser GetUser(int CompanyId);
     }
 }

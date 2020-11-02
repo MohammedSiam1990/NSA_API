@@ -40,7 +40,7 @@ namespace POS.IService.Base
                                                    new BranchWorkStationsRepository(databaseFactory),
                                                    new MenuRepository (databaseFactory),
                                                    new ItemComponentsRepository(databaseFactory),
-                                                    new AspNetUserRepository(databaseFactory)
+                                                    new UserRepository(databaseFactory)
                                                 );
                 }
 

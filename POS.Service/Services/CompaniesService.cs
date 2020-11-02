@@ -42,8 +42,8 @@ namespace Pos.Service
 
         public int DeletCompanyeAndUser(int CompanyId)
         {
-            var User = PosService.AspNetUserRepository.GetAspNetUser(CompanyId);
-            var Company = PosService.CompaniesRepository.GetCompany(CompanyId);
+            var User = PosService.UserRepository.GetUser(CompanyId);
+          var Company = PosService.CompaniesRepository.GetCompany(CompanyId);
           return  PosService.CompaniesRepository.DeletCompanyeAndUser(Company, User);
         }
     }

@@ -23,7 +23,7 @@ namespace Pos.Service.Base
         public ISkuRepository SkuRepository { get; set; }
         public IBranchWorkStationsRepository branchWorkStationsRepository { get; set; }
         public IMenuRepository MenuRepository { get; set; }
-        public IAspNetUserRepository AspNetUserRepository { get; set; }
+        public IUserRepository UserRepository { get; set; }
         public IItemComponentsRepository ItemComponentsRepository { get; set; }
         [Inject]
         public PosServices(
@@ -45,7 +45,7 @@ namespace Pos.Service.Base
                                      IBranchWorkStationsRepository _branchWorkStationsRepository,
                                      IMenuRepository _MenuRepository,
                                      IItemComponentsRepository _ItemComponentsRepository,
-                                     IAspNetUserRepository _AspNetUserRepository
+                                     IUserRepository _UserRepository
                             )
         {
             CompaniesRepository = _CompaniesRepository;
@@ -66,7 +66,7 @@ namespace Pos.Service.Base
             branchWorkStationsRepository = _branchWorkStationsRepository;
             MenuRepository = _MenuRepository;
             ItemComponentsRepository = _ItemComponentsRepository;
-            AspNetUserRepository = _AspNetUserRepository;
+            UserRepository = _UserRepository;
         }
 
     }

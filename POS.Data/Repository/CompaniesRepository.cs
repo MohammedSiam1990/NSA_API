@@ -4,6 +4,7 @@ using POS.Data.DataContext;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
 using POS.Entities;
+using Steander.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,7 +76,7 @@ namespace POS.Data.Repository
             }
 
         }
-        public int DeletCompanyeAndUser(Companies Company,AspNetUsers User)
+        public int DeletCompanyeAndUser(Companies Company, ApplicationUser User)
         {
             int result = 0;
             using (var context = new PosDbContext())
