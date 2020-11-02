@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LoadingService } from 'src/app/_shared/services/loading.service';
-import { companyModel } from '../../models/company';
+import { CompanyModel } from '../../models/company';
 import { CompanyService } from '../../services/company.service';
 import { MessageService } from '@progress/kendo-angular-l10n';
 import {process } from '@progress/kendo-data-query';
 import { ExcelExportData } from '@progress/kendo-angular-excel-export';
+import { ActiveCompanyComponent } from '../../active-company/active-company.component';
+import { DeleteCompanyComponent } from '../../delete-company/delete-company.component';
 
 @Component({
   selector: 'app-company-list',
@@ -23,8 +25,8 @@ export class CompanyListComponent implements OnInit {
 }];
   public pageSize = 25;
   private rtl = false;
-  // @ViewChild("deleteWorkStationsCom") deleteWorkStationsCom: DeleteWorkStationsComponent;
-  // @ViewChild("activeWorkStationsCom") activeWorkStationsCom: ActiveWorkStationsComponent;
+  @ViewChild("activeCompanyCom") activeCompanyCom: ActiveCompanyComponent;
+  @ViewChild("deleteCompanyCom") deleteCompanyCom: DeleteCompanyComponent;
 
   constructor(private companyService: CompanyService, private loadingService: LoadingService,
     private messages: MessageService,
@@ -50,20 +52,19 @@ export class CompanyListComponent implements OnInit {
   WorkStations: any;
   getCompanies(): void {
     this.companyService.getCompanies(this.translate.currentLang).subscribe(res => {
-      debugger
       this.gridData = res.datalist;
       this.gridViewArr = this.gridData;
     })
 
   }
 
-  activeWorkStations(model: companyModel) {
-    // this.activeWorkStationsCom.show(model);
+  activeCompany(model: CompanyModel) {
+    this.activeCompanyCom.show(model);
 
   }
 
-  deleteWorkStations(model: companyModel) {
-    // this.deleteWorkStationsCom.show(model);
+  deleteCompany(model: CompanyModel) {
+    this.deleteCompanyCom.show(model);
   }
 
   public onFilter(inputValue: string): void {

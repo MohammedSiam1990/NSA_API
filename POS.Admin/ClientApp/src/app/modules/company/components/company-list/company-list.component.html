@@ -52,9 +52,9 @@
                 <kendo-grid-column field="Phone" title="{{'Phone'|translate}}" [width]="120"></kendo-grid-column>
                 <kendo-grid-column [width]="120">
                     <ng-template kendoGridCellTemplate let-dataItem>
-                        <button class="btn btn-primary mr-2" type="button" (click)="activeWorkStations(dataItem)"><span
+                        <button class="btn btn-primary mr-2" type="button" (click)="activeCompany(dataItem)"><span
                                 class="fa fa-check"> </span></button>
-                        <button class="btn btn-danger" type="button" (click)="deleteWorkStations(dataItem)"><span
+                        <button class="btn btn-danger" type="button" (click)="deleteCompany(dataItem)"><span
                                 class="fa fa-trash">
                             </span></button>
                     </ng-template>
@@ -71,3 +71,6 @@
         </div>
     </div>
 </div>
+
+<app-active-company #activeCompanyCom (onActivated)="getCompanies()"></app-active-company>
+<app-delete-company #deleteCompanyCom (onDeleted)="getCompanies()"></app-delete-company>

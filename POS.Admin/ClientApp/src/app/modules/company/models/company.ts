@@ -1,4 +1,4 @@
-export class companyModel {
+export class CompanyModel {
     CompanyId: number;
     CompanyName: string;
     CompanyNameAr: string;
@@ -16,4 +16,6 @@ export class companyModel {
     TimeStart: string; 
     TimeEnd: string;
     CountryName: string;
+    ApprovedBy:string;
+    ApprovedDate:Date;
 }
