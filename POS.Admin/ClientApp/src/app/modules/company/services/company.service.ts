@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { companyModel } from '../models/company';
+import { CompanyModel } from '../models/company';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +13,12 @@ export class CompanyService {
    return this.http.get<any>("Companies/GetCompanies?Lang=" + lang);
   }
 
-  activeWorkStations(lang: string,model:companyModel) {
-    return this.http.post<any>("BranchWorkStations/SaveBranchWorkStations?Lang=" + lang,model);
+  activeCompany(lang: string,model:CompanyModel) {
+    return this.http.post<any>("Companies/UpdateCompany?Lang=" + lang,model);
    }
 
-   deleteWorkStations(TableNme:string,TableKey:string,RowID:number,DeletedBy:string,lang:string) {
-    return this.http.post<any>("Operations/DeleteRecord?" +'TableNme='+TableNme+'&'+'TableKey='+TableKey+'&'+'RowID='+RowID+'&'+'DeletedBy='+DeletedBy+'&'+'lang='+lang,null);
+   deleteCompany(companyId:number,lang:string) {
+    return this.http.post<any>("Companies/DeletCompanyeAndUser?CompanyId="+companyId+'&Lang='+lang,null);
    }
 
 }
