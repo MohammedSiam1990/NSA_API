@@ -23,7 +23,5 @@ namespace POS.Entities
         public string ApprovedBy { get; set; }
         public DateTime? ApprovedDate { get; set; }
         public int? StatusId { get; set; }
-        public string ApprovedBy { get; set; }
-        public DateTime? ApprovedDate { get; set; }
     }
 }
