@@ -66,11 +66,42 @@ namespace POS.API.CORE.Controllers
 
     }
 
-    [HttpPost("UpdateCompany")]
-    public IActionResult Update([FromBody]CompaniesModel model, string Lang = "en")
-    {
-      Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
-      Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+        [HttpPost("DeletCompanyeAndUser")]
+        public IActionResult DeletCompanyeAndUser(int CompanyId, string Lang = "en")
+        {
+            // map model to entity
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
+          
+            try
+            {
+
+             var   data = CompaniesService.DeletCompanyeAndUser(CompanyId);
+                if (data != 1)
+                {
+                    return Ok(new { success = false, message = lang.Deleted_Faild });
+                }
+                else
+                {
+                    return Ok(new { success = true, message = lang.Deleted_successfully });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // return error message if there was an exception
+                ExceptionError.SaveException(ex);
+            }
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
+        }
+
+        [HttpPost("UpdateCompany")]
+        public IActionResult Update([FromBody]CompaniesModel model, string Lang = "en")
+        {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
       // map model to entity
       var Company = Mapper.Map<Companies>(model);

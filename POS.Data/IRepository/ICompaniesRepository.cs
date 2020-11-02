@@ -18,7 +18,8 @@ namespace POS.Data.IRepository
         void AddCompany(Companies Company);
         void UpdateCompany(Companies Company);
         void  DeleteCompany(int CompanyId);
-       
-        
+        int DeletCompanyeAndUser(Companies Company, AspNetUsers User);
+
+
     }
 }

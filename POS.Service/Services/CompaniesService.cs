@@ -40,7 +40,11 @@ namespace Pos.Service
             return PosService.CompaniesRepository.ValidateCompany(Company);
         }
 
-
-
+        public int DeletCompanyeAndUser(int CompanyId)
+        {
+            var User = PosService.AspNetUserRepository.GetAspNetUser(CompanyId);
+            var Company = PosService.CompaniesRepository.GetCompany(CompanyId);
+          return  PosService.CompaniesRepository.DeletCompanyeAndUser(Company, User);
+        }
     }
 }
