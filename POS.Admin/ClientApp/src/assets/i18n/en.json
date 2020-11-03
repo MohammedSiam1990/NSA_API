@@ -52,7 +52,8 @@
     "email_is_required":"Email Is Required",
     "email_not_valid":"Please enter valid email (example@example.com)",
     "Email":"Email",
-    "CountryName":"Country Name"
+    "CountryName":"Country Name",
+    "Companies":"Companies"
 }
 
     
