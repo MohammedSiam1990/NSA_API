@@ -247,5 +247,40 @@ namespace POS.API.CORE.Controllers
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
 
+        [HttpGet("GetItemsSalesGroups")]
+        public IActionResult GetItemsSalesGroups(int BrandID,string Lang = "en")
+        {
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
+                var data = SalesGroupsItemsService.GetItemsSalesGroups(BrandID,imagesPath.ItemGroup);//BrandID, imagesPath.Item
+                if (data != null)
+                {
+                    if (data.Count() == 0)
+                    {
+                        return Ok(new { success = true, message = lang.No_data_available, datalist = data});
+                    }
+                    else
+                    {
+                        return Ok(new { success = true, message = "", datalist = data });
+                    }
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                // return error message if there was an exception
+                ExceptionError.SaveException(ex);
+
+            }
+
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
+        }
+
+
     }
 }

@@ -11,6 +11,11 @@ namespace POS.Service.Services
 {
     public class SalesGroupsItemsService : BaseService, ISalesGroupsItemsService
     {
+        public string GetItemsSalesGroups(int BrandID, string ImageURL)
+        {
+            return PosService.SalesGroupsItemsRepository.GetItemsSalesGroups(BrandID, ImageURL);
+        }
+
         public void SaveSalesGroupsItems(List<SalesGroupsItems> model)
         {
             for (int i = 0; i < model.Count; ++i)

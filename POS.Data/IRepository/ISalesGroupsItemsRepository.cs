@@ -8,6 +8,6 @@ namespace POS.Data.IRepository
     public interface ISalesGroupsItemsRepository
     {
         void SaveSalesGroupsItems(List<SalesGroupsItems> model);
-
+        string GetItemsSalesGroups(int BrandID,string ImageURL);
     }
 }
