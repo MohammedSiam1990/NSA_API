@@ -28,17 +28,20 @@ namespace POS.API.CORE.Controllers
         private IItemService ItemService;
         private IMapper Mapper;
         private IItemComponentsService ItemComponentsService;
+        private ISalesGroupsItemsService SalesGroupsItemsService;
         public ItemController(
                                       IItemService _ItemService,
                                        ImagesPath _imagesPath,
                                       IMapper mapper,
-                                      IItemComponentsService _ItemComponentsService
+                                      IItemComponentsService _ItemComponentsService,
+                                      ISalesGroupsItemsService _SalesGroupsItemsService
                                 )
         {
             ItemService = _ItemService;
             imagesPath = _imagesPath;
             Mapper = mapper;
             ItemComponentsService = _ItemComponentsService;
+            SalesGroupsItemsService = _SalesGroupsItemsService;
         }
 
         [AllowAnonymous]
@@ -210,10 +213,6 @@ namespace POS.API.CORE.Controllers
 
 
                 ItemComponentsService.SaveItemComponents(model);
-                //for (int i = 0; i < model.Count; ++i)
-                //{
-                //    var ItemCom = Mapper.Map<ItemComponents>(model[i]);
-                //}
                 return Ok(new { success = true, message = lang.Saved_successfully_completed });
 
             }
@@ -225,5 +224,63 @@ namespace POS.API.CORE.Controllers
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
+
+
+        [HttpPost("SaveSalesGroupsItems")]
+        public IActionResult SaveSalesGroupsItems(List<SalesGroupsItems> model, string Lang = "en")
+        {
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
+                SalesGroupsItemsService.SaveSalesGroupsItems(model);
+                return Ok(new { success = true, message = lang.Saved_successfully_completed });
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+                // return error message if there was an exception
+
+            }
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+        }
+
+        [HttpGet("GetItemsSalesGroups")]
+        public IActionResult GetItemsSalesGroups(int BrandID,string Lang = "en")
+        {
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
+                var data = SalesGroupsItemsService.GetItemsSalesGroups(BrandID,imagesPath.ItemGroup);//BrandID, imagesPath.Item
+                if (data != null)
+                {
+                    if (data.Count() == 0)
+                    {
+                        return Ok(new { success = true, message = lang.No_data_available, datalist = data});
+                    }
+                    else
+                    {
+                        return Ok(new { success = true, message = "", datalist = data });
+                    }
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                // return error message if there was an exception
+                ExceptionError.SaveException(ex);
+
+            }
+
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
+        }
+
+
     }
 }

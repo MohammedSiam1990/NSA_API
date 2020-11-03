@@ -25,6 +25,7 @@ namespace Pos.Service.Base
         public IMenuRepository MenuRepository { get; set; }
         public IUserRepository UserRepository { get; set; }
         public IItemComponentsRepository ItemComponentsRepository { get; set; }
+        public ISalesGroupsItemsRepository SalesGroupsItemsRepository { get; set; }
         [Inject]
         public PosServices(
                                      ICompaniesRepository _CompaniesRepository,
@@ -45,7 +46,8 @@ namespace Pos.Service.Base
                                      IBranchWorkStationsRepository _branchWorkStationsRepository,
                                      IMenuRepository _MenuRepository,
                                      IItemComponentsRepository _ItemComponentsRepository,
-                                     IUserRepository _UserRepository
+                                     IUserRepository _UserRepository,
+                                     ISalesGroupsItemsRepository _SalesGroupsItemsRepository
                             )
         {
             CompaniesRepository = _CompaniesRepository;
@@ -67,6 +69,7 @@ namespace Pos.Service.Base
             MenuRepository = _MenuRepository;
             ItemComponentsRepository = _ItemComponentsRepository;
             UserRepository = _UserRepository;
+            SalesGroupsItemsRepository = _SalesGroupsItemsRepository;
         }
 
     }
