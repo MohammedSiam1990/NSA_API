@@ -1,7 +1,9 @@
 ﻿using Pos.IService;
 using POS.Core;
+using POS.Data.Entities;
 using POS.Entities;
 using POS.IService.Base;
+using System;
 using System.Collections.Generic;
 
 namespace Pos.Service
@@ -76,5 +78,6 @@ namespace Pos.Service
             
             PosService.SkuRepository.DeleteSku(ItemId);
         }
+
     }
 }

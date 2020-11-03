@@ -5,8 +5,9 @@ using System.Text;
 
 namespace POS.Data.IRepository
 {
-    public interface IItemComponentsRepository
+    public interface ISalesGroupsItemsRepository
     {
-        void SaveItemComponents(List<ItemComponents> model);
+        void SaveSalesGroupsItems(List<SalesGroupsItems> model);
+
     }
 }

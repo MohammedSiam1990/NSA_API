@@ -70,6 +70,7 @@ namespace POS.Data.DataContext
         public virtual DbSet<BranchWorkStations> BranchWorkStations { get; set; }
         public virtual DbSet<Menu> Menu { get; set; }
         public virtual DbSet<ItemComponents> ItemComponents { get; set; }
+        public virtual DbSet<SalesGroupsItems> SalesGroupsItems { get; set; }
         #endregion
 
 

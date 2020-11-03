@@ -1,4 +1,5 @@
-﻿using POS.Entities;
+﻿using POS.Data.Entities;
+using POS.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -12,10 +13,8 @@ namespace POS.Data.IRepository
         bool ValidateItem(Item Item);
         void AddItem(Item Item);
         void UpdateItem(Item Item);
-        int ValidateNameAlreadyExist( Item model);
+        int ValidateNameAlreadyExist(Item model);
         string GetUOMName(int BrandID);
-
-
 
     }
 }
