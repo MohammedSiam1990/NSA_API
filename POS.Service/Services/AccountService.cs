@@ -32,8 +32,10 @@ namespace Pos.Service
         private IMailService mailService;
         EmailConfiguration emailConfig;
         private ICompaniesService CompaniesService;
+        private IBrandService BrandService;
         public AccountService(UserManager<ApplicationUser> userManager,
              ICompaniesService _CompaniesService,
+             IBrandService _brandService,
             EmailConfiguration _emailConfig,
             IConfiguration configuration,
           IMailService _mailService
@@ -45,6 +47,7 @@ namespace Pos.Service
             _configuration = configuration;
             mailService = _mailService;
             emailConfig = _emailConfig;
+            BrandService = _brandService;
         }
 
         public static void ExceptionError(Exception ex)
