@@ -63,8 +63,14 @@ namespace POS.Data.Repository
             {
                 try
                 {
+                    object CompId;
+                    if (CompanyID == 0)
+                        CompId = DBNull.Value;
+                    else
+                        CompId = CompanyID;
+
                     string Sql = "EXEC GetBrands @CompanyID,@ImageURL";
-                    var data= DbContext.JsonData.FromSql(Sql, new SqlParameter("@CompanyID", CompanyID),
+                    var data= DbContext.JsonData.FromSql(Sql, new SqlParameter("@CompanyID", CompId),
                                                        new SqlParameter("@ImageURL", ImageURL)).AsEnumerable().FirstOrDefault().Data;
                     return data.ToString();
                 }
