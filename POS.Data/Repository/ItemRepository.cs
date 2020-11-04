@@ -166,5 +166,31 @@ namespace POS.Data.Repository
             }
 
         }
+
+        //public void SaveSalesGroupsItems(List<SalesGroupsItems> model)
+        //{
+        //    using (var context = new PosDbContext())
+        //    {
+        //        using (var transaction = context.Database.BeginTransaction())
+        //        {
+        //            try
+        //            {
+        //                long SalesGroupItemsID = model.First().SalesGroupItemsID;
+
+        //                var SalesGroupsItems = GetMany().ToList();
+        //                base.DeleteRange(SalesGroupsItems);
+        //                base.AddRange(model);
+        //                context.SaveChanges();
+        //                transaction.Commit();
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                transaction.Rollback();
+        //                throw new AppException(ex.Message);
+        //            }
+        //        }
+        //    }
+
+        //}
     }
 }

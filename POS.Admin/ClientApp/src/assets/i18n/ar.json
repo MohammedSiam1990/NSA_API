@@ -52,6 +52,7 @@
   "email_is_required":"البريد الالكترونى مطلوب",
   "email_not_valid":"يرجى إدخال البريد الإلكتروني الصحيح (example@example.com)",
   "Email":"البريد الالكترونى",
-  "CountryNameAr":"اسم الدوله"
+  "CountryNameAr":"اسم الدوله",
+  "Companies":"الشركات"
 
 }

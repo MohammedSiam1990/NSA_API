@@ -8,7 +8,5 @@ namespace POS.Data.IRepository
     public interface IItemComponentsRepository
     {
         void SaveItemComponents(List<ItemComponents> model);
-
-
     }
 }

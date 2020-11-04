@@ -1,4 +1,5 @@
-﻿using POS.Entities;
+﻿using POS.Data.Entities;
+using POS.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -12,8 +13,9 @@ namespace Pos.IService
         void AddItem(Item Item);
         void UpdateItem(Item Item);
         int ValidateItemAlreadyExist(Item model);
-        int ValidateSkuAlreadyExist(string Lang,Item model,out string SkuAlert);
+        int ValidateSkuAlreadyExist(string Lang, Item model, out string SkuAlert);
         string GetUOMName(int BrandID);
         void DeleteSku(long ItemId);
+
     }
 }

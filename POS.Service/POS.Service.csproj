@@ -167,6 +167,7 @@
     <Compile Include="IService\IMenuService.cs" />
     <Compile Include="IService\ITaxService.cs" />
     <Compile Include="IService\IItemService.cs" />
+    <Compile Include="IService\ISalesGroupsItemsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Base\BaseService.cs" />
     <Compile Include="Base\PosService.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="Services\LookUpService.cs" />
     <Compile Include="Services\RemarksTemplateService.cs" />
     <Compile Include="Services\MenuService.cs" />
+    <Compile Include="Services\SalesGroupsItemsService.cs" />
     <Compile Include="Services\TaxService.cs" />
   </ItemGroup>
   <ItemGroup>
