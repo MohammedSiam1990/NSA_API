@@ -25,7 +25,8 @@ namespace POS.Models
         public string DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
 
-
+        public string ApprovedBy { get; set; }
+        public DateTime? ApprovedDate { get; set; }
 
     }
 }
