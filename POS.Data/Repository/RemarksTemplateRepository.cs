@@ -64,6 +64,7 @@ namespace POS.Data.Repository
                 {
                     try
                     {
+                        
                         context.RemoveRange(DeletRemarksTemplateDetails);
                         remarksTemplate.ModifyDate = DateTime.Now;
                         context.Update(remarksTemplate);

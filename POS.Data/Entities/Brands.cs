@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace POS.Entities
@@ -26,6 +25,8 @@ namespace POS.Entities
         public bool? IsDefault { get; set; }
         public string DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
+        public string ApprovedBy { get; set; }
+        public DateTime? ApprovedDate { get; set; }
 
         //public virtual City City { get; set; }
         public virtual Companies Company { get; set; }
