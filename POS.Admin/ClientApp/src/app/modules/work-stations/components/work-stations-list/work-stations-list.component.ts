@@ -55,9 +55,19 @@ export class WorkStationsListComponent implements OnInit {
   getWorkStations(): void {
     this.workStationService.getWorkStations(this.translate.currentLang).subscribe(res => {
       this.gridData = res.datalist;
-      this.gridViewArr = this.gridData;
+      this.getWorkStationsPending();
     })
 
+  }
+
+  getWorkStationsPending() {
+    var gridDataPending = this.gridData.filter(data => data.StatusID == 6);
+    this.gridViewArr = gridDataPending;
+  }
+
+  getWorkStationsActive() {
+    var gridDataActive = this.gridData.filter(data => data.StatusID == 7);
+    this.gridViewArr = gridDataActive;
   }
 
   activeWorkStations(model: BranchWorkStationsModel) {

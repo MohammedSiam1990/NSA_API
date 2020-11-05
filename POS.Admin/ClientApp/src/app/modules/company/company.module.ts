@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { CompanyRoutingModule } from './company-routing.module';
 import { CompanyListComponent } from './components/company-list/company-list.component';
 import { SharedModule } from 'src/app/_shared/_shared.module';
-import { ActiveCompanyComponent } from './active-company/active-company.component';
-import { DeleteCompanyComponent } from './delete-company/delete-company.component';
+import { ActiveCompanyComponent } from './components/active-company/active-company.component';
+import { DeleteCompanyComponent } from './components/delete-company/delete-company.component';
 
 
 @NgModule({
