@@ -1,9 +1,6 @@
 ﻿using Pos.IService;
-using POS.Core;
-using POS.Data.Entities;
 using POS.Entities;
 using POS.IService.Base;
-using System;
 using System.Collections.Generic;
 
 namespace Pos.Service
@@ -15,9 +12,6 @@ namespace Pos.Service
         {
             PosService.ItemRepository.AddItem(Item);
         }
-
-
-
         public string GetItems(int BrandID, string ImageURL)
         {
             return PosService.ItemDataRepository.GetProcItemData(BrandID, ImageURL);

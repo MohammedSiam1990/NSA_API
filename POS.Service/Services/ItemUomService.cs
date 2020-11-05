@@ -3,10 +3,7 @@ using POS.IService.Base;
 using POS.Service.IService;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace POS.Service.Services
 {
@@ -24,7 +21,7 @@ namespace POS.Service.Services
 
         public ItemUom GetItemUom(long itemUomId)
         {
-          return  PosService.itemUomRepository.GetItemUom(itemUomId);
+            return PosService.itemUomRepository.GetItemUom(itemUomId);
         }
 
         public List<ItemUom> GetItemUoms(Expression<Func<ItemUom, bool>> where)
@@ -40,10 +37,10 @@ namespace POS.Service.Services
 
         public void UpdateItemUom(ItemUom itemUom)
         {
-             PosService.itemUomRepository.UpdateItemUom(itemUom);
+            PosService.itemUomRepository.UpdateItemUom(itemUom);
         }
 
-        public bool ValidateCodeorNameAlreadyExist(long ItemUomid,string Name)
+        public bool ValidateCodeorNameAlreadyExist(long ItemUomid, string Name)
         {
             return PosService.itemUomRepository.ValidateCodeorNameAlreadyExist(e => e.ItemUomid != ItemUomid && (e.Name == Name));
         }

@@ -20,29 +20,6 @@ namespace POS.Data.Repository
 
         }
 
-        [Obsolete]
-        public string GetItemsSalesGroups(int BrandID, string ImageURL)
-        {
-            using (var DbContext = new PosDbContext())
-            {
-                try
-                {
-                    string Sql = "EXEC GetItemsSalesGroups @BrandID,@ImageURL";
-                    var data = DbContext.JsonData.FromSqlRaw(Sql,
-                        new SqlParameter("@BrandID", BrandID),
-                        new SqlParameter("@ImageURL", ImageURL) ).AsEnumerable().FirstOrDefault().Data;
-
-                    return data.ToString();
-                }
-                catch (Exception ex)
-                {
-                    Exceptions.ExceptionError.SaveException(ex);
-                }
-
-                return null;
-
-            }
-        }
 
         public void SaveSalesGroupsItems(List<SalesGroupsItems> model)
         {

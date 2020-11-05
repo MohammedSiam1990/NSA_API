@@ -1,6 +1,5 @@
 ﻿using Exceptions;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Net;
 using System.Net.Mail;
 
@@ -14,8 +13,6 @@ namespace POS.Service.Services
         {
             _configuration = configuration;
         }
-
-
 
         public bool SendEmailAsync(string Smtp, int Port, bool EnableSsl, string From, string To, string Subject, string body, string CredentialEmail, string CredentialPassword,bool UseDefaultCredentials)
         {
