@@ -1,7 +1,6 @@
 ﻿using POS.Entities;
 using POS.IService.Base;
 using POS.Service.IService;
-using System.Collections.Generic;
 
 namespace POS.Service.Services
 {
@@ -11,7 +10,6 @@ namespace POS.Service.Services
         {
             return PosService.ItemGroupsRepository.SaveItemGroup(itemGroup);
         }
-
         public string GetProcItemGroups(int BrandID, string ImageName)
         {
             return PosService.ItemGroupsRepository.GetProcItemGroups(BrandID, ImageName);

@@ -28,6 +28,11 @@
                     <button kendoGridExcelCommand type="button" icon="file-excel" class="btn  btn-info float-right">
                         {{'Export_to_Excel'|translate}}
                     </button>
+                    <button class="btn btn-primary mr-2 float-right" type="button"
+                        (click)="getCompaniesPending()"><span class="fa fa-check"> </span></button>
+                    <button class="btn btn-danger float-right" type="button" (click)="getCompaniesActive()"><span
+                            class="fa fa-trash">
+                        </span></button>
                     <!-- <button kendoGridPDFCommand icon="file-pdf" class="btn  btn-info float-right">
                     {{'Export_to_PDF'|translate}}
                 </button> -->
@@ -48,17 +53,19 @@
 
                 <kendo-grid-column field="CompanyEmail" title="{{'Email'|translate}}" [width]="120">
                 </kendo-grid-column>
-
                 <kendo-grid-column field="Phone" title="{{'Phone'|translate}}" [width]="120"></kendo-grid-column>
+                <kendo-grid-column field="CreateDateS" title="{{'CreateDate'|translate}}" [width]="120">
+                </kendo-grid-column>
                 <kendo-grid-column [width]="120">
                     <ng-template kendoGridCellTemplate let-dataItem>
-                        <button class="btn btn-primary mr-2" type="button" (click)="activeCompany(dataItem)"><span
+                        <button *ngIf="dataItem.StatusID==6" class="btn btn-primary mr-2" type="button" (click)="activeCompany(dataItem)"><span
                                 class="fa fa-check"> </span></button>
                         <button class="btn btn-danger" type="button" (click)="deleteCompany(dataItem)"><span
                                 class="fa fa-trash">
                             </span></button>
                     </ng-template>
                 </kendo-grid-column>
+
 
                 <!-- <kendo-grid-pdf fileName="WorkStations.pdf" [repeatHeaders]="true"></kendo-grid-pdf> -->
                 <kendo-grid-excel fileName="WorkStations.xlsx" [fetchData]="allData"></kendo-grid-excel>
@@ -72,5 +79,5 @@
     </div>
 </div>
 
-<app-active-company #activeCompanyCom (onActivated)="getCompanies()"></app-active-company>
-<app-delete-company #deleteCompanyCom (onDeleted)="getCompanies()"></app-delete-company>
+<app-active-company #activeCompanyCom (onActivated)="getCompaniesPending()"></app-active-company>
+<app-delete-company #deleteCompanyCom (onDeleted)="getCompaniesPending()"></app-delete-company>

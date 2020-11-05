@@ -28,6 +28,11 @@
                     <button kendoGridExcelCommand type="button" icon="file-excel" class="btn  btn-info float-right">
                         {{'Export_to_Excel'|translate}}
                     </button>
+                    <button class="btn btn-primary mr-2 float-right" type="button"
+                    (click)="getWorkStationsPending()"><span class="fa fa-check"> </span></button>
+                <button class="btn btn-danger float-right" type="button" (click)="getWorkStationsActive()"><span
+                        class="fa fa-trash">
+                    </span></button>
                     <!-- <button kendoGridPDFCommand icon="file-pdf" class="btn  btn-info float-right">
                     {{'Export_to_PDF'|translate}}
                 </button> -->
@@ -66,7 +71,7 @@
 
                 <kendo-grid-column [width]="120">
                     <ng-template kendoGridCellTemplate let-dataItem>
-                        <button class="btn btn-primary mr-2" type="button" (click)="activeWorkStations(dataItem)"><span
+                        <button *ngIf="dataItem.StatusID==6" class="btn btn-primary mr-2" type="button" (click)="activeWorkStations(dataItem)"><span
                                 class="fa fa-check"> </span></button>
                         <button class="btn btn-danger" type="button" (click)="deleteWorkStations(dataItem)"><span
                                 class="fa fa-trash">
@@ -85,5 +90,5 @@
         </div>
     </div>
 </div>
-<app-delete-work-stations #deleteWorkStationsCom (onDeleted)="getWorkStations()"></app-delete-work-stations>
-<app-active-work-stations #activeWorkStationsCom (onActivated)="getWorkStations()"></app-active-work-stations>
+<app-delete-work-stations #deleteWorkStationsCom (onDeleted)="getWorkStationsPending()"></app-delete-work-stations>
+<app-active-work-stations #activeWorkStationsCom (onActivated)="getWorkStationsPending()"></app-active-work-stations>

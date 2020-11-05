@@ -1,7 +1,6 @@
 using Pos.IService;
 using POS.Entities;
 using POS.IService.Base;
-using System.Collections.Generic;
 
 namespace Pos.Service
 {
@@ -43,8 +42,8 @@ namespace Pos.Service
         public int DeletCompanyeAndUser(int CompanyId)
         {
             var User = PosService.UserRepository.GetUser(CompanyId);
-          var Company = PosService.CompaniesRepository.GetCompany(CompanyId);
-          return  PosService.CompaniesRepository.DeletCompanyeAndUser(Company, User);
+            var Company = PosService.CompaniesRepository.GetCompany(CompanyId);
+            return PosService.CompaniesRepository.DeletCompanyeAndUser(Company, User);
         }
     }
 }

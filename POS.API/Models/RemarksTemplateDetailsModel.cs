@@ -16,6 +16,6 @@ namespace POS.API.Models
         public decimal? Price { get; set; }
         public decimal? Calories { get; set; }
         public decimal? Quantity { get; set; }
-        public long Itemuom { get; set; }
+        public long? Itemuom { get; set; }
     }
 }
