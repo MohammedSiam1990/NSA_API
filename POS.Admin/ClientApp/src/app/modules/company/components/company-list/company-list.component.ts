@@ -4,10 +4,10 @@ import { LoadingService } from 'src/app/_shared/services/loading.service';
 import { CompanyModel } from '../../models/company';
 import { CompanyService } from '../../services/company.service';
 import { MessageService } from '@progress/kendo-angular-l10n';
-import {process } from '@progress/kendo-data-query';
+import { process } from '@progress/kendo-data-query';
 import { ExcelExportData } from '@progress/kendo-angular-excel-export';
-import { ActiveCompanyComponent } from '../../active-company/active-company.component';
-import { DeleteCompanyComponent } from '../../delete-company/delete-company.component';
+import { ActiveCompanyComponent } from '../active-company/active-company.component';
+import { DeleteCompanyComponent } from '../delete-company/delete-company.component';
 
 @Component({
   selector: 'app-company-list',
@@ -22,7 +22,7 @@ export class CompanyListComponent implements OnInit {
   public pageSizes: any[] = [25, 50, 100, {
     text: this.translate.instant("All"),
     value: 'all'
-}];
+  }];
   public pageSize = 25;
   private rtl = false;
   @ViewChild("activeCompanyCom") activeCompanyCom: ActiveCompanyComponent;
@@ -31,15 +31,13 @@ export class CompanyListComponent implements OnInit {
   constructor(private companyService: CompanyService, private loadingService: LoadingService,
     private messages: MessageService,
     public translate: TranslateService) {
-      this.allData = this.allData.bind(this);
+    this.allData = this.allData.bind(this);
   }
 
   public ngOnInit(): void {
     this.changeDir();
     this.getCompanies();
-
   }
-
 
   public changeDir() {
     if (this.translate.currentLang == "ar")
@@ -53,14 +51,22 @@ export class CompanyListComponent implements OnInit {
   getCompanies(): void {
     this.companyService.getCompanies(this.translate.currentLang).subscribe(res => {
       this.gridData = res.datalist;
-      this.gridViewArr = this.gridData;
+      this.getCompaniesPending() ;
     })
+  }
+  
+  getCompaniesPending() {
+    var gridDataPending = this.gridData.filter(data => data.StatusID == 6);
+    this.gridViewArr = gridDataPending;
+  }
 
+  getCompaniesActive() {
+    var gridDataActive = this.gridData.filter(data => data.StatusID == 7);
+    this.gridViewArr = gridDataActive;
   }
 
   activeCompany(model: CompanyModel) {
     this.activeCompanyCom.show(model);
-
   }
 
   deleteCompany(model: CompanyModel) {
@@ -101,6 +107,11 @@ export class CompanyListComponent implements OnInit {
             field: "CountryNameAr",
             operator: "contains",
             value: inputValue
+          },
+          {
+            field: "CreateDateS",
+            operator: "contains",
+            value: inputValue
           }
         ]
       }
@@ -108,9 +119,10 @@ export class CompanyListComponent implements OnInit {
   }
 
   public allData(): ExcelExportData {
-    const result: ExcelExportData =  {
-        data: process(this.gridViewArr, {  sort: [{ field: 'CreateDateS', dir: 'asc' }] }).data,
+    const result: ExcelExportData = {
+      data: process(this.gridViewArr, { sort: [{ field: 'CreateDateS', dir: 'asc' }] }).data,
     };
     return result;
-} 
+  }
+
 }

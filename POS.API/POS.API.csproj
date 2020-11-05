@@ -64,7 +64,6 @@
     <Folder Include="uploads\Branch\" />
     <Folder Include="uploads\Brand\" />
     <Folder Include="uploads\Company\" />
-    <Folder Include="uploads\ItemGroup\" />
   </ItemGroup>
 
 

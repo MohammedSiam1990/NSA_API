@@ -1,8 +1,6 @@
-﻿using POS.Data.Dto.Procedure;
-using POS.Data.Entities;
+﻿using POS.Data.Entities;
 using POS.IService.Base;
 using POS.Service.IService;
-using System.Collections.Generic;
 
 namespace POS.Service.Services
 {
