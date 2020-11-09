@@ -241,6 +241,15 @@ namespace POS.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Free payment method already exists.
+        /// </summary>
+        public static string Free_payment_method_already_exists {
+            get {
+                return ResourceManager.GetString("Free_payment_method_already_exists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Here.
         /// </summary>
         public static string Here {
@@ -390,6 +399,15 @@ namespace POS.Core.Resources {
         public static string PasswordNotMatch {
             get {
                 return ResourceManager.GetString("PasswordNotMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment method already exists.
+        /// </summary>
+        public static string Payment_method_already_exists {
+            get {
+                return ResourceManager.GetString("Payment_method_already_exists", resourceCulture);
             }
         }
         

@@ -1,15 +1,9 @@
- 
-    using System;
-    using System.Collections.Generic; 
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
 namespace POS.Models
 {
 
     public partial class CitiesModel
     {
-         public int CityId { get; set; }
+        public int CityId { get; set; }
         public string CityCode { get; set; }
         public string CityName { get; set; }
         public string CityNameAr { get; set; }

@@ -71,6 +71,7 @@ namespace POS.Data.DataContext
         public virtual DbSet<Menu> Menu { get; set; }
         public virtual DbSet<ItemComponents> ItemComponents { get; set; }
         public virtual DbSet<SalesGroupsItems> SalesGroupsItems { get; set; }
+        public virtual DbSet<PaymentMethods> PaymentMethods { get; set; }
         #endregion
 
 

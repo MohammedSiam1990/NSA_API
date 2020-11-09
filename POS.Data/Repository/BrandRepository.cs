@@ -44,7 +44,6 @@ namespace POS.Data.Repository
                                                 new SqlParameter("@CompanyId"  , Brands.CompanyId ?? (object)DBNull.Value),
                                                 new SqlParameter("@IsDefault"   , Brands.IsDefault ?? (object)DBNull.Value)
                                             }).AsEnumerable().FirstOrDefault().ReturnValue;
-
                     return result;
                 }
 
