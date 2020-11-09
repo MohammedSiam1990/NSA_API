@@ -25,7 +25,6 @@
     "CompanyName":"Company Name",
     "CompanyNameAr":"Company Name Arabic",
     "BrandName":"Brand Name",
-    "BrandNameAr":"Brand Name Arabic",
     "BranchName":"Branch Name",
     "BranchNameAr":"Branch Name Arabic",
     "WorkstationName":"Workstation Name",
@@ -42,18 +41,24 @@
     "yes":"Yes",
     "Are you sure you want to active this record ?":"Are you sure you want to Active this record ?",
     "active":"Active",
-    "WorkStation":"Pending Workstations",
+    "WorkStation":"Workstations",
     "search_all_columns":"search......",
     "All":"All",
     "no_records_available":"No Records Available",
     "send":"Send",
     "Login":"Login",
-    "ReturnTo":"ReturnTo",
+    "ReturnTo":"Return To",
     "email_is_required":"Email Is Required",
     "email_not_valid":"Please enter valid email (example@example.com)",
     "Email":"Email",
     "CountryName":"Country Name",
-    "Companies":"Companies"
+    "Companies":"Companies",
+    "BranchNum":"Branch Num",
+    "CityName":"City Name",
+    "pending":"Pending",
+    "branches":"branches",
+    "brands":"brands",
+    "ServiceName":"Service Name"
 }
 
     

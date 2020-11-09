@@ -4,9 +4,9 @@
             <li class="mr-3 active">
                 <i class="fa fa-tachometer arqami-color" aria-hidden="true"></i>
             </li>
-
             <li class="breadcrumb-item active" aria-current="page">
-                <span id="pageTitle">{{'Companies'| translate}}</span>
+                <span id="pageTitle" *ngIf="translate.currentLang=='en'"> {{title}} {{'Companies'| translate}}</span>
+                <span id="pageTitle" *ngIf="translate.currentLang=='ar'"> {{'Companies'| translate}} {{title}} </span>
             </li>
         </ol>
     </nav>
@@ -22,16 +22,16 @@
                 <ng-template kendoGridToolbarTemplate>
                     <div class="float-left">
                         <input placeholder="{{'search_all_columns'|translate}}" kendoTextBox
-                            (input)="onFilter($event.target.value)" class="kendo-search textbox1 " />
+                            (input)="search($event.target.value)" class="kendo-search textbox1 " />
                         <input title="Search" value="" type="submit" class="button1">
                     </div>
                     <button kendoGridExcelCommand type="button" icon="file-excel" class="btn  btn-info float-right">
                         {{'Export_to_Excel'|translate}}
                     </button>
-                    <button class="btn btn-primary mr-2 float-right" type="button"
-                        (click)="getCompaniesPending()"><span class="fa fa-check"> </span></button>
-                    <button class="btn btn-danger float-right" type="button" (click)="getCompaniesActive()"><span
-                            class="fa fa-trash">
+                    <button *ngIf="showActive==false" class="btn btn-outline-primary mr-2 float-right" type="button"
+                        (click)="getCompaniesActive()"><span class="fa fa-check-square-o"> </span></button>
+                    <button *ngIf="showActive==true" class="btn btn-outline-warning float-right" type="button"
+                        (click)="getCompaniesPending()"><span class="fa fa-spin fa-spinner">
                         </span></button>
                     <!-- <button kendoGridPDFCommand icon="file-pdf" class="btn  btn-info float-right">
                     {{'Export_to_PDF'|translate}}
@@ -58,10 +58,10 @@
                 </kendo-grid-column>
                 <kendo-grid-column [width]="120">
                     <ng-template kendoGridCellTemplate let-dataItem>
-                        <button *ngIf="dataItem.StatusID==6" class="btn btn-primary mr-2" type="button" (click)="activeCompany(dataItem)"><span
-                                class="fa fa-check"> </span></button>
-                        <button class="btn btn-danger" type="button" (click)="deleteCompany(dataItem)"><span
-                                class="fa fa-trash">
+                        <button *ngIf="dataItem.StatusID==6" class="btn btn-outline-primary mr-2" type="button"
+                            (click)="activeCompany(dataItem)"><span class="fa fa-check"> </span></button>
+                        <button *ngIf="dataItem.StatusID==6" class="btn btn-outline-danger" type="button"
+                            (click)="deleteCompany(dataItem)"><span class="fa fa-trash">
                             </span></button>
                     </ng-template>
                 </kendo-grid-column>

@@ -24,7 +24,7 @@ export class WorkStationsListComponent implements OnInit {
   public pageSizes: any[] = [25, 50, 100, {
     text: this.translate.instant("All"),
     value: 'all'
-}];
+  }];
   public pageSize = 25;
   private rtl = false;
   @ViewChild("deleteWorkStationsCom") deleteWorkStationsCom: DeleteWorkStationsComponent;
@@ -33,7 +33,7 @@ export class WorkStationsListComponent implements OnInit {
   constructor(private workStationService: WorkStationService, private loadingService: LoadingService,
     private messages: MessageService,
     public translate: TranslateService) {
-      this.allData = this.allData.bind(this);
+    this.allData = this.allData.bind(this);
   }
 
   public ngOnInit(): void {
@@ -60,14 +60,23 @@ export class WorkStationsListComponent implements OnInit {
 
   }
 
+  showActive: boolean = false;
+  title: string = "";
   getWorkStationsPending() {
+    this.showActive = false;
+    this.title = this.translate.instant("pending");
     var gridDataPending = this.gridData.filter(data => data.StatusID == 6);
     this.gridViewArr = gridDataPending;
+    this.onFilter(this.keysearch);
   }
 
   getWorkStationsActive() {
+    this.showActive = true;
+    this.title = this.translate.instant("active");
     var gridDataActive = this.gridData.filter(data => data.StatusID == 7);
     this.gridViewArr = gridDataActive;
+    this.onFilter(this.keysearch);
+
   }
 
   activeWorkStations(model: BranchWorkStationsModel) {
@@ -79,8 +88,9 @@ export class WorkStationsListComponent implements OnInit {
     this.deleteWorkStationsCom.show(model);
   }
 
+  keysearch: string = "";
   public onFilter(inputValue: string): void {
-    this.gridViewArr = process(this.gridData, {
+    this.gridViewArr = process(this.gridViewArr, {
       filter: {
         logic: "or",
         filters: [
@@ -119,11 +129,19 @@ export class WorkStationsListComponent implements OnInit {
     }).data;
   }
 
+  search(inputValue: string) {
+    this.keysearch = inputValue;
+    if (!this.showActive)
+      this.getWorkStationsPending();
+    else
+      this.getWorkStationsActive();
+  }
+
   public allData(): ExcelExportData {
-    const result: ExcelExportData =  {
-        data: process(this.gridViewArr, {  sort: [{ field: 'CreateDateS', dir: 'asc' }] }).data,
+    const result: ExcelExportData = {
+      data: process(this.gridViewArr, { sort: [{ field: 'CreateDateS', dir: 'asc' }] }).data,
     };
     return result;
-}
+  }
 
 }

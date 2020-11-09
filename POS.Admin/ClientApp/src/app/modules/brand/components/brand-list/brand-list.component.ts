@@ -4,19 +4,15 @@ import { LoadingService } from 'src/app/_shared/services/loading.service';
 import { MessageService } from '@progress/kendo-angular-l10n';
 import { process } from '@progress/kendo-data-query';
 import { ExcelExportData } from '@progress/kendo-angular-excel-export';
-import { BranchService } from '../../services/branch.service';
-import { BranchModel } from '../../models/branch-model';
-import { DeleteBranchComponent } from '../delete-branch/delete-branch.component';
-import { ActiveBranchComponent } from '../active-branch/active-branch.component';
-
+import { BrandService } from '../../services/brand.service';
 
 @Component({
-  selector: 'app-branch-list',
-  templateUrl: './branch-list.component.html',
-  styleUrls: ['./branch-list.component.css'],
+  selector: 'app-brand-list',
+  templateUrl: './brand-list.component.html',
+  styleUrls: ['./brand-list.component.css'] ,
   providers: [MessageService],
 })
-export class BranchListComponent implements OnInit {
+export class BrandListComponent implements OnInit {
 
   public gridData: any[] = [];
   public gridViewArr: any[] = [];
@@ -26,10 +22,8 @@ export class BranchListComponent implements OnInit {
   }];
   public pageSize = 25;
   private rtl = false;
-  @ViewChild("activeBranchComp") activeBranchComp: ActiveBranchComponent;
-  @ViewChild("deleteBranchCom") deleteBranchCom: DeleteBranchComponent;
 
-  constructor(private branchService: BranchService, private loadingService: LoadingService,
+  constructor(private brandService: BrandService, private loadingService: LoadingService,
     private messages: MessageService,
     public translate: TranslateService) {
     this.allData = this.allData.bind(this);
@@ -37,7 +31,7 @@ export class BranchListComponent implements OnInit {
 
   public ngOnInit(): void {
     this.changeDir();
-    this.getBranches();
+    this.getBrands();
   }
 
   public changeDir() {
@@ -49,37 +43,29 @@ export class BranchListComponent implements OnInit {
   }
 
   WorkStations: any;
-  getBranches(): void {
-    this.branchService.getBranches(this.translate.currentLang).subscribe(res => {
+  getBrands(): void {
+    this.brandService.getBrands(this.translate.currentLang).subscribe(res => {
       this.gridData = res.datalist;
-      this.getBranchesPending() ;
+      this.gridViewArr =this.gridData;
     })
   }
 
-  showActive:boolean=false;
+  showActive: boolean = false;
   title: string = "";
-  getBranchesPending() {
+  getBrandsPending() {
     this.title = this.translate.instant("pending");
-    this.showActive=false;
+    this.showActive = false;
     var gridDataPending = this.gridData.filter(data => data.StatusID == 6);
     this.gridViewArr = gridDataPending;
     this.onFilter(this.keysearch);
   }
 
-  getBranchesActive() {
+  getBrandsActive() {
     this.title = this.translate.instant("active");
-    this.showActive=true;
+    this.showActive = true;
     var gridDataActive = this.gridData.filter(data => data.StatusID == 7);
     this.gridViewArr = gridDataActive;
     this.onFilter(this.keysearch);
-  }
-
-  activeBranch(model: BranchModel) {
-    this.activeBranchComp.show(model);
-  }
-
-  deleteBranch(model: BranchModel) {
-    this.deleteBranchCom.show(model);
   }
 
   public onFilter(inputValue: string): void {
@@ -88,47 +74,32 @@ export class BranchListComponent implements OnInit {
         logic: "or",
         filters: [
           {
-            field: "BranchNum",
-            operator: "contains",
-            value: inputValue
-          },
-          {
-            field: "BranchName",
-            operator: "contains",
-            value: inputValue
-          },
-          {
-            field: "BranchNameAr",
-            operator: "contains",
-            value: inputValue
-          },
-          {
-            field: "BrandName",
-            operator: "contains",
-            value: inputValue
-          },
-          {
-            field: "BrandNameAr",
-            operator: "contains",
-            value: inputValue
-          },
-          {
-            field: "CityName",
-            operator: "contains",
-            value: inputValue
-          },
-          {
-            field: "CityNameAr",
-            operator: "contains",
-            value: inputValue
-          },
-          {
             field: "CompanyName",
             operator: "contains",
             value: inputValue
           },
           {
             field: "CompanyNameAr",
+            operator: "contains",
+            value: inputValue
+          },
+          {
+            field: "CompanyEmail",
+            operator: "contains",
+            value: inputValue
+          },
+          {
+            field: "Phone",
+            operator: "contains",
+            value: inputValue
+          },
+          {
+            field: "CountryName",
+            operator: "contains",
+            value: inputValue
+          },
+          {
+            field: "CountryNameAr",
             operator: "contains",
             value: inputValue
           },
@@ -146,9 +117,9 @@ export class BranchListComponent implements OnInit {
   search(inputValue: string) {
     this.keysearch = inputValue;
     if (!this.showActive)
-      this.getBranchesPending();
+      this.getBrandsPending();
     else
-      this.getBranchesActive();
+      this.getBrandsActive();
   }
 
   public allData(): ExcelExportData {
@@ -157,5 +128,4 @@ export class BranchListComponent implements OnInit {
     };
     return result;
   }
-
 }

@@ -51,7 +51,7 @@
                                                 </control-messages>
                                                 </div>
                                                 <div class="form-group " (click)="reSendEmail()">
-                                                    <button type="button"
+                                                    <button type="button" [disabled]="!form.valid"
                                                         class="w-100 btn btn-lg  bg-lo">{{'Send'|translate}}</button>
                                                 </div>
 

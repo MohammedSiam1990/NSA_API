@@ -1,12 +1,9 @@
 import { Component, HostBinding, Input, OnInit, ChangeDetectorRef, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { animate, state, style, transition, trigger, query, stagger } from '@angular/animations';
 import { NavService } from '../../services/nav.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MenuService } from '../../services/menu.service';
-import { environment } from 'src/environments/environment';
-import { TooltipConfig } from 'ngx-bootstrap/tooltip';
 import { AuthService } from '../../services/auth/authr.Service';
 import { TranslateService } from '@ngx-translate/core';
 import { LoadingService } from '../../services/loading.service';
@@ -19,7 +16,6 @@ import { LoadingService } from '../../services/loading.service';
 })
 
 export class MenuListItemComponent implements OnInit, OnDestroy {
-
   isShowMenu: boolean = false;
   userName: any;
   @ViewChild('sidenav') sidenav: MatSidenav;
@@ -32,6 +28,7 @@ export class MenuListItemComponent implements OnInit, OnDestroy {
   showItems: boolean = false;
   private _mobileQueryListener: () => void;
   public collapsed = false;
+  navItem2:NavItem2;
   expanded: boolean;
   // @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
   @Input() depth: number;
@@ -60,6 +57,9 @@ export class MenuListItemComponent implements OnInit, OnDestroy {
     this.menuService.getMenuItems(this.translate.currentLang).subscribe(res => {
       this.loadingService.hideLoading();
       this.menu = res.datalist as NavItem2[];
+      this.menu.forEach(element => {
+        element.selected=true
+      });
     })
   }
 
@@ -69,7 +69,7 @@ export class MenuListItemComponent implements OnInit, OnDestroy {
     this.getMenuItems();
   }
 
-  selected: boolean;
+  selected: boolean=true;
   toggleSelection(item: NavItem2) {
     item.selected = !item.selected;
   }
@@ -87,17 +87,17 @@ export interface NavItem {
   children?: NavItem[];
 }
 
-export interface NavItem2 {
-  menuId: number,
-  menuKeyName: string,
-  menuParentId: number,
-  menuUrl: string,
-  menuClassName: string,
-  menuImagePath: string,
-  header: number,
-  main: number,
-  menuOrder: number,
-  inverseMenuParent: any[],
-  statusId: any,
-  selected: boolean
+export class NavItem2 {
+  menuId: number;
+  menuKeyName: string;
+  menuParentId: number;
+  menuUrl: string;
+  menuClassName: string;
+  menuImagePath: string;
+  header: number;
+  main: number;
+  menuOrder: number;
+  inverseMenuParent: any[];
+  statusId: any;
+  selected: boolean=true;
 }

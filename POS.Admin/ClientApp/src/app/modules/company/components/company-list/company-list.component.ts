@@ -51,18 +51,26 @@ export class CompanyListComponent implements OnInit {
   getCompanies(): void {
     this.companyService.getCompanies(this.translate.currentLang).subscribe(res => {
       this.gridData = res.datalist;
-      this.getCompaniesPending() ;
+      this.getCompaniesPending();
     })
   }
-  
+
+  showActive: boolean = false;
+  title: string = "";
   getCompaniesPending() {
+    this.title = this.translate.instant("pending");
+    this.showActive = false;
     var gridDataPending = this.gridData.filter(data => data.StatusID == 6);
     this.gridViewArr = gridDataPending;
+    this.onFilter(this.keysearch);
   }
 
   getCompaniesActive() {
+    this.title = this.translate.instant("active");
+    this.showActive = true;
     var gridDataActive = this.gridData.filter(data => data.StatusID == 7);
     this.gridViewArr = gridDataActive;
+    this.onFilter(this.keysearch);
   }
 
   activeCompany(model: CompanyModel) {
@@ -74,7 +82,7 @@ export class CompanyListComponent implements OnInit {
   }
 
   public onFilter(inputValue: string): void {
-    this.gridViewArr = process(this.gridData, {
+    this.gridViewArr = process(this.gridViewArr, {
       filter: {
         logic: "or",
         filters: [
@@ -116,6 +124,15 @@ export class CompanyListComponent implements OnInit {
         ]
       }
     }).data;
+  }
+
+  keysearch: string = "";
+  search(inputValue: string) {
+    this.keysearch = inputValue;
+    if (!this.showActive)
+      this.getCompaniesPending();
+    else
+      this.getCompaniesActive();
   }
 
   public allData(): ExcelExportData {

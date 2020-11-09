@@ -25,6 +25,10 @@ const routes: Routes = [
     path: 'branch', canActivateChild: [AuthGuard],
     loadChildren: () => import('./modules/branch/branch.module').then(m => m.BranchModule)
   },
+  {
+    path: 'brand', canActivateChild: [AuthGuard],
+    loadChildren: () => import('./modules/brand/brand.module').then(m => m.BrandModule)
+  },
   { path: '', canActivateChild: [AuthGuard], redirectTo: 'home', pathMatch: 'full' },
   { path: '**', canActivateChild: [AuthGuard], redirectTo: 'home', pathMatch: 'full' },
   {

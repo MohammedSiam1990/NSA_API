@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using POS.Data.DataContext;
 using POS.Data.Infrastructure;
@@ -47,7 +47,7 @@ namespace POS.Data.Repository
                                       new SqlParameter("@Longitude",Branch.Longitude  ?? (object)DBNull.Value),
                                       new SqlParameter("@ServiceTypeID",Branch.ServiceTypeID  ?? (object)DBNull.Value),
                                       new SqlParameter("@ApprovedBy",Branch.ApprovedBy  ?? (object)DBNull.Value),
-                                      new SqlParameter("@ApprovedDate",Branch.ApprovedBy  ?? (object)DBNull.Value),
+                                      new SqlParameter("@ApprovedDate",Branch.ApprovedDate  ?? (object)DBNull.Value),
                                        }).AsEnumerable().FirstOrDefault().ReturnValue;
                     return result;
                 }

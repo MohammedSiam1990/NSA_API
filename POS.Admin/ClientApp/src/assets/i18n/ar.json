@@ -39,7 +39,7 @@
   "items_per_page":"مدخل للصفحة",
   "Are you sure you want to active this record ?":"هل أنت متأكد أنك تريد تنشيط هذا السجل؟",
   "active":"فعال",
-  "WorkStation":"محطات العمل المعلقة",
+  "WorkStation":"محطات العمل",
   "search_all_columns":"بحث......",
   "All":"الكل",
   "no_records_available":"لا يوجد بيانات",
@@ -53,6 +53,12 @@
   "email_not_valid":"يرجى إدخال البريد الإلكتروني الصحيح (example@example.com)",
   "Email":"البريد الالكترونى",
   "CountryNameAr":"اسم الدوله",
-  "Companies":"الشركات"
+  "Companies":"الشركات",
+  "BranchNum":"رقم الفرع",
+  "CityNameAr":"اسم المدينه",
+  "pending":"المعلقه",
+  "branches":"الفروع",
+  "brands":"العلامات التجارية",
+  "ServiceNameAr":"اسم الخدمة"
 
 }

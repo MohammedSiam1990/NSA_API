@@ -30,7 +30,7 @@ namespace POS.Models
         public DateTime? DeletedDate { get; set; }
         public string ServiceTypeID { get; set; }
         public string ApprovedBy { get; set; }
-        public DateTime ApprovedDate { get; set; }
+        public DateTime? ApprovedDate { get; set; }
 
     }
 }
