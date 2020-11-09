@@ -20,15 +20,16 @@ namespace POS.Data.Repository
         }
 
         [Obsolete]
-        public string GetProcItemData(int BrandID, string ImageURL)
+        public string GetProcItemData(int BrandID, string ImageURL,string Lang)
         {
             using (var DbContext = new PosDbContext())
             {
                 try
                 {
-                    string Sql = "EXEC GetItems @BrandID,@ImageURL";
+                    string Sql = "EXEC GetItems @BrandID,@ImageURL,@lang";
                     var data = DbContext.JsonData.FromSqlRaw(Sql, new SqlParameter("@BrandID", BrandID),
-                        new SqlParameter("@ImageURL", ImageURL ?? (object)DBNull.Value)).AsEnumerable().FirstOrDefault().Data;
+                        new SqlParameter("@ImageURL", ImageURL ?? (object)DBNull.Value)
+                        ,new SqlParameter("@lang", Lang ?? (object)DBNull.Value)).AsEnumerable().FirstOrDefault().Data;
 
                     return data.ToString();
                 }

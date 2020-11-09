@@ -12,9 +12,9 @@ namespace Pos.Service
         {
             PosService.ItemRepository.AddItem(Item);
         }
-        public string GetItems(int BrandID, string ImageURL)
+        public string GetItems(int BrandID, string ImageURL,string Lang)
         {
-            return PosService.ItemDataRepository.GetProcItemData(BrandID, ImageURL);
+            return PosService.ItemDataRepository.GetProcItemData(BrandID, ImageURL, Lang);
         }
 
         public List<Item> GetItemAll()

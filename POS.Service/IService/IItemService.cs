@@ -7,7 +7,7 @@ namespace Pos.IService
 {
     public interface IItemService
     {
-        string GetItems(int BrandID, string ImageURL);
+        string GetItems(int BrandID, string ImageURL,string Lang);
         List<Item> GetItemAll();
         bool ValidateItem(Item Item);
         void AddItem(Item Item);
