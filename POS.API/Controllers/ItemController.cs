@@ -55,7 +55,7 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
 
-                var data = ItemService.GetItems(BrandID, imagesPath.Item);
+                var data = ItemService.GetItems(BrandID, imagesPath.Item, Lang);
 
 
 

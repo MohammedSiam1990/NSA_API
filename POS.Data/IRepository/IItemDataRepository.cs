@@ -6,7 +6,7 @@ namespace POS.Data.IRepository
 {
     public interface IItemDataRepository
     {
-        string GetProcItemData(int BrandID,string ImageURL);
+        string GetProcItemData(int BrandID,string ImageURL,string Lang);
 
     }
 }
