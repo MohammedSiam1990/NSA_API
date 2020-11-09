@@ -42,7 +42,8 @@ namespace POS.IService.Base
                                                    new ItemComponentsRepository(databaseFactory),
                                                     new UserRepository(databaseFactory),
                                                     new SalesGroupsItemsRepository(databaseFactory),
-                                                    new PaymentMethodsRepositry(databaseFactory)
+                                                    new PaymentMethodsRepositry(databaseFactory),
+                                                    new BranchesConnectingRepository(databaseFactory)
                                                 );
                 }
 

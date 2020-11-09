@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Pos.IService;
 using POS.Core.Resources;
+using POS.Data.Entities;
 using POS.Entities;
 using POS.Models;
+using POS.Service.IService;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -22,19 +25,21 @@ namespace POS.API.CORE.Controllers
     {
         private ImagesPath imagesPath;
         private IBranchService BranchService;
+        private IBranchesConnectingService BranchesConnecting;
 
         private IMapper Mapper;
 
         public BranchController(
                                       IBranchService _BranchService,
                                        ImagesPath _imagesPath,
-                                      IMapper mapper
+                                      IMapper mapper,
+                                      IBranchesConnectingService _BranchesConnecting
                                 )
         {
             BranchService = _BranchService;
             imagesPath = _imagesPath;
             Mapper = mapper;
-
+            BranchesConnecting = _BranchesConnecting;
         }
 
 
@@ -111,5 +116,30 @@ namespace POS.API.CORE.Controllers
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
+
+
+        [HttpPost("SaveBranchesConnecting")]
+        public IActionResult SaveBranchesConnecting(List<BranchesConnecting> model, string Lang = "en")
+        {
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
+                BranchesConnecting.SaveBranchesConnecting(model);
+                return Ok(new { success = true, message = lang.Saved_successfully_completed });
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+                // return error message if there was an exception
+
+            }
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+        }
+
+
+
     }
 }

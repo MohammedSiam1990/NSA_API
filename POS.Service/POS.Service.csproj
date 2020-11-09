@@ -151,6 +151,7 @@
     <Compile Include="Helpers\PagedList.cs" />
     <Compile Include="Helpers\PagedListModel.cs" />
     <Compile Include="IService\IAllDataJsonByBrandIDService.cs" />
+    <Compile Include="IService\IBranchesConnectingService.cs" />
     <Compile Include="IService\IBranchWorkStationsService.cs" />
     <Compile Include="IService\IDeleteRecordService.cs" />
     <Compile Include="IService\IItemComponentsService.cs" />
@@ -173,6 +174,7 @@
     <Compile Include="Base\BaseService.cs" />
     <Compile Include="Base\PosService.cs" />
     <Compile Include="Services\AllDataJsonByBrandIDService.cs" />
+    <Compile Include="Services\BranchesConnectingService.cs" />
     <Compile Include="Services\BranchService.cs" />
     <Compile Include="Services\BranchWorkStationsService.cs" />
     <Compile Include="Services\DeleteRecordService.cs" />

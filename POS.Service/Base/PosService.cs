@@ -27,6 +27,8 @@ namespace Pos.Service.Base
         public IItemComponentsRepository ItemComponentsRepository { get; set; }
         public ISalesGroupsItemsRepository SalesGroupsItemsRepository { get; set; }
         public IPaymentMethodsRepositry PaymentMethodsRepositry { get; set; }
+        public IBranchesConnectingRepository BranchesConnectingRepository { get; set; }
+        
         [Inject]
         public PosServices(
                                      ICompaniesRepository _CompaniesRepository,
@@ -49,7 +51,8 @@ namespace Pos.Service.Base
                                      IItemComponentsRepository _ItemComponentsRepository,
                                      IUserRepository _UserRepository,
                                      ISalesGroupsItemsRepository _SalesGroupsItemsRepository,
-                                     IPaymentMethodsRepositry _PaymentMethodsRepositry
+                                     IPaymentMethodsRepositry _PaymentMethodsRepositry,
+                                     IBranchesConnectingRepository _BranchesConnectingRepository
                             )
         {
             CompaniesRepository = _CompaniesRepository;
@@ -73,6 +76,7 @@ namespace Pos.Service.Base
             UserRepository = _UserRepository;
             SalesGroupsItemsRepository = _SalesGroupsItemsRepository;
             PaymentMethodsRepositry = _PaymentMethodsRepositry;
+            BranchesConnectingRepository = _BranchesConnectingRepository;
         }
 
     }
