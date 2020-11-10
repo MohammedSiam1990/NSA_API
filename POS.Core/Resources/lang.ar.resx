@@ -132,6 +132,9 @@
   <data name="Barcode_already_exists" xml:space="preserve">
     <value>الباركود موجود بالفعل</value>
   </data>
+  <data name="Branch_num_already_exist" xml:space="preserve">
+    <value>رقم الفرع موجود بالفعل</value>
+  </data>
   <data name="Cannot_apply_this_tax_as_general_tax_because_it _linked_as_special_tax" xml:space="preserve">
     <value>لا يمكن تطبيق هذه الضريبة كضريبة عامة لأنها مرتبطة كضريبة خاصة</value>
   </data>

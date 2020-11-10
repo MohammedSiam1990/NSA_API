@@ -103,6 +103,10 @@ namespace POS.API.CORE.Controllers
                     {
                         return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "BranchNameAr" });
                     }
+                    if (data == -4)
+                    {
+                        return Ok(new { success = false, message = "BranchNum exists", repeated = "BranchNum" });
+                    }
                 }
                 else
                 {

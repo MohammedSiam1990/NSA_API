@@ -132,6 +132,9 @@
   <data name="Barcode_already_exists" xml:space="preserve">
     <value>Barcode Already Exists</value>
   </data>
+  <data name="Branch_num_already_exist" xml:space="preserve">
+    <value>Branch num already exist</value>
+  </data>
   <data name="Cannot_apply_this_tax_as_general_tax_because_it _linked_as_special_tax" xml:space="preserve">
     <value>Cannot apply this tax as general  tax because it linked as special tax</value>
   </data>

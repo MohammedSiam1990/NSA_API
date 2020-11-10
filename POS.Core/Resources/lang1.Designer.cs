@@ -106,6 +106,15 @@ namespace POS.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Branch num already exist.
+        /// </summary>
+        public static string Branch_num_already_exist {
+            get {
+                return ResourceManager.GetString("Branch_num_already_exist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot apply this tax as general  tax because it linked as special tax.
         /// </summary>
         public static string Cannot_apply_this_tax_as_general_tax_because_it__linked_as_special_tax {
