@@ -42,6 +42,8 @@ namespace POS.API.Helpers
             CreateMap<ItemComponents, ItemComponentsModel>();
             CreateMap<SalesGroupsItemsModel, SalesGroupsItems>();
             CreateMap<SalesGroupsItems, SalesGroupsItemsModel>();
+            CreateMap<MajorServicesIconsModel, MajorServicesIcons>();
+            CreateMap<MajorServicesIcons, MajorServicesIconsModel>();
 
             
         }
