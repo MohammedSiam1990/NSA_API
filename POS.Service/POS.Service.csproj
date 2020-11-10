@@ -153,8 +153,10 @@
     <Compile Include="IService\IAllDataJsonByBrandIDService.cs" />
     <Compile Include="IService\IBranchesConnectingService.cs" />
     <Compile Include="IService\IBranchWorkStationsService.cs" />
+    <Compile Include="IService\IMajorServicesIcons.cs" />
     <Compile Include="IService\IDeleteRecordService.cs" />
     <Compile Include="IService\IItemComponentsService.cs" />
+    <Compile Include="IService\IMajorServicesService.cs" />
     <Compile Include="IService\IItemUomService.cs" />
     <Compile Include="IService\IMobileDataService.cs" />
     <Compile Include="IService\IMailService.cs" />
@@ -177,9 +179,11 @@
     <Compile Include="Services\BranchesConnectingService.cs" />
     <Compile Include="Services\BranchService.cs" />
     <Compile Include="Services\BranchWorkStationsService.cs" />
+    <Compile Include="Services\MajorServicesIconsService.cs" />
     <Compile Include="Services\DeleteRecordService.cs" />
     <Compile Include="Services\ItemComponentsService.cs" />
     <Compile Include="Services\ItemUomService.cs" />
+    <Compile Include="Services\MajorServicesService.cs" />
     <Compile Include="Services\MobileDataService.cs" />
     <Compile Include="Services\MailService.cs" />
     <Compile Include="Services\ItemService.cs" />
