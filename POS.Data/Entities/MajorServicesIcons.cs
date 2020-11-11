@@ -12,5 +12,6 @@ namespace POS.Entities
         public int ServiceId { get; set; }
         public bool IsActive { get; set; }
         public int OrderId { get; set; }
+        public virtual MajorServices MajorService { get; set; }
     }
 }

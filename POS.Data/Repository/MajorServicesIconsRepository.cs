@@ -93,7 +93,7 @@ namespace POS.Data.Repository
      
 
     [Obsolete]
-    public string GetMajorServicesIcons(int? ServiceId)
+    public string GetMajorServicesByIcons(int? ServiceId)
     {
       using (var DbContext = new PosDbContext())
       {

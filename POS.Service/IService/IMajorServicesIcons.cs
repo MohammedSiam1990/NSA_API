@@ -6,7 +6,7 @@ namespace Pos.IService
     public interface IMajorServicesIconsService
     {
         MajorServicesIcons GetMajorServicesIcons(int MajorServicesIconsId);
-        string GetMajorServicesIcons();
+        string GetMajorServicesByIcons(int ServiceId);
         void SaveMajorServicesIcons(MajorServicesIcons MajorServicesIcons);
         void AddMajorServicesIcons(MajorServicesIcons MajorServicesIcons);
         void UpdateMajorServicesIcons(MajorServicesIcons MajorServicesIcons);

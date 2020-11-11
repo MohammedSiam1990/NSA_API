@@ -20,9 +20,9 @@ namespace Pos.Service
         {
             return PosService.MajorServicesIconsRepository.GetMajorServicesIcons(MajorServicesIconsId);
         }
-        public string GetMajorServicesIcons()
+        public string GetMajorServicesByIcons(int ServiceId)
         {
-            return PosService.MajorServicesIconsRepository.GetMajorServicesIcons();
+            return PosService.MajorServicesIconsRepository.GetMajorServicesByIcons(ServiceId);
         }
         public void SaveMajorServicesIcons(MajorServicesIcons MajorServicesIcons)
         {
@@ -34,6 +34,6 @@ namespace Pos.Service
             PosService.MajorServicesIconsRepository.UpdateMajorServicesIcons(MajorServicesIcons);
         }
 
-    
+       
     }
 }

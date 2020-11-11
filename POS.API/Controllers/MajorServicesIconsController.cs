@@ -145,15 +145,15 @@ namespace POS.API.CORE.Controllers
 
         }
 
-        [HttpGet("GetMajorServicesIcons")]
-        public IActionResult GetMajorServicesIcons(string Lang = "en")
+        [HttpGet("GetMajorServicesByIcons")]
+        public IActionResult GetMajorServicesByIcons(string Lang = "en",int ServiceId)
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = MajorServicesIconsService.GetMajorServicesIcons();
+                var data = MajorServicesIconsService.GetMajorServicesByIcons(ServiceId);
                 if (data != null)
                 {
                     if (data.Count() == 0)
