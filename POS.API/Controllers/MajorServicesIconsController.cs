@@ -1,17 +1,23 @@
 using AutoMapper;
+using EmailService;
 using Exceptions;
 using ImagesService;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Pos.IService;
+using POS.API.Helpers;
 using POS.Core.Resources;
 using POS.Entities;
 using POS.Models;
+using POS.Service.IService;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading;
 
 namespace POS.API.CORE.Controllers
@@ -23,17 +29,19 @@ namespace POS.API.CORE.Controllers
     {
 
         private ImagesPath imagesPath;
-
+      
+        Setting Setting;
         private IMajorServicesIconsService MajorServicesIconsService;
         private IMapper Mapper;
 
         public MajorServicesIconsController(
             IMajorServicesIconsService _MajorServicesIconsService,
-            ImagesPath _imagesPath,
+            ImagesPath _imagesPath, Setting _Setting, 
             IMapper mapper)
         {
             MajorServicesIconsService = _MajorServicesIconsService;
             Mapper = mapper;
+            Setting = _Setting;
             imagesPath = _imagesPath;
         }
 
@@ -52,6 +60,7 @@ namespace POS.API.CORE.Controllers
                 // create MajorServicesIcons
                 {
                     MajorServicesIconsService.AddMajorServicesIcons(MajorServicesIcons);
+                    UploadImage(model.FolderPath + MajorServicesIcons.IconId.ToString() + ".svg");
                     return Ok(new { message = "Add MajorServicesIcons Success" });
                 }
 
@@ -81,6 +90,7 @@ namespace POS.API.CORE.Controllers
                 // Edit MajorServicesIcons
                 {
                     MajorServicesIconsService.UpdateMajorServicesIcons(MajorServicesIcons);
+                    UploadImage(model.FolderPath + MajorServicesIcons.IconId.ToString() + ".svg");
                     return Ok(new { success = true, message = lang.Updated_successfully_completed });
                 }
 
@@ -167,6 +177,58 @@ namespace POS.API.CORE.Controllers
 
         }
 
+
+        private void UploadImage(string FileName, string Lang = "en")
+        {
+            try
+            {
+        
+              //var file = Request.Form.Files.Count();
+               Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
+                var folderName = Path.Combine("uploads", FileName);
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+                string[] ImagesNameList = new string[Request.Form.Files.Count()];
+
+                if (Request.ContentLength > Setting.imagefilesize)
+                   throw new ArgumentException(   lang.Your_file_was_not_uploaded_because + "," + lang.It_exceeds_the + lang.Size_limit + ":" + Setting.imagefilesize + " KB ") ;
+
+                if (Request.Form.Files.Count() > 0)
+                {
+                    int i = 0;
+                    foreach (IFormFile file in Request.Form.Files)
+                    {
+                   //     var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                        var fullPath = Path.Combine(pathToSave, FileName);
+                        var dbPath = Path.Combine(folderName, FileName);
+                        using (var stream = new FileStream(fullPath, FileMode.Create))
+                        {
+                            file.CopyTo(stream);
+                        }
+                        if (i < Request.Form.Files.Count())
+                        {
+                            ImagesNameList[i] = FileName;
+                            i++;
+
+                        }
+
+                    }
+                   // return Ok(new { success = true, message = lang.Upload_image_successful, filePath = Setting.APIwebPath + "uploads/" + FolderName + "/", ImagesName = ImagesNameList });
+
+                }
+                else
+                {
+                    throw new ArgumentException(lang.Select_image_file_to_upload);
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+            }
+          //  return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
+        }
     }
 }
 
