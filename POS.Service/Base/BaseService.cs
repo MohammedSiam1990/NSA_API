@@ -43,8 +43,10 @@ namespace POS.IService.Base
                                                     new UserRepository(databaseFactory),
                                                     new SalesGroupsItemsRepository(databaseFactory),
                                                     new PaymentMethodsRepositry(databaseFactory),
-                                                    new BranchesConnectingRepository(databaseFactory)
-                                                );
+                                                    new BranchesConnectingRepository(databaseFactory),
+                                                    new MajorServiceRepository(databaseFactory),
+                                                    new MajorServicesIconsRepository(databaseFactory)
+                                                    );
                 }
 
                 return _PosService;
