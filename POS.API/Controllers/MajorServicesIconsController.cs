@@ -123,8 +123,8 @@ namespace POS.API.CORE.Controllers
         }
 
 
-        [HttpGet("GetMajorServicesIcons")]
-        public IActionResult GetMajorServicesIcons(int MajorServicesIconsId)
+        [HttpGet("GetMajorServicesIcon/MajorServicesIconsId")]
+        public IActionResult GetMajorServicesIcon(int MajorServicesIconsId)
         {
             try
             {
