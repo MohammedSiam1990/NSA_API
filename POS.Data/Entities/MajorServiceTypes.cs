@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace POS.Entities
 {
-    public partial class MajorServiceTypesModel
+    public partial class MajorServiceTypes
     {
         public int MajorServiceTypeId { get; set; }
         public int? MajorServiceId { get; set; }
