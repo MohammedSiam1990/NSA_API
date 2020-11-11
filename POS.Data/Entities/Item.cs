@@ -32,5 +32,7 @@ namespace POS.Entities
         public string DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
         public ICollection<ItemUom> ItemUoms { get; set; }
+        public int? SubTypeID { get; set; }
+
     }
 }
