@@ -146,7 +146,7 @@ namespace POS.API.CORE.Controllers
         }
 
         [HttpGet("GetMajorServicesByIcons")]
-        public IActionResult GetMajorServicesByIcons(string Lang = "en",int ServiceId)
+        public IActionResult GetMajorServicesByIcons(int ServiceId,string Lang = "en")
         {
             try
             {

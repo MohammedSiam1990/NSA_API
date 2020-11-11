@@ -40,8 +40,7 @@ namespace POS.Data.Repository
         {
             try
             {
-                var MajorServices = base.Table()
-                    .Include(e => e.MajorServiceTypes).ToList();
+                var MajorServices = base.Table().ToList();//.Include(e => e.MajorServiceTypes).ToList();
                 base.DbContext.Dispose();
                 base.DbContext = null;
                 return MajorServices;
@@ -58,7 +57,6 @@ namespace POS.Data.Repository
             {
                 MajorServices.CreationDate = DateTime.Now;
                 Add(MajorServices);
-                PosDbContext.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -71,8 +69,6 @@ namespace POS.Data.Repository
             try
             {
                 Update(MajorServices);
-
-                PosDbContext.SaveChanges();
             }
             catch (Exception ex)
             {
