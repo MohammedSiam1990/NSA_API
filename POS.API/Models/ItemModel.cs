@@ -33,6 +33,7 @@ namespace POS.API.Models
         public string ModifiedBy { get; set; }
         public DateTime? LastModifyDate { get; set; }
         public string DeletedBy { get; set; }
+        public int? SubTypeID { get; set; }
         public DateTime? DeletedDate { get; set; }
         public List<ItemUomModel> ItemUoms { get; set; }
        

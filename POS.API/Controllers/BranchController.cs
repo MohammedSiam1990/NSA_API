@@ -105,7 +105,7 @@ namespace POS.API.CORE.Controllers
                     }
                     if (data == -4)
                     {
-                        return Ok(new { success = false, message = "BranchNum exists", repeated = "BranchNum" });
+                        return Ok(new { success = false, message = lang.Branch_num_already_exist, repeated = "BranchNum" });
                     }
                 }
                 else
