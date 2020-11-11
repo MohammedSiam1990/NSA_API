@@ -1,3 +1,4 @@
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using POS.API.Helpers;
 using POS.Data.DataContext;
@@ -92,14 +93,14 @@ namespace POS.Data.Repository
      
 
     [Obsolete]
-    public string GetMajorServicesIcons()
+    public string GetMajorServicesIcons(int? ServiceId)
     {
       using (var DbContext = new PosDbContext())
       {
         try
         {
-          string Sql = "EXEC GetMajorServicesIcons ";
-          var data = DbContext.JsonData.FromSql(Sql).AsEnumerable().FirstOrDefault().Data;
+          string Sql = "EXEC GetMajorServicesIcons @ServiceId";
+          var data = DbContext.JsonData.FromSql(Sql, new SqlParameter("@ServiceId", ServiceId)).AsEnumerable().FirstOrDefault().Data;
           return data.ToString();
         }
         catch (Exception ex)
