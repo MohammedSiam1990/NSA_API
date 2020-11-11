@@ -31,7 +31,6 @@ namespace POS.Data.Repository
                 throw new AppException(ex.Message);
             }
         }
-
         public void UpdateCompany(Companies Company)
         {
 

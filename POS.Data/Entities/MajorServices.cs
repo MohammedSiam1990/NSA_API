@@ -7,7 +7,7 @@ namespace POS.Entities
     {
         public MajorServices()
         {
-        //    MajorServiceTypes = new HashSet<MajorServiceTypes>();
+         MajorServiceTypes = new HashSet<MajorServiceTypes>();
         }
 
         public int ServiceId { get; set; }
@@ -18,6 +18,6 @@ namespace POS.Entities
         public DateTime? CreationDate { get; set; }
         public string FoldersPath { get; set; }
 
-      //  public virtual ICollection<MajorServiceTypes> MajorServiceTypes { get; set; }
+       public virtual ICollection<MajorServiceTypes> MajorServiceTypes { get; set; }
     }
 }

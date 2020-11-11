@@ -59,12 +59,14 @@ namespace POS.API.CORE.Controllers
                // if (MajorServicesIconsService.ValidateMajorServicesIcons(MajorServicesIcons))
                 // create MajorServicesIcons
                 {
+                    Guid gid = new Guid();
+                    MajorServicesIcons.IconName = gid.ToString();
                     MajorServicesIconsService.AddMajorServicesIcons(MajorServicesIcons);
-                    UploadImage(model.FolderPath + MajorServicesIcons.IconId.ToString() + ".svg");
-                    return Ok(new { message = "Add MajorServicesIcons Success" });
+                    UploadImage(model.FolderPath + MajorServicesIcons.IconName.ToString() + ".svg");
+                    return Ok(new { message = lang.Saved_successfully_completed });
                 }
 
-                return Ok(new { message = "Data is Not Complete" });
+              //  return Ok(new { message = "Data is Not Complete" });
             }
             catch (Exception ex)
             {
@@ -90,12 +92,12 @@ namespace POS.API.CORE.Controllers
                 // Edit MajorServicesIcons
                 {
                     MajorServicesIconsService.UpdateMajorServicesIcons(MajorServicesIcons);
-                    UploadImage(model.FolderPath + MajorServicesIcons.IconId.ToString() + ".svg");
+                    UploadImage(model.FolderPath + MajorServicesIcons.IconName.ToString() + ".svg");
                     return Ok(new { success = true, message = lang.Updated_successfully_completed });
                 }
 
 
-                return Ok(new { success = false, message = lang.Update_operation_failed });
+                //return Ok(new { success = false, message = lang.Update_operation_failed });
             }
             catch (Exception ex)
             {
@@ -187,7 +189,7 @@ namespace POS.API.CORE.Controllers
                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var folderName = Path.Combine("uploads", FileName);
+                var folderName = Path.Combine("uploads/ItemGroup/Icons", FileName);
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
                 string[] ImagesNameList = new string[Request.Form.Files.Count()];
 

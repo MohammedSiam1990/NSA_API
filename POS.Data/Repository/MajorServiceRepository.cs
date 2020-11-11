@@ -1,4 +1,5 @@
-﻿using POS.API.Helpers;
+﻿using Microsoft.EntityFrameworkCore;
+using POS.API.Helpers;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
 using POS.Entities;
@@ -21,7 +22,12 @@ namespace POS.Data.Repository
         {
             try
             {
-                return base.GetById(ServiceId);
+                var MajorServices = base.Table()
+                   .Where(e => e.ServiceId == ServiceId)
+                   .Include(e => e.MajorServiceTypes).FirstOrDefault();
+                base.DbContext.Dispose();
+                base.DbContext = null;
+                return MajorServices;
 
             }
             catch (Exception ex)
@@ -32,9 +38,75 @@ namespace POS.Data.Repository
 
         public List<MajorServices> GetMajorServices()
         {
-            return base.GetAll().ToList();
+            try
+            {
+                var MajorServices = base.Table()
+                    .Include(e => e.MajorServiceTypes).ToList();
+                base.DbContext.Dispose();
+                base.DbContext = null;
+                return MajorServices;
+            }
+            catch (Exception ex)
+            {
+                throw new AppException(ex.Message);
+            }
         }
 
- 
+        public void AddMajorServices(MajorServices MajorServices)
+        {
+            try
+            {
+                MajorServices.CreationDate = DateTime.Now;
+                Add(MajorServices);
+                PosDbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new AppException(ex.Message);
+            }
+        }
+        public void UpdateMajorServices(MajorServices MajorServices)
+        {
+
+            try
+            {
+                Update(MajorServices);
+
+                PosDbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new AppException(ex.Message);
+            }
+        }
+        public void SaveMajorServices(MajorServices MajorServices)
+        {
+            try
+            {
+                if (MajorServices.ServiceId == 0)
+                    Add(MajorServices);
+                else
+                    Update(MajorServices);
+
+                PosDbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new AppException(ex.Message);
+            }
+        }
+        public void DeleteMajorServices(int MajorServicesId)
+        {
+            try
+            {
+                Delete(MajorServicesId);
+                PosDbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new AppException(ex.Message);
+            }
+
+        }
     }
 }
