@@ -13,6 +13,6 @@ namespace POS.Models
         public bool? IsDefault { get; set; }
         public DateTime? CreationDate { get; set; }
         public string FoldersPath { get; set; }
-      }
+    }
 }
 
