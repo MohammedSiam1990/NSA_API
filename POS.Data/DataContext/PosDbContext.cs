@@ -60,7 +60,8 @@ namespace POS.Data.DataContext
         //public virtual DbSet<Country> Country { get; set; }
         //public virtual DbSet<Currency> Currency { get; set; }
         public virtual DbSet<ItemGroup> ItemGroup { get; set; }
-        public virtual DbSet<MajorServices> MajorService { get; set; }
+        public virtual DbSet<MajorServices> MajorServices { get; set; }
+        public virtual DbSet<MajorServiceTypes> MajorServiceTypes { get; set; }
         public virtual DbSet<Item> Item { get; set; }
         public virtual DbSet<ItemUom> ItemUom { get; set; }
         public virtual DbSet<Sku> Sku { get; set; }
@@ -69,7 +70,6 @@ namespace POS.Data.DataContext
         public virtual DbSet<BranchWorkStations> BranchWorkStations { get; set; }
         public virtual DbSet<Menu> Menu { get; set; }
         public virtual DbSet<ItemComponents> ItemComponents { get; set; }
-        public virtual DbSet<SalesGroupsItems> SalesGroupsItems { get; set; }
         public virtual DbSet<PaymentMethods> PaymentMethods { get; set; }
         public virtual DbSet<BranchesConnecting> BranchesConnecting { get; set; }
         #endregion
