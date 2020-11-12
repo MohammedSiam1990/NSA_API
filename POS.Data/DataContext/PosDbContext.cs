@@ -60,8 +60,7 @@ namespace POS.Data.DataContext
         //public virtual DbSet<Country> Country { get; set; }
         //public virtual DbSet<Currency> Currency { get; set; }
         public virtual DbSet<ItemGroup> ItemGroup { get; set; }
-       
-        //public virtual DbSet<MajorService> MajorService { get; set; }
+        public virtual DbSet<MajorServices> MajorService { get; set; }
         public virtual DbSet<Item> Item { get; set; }
         public virtual DbSet<ItemUom> ItemUom { get; set; }
         public virtual DbSet<Sku> Sku { get; set; }
