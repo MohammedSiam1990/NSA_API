@@ -8,7 +8,7 @@ namespace POS.Entities
         public MajorServices()
         {
          MajorServiceTypes = new HashSet<MajorServiceTypes>();
-            MajorServicesIcons = new HashSet<MajorServicesIcons>();
+         MajorServicesIcons = new HashSet<MajorServicesIcons>();
         }
 
         public int ServiceId { get; set; }

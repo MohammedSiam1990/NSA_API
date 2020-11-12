@@ -9,8 +9,12 @@ namespace POS.Data.IRepository
 {
     public interface IMajorServiceRepository
     {
-         MajorServices GetMajorService(int ServiceId);
+        MajorServices GetMajorService(int ServiceId);
         List<MajorServices> GetMajorServices();
-   
+        void AddMajorServices(MajorServices MajorServices);
+        void UpdateMajorServices(MajorServices MajorServices);
+        void SaveMajorServices(MajorServices MajorServices);
+        void DeleteMajorServices(int MajorServicesId);
+
     }
 }

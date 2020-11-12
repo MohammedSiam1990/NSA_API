@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace POS.Entities
 {
     public partial class MajorServiceTypes
     {
+        [Key]
         public int MajorServiceTypeId { get; set; }
         public int? MajorServiceId { get; set; }
         public string TypeName { get; set; }

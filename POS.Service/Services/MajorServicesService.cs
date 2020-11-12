@@ -16,6 +16,16 @@ namespace POS.Service.Services
 
         }
 
+        public void AddMajorServices(MajorServices MajorServices)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteMajorServices(int MajorServicesId)
+        {
+            throw new NotImplementedException();
+        }
+
         public MajorServices GetMajorService(int ServiceId)
         {
             return PosService.MajorServiceRepository.GetMajorService(ServiceId);
@@ -26,5 +36,14 @@ namespace POS.Service.Services
             return PosService.MajorServiceRepository.GetMajorServices();
         }
 
+        public void SaveMajorServices(MajorServices MajorServices)
+        {
+            PosService.MajorServiceRepository.SaveMajorServices(MajorServices);
+        }
+
+        public void UpdateMajorServices(MajorServices MajorServices)
+        {
+            PosService.MajorServiceRepository.UpdateMajorServices(MajorServices);
+        }
     }
 }
