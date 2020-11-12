@@ -55,7 +55,7 @@ namespace POS.Data.Repository
                     int result = DbContext.ReturnResult.FromSqlRaw(Sql, new object[] {
                                                 new SqlParameter("@PaymentMethodID", paymentMethods.PaymentMethodID),
                                                 new SqlParameter("@CompanyID"  ,paymentMethods.CompanyID),
-                                                new SqlParameter("@TypeID" , paymentMethods.TypeID),
+                                                new SqlParameter("@TypeID" , paymentMethods.TypeID?? (object)DBNull.Value),
                                                 new SqlParameter("@PaymentMethodName" , paymentMethods.PaymentMethodName ?? (object)DBNull.Value),
                                                 new SqlParameter("@PaymentMethodNameAr" , paymentMethods.PaymentMethodNameAr ?? (object)DBNull.Value),
                                                 new SqlParameter("@CommissionPrcnt" , paymentMethods.CommissionPrcnt ),

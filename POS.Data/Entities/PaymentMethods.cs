@@ -10,7 +10,7 @@ namespace POS.Data.Entities
         [Key]
         public long PaymentMethodID { get; set; }
         public int CompanyID { get; set; }
-        public int TypeID { get; set; }
+        public int? TypeID { get; set; }
         public string PaymentMethodName { get; set; }
         public string PaymentMethodNameAr { get; set; }
         public double CommissionPrcnt { get; set; }
