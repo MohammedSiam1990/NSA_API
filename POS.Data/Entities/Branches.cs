@@ -31,6 +31,7 @@ namespace POS.Entities
         public string ServiceTypeID { get; set; }
         public string ApprovedBy { get; set; }
         public DateTime? ApprovedDate { get; set; }
+        public int? DistrictID { get; set; }
 
     }
 }

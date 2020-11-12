@@ -26,7 +26,9 @@ namespace POS.Data.Repository
             {
                 try
                 {
-                    string Sql = "EXEC SaveBranches @BranchID , @BranchNum, @BranchName, @BranchNameAr, @BrandID, @StatusID, @TypeID, @Address,  @CountryID, @CityID, @CurrencyID,  @ImageName, @InsertedBy, @ModifiedBy, @Latitude, @Longitude,@ServiceTypeID,@ApprovedBy,@ApprovedDate ";
+                    string Sql = "EXEC SaveBranches @BranchID , @BranchNum, @BranchName, @BranchNameAr, @BrandID, @StatusID, @TypeID, @Address," +
+                        "  @CountryID, @CityID, @CurrencyID,  @ImageName, @InsertedBy, @ModifiedBy, " +
+                        "@Latitude, @Longitude,@ServiceTypeID,@ApprovedBy,@ApprovedDate,@DistrictID ";
                     int result = DbContext.ReturnResult.FromSqlRaw(Sql,
                                        new object[] {
                                       new SqlParameter("@BranchId", Branch.BranchId ),
@@ -48,6 +50,7 @@ namespace POS.Data.Repository
                                       new SqlParameter("@ServiceTypeID",Branch.ServiceTypeID  ?? (object)DBNull.Value),
                                       new SqlParameter("@ApprovedBy",Branch.ApprovedBy  ?? (object)DBNull.Value),
                                       new SqlParameter("@ApprovedDate",Branch.ApprovedDate  ?? (object)DBNull.Value),
+                                      new SqlParameter("@DistrictID",Branch.DistrictID  ?? (object)DBNull.Value)
                                        }).AsEnumerable().FirstOrDefault().ReturnValue;
                     return result;
                 }
