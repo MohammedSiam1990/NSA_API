@@ -73,6 +73,11 @@ namespace POS.Data.DataContext
         public virtual DbSet<ItemComponents> ItemComponents { get; set; }
         public virtual DbSet<PaymentMethods> PaymentMethods { get; set; }
         public virtual DbSet<BranchesConnecting> BranchesConnecting { get; set; }
+        public virtual DbSet<Address> Address { get; set; }
+        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<SalesGroupsItems> SalesGroupsItems { get; set; }
+
+
         #endregion
 
 

@@ -385,6 +385,15 @@ namespace POS.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number already exists.
+        /// </summary>
+        public static string Number_already_exists {
+            get {
+                return ResourceManager.GetString("Number_already_exists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Old password length should be 6 characters or more.
         /// </summary>
         public static string Old_password_length_should_be_6_characters_or_more {
@@ -417,6 +426,15 @@ namespace POS.Core.Resources {
         public static string Payment_method_already_exists {
             get {
                 return ResourceManager.GetString("Payment_method_already_exists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone already used by another customer.
+        /// </summary>
+        public static string Phone_already_exists {
+            get {
+                return ResourceManager.GetString("Phone_already_exists", resourceCulture);
             }
         }
         
