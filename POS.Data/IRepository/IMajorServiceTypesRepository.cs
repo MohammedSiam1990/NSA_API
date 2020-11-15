@@ -9,8 +9,8 @@ namespace POS.Data.IRepository
 {
     public interface IMajorServiceTypesRepository
     {
-        MajorServices GetMajorServiceTypes(int ServiceId);
-        List<MajorServices> GetMajorServiceTypes();
+        MajorServiceTypes GetMajorServiceTypes(int ServiceId);
+        List<MajorServiceTypes> GetMajorServiceTypes();
         void AddMajorServiceTypes(MajorServiceTypes MajorServiceTypes);
         void UpdateMajorServiceTypes(MajorServiceTypes MajorServiceTypes);
         void SaveMajorServiceTypes(MajorServiceTypes MajorServiceTypes);

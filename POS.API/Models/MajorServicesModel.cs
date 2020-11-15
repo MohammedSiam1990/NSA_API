@@ -6,12 +6,14 @@ namespace POS.Models
 
     public partial class MajorServicesModel
     {
-        public int MajorServiceTypeId { get; set; }
-        public int? MajorServiceId { get; set; }
-        public string TypeName { get; set; }
-        public string TypeNameAr { get; set; }
-        public int? StatusId { get; set; }
-        public virtual List<MajorServicesTypesModel> MajorServicesTypes { get; set; }
+        public int ServiceId { get; set; }
+        public string ServiceName { get; set; }
+        public string ServiceNameAr { get; set; }
+        public int? IsActive { get; set; }
+        public bool? IsDefault { get; set; }
+        public DateTime? CreationDate { get; set; }
+        public string FoldersPath { get; set; }
+        public virtual List<MajorServiceTypesModel> MajorServiceTypes { get; set; }
       //  public virtual List<MajorServicesIconsModel> MajorServicesIcons { get; set; }
     }
 }

@@ -65,7 +65,7 @@ namespace POS.Data.Repository
             try
             {
                 Delete(MajorServicesIconsId);
-                PosDbContext.SaveChanges();
+            //    PosDbContext.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -73,12 +73,12 @@ namespace POS.Data.Repository
             }
 
         }
-        public MajorServicesIcons GetMajorServicesIcons(int MajorServicesIconsId)
+        public MajorServicesIcons GetMajorServicesIcons(int IconId)
         {
 
             try
             {
-                return base.GetById(MajorServicesIconsId);
+                return base.GetById(IconId);
 
             }
             catch (Exception ex)

@@ -46,7 +46,7 @@ namespace POS.IService.Base
                                                     new BranchesConnectingRepository(databaseFactory),
                                                     new MajorServiceRepository(databaseFactory),
                                                     new MajorServicesIconsRepository(databaseFactory),
-                                                    new MajorServicesTypesRepository(databaseFactory)
+                                                    new MajorServiceTypesRepository(databaseFactory)
                                                     );
                 }
 

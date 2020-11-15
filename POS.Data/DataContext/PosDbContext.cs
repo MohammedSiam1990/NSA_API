@@ -62,6 +62,7 @@ namespace POS.Data.DataContext
         public virtual DbSet<ItemGroup> ItemGroup { get; set; }
         public virtual DbSet<MajorServices> MajorServices { get; set; }
         public virtual DbSet<MajorServiceTypes> MajorServiceTypes { get; set; }
+        public virtual DbSet<MajorServicesIcons> MajorServicesIcons { get; set; }
         public virtual DbSet<Item> Item { get; set; }
         public virtual DbSet<ItemUom> ItemUom { get; set; }
         public virtual DbSet<Sku> Sku { get; set; }

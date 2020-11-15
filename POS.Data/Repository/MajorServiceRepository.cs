@@ -23,12 +23,11 @@ namespace POS.Data.Repository
             try
             {
                 var MajorServices = base.Table()
-                   .Where(e => e.ServiceId == ServiceId)
-                   .Include(e => e.MajorServiceTypes).FirstOrDefault();
+                   .Where(e => e.ServiceId == ServiceId).FirstOrDefault();
+                MajorServices.MajorServiceTypes = DbContext.MajorServiceTypes.Where(e => e.MajorServiceId==ServiceId  && e.StatusId != 3).ToList();
                 base.DbContext.Dispose();
                 base.DbContext = null;
                 return MajorServices;
-
             }
             catch (Exception ex)
             {
@@ -40,7 +39,7 @@ namespace POS.Data.Repository
         {
             try
             {
-                var MajorServices = base.Table().Include(e => e.MajorServiceTypes).ToList(); 
+                var MajorServices = base.Table().ToList(); 
                 base.DbContext.Dispose();
                 base.DbContext = null;
                 return MajorServices;

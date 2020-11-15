@@ -28,12 +28,12 @@ namespace POS.Service.Services
 
         public MajorServices GetMajorService(int ServiceId)
         {
-            return PosService.MajorServiceTypesRepository.GetMajorServiceTypes(ServiceId);
+            return PosService.MajorServiceRepository.GetMajorService(ServiceId);
         }
 
         public List<MajorServices> GetMajorServices()
         {
-            return PosService.MajorServiceTypesRepository.GetMajorServiceTypes();
+            return PosService.MajorServiceRepository.GetMajorServices();
         }
 
         public void SaveMajorServices(MajorServices MajorServices)

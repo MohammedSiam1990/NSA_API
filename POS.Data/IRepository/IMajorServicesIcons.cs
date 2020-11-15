@@ -12,7 +12,7 @@ namespace POS.Data.IRepository
 {
   public  interface IMajorServicesIconsRepository
     {
-        MajorServicesIcons GetMajorServicesIcons(int MajorServicesIconsId);
+        MajorServicesIcons GetMajorServicesIcons(int IconsId);
         string GetMajorServicesByIcons(int? ServiceId);
         void SaveMajorServicesIcons(MajorServicesIcons MajorServicesIcons);
         void AddMajorServicesIcons(MajorServicesIcons MajorServicesIcons);
