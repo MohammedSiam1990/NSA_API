@@ -8,7 +8,7 @@ namespace POS.Models
         public int ServiceId { get; set; }
         public bool IsActive { get; set; }
         public int OrderId { get; set; }
-        public int FolderPath { get; set; }
+        public string FolderPath { get; set; }
     }
 }
 
