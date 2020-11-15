@@ -38,14 +38,16 @@ namespace POS.IService.Base
                                                    new AllDataJsonByBrandIDRepository(databaseFactory),
                                                    new SkuRepository(databaseFactory),
                                                    new BranchWorkStationsRepository(databaseFactory),
-                                                   new MenuRepository (databaseFactory),
+                                                   new MenuRepository(databaseFactory),
                                                    new ItemComponentsRepository(databaseFactory),
                                                     new UserRepository(databaseFactory),
                                                     new SalesGroupsItemsRepository(databaseFactory),
                                                     new PaymentMethodsRepositry(databaseFactory),
                                                     new BranchesConnectingRepository(databaseFactory),
                                                     new MajorServiceRepository(databaseFactory),
-                                                    new MajorServicesIconsRepository(databaseFactory)
+                                                    new MajorServicesIconsRepository(databaseFactory),
+                                                    new CustomerRepository(databaseFactory),
+                                                    new AddressRepository(databaseFactory)
                                                     );
                 }
 

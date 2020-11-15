@@ -45,7 +45,12 @@ namespace POS.API.Helpers
             CreateMap<MajorServicesIconsModel, MajorServicesIcons>();
             CreateMap<MajorServicesIcons, MajorServicesIconsModel>();
             CreateMap<MajorServices, MajorServicesModel>();
-            
+            CreateMap<Address, AddressModel>();
+            CreateMap<AddressModel, Address>();
+            CreateMap<Customer, CustomerModel>();
+            CreateMap<CustomerModel, Customer>();
+
+
         }
     }
 }

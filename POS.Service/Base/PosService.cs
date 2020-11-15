@@ -28,8 +28,10 @@ namespace Pos.Service.Base
         public ISalesGroupsItemsRepository SalesGroupsItemsRepository { get; set; }
         public IPaymentMethodsRepositry PaymentMethodsRepositry { get; set; }
         public IBranchesConnectingRepository BranchesConnectingRepository { get; set; }
-        public IMajorServiceRepository MajorServiceRepository { get; set; } 
-         public IMajorServicesIconsRepository MajorServicesIconsRepository { get; set; } 
+        public IMajorServiceRepository MajorServiceRepository { get; set; }
+        public IMajorServicesIconsRepository MajorServicesIconsRepository { get; set; }
+        public ICustomerRepository CustomerRepository { get; set; }
+        public IAddressRepository AddressRepository { get; set; }
         [Inject]
         public PosServices(
                                      ICompaniesRepository _CompaniesRepository,
@@ -55,7 +57,9 @@ namespace Pos.Service.Base
                                      IPaymentMethodsRepositry _PaymentMethodsRepositry,
                                      IBranchesConnectingRepository _BranchesConnectingRepository,
                                       IMajorServiceRepository _MajorServiceRepository,
-                                     IMajorServicesIconsRepository _MajorServicesIconsRepository
+                                     IMajorServicesIconsRepository _MajorServicesIconsRepository,
+                                     ICustomerRepository _CustomerRepository,
+                                     IAddressRepository _AddressRepository
                             )
         {
             CompaniesRepository = _CompaniesRepository;
@@ -82,6 +86,8 @@ namespace Pos.Service.Base
             BranchesConnectingRepository = _BranchesConnectingRepository;
             MajorServiceRepository = _MajorServiceRepository;
             MajorServicesIconsRepository = _MajorServicesIconsRepository;
+            AddressRepository = _AddressRepository;
+            CustomerRepository = _CustomerRepository;
         }
 
     }
