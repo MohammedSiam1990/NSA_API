@@ -45,7 +45,8 @@ namespace POS.IService.Base
                                                     new PaymentMethodsRepositry(databaseFactory),
                                                     new BranchesConnectingRepository(databaseFactory),
                                                     new MajorServiceRepository(databaseFactory),
-                                                    new MajorServicesIconsRepository(databaseFactory)
+                                                    new MajorServicesIconsRepository(databaseFactory),
+                                                    new MajorServicesTypesRepository(databaseFactory)
                                                     );
                 }
 
