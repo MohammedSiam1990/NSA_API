@@ -175,8 +175,9 @@ namespace POS.API.CORE.Controllers
                         }
                         return Ok(new { success = true, message = lang.Saved_successfully_completed });
                     }
+
                     else
-                        return Ok(new { success = false, message = lang.Barcode_already_exists, repeated = SkuAlert });
+                        return Ok(new { success = false, message = SkuAlert   });
                 }
                 else if (ItemData == -1)
                     return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -189,7 +190,7 @@ namespace POS.API.CORE.Controllers
                 else if (ItemData == -5)
                     return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "MobilNameAr" });
                 else if (ItemData == -6)
-                    return Ok(new { success = false, message = lang.Code_already_exists, repeated = "ItemNum" });
+                    return Ok(new { success = false, message = lang.Number_already_exists, repeated = "ItemNum" });
 
             }
             catch (Exception ex)
