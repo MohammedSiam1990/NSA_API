@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace POS.Entities
 {
@@ -10,7 +11,7 @@ namespace POS.Entities
          MajorServiceTypes = new HashSet<MajorServiceTypes>();
          MajorServicesIcons = new HashSet<MajorServicesIcons>();
         }
-
+        [Key]
         public int ServiceId { get; set; }
         public string ServiceName { get; set; }
         public string ServiceNameAr { get; set; }
