@@ -40,7 +40,7 @@ namespace POS.Data.Repository
         {
             try
             {
-                var MajorServices = base.Table().ToList();//.Include(e => e.MajorServiceTypes).ToList();
+                var MajorServices = base.Table().Include(e => e.MajorServiceTypes).ToList(); 
                 base.DbContext.Dispose();
                 base.DbContext = null;
                 return MajorServices;

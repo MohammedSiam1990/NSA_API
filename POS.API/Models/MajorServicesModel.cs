@@ -12,7 +12,7 @@ namespace POS.Models
         public string TypeNameAr { get; set; }
         public int? StatusId { get; set; }
         public virtual List<MajorServicesTypesModel> MajorServicesTypes { get; set; }
-        public virtual List<MajorServicesIconsModel> MajorServicesIcons { get; set; }
+      //  public virtual List<MajorServicesIconsModel> MajorServicesIcons { get; set; }
     }
 }
 
