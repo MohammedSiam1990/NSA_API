@@ -11,9 +11,13 @@ namespace POS.Service.Services
 {
     public class BranchesConnectingService : BaseService, IBranchesConnectingService
     {
-        public void SaveBranchesConnecting(List<BranchesConnecting> model)
+        public void SaveBranchesConnecting(List<BranchesConnecting> model, int BranchID, int TypeID)
         {
-            PosService.BranchesConnectingRepository.SaveBranchesConnecting(model);
+            for(int i = 0; i < model.Count; i++)
+            {
+                model[i].CreateDate = DateTime.Now;
+            }
+            PosService.BranchesConnectingRepository.SaveBranchesConnecting(model,  BranchID,  TypeID);
         }
     }
 }

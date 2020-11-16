@@ -123,14 +123,14 @@ namespace POS.API.CORE.Controllers
 
 
         [HttpPost("SaveBranchesConnecting")]
-        public IActionResult SaveBranchesConnecting(List<BranchesConnecting> model, string Lang = "en")
+        public IActionResult SaveBranchesConnecting(List<BranchesConnecting> model,int BranchID,int TypeID ,string Lang = "en")
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                BranchesConnecting.SaveBranchesConnecting(model);
+                BranchesConnecting.SaveBranchesConnecting(model, BranchID, TypeID);
                 return Ok(new { success = true, message = lang.Saved_successfully_completed });
 
             }

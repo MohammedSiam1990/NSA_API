@@ -7,6 +7,6 @@ namespace POS.Data.IRepository
 {
     public interface IBranchesConnectingRepository
     {
-        void SaveBranchesConnecting(List<BranchesConnecting> model);
+        void SaveBranchesConnecting(List<BranchesConnecting> model, int BranchID, int TypeID);
     }
 }

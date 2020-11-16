@@ -13,6 +13,8 @@ namespace POS.Data.Entities
         public int ConnectingID { get; set; }
         public int TypeID { get; set; }
         public string TypeName { get; set; }
+        public string InsertedBy { get; set; }
+        public DateTime? CreateDate { get; set; }
 
     }
 }
