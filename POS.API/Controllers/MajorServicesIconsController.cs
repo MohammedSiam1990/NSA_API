@@ -59,7 +59,7 @@ namespace POS.API.CORE.Controllers
                // if (MajorServicesIconsService.ValidateMajorServicesIcons(MajorServicesIcons))
                 // create MajorServicesIcons
                 {
-                    Guid gid = new Guid();
+                    Guid gid = Guid.NewGuid();
                     MajorServicesIcons.IconName = gid.ToString();
                     MajorServicesIconsService.AddMajorServicesIcons(MajorServicesIcons);
                     UploadImage( MajorServicesIcons.IconName.ToString() + ".svg");
@@ -92,7 +92,7 @@ namespace POS.API.CORE.Controllers
                 // Edit MajorServicesIcons
                 {
                     MajorServicesIconsService.UpdateMajorServicesIcons(MajorServicesIcons);
-                    UploadImage(model.FolderPath + MajorServicesIcons.IconName.ToString() + ".svg");
+                    UploadImage( MajorServicesIcons.IconName.ToString() + ".svg");
                     return Ok(new { success = true, message = lang.Updated_successfully_completed });
                 }
 
