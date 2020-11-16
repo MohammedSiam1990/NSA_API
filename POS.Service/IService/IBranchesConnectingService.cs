@@ -9,7 +9,7 @@ namespace POS.Service.IService
 {
     public interface IBranchesConnectingService
     {
-        void SaveBranchesConnecting(List<BranchesConnecting> model);
+        void SaveBranchesConnecting(List<BranchesConnecting> model, int BranchID, int TypeID);
 
     }
 }

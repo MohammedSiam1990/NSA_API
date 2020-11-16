@@ -18,7 +18,7 @@ namespace POS.Data.Repository
 
         }
 
-        public void SaveBranchesConnecting(List<BranchesConnecting> model)
+        public void SaveBranchesConnecting(List<BranchesConnecting> model, int BranchID, int TypeID)
         {
             using (var context = new PosDbContext())
             {
@@ -26,11 +26,10 @@ namespace POS.Data.Repository
                 {
                     try
                     {
-                        long TypeID = model.First().TypeID;
-                        int BranchID = model.First().BranchID;
                         var SalesGroupItems = GetMany(e => e.TypeID == TypeID && e.BranchID == BranchID).ToList();
                         base.DeleteRange(SalesGroupItems);
                         base.AddRange(model);
+
                         context.SaveChanges();
                         transaction.Commit();
                     }
