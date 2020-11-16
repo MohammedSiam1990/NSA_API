@@ -33,6 +33,7 @@ namespace POS.Data.Repository
             }
         }
 
+
         public void UpdateMajorServicesIcons(MajorServicesIcons MajorServicesIcons)
         {
 

@@ -89,8 +89,10 @@ namespace POS.API.CORE.Controllers
                // if (MajorServicesIconsService.ValidateMajorServicesIcons(MajorServicesIcons))
                 // Edit MajorServicesIcons
                 {
+                    Guid gid = Guid.NewGuid();
+                    MajorServicesIcons.IconName = gid.ToString() + ".svg";
                     MajorServicesIconsService.UpdateMajorServicesIcons(MajorServicesIcons);
-                UploadImage(model.FolderPath+ MajorServicesIcons.IconName.ToString(), model.IconName, Lang);
+                  UploadImage(model.FolderPath+ MajorServicesIcons.IconName.ToString(), model.IconName, Lang);
                 return Ok(new { success = true, message = lang.Updated_successfully_completed });
                 }
 
