@@ -1,3 +1,7 @@
+
+
+using Microsoft.AspNetCore.Http;
+
 namespace POS.Models
 {
 
@@ -9,6 +13,7 @@ namespace POS.Models
         public bool IsActive { get; set; }
         public int OrderId { get; set; }
         public string FolderPath { get; set; }
-    }
+        public IFormFile filePath { get; set; }
+  }
 }
 
