@@ -62,7 +62,7 @@ namespace POS.API.CORE.Controllers
                     Guid gid = new Guid();
                     MajorServicesIcons.IconName = gid.ToString();
                     MajorServicesIconsService.AddMajorServicesIcons(MajorServicesIcons);
-                    UploadImage(model.FolderPath + MajorServicesIcons.IconName.ToString() + ".svg");
+                    UploadImage( MajorServicesIcons.IconName.ToString() + ".svg");
                     return Ok(new { message = lang.Saved_successfully_completed });
                 }
 
@@ -184,9 +184,11 @@ namespace POS.API.CORE.Controllers
         {
             try
             {
-        
-              //var file = Request.Form.Files.Count();
-               Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                //var File = Request.Form.Files[0];
+                //FileName = File.FileName;
+                // var file = Request.Form.Files.Count();
+
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
                 var folderName = Path.Combine("uploads/ItemGroup/Icons", FileName);
@@ -231,6 +233,8 @@ namespace POS.API.CORE.Controllers
           //  return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
         }
+
+  
     }
 }
 
