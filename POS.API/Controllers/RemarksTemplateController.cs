@@ -71,17 +71,19 @@ namespace POS.API.Controllers
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
                 var remarksTemplate = Mapper.Map<RemarksTemplate>(model);
-                int data = RemarksTemplateService.ValidateNameAlreadyExist(remarksTemplate);
+                int RemarksTemplateIdentity=0;
+                int data = RemarksTemplateService.ValidateNameAlreadyExist(remarksTemplate );
 
                 if (data == 1)
                 {
                     if (remarksTemplate.RemarksTemplateId == 0)
-                        RemarksTemplateService.AddRemarksTemplate(remarksTemplate);
+                        RemarksTemplateIdentity=RemarksTemplateService.AddRemarksTemplate(remarksTemplate);
                     else
                     {
+                        RemarksTemplateIdentity = model.RemarksTemplateId; 
                         RemarksTemplateService.UpdateRemarksTemplate(remarksTemplate);
                     }
-                    return Ok(new { success = true, message = lang.Saved_successfully_completed });
+                    return Ok(new { success = true, message = lang.Saved_successfully_completed , id= RemarksTemplateIdentity });
                 }
                 else if (data == -1)
                     return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });

@@ -21,13 +21,13 @@ namespace POS.Data.Repository
 
         }
 
-        public void AddRemarksTemplate(RemarksTemplate remarksTemplate)
+        public int AddRemarksTemplate(RemarksTemplate remarksTemplate)
         {
             try
             {
                 remarksTemplate.CreateDate = DateTime.Now;
                 Add(remarksTemplate);
-                //  PosDbContext.SaveChanges();
+                return remarksTemplate.RemarksTemplateId;
             }
             catch (Exception ex)
             {
@@ -64,7 +64,7 @@ namespace POS.Data.Repository
                 {
                     try
                     {
-                        
+
                         context.RemoveRange(DeletRemarksTemplateDetails);
                         remarksTemplate.ModifyDate = DateTime.Now;
                         context.Update(remarksTemplate);
@@ -85,7 +85,7 @@ namespace POS.Data.Repository
         {
 
             var remarksTemplate = GetById(e => e.RemarksTemplateId != model.RemarksTemplateId && (e.RemarksTemplateName == model.RemarksTemplateName
-            || e.RemarksTemplateNameAr == model.RemarksTemplateNameAr)
+            || e.RemarksTemplateNameAr == model.RemarksTemplateNameAr) && e.BrandId == model.BrandId && e.StatusId != 3
             );
 
             if (remarksTemplate == null) return 1;
