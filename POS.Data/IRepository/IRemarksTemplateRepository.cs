@@ -9,7 +9,7 @@ namespace POS.Data.IRepository
     {
         string GetProcRemarksTemplate(int BrandID);
         bool ValidateRemarkTemplate(RemarksTemplate remarksTemplate);
-        void AddRemarksTemplate(RemarksTemplate remarksTemplate);
+        int AddRemarksTemplate(RemarksTemplate remarksTemplate);
         void UpdateRemarksTemplate(RemarksTemplate remarksTemplate, List<RemarksTemplateDetails> DeletRemarksTemplateDetails);
         int ValidateNameAlreadyExist(RemarksTemplate remarksTemplate);
     }

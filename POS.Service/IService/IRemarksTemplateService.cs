@@ -11,7 +11,7 @@ namespace POS.Service.IService
     {
         string GetRemarksTemplate(int BrandID);
         bool ValidateRemarksTemplate(RemarksTemplate remarksTemplate);
-        void AddRemarksTemplate(RemarksTemplate remarksTemplate);
+        int AddRemarksTemplate(RemarksTemplate remarksTemplate);
         void UpdateRemarksTemplate(RemarksTemplate remarksTemplate);
         int ValidateNameAlreadyExist(RemarksTemplate remarksTemplate);
     }

@@ -6,9 +6,9 @@ namespace POS.Service.Services
 {
     public class RemarksTemplateService : BaseService, IRemarksTemplateService
     {
-        public void AddRemarksTemplate(RemarksTemplate remarksTemplate)
+        public int AddRemarksTemplate(RemarksTemplate remarksTemplate)
         {
-            PosService.RemarksTemplateRepository.AddRemarksTemplate(remarksTemplate);
+           return PosService.RemarksTemplateRepository.AddRemarksTemplate(remarksTemplate );
         }
 
         public string GetRemarksTemplate(int BrandID)
