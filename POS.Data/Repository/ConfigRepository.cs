@@ -17,7 +17,8 @@ namespace POS.Data.Repository
 
         public void SaveConfig(List<Config> Added, List<Config> Updated)
         {
-            using (var context = new PosDbContext())
+            
+                using (var context = new PosDbContext())
             {
                 using (var transaction = context.Database.BeginTransaction())
                 {
@@ -25,6 +26,7 @@ namespace POS.Data.Repository
                     {
                         context.UpdateRange(Updated);
                         context.AddRange(Added);
+                        context.SaveChanges();
                         transaction.Commit();
                     }
                     catch (Exception ex)
