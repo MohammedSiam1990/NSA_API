@@ -9,7 +9,7 @@ namespace POS.Service.IService
 {
     public interface IMajorServiceTypesService
     {
-        MajorServiceTypes GetMajorServiceTypes(int ServiceId);
+        List<MajorServiceTypes> GetMajorServiceTypes(int ServiceId);
         List<MajorServiceTypes> GetMajorServiceTypes();
         void AddMajorServiceTypes(List<MajorServiceTypes> MajorServiceTypes);
         void UpdateMajorServiceTypes(List<MajorServiceTypes> MajorServiceTypes);
