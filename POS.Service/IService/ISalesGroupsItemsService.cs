@@ -5,6 +5,6 @@ namespace POS.Service.IService
 {
     public interface ISalesGroupsItemsService
     {
-        void SaveSalesGroupsItems(List<SalesGroupsItems> model);
+        void SaveSalesGroupsItems(List<SalesGroupsItems> model, int SalesGroupID);
     }
 }

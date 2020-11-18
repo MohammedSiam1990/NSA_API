@@ -19,7 +19,7 @@ namespace POS.Data.Repository
 
         }
 
-        public void SaveItemComponents(List<ItemComponents> model)
+        public void SaveItemComponents(List<ItemComponents> model, int MainItemID, int MainItemUOMID)
         {
             using (var context = new PosDbContext())
             {
@@ -27,9 +27,6 @@ namespace POS.Data.Repository
                 {
                     try
                     {
-                        long MainItemID = model.First().MainItemID;
-                        long MainItemUOMID = model.First().MainItemUOMID;
-
                         var ItemComponent = GetMany(e => e.MainItemID == MainItemID && e.MainItemUOMID == MainItemUOMID).ToList();
                         base.DeleteRange(ItemComponent);
                         base.AddRange(model);
