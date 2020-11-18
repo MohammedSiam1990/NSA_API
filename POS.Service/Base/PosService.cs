@@ -29,6 +29,7 @@ namespace Pos.Service.Base
         public IPaymentMethodsRepositry PaymentMethodsRepositry { get; set; }
         public IBranchesConnectingRepository BranchesConnectingRepository { get; set; }
         public IMajorServiceRepository MajorServiceRepository { get; set; }
+ public IMajorServiceTypesRepository MajorServiceTypesRepository { get; set; }
         public IMajorServicesIconsRepository MajorServicesIconsRepository { get; set; }
         public ICustomerRepository CustomerRepository { get; set; }
         public IAddressRepository AddressRepository { get; set; }
@@ -58,6 +59,7 @@ namespace Pos.Service.Base
                                      IPaymentMethodsRepositry _PaymentMethodsRepositry,
                                      IBranchesConnectingRepository _BranchesConnectingRepository,
                                       IMajorServiceRepository _MajorServiceRepository,
+                                      IMajorServiceTypesRepository _MajorServiceTypesRepository,
                                      IMajorServicesIconsRepository _MajorServicesIconsRepository,
                                      ICustomerRepository _CustomerRepository,
                                      IAddressRepository _AddressRepository,
@@ -87,6 +89,7 @@ namespace Pos.Service.Base
             PaymentMethodsRepositry = _PaymentMethodsRepositry;
             BranchesConnectingRepository = _BranchesConnectingRepository;
             MajorServiceRepository = _MajorServiceRepository;
+            MajorServiceTypesRepository = _MajorServiceTypesRepository;
             MajorServicesIconsRepository = _MajorServicesIconsRepository;
             AddressRepository = _AddressRepository;
             CustomerRepository = _CustomerRepository;
