@@ -40,13 +40,13 @@ namespace POS.API.CORE.Controllers
 
 
         [HttpPost("AddMajorServiceTypes")]
-        public IActionResult Add([FromBody]MajorServiceTypesModel model, string Lang = "en")
+        public IActionResult Add([FromBody]List<MajorServiceTypesModel> model, string Lang = "en")
         {
             // map model to entity
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-            var MajorServiceTypes = Mapper.Map<MajorServiceTypes>(model);
+            var MajorServiceTypes = Mapper.Map<List<MajorServiceTypes>>(model);
             try
             {
                // if (MajorServiceTypesService.ValidateMajorServiceTypes(MajorServiceTypes))
@@ -68,13 +68,12 @@ namespace POS.API.CORE.Controllers
         }
 
         [HttpPost("UpdateMajorServiceTypes")]
-        public IActionResult Update([FromBody]MajorServiceTypesModel model, string Lang = "en")
+        public IActionResult Update([FromBody]List<MajorServiceTypesModel> model, string Lang = "en")
         {
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-            // map model to entity
-            var MajorServiceTypes = Mapper.Map<MajorServiceTypes>(model);
+            var MajorServiceTypes = Mapper.Map<List<MajorServiceTypes>>(model);
             try
             {
                // if (MajorServiceTypesService.ValidateMajorServiceTypes(MajorServiceTypes))
@@ -111,7 +110,36 @@ namespace POS.API.CORE.Controllers
                 return Ok(new { message = ex.Message });
             }
         }
+        [HttpPost("SaveMajorServiceTypes")]
+        public IActionResult SaveMajorServiceTypes(List<MajorServiceTypes> model, string Lang = "en")
+        {
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
+                //var Customer = Mapper.Map<list>(model);
+
+                int result = MajorServiceTypesService.SaveMajorServiceTypes(model);
+                if (result == 1)
+                {
+                    return Ok(new { success = true, message = lang.Saved_successfully_completed });
+
+                }
+                else
+                {
+                    return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ExceptionError.SaveException(ex);
+                // return error message if there was an exception
+
+            }
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+        }
 
         [HttpGet("GetMajorServiceTypesById")]
         public IActionResult GetMajorServiceTypesById(int MajorServiceTypesId)

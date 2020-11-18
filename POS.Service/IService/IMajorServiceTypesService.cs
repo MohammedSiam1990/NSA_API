@@ -11,9 +11,9 @@ namespace POS.Service.IService
     {
         MajorServiceTypes GetMajorServiceTypes(int ServiceId);
         List<MajorServiceTypes> GetMajorServiceTypes();
-        void AddMajorServiceTypes(MajorServiceTypes MajorServiceTypes);
-        void UpdateMajorServiceTypes(MajorServiceTypes MajorServiceTypes);
-        void SaveMajorServiceTypes(MajorServiceTypes MajorServiceTypes);
+        void AddMajorServiceTypes(List<MajorServiceTypes> MajorServiceTypes);
+        void UpdateMajorServiceTypes(List<MajorServiceTypes> MajorServiceTypes);
+        int SaveMajorServiceTypes(List<MajorServiceTypes> MajorServiceTypes);
         void DeleteMajorServiceTypes(int MajorServiceTypesId);
     }
 }

@@ -16,7 +16,7 @@ namespace POS.Service.Services
 
         }
 
-        public void AddMajorServiceTypes(MajorServiceTypes MajorServiceTypes)
+        public void AddMajorServiceTypes(List<MajorServiceTypes> MajorServiceTypes)
         {
             PosService.MajorServiceTypesRepository.AddMajorServiceTypes(MajorServiceTypes);
         }
@@ -26,7 +26,7 @@ namespace POS.Service.Services
             PosService.MajorServiceTypesRepository.DeleteMajorServiceTypes(MajorServiceTypesId);
         }
 
-        public MajorServiceTypes GetMajorServiceTypes(int ServiceId)
+        public List<MajorServiceTypes> GetMajorServiceTypes(int ServiceId)
         {
             return PosService.MajorServiceTypesRepository.GetMajorServiceTypes(ServiceId);
         }
@@ -36,12 +36,12 @@ namespace POS.Service.Services
             return PosService.MajorServiceTypesRepository.GetMajorServiceTypes();
         }
 
-        public void SaveMajorServiceTypes(MajorServiceTypes MajorServiceTypes)
+        public int SaveMajorServiceTypes(List<MajorServiceTypes> MajorServiceTypes)
         {
-            PosService.MajorServiceTypesRepository.SaveMajorServiceTypes(MajorServiceTypes);
+           return PosService.MajorServiceTypesRepository.SaveMajorServiceTypes(MajorServiceTypes);
         }
 
-        public void UpdateMajorServiceTypes(MajorServiceTypes MajorServiceTypes)
+        public void UpdateMajorServiceTypes(List<MajorServiceTypes> MajorServiceTypes)
         {
             PosService.MajorServiceTypesRepository.UpdateMajorServiceTypes(MajorServiceTypes);
         }
