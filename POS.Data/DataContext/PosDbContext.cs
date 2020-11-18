@@ -76,6 +76,7 @@ namespace POS.Data.DataContext
         public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<SalesGroupsItems> SalesGroupsItems { get; set; }
+        public virtual DbSet<Config> Config { get; set; }
 
 
         #endregion

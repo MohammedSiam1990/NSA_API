@@ -47,7 +47,8 @@ namespace POS.IService.Base
                                                     new MajorServiceRepository(databaseFactory),
                                                     new MajorServicesIconsRepository(databaseFactory),
                                                     new CustomerRepository(databaseFactory),
-                                                    new AddressRepository(databaseFactory)
+                                                    new AddressRepository(databaseFactory),
+                                                    new ConfigRepository(databaseFactory)
                                                     );
                 }
 

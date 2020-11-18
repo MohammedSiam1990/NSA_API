@@ -32,6 +32,7 @@ namespace Pos.Service.Base
         public IMajorServicesIconsRepository MajorServicesIconsRepository { get; set; }
         public ICustomerRepository CustomerRepository { get; set; }
         public IAddressRepository AddressRepository { get; set; }
+        public IConfigRepository ConfigRepository { get; set; }
         [Inject]
         public PosServices(
                                      ICompaniesRepository _CompaniesRepository,
@@ -59,7 +60,8 @@ namespace Pos.Service.Base
                                       IMajorServiceRepository _MajorServiceRepository,
                                      IMajorServicesIconsRepository _MajorServicesIconsRepository,
                                      ICustomerRepository _CustomerRepository,
-                                     IAddressRepository _AddressRepository
+                                     IAddressRepository _AddressRepository,
+                                     IConfigRepository _ConfigRepository
                             )
         {
             CompaniesRepository = _CompaniesRepository;
@@ -88,6 +90,7 @@ namespace Pos.Service.Base
             MajorServicesIconsRepository = _MajorServicesIconsRepository;
             AddressRepository = _AddressRepository;
             CustomerRepository = _CustomerRepository;
+            ConfigRepository = _ConfigRepository;
         }
 
     }
