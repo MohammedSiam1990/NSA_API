@@ -24,8 +24,8 @@ namespace POS.Data.Repository
                 {
                     try
                     {
-                        context.UpdateRange(Updated);
-                        context.AddRange(Added);
+                     if (Updated.Count>0)context.UpdateRange(Updated);
+                     if (Added.Count>0)context.AddRange(Added);
                         context.SaveChanges();
                         transaction.Commit();
                     }
