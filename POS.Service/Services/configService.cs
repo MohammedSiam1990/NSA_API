@@ -11,7 +11,12 @@ namespace POS.Service.Services
 {
     public class ConfigService : BaseService, IconfigService
     {
-        public void SaveConfig(List<Config> model)
+        public string GetConfig(int BranchID, int BrandID)
+        {
+            return PosService.ConfigRepository.GetConfig(BranchID,BrandID);
+        }
+
+        public int SaveConfig(List<Config> model)
         {
             List<Config> Added = model.Where(e => e.ConfigID == 0).ToList();
             List<Config> Updated = model.Where(e => e.ConfigID > 0).ToList();
@@ -23,7 +28,11 @@ namespace POS.Service.Services
             {
                 i.LastModifyDate = DateTime.Now;
             }
-            PosService.ConfigRepository.SaveConfig(Added, Updated);
+           return PosService.ConfigRepository.SaveConfig(Added, Updated);
         }
+
+
+
+
     }
 }

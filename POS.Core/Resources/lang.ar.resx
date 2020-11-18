@@ -252,6 +252,9 @@
   <data name="Please_check_your_email_to_reset_your_password" xml:space="preserve">
     <value>يرجى التحقق من بريدك الإلكتروني لإعادة تعيين كلمة المرور الخاصة بك.</value>
   </data>
+  <data name="Please_reload_the_page" xml:space="preserve">
+    <value> الرجاء تحديث الصفحة لمنع حدوث تكرار بالأعدادات</value>
+  </data>
   <data name="Reigster_Model_is_null" xml:space="preserve">
     <value>يوجد خطأ بالتسجيل</value>
   </data>

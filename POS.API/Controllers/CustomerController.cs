@@ -69,14 +69,14 @@ namespace POS.API.Controllers
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
         [HttpGet("GetCustomer")]
-        public IActionResult GetCustomer(int CustomerID = 0, string Lang = "en")
+        public IActionResult GetCustomer(int CompanyID = 0, string Lang = "en")
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = customerService.GetCustomer(CustomerID);
+                var data = customerService.GetCustomer(CompanyID);
                 if (data != null)
                 {
                     if (data.Count() == 0)

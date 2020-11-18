@@ -8,6 +8,7 @@ namespace POS.API.Models
     public partial class CustomerModel
     {
         public long CustomerID { get; set; }
+        public int CompanyID { get; set; }
         public string CustomerNum { get; set; }
         public string CustomerName { get; set; }
         public string CustomerNameAr { get; set; }

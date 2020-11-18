@@ -466,6 +466,15 @@ namespace POS.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please reload the page to prevent duplicate settings.
+        /// </summary>
+        public static string Please_reload_the_page {
+            get {
+                return ResourceManager.GetString("Please_reload_the_page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your registration is Fail.
         /// </summary>
         public static string Reigster_Model_is_null {

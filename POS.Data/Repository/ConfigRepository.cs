@@ -1,10 +1,13 @@
-﻿using POS.API.Helpers;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using POS.API.Helpers;
 using POS.Data.DataContext;
 using POS.Data.Entities;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace POS.Data.Repository
@@ -15,7 +18,30 @@ namespace POS.Data.Repository
         {
         }
 
-        public void SaveConfig(List<Config> Added, List<Config> Updated)
+        [Obsolete]
+        public string GetConfig(int BranchID,int BrandID)
+        {
+            using (var DbContext = new PosDbContext())
+            {
+                try
+                {
+
+                    string Sql = "EXEC Get_Config @BranchID,@BrandID";
+                    var data = DbContext.JsonData.FromSql(Sql, new SqlParameter("@BranchID", BranchID),
+                                                       new SqlParameter("@BrandID", BrandID)).AsEnumerable().FirstOrDefault().Data;
+                    return data.ToString();
+                }
+                catch (Exception ex)
+                {
+                    Exceptions.ExceptionError.SaveException(ex);
+                }
+                return null;
+
+            }
+
+        }
+
+        public int SaveConfig(List<Config> Added, List<Config> Updated)
         {
             
                 using (var context = new PosDbContext())
@@ -32,8 +58,14 @@ namespace POS.Data.Repository
                     catch (Exception ex)
                     {
                         transaction.Rollback();
+                        if (ex.InnerException.Message.Contains("duplicate key"))
+                        {
+                            return -2;
+                        }
+
                         throw new AppException(ex.Message);
                     }
+                    return 1;
                 }
             }
 
