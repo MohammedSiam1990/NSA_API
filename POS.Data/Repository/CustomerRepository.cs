@@ -39,7 +39,7 @@ namespace POS.Data.Repository
             {
                 try
                 {
-                    string Sql = "EXEC Get_Customer @CompanyID";
+                    string Sql = "EXEC GetCustomers @CompanyID";
                     var data = DbContext.JsonData.FromSql(Sql, new SqlParameter("@CompanyID", CompanyID)).AsEnumerable().FirstOrDefault().Data;
                     return data.ToString();
                 }
