@@ -7,6 +7,7 @@ namespace POS.Data.IRepository
 {
     public interface IConfigRepository
     {
-        void SaveConfig(List<Config>Added, List<Config>Updated);
+        int SaveConfig(List<Config>Added, List<Config>Updated);
+        string GetConfig(int BranchID, int BrandID);
     }
 }

@@ -16,9 +16,9 @@ namespace POS.Service.Services
             PosService.CustomerRepository.AddCustomer(customer);
         }
 
-        public string GetCustomer(int CustomerID)
+        public string GetCustomer(int CompanyID)
         {
-            return PosService.CustomerRepository.GetCustomer(CustomerID);
+            return PosService.CustomerRepository.GetCustomer(CompanyID);
         }
 
         public void UpdateCustomer(Customer customer)

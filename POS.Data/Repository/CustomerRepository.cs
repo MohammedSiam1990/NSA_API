@@ -33,14 +33,14 @@ namespace POS.Data.Repository
         }
 
         [Obsolete]
-        public string GetCustomer(int CustomerID)
+        public string GetCustomer(int CompanyID)
         {
             using (var DbContext = new PosDbContext())
             {
                 try
                 {
-                    string Sql = "EXEC Get_Customer @CustomerID";
-                    var data = DbContext.JsonData.FromSql(Sql, new SqlParameter("@CustomerID", CustomerID)).AsEnumerable().FirstOrDefault().Data;
+                    string Sql = "EXEC GetCustomers @CompanyID";
+                    var data = DbContext.JsonData.FromSql(Sql, new SqlParameter("@CompanyID", CompanyID)).AsEnumerable().FirstOrDefault().Data;
                     return data.ToString();
                 }
                 catch (Exception ex)
