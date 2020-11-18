@@ -23,9 +23,8 @@ namespace POS.Data.Repository
                 {
                     try
                     {
-                        base.UpdateRange(Updated);
-                        base.AddRange(Added);
-                        context.SaveChanges();
+                        context.UpdateRange(Updated);
+                        context.AddRange(Added);
                         transaction.Commit();
                     }
                     catch (Exception ex)
