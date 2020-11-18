@@ -7,6 +7,6 @@ namespace POS.Data.IRepository
 {
     public interface ISalesGroupsItemsRepository
     {
-        void SaveSalesGroupsItems(List<SalesGroupsItems> model);
+        void SaveSalesGroupsItems(List<SalesGroupsItems> model,int SalesGroupID);
     }
 }

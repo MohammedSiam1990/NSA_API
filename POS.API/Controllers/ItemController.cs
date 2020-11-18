@@ -228,14 +228,14 @@ namespace POS.API.CORE.Controllers
 
 
         [HttpPost("SaveSalesGroupsItems")]
-        public IActionResult SaveSalesGroupsItems(List<SalesGroupsItems> model, string Lang = "en")
+        public IActionResult SaveSalesGroupsItems(List<SalesGroupsItems> model,int SalesGroupID, string Lang = "en")
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                SalesGroupsItemsService.SaveSalesGroupsItems(model);
+                SalesGroupsItemsService.SaveSalesGroupsItems(model, SalesGroupID);
                 return Ok(new { success = true, message = lang.Saved_successfully_completed });
 
             }

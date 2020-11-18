@@ -21,7 +21,7 @@ namespace POS.Data.Repository
         }
 
 
-        public void SaveSalesGroupsItems(List<SalesGroupsItems> model)
+        public void SaveSalesGroupsItems(List<SalesGroupsItems> model,int SalesGroupID)
         {
             using (var context = new PosDbContext())
             {
@@ -29,9 +29,8 @@ namespace POS.Data.Repository
                 {
                     try
                     {
-                        long SalesGroupID = model.First().SalesGroupID;
 
-                        var SalesGroupItems = GetMany(e => e.SalesGroupID== SalesGroupID).ToList();
+                        var SalesGroupItems = GetMany(e => e.SalesGroupID== SalesGroupID).ToList(); 
                         base.DeleteRange(SalesGroupItems);
                         base.AddRange(model);
                         context.SaveChanges();
