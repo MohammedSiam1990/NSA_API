@@ -9,7 +9,7 @@ namespace POS.Service.IService
 {
     public interface IItemComponentsService
     {
-        void SaveItemComponents(List<ItemComponents> model);
+        void SaveItemComponents(List<ItemComponents> model, int MainItemID, int MainItemUOMID);
 
 
     }

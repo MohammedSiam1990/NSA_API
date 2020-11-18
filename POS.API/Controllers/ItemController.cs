@@ -204,7 +204,7 @@ namespace POS.API.CORE.Controllers
 
 
         [HttpPost("SaveItemComponents")]
-        public IActionResult SaveItemComponents(List<ItemComponents> model, string Lang = "en")
+        public IActionResult SaveItemComponents(List<ItemComponents> model, int MainItemID, int MainItemUOMID, string Lang = "en")
         {
             try
             {
@@ -213,7 +213,7 @@ namespace POS.API.CORE.Controllers
 
 
 
-                ItemComponentsService.SaveItemComponents(model);
+                ItemComponentsService.SaveItemComponents(model, MainItemID, MainItemUOMID);
                 return Ok(new { success = true, message = lang.Saved_successfully_completed });
 
             }

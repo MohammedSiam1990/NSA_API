@@ -30,8 +30,8 @@ namespace POS.API.Controllers
             Mapper = mapper;
 
         }
-        [HttpPost("SaveCustomer")]
-        public IActionResult SaveCustomer(List<Config> model, string Lang = "en")
+        [HttpPost("SaveConfig")]
+        public IActionResult SaveConfig(List<Config> model, string Lang = "en")
         {
             try
             {
