@@ -148,7 +148,7 @@ namespace POS.API.CORE.Controllers
             {
                 // create user
                 var MajorServiceTypes = MajorServiceTypesService.GetMajorServiceTypes(MajorServiceTypesId);
-                var MajorServiceTypesDto = Mapper.Map<MajorServiceTypesModel>(MajorServiceTypes);
+                var MajorServiceTypesDto = Mapper.Map<List<MajorServiceTypesModel>>(MajorServiceTypes);
              //   MajorServiceTypesDto.ImageName = imagesPath.Comapny + MajorServiceTypesDto.ImageName;
 
                 return Ok(new { datalist = MajorServiceTypesDto, message = "", success = true });
@@ -170,16 +170,17 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = MajorServiceTypesService.GetMajorServiceTypes();
-                if (data != null)
+                var MajorServiceTypes = MajorServiceTypesService.GetMajorServiceTypes();
+                var MajorServiceTypesDto = Mapper.Map<List<MajorServiceTypesModel>>(MajorServiceTypes);
+                if (MajorServiceTypesDto != null)
                 {
-                    if (data.Count() == 0)
+                    if (MajorServiceTypesDto.Count() == 0)
                     {
-                        return Ok(new { success = true, message = lang.No_data_available, datalist = data });
+                        return Ok(new { success = true, message = lang.No_data_available, datalist = MajorServiceTypesDto });
                     }
                     else
                     {
-                        return Ok(new { success = true, message = "", datalist = data });
+                        return Ok(new { success = true, message = "", datalist = MajorServiceTypesDto });
                     }
 
                 }
