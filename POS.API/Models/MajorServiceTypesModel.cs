@@ -11,8 +11,9 @@ namespace POS.Models
         public string TypeName { get; set; }
         public string TypeNameAr { get; set; }
         public int? StatusId { get; set; }
-
-   // public virtual MajorServicesModel MajorServices { get; set; }
+        public string ServiceName { get; set; }
+        public string ServiceNameAr { get; set; }
+        // public virtual MajorServicesModel MajorServices { get; set; }
     }
 }
 

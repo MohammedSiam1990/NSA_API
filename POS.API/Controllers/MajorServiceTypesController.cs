@@ -142,11 +142,12 @@ namespace POS.API.CORE.Controllers
         }
 
         [HttpGet("GetMajorServiceTypesById")]
-        public IActionResult GetMajorServiceTypesById(int MajorServiceId)
+        public IActionResult GetMajorServiceTypesById(int MajorServiceId, string Lang = "en")
         {
             try
             {
-                // create user
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
                 var MajorServiceTypes = MajorServiceTypesService.GetMajorServiceTypes(MajorServiceId);
                 var MajorServiceTypesDto = Mapper.Map<List<MajorServiceTypesModel>>(MajorServiceTypes);
              //   MajorServiceTypesDto.ImageName = imagesPath.Comapny + MajorServiceTypesDto.ImageName;
