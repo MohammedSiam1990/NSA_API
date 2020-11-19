@@ -111,16 +111,16 @@ namespace POS.API.CORE.Controllers
             }
         }
         [HttpPost("SaveMajorServiceTypes")]
-        public IActionResult SaveMajorServiceTypes(List<MajorServiceTypes> model, string Lang = "en")
+        public IActionResult SaveMajorServiceTypes(List<MajorServiceTypesModel> model, string Lang = "en")
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                //var Customer = Mapper.Map<list>(model);
+                var MajorServiceTypes = Mapper.Map<List<MajorServiceTypes>>(model);
 
-                int result = MajorServiceTypesService.SaveMajorServiceTypes(model);
+                int result = MajorServiceTypesService.SaveMajorServiceTypes(MajorServiceTypes);
                 if (result == 1)
                 {
                     return Ok(new { success = true, message = lang.Saved_successfully_completed });
@@ -142,13 +142,14 @@ namespace POS.API.CORE.Controllers
         }
 
         [HttpGet("GetMajorServiceTypesById")]
-        public IActionResult GetMajorServiceTypesById(int MajorServiceTypesId)
+        public IActionResult GetMajorServiceTypesById(int MajorServiceId, string Lang = "en")
         {
             try
             {
-                // create user
-                var MajorServiceTypes = MajorServiceTypesService.GetMajorServiceTypes(MajorServiceTypesId);
-                var MajorServiceTypesDto = Mapper.Map<MajorServiceTypesModel>(MajorServiceTypes);
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+                var MajorServiceTypes = MajorServiceTypesService.GetMajorServiceTypes(MajorServiceId);
+                var MajorServiceTypesDto = Mapper.Map<List<MajorServiceTypesModel>>(MajorServiceTypes);
              //   MajorServiceTypesDto.ImageName = imagesPath.Comapny + MajorServiceTypesDto.ImageName;
 
                 return Ok(new { datalist = MajorServiceTypesDto, message = "", success = true });
@@ -170,16 +171,17 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = MajorServiceTypesService.GetMajorServiceTypes();
-                if (data != null)
+                var MajorServiceTypes = MajorServiceTypesService.GetMajorServiceTypes();
+                var MajorServiceTypesDto = Mapper.Map<List<MajorServiceTypesModel>>(MajorServiceTypes);
+                if (MajorServiceTypesDto != null)
                 {
-                    if (data.Count() == 0)
+                    if (MajorServiceTypesDto.Count() == 0)
                     {
-                        return Ok(new { success = true, message = lang.No_data_available, datalist = data });
+                        return Ok(new { success = true, message = lang.No_data_available, datalist = MajorServiceTypesDto });
                     }
                     else
                     {
-                        return Ok(new { success = true, message = "", datalist = data });
+                        return Ok(new { success = true, message = "", datalist = MajorServiceTypesDto });
                     }
 
                 }

@@ -12,7 +12,8 @@ namespace POS.Entities
         public string TypeName { get; set; }
         public string TypeNameAr { get; set; }
         public int? StatusId { get; set; }
-
+        public string DeletedBy { get; set; }
+        public DateTime? DeletedDate { get; set; }
         public virtual MajorServices MajorService { get; set; }
     }
 }

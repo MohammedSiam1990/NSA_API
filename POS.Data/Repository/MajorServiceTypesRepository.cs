@@ -41,7 +41,7 @@ namespace POS.Data.Repository
         {
             try
             {
-                var MajorServiceTypes = base.Table().Include(e => e.StatusId!=3).ToList(); 
+                var MajorServiceTypes = base.Table().Include(e => e.MajorService).Where(e => e.StatusId != 3).ToList(); 
                 base.DbContext.Dispose();
                 base.DbContext = null;
                 return MajorServiceTypes;

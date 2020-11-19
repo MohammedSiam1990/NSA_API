@@ -47,7 +47,10 @@ namespace POS.API.Helpers
             CreateMap<MajorServicesModel,MajorServices>();
             CreateMap<MajorServices, MajorServicesModel>();
             CreateMap<MajorServiceTypesModel, MajorServiceTypes>();
-            CreateMap<MajorServiceTypes, MajorServiceTypesModel>();
+            CreateMap<MajorServiceTypes, MajorServiceTypesModel>()
+            .ForMember(x => x.ServiceName, opt => opt.MapFrom(model => model.MajorService.ServiceName))
+            .ForMember(x => x.ServiceNameAr, opt => opt.MapFrom(model => model.MajorService.ServiceNameAr))
+            ;
 
             CreateMap<CustomerModel, Customer>();
             CreateMap<Customer, CustomerModel>();
