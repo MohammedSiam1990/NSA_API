@@ -233,6 +233,7 @@ namespace POS.API.CORE
             services.AddScoped<IAddressService, AddressService>();
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IconfigService, ConfigService>();
+            services.AddScoped<IMajorServiceTypesService, MajorServiceTypesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
