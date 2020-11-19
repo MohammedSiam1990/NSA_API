@@ -40,6 +40,5 @@ namespace POS.Data.Entities
         public decimal? Points { get; set; }
         public decimal? PointsOpenBalance { get; set; }
 
-        public List<Address> Address { get; set; }
     }
 }
