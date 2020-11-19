@@ -111,7 +111,7 @@ namespace POS.API.CORE.Controllers
             }
         }
         [HttpPost("SaveMajorServiceTypes")]
-        public IActionResult SaveMajorServiceTypes(List<MajorServiceTypes> model, string Lang = "en")
+        public IActionResult SaveMajorServiceTypes(List<MajorServiceTypesModel> model, string Lang = "en")
         {
             try
             {
