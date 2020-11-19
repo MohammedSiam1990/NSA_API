@@ -5,16 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace POS.Data.IRepository
+namespace POS.Service.IService
 {
-    public interface IMajorServiceTypesRepository
+    public interface IMajorServiceTypesService
     {
         List<MajorServiceTypes> GetMajorServiceTypes(int ServiceId);
         List<MajorServiceTypes> GetMajorServiceTypes();
         void AddMajorServiceTypes(List<MajorServiceTypes> MajorServiceTypes);
         void UpdateMajorServiceTypes(List<MajorServiceTypes> MajorServiceTypes);
         int SaveMajorServiceTypes(List<MajorServiceTypes> MajorServiceTypes);
-        void DeleteMajorServiceTypes(int MajorServiceId);
-
+        void DeleteMajorServiceTypes(int MajorServiceTypesId);
     }
 }
