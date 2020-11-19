@@ -38,6 +38,5 @@ namespace POS.API.Models
         public decimal? Points { get; set; }
         public decimal? PointsOpenBalance { get; set; }
 
-        public List<AddressModel> Address { get; set; }
     }
 }
