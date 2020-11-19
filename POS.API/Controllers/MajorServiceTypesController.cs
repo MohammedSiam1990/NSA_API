@@ -118,9 +118,9 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                //var Customer = Mapper.Map<list>(model);
+                var MajorServiceTypes = Mapper.Map<List<MajorServiceTypes>>(model);
 
-                int result = MajorServiceTypesService.SaveMajorServiceTypes(model);
+                int result = MajorServiceTypesService.SaveMajorServiceTypes(MajorServiceTypes);
                 if (result == 1)
                 {
                     return Ok(new { success = true, message = lang.Saved_successfully_completed });
