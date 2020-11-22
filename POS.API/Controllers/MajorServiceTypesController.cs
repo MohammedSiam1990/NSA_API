@@ -158,12 +158,12 @@ namespace POS.API.CORE.Controllers
                       string ServiceTypesAlert ;
                         if (item.TypeName == ExistModel.TypeName)
                         {
-                            ServiceTypesAlert = " , TypeName:" + ExistModel.TypeName;
+                            ServiceTypesAlert = " , TypeName : " + ExistModel.TypeName;
                             return Ok(new { success = false, message = lang.English_name_already_exists + ServiceTypesAlert });
                         }
                         else
                         {
-                            ServiceTypesAlert = " , TypeNameAr:" + ExistModel.TypeNameAr;
+                            ServiceTypesAlert = " , TypeNameAr : " + ExistModel.TypeNameAr;
                             return Ok(new { success = false, message = lang.Arabic_name_already_exists + ServiceTypesAlert });
                         }
                     }
