@@ -15,6 +15,7 @@ namespace POS.Data.IRepository
         void UpdateMajorServiceTypes(List<MajorServiceTypes> MajorServiceTypes);
         int SaveMajorServiceTypes(List<MajorServiceTypes> MajorServiceTypes);
         void DeleteMajorServiceTypes(int MajorServiceId);
+        MajorServiceTypes ValidateAlreadyExist(MajorServiceTypes model);
 
     }
 }

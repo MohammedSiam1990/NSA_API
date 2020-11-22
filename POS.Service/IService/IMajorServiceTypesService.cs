@@ -15,5 +15,6 @@ namespace POS.Service.IService
         void UpdateMajorServiceTypes(List<MajorServiceTypes> MajorServiceTypes);
         int SaveMajorServiceTypes(List<MajorServiceTypes> MajorServiceTypes);
         void DeleteMajorServiceTypes(int MajorServiceTypesId);
+        MajorServiceTypes ValidateAlreadyExist(MajorServiceTypes model);
     }
 }

@@ -117,13 +117,28 @@ namespace POS.API.CORE.Controllers
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
-
-                foreach (var item in model)
-                {
-                    item.StatusId = 7;
-                }
+                
                 var MajorServiceTypes = Mapper.Map<List<MajorServiceTypes>>(model);
 
+                foreach (var item in MajorServiceTypes)
+                {
+                  item.StatusId = 7;
+                  var ExistModel = MajorServiceTypesService.ValidateAlreadyExist(item);
+                    if (ExistModel != null)
+                    {
+                      string ServiceTypesAlert ;
+                        if (Lang == "en")
+                        {
+                            ServiceTypesAlert = " , TypeName:" + ExistModel.TypeName;
+                            return Ok(new { success = true, message = lang.English_name_already_exists + ServiceTypesAlert });
+                        }
+                        else
+                        {
+                            ServiceTypesAlert = " , TypeNameAr:" + ExistModel.TypeNameAr;
+                            return Ok(new { success = true, message = lang.Arabic_name_already_exists + ServiceTypesAlert });
+                        }
+                    }
+                }
                 int result = MajorServiceTypesService.SaveMajorServiceTypes(MajorServiceTypes);
                 if (result == 1)
                 {

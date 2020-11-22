@@ -117,5 +117,10 @@ namespace POS.Data.Repository
             }
 
         }
+
+        public MajorServiceTypes ValidateAlreadyExist(MajorServiceTypes model)
+        {
+           return GetById(e =>   e.MajorServiceTypeId != model.MajorServiceTypeId && e.TypeName == model.TypeName && e.TypeNameAr == model.TypeNameAr && e.StatusId != 3);
+        }
     }
 }
