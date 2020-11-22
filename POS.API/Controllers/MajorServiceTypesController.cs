@@ -183,8 +183,6 @@ namespace POS.API.CORE.Controllers
             {
 
                 ExceptionError.SaveException(ex);
-                // return error message if there was an exception
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
