@@ -23,7 +23,7 @@ namespace POS.Data.Repository
         {
             try
             {
-               // MajorServicesIcons.CreationDate = DateTime.Now;
+                MajorServicesIcons.OrderId = GetMaxOrderIdByService(MajorServicesIcons.ServiceId);
                 Add(MajorServicesIcons);
            
             }
@@ -39,7 +39,7 @@ namespace POS.Data.Repository
 
             try
             {
-               // MajorServicesIcons.ModificationDate = DateTime.Now;
+                MajorServicesIcons.OrderId = GetMaxOrderIdByService(MajorServicesIcons.ServiceId);
                 Update(MajorServicesIcons);
             }
             catch (Exception ex)
