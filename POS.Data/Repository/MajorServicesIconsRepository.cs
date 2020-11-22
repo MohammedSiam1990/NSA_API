@@ -23,7 +23,7 @@ namespace POS.Data.Repository
         {
             try
             {
-               // MajorServicesIcons.CreationDate = DateTime.Now;
+                MajorServicesIcons.OrderId = GetMaxOrderIdByService(MajorServicesIcons.ServiceId);
                 Add(MajorServicesIcons);
            
             }
@@ -39,8 +39,21 @@ namespace POS.Data.Repository
 
             try
             {
-               // MajorServicesIcons.ModificationDate = DateTime.Now;
+                MajorServicesIcons.OrderId = GetMaxOrderIdByService(MajorServicesIcons.ServiceId);
                 Update(MajorServicesIcons);
+            }
+            catch (Exception ex)
+            {
+                throw new AppException(ex.Message);
+            }
+        }
+        public int GetMaxOrderIdByService(int ServiceId)
+        {
+            try
+            {
+                var OrderId = base.GetMany(e => e.ServiceId==ServiceId).Max(e=>e.OrderId)+1;
+               
+                return OrderId;
             }
             catch (Exception ex)
             {
@@ -51,7 +64,10 @@ namespace POS.Data.Repository
         {
             try
             {
+                MajorServicesIcons.OrderId = GetMaxOrderIdByService(MajorServicesIcons.ServiceId);
+
                 if (MajorServicesIcons.IconId == 0)
+
                     Add(MajorServicesIcons);
                 else
                     Update(MajorServicesIcons);
