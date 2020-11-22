@@ -25,7 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\MajorServicesController.cs" />
     <Compile Remove="Controllers\WorkTimeTemplateController.cs" />
     <Compile Remove="Helpers\AppException.cs" />
     <Compile Remove="Helpers\Exceptions.cs" />
