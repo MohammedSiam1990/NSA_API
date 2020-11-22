@@ -159,12 +159,12 @@ namespace POS.API.CORE.Controllers
                         if (Lang == "en")
                         {
                             ServiceTypesAlert = " , TypeName:" + ExistModel.TypeName;
-                            return Ok(new { success = true, message = lang.English_name_already_exists + ServiceTypesAlert });
+                            return Ok(new { success = false, message = lang.English_name_already_exists + ServiceTypesAlert });
                         }
                         else
                         {
                             ServiceTypesAlert = " , TypeNameAr:" + ExistModel.TypeNameAr;
-                            return Ok(new { success = true, message = lang.Arabic_name_already_exists + ServiceTypesAlert });
+                            return Ok(new { success = false, message = lang.Arabic_name_already_exists + ServiceTypesAlert });
                         }
                     }
                 }
