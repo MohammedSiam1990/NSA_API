@@ -45,5 +45,10 @@ namespace POS.Service.Services
         {
             PosService.MajorServiceTypesRepository.UpdateMajorServiceTypes(MajorServiceTypes);
         }
+
+        public MajorServiceTypes ValidateAlreadyExist(MajorServiceTypes model)
+        {
+            return PosService.MajorServiceTypesRepository.ValidateAlreadyExist(model);
+        }
     }
 }

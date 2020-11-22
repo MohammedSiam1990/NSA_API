@@ -29,7 +29,7 @@ namespace Pos.Service.Base
         public IPaymentMethodsRepositry PaymentMethodsRepositry { get; set; }
         public IBranchesConnectingRepository BranchesConnectingRepository { get; set; }
         public IMajorServiceRepository MajorServiceRepository { get; set; }
- public IMajorServiceTypesRepository MajorServiceTypesRepository { get; set; }
+        public IMajorServiceTypesRepository MajorServiceTypesRepository { get; set; }
         public IMajorServicesIconsRepository MajorServicesIconsRepository { get; set; }
         public ICustomerRepository CustomerRepository { get; set; }
         public IAddressRepository AddressRepository { get; set; }

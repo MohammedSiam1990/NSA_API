@@ -45,18 +45,30 @@ namespace POS.API.CORE.Controllers
             // map model to entity
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
-
-            var MajorServiceTypes = Mapper.Map<List<MajorServiceTypes>>(model);
             try
             {
-               // if (MajorServiceTypesService.ValidateMajorServiceTypes(MajorServiceTypes))
-                // create MajorServiceTypes
+                var MajorServiceTypes = Mapper.Map<List<MajorServiceTypes>>(model);
+                foreach (var item in MajorServiceTypes)
                 {
-                    MajorServiceTypesService.AddMajorServiceTypes(MajorServiceTypes);
-                    return Ok(new { message =lang.Saved_successfully_completed});
+                    item.StatusId = 7;
+                    var ExistModel = MajorServiceTypesService.ValidateAlreadyExist(item);
+                    if (ExistModel != null)
+                    {
+                        string ServiceTypesAlert;
+                        if (Lang == "en")
+                        {
+                            ServiceTypesAlert = " , TypeName:" + ExistModel.TypeName;
+                            return Ok(new { success = true, message = lang.English_name_already_exists + ServiceTypesAlert });
+                        }
+                        else
+                        {
+                            ServiceTypesAlert = " , TypeNameAr:" + ExistModel.TypeNameAr;
+                            return Ok(new { success = true, message = lang.Arabic_name_already_exists + ServiceTypesAlert });
+                        }
+                    }
                 }
-
-              //  return Ok(new { message = "Data is Not Complete" });
+                MajorServiceTypesService.AddMajorServiceTypes(MajorServiceTypes);
+                    return Ok(new { message =lang.Saved_successfully_completed});
             }
             catch (Exception ex)
             {
@@ -64,7 +76,6 @@ namespace POS.API.CORE.Controllers
                 ExceptionError.SaveException(ex);
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
-
         }
 
         [HttpPost("UpdateMajorServiceTypes")]
@@ -76,12 +87,30 @@ namespace POS.API.CORE.Controllers
             var MajorServiceTypes = Mapper.Map<List<MajorServiceTypes>>(model);
             try
             {
-               // if (MajorServiceTypesService.ValidateMajorServiceTypes(MajorServiceTypes))
-                // Edit MajorServiceTypes
+
+                foreach (var item in MajorServiceTypes)
                 {
+                    item.StatusId = 7;
+                    var ExistModel = MajorServiceTypesService.ValidateAlreadyExist(item);
+                    if (ExistModel != null)
+                    {
+                        string ServiceTypesAlert;
+                        if (Lang == "en")
+                        {
+                            ServiceTypesAlert = " , TypeName:" + ExistModel.TypeName;
+                            return Ok(new { success = true, message = lang.English_name_already_exists + ServiceTypesAlert });
+                        }
+                        else
+                        {
+                            ServiceTypesAlert = " , TypeNameAr:" + ExistModel.TypeNameAr;
+                            return Ok(new { success = true, message = lang.Arabic_name_already_exists + ServiceTypesAlert });
+                        }
+                    }
+                }
+                
                     MajorServiceTypesService.UpdateMajorServiceTypes(MajorServiceTypes);
                     return Ok(new { success = true, message = lang.Updated_successfully_completed });
-                }
+               
 
 
               //  return Ok(new { success = false, message = lang.Update_operation_failed });
@@ -117,9 +146,28 @@ namespace POS.API.CORE.Controllers
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
-
+                
                 var MajorServiceTypes = Mapper.Map<List<MajorServiceTypes>>(model);
 
+                foreach (var item in MajorServiceTypes)
+                {
+                  item.StatusId = 7;
+                  var ExistModel = MajorServiceTypesService.ValidateAlreadyExist(item);
+                    if (ExistModel != null)
+                    {
+                      string ServiceTypesAlert ;
+                        if (Lang == "en")
+                        {
+                            ServiceTypesAlert = " , TypeName:" + ExistModel.TypeName;
+                            return Ok(new { success = false, message = lang.English_name_already_exists + ServiceTypesAlert });
+                        }
+                        else
+                        {
+                            ServiceTypesAlert = " , TypeNameAr:" + ExistModel.TypeNameAr;
+                            return Ok(new { success = false, message = lang.Arabic_name_already_exists + ServiceTypesAlert });
+                        }
+                    }
+                }
                 int result = MajorServiceTypesService.SaveMajorServiceTypes(MajorServiceTypes);
                 if (result == 1)
                 {
