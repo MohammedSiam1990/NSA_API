@@ -156,7 +156,7 @@ namespace POS.API.CORE.Controllers
                     if (ExistModel != null)
                     {
                       string ServiceTypesAlert ;
-                        if (Lang == "en")
+                        if (ExistModel.TypeName == ExistModel.TypeName)
                         {
                             ServiceTypesAlert = " , TypeName:" + ExistModel.TypeName;
                             return Ok(new { success = false, message = lang.English_name_already_exists + ServiceTypesAlert });

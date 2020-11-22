@@ -51,7 +51,9 @@ namespace POS.Data.Repository
         {
             try
             {
+
                 if (MajorServicesIcons.IconId == 0)
+
                     Add(MajorServicesIcons);
                 else
                     Update(MajorServicesIcons);
