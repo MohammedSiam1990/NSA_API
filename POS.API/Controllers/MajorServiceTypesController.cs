@@ -118,6 +118,10 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
+                foreach (var item in model)
+                {
+                    item.StatusId = 7;
+                }
                 var MajorServiceTypes = Mapper.Map<List<MajorServiceTypes>>(model);
 
                 int result = MajorServiceTypesService.SaveMajorServiceTypes(MajorServiceTypes);
