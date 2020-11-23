@@ -66,7 +66,7 @@ namespace Pos.Service.Base
                                      ICustomerRepository _CustomerRepository,
                                      IAddressRepository _AddressRepository,
                                      IConfigRepository _ConfigRepository,
-                                     ICountryRepository _CountryRepository
+                                     ICountryRepository _CountryRepository,
                                      IDistrictRepository _districtRepository
                             )
         {

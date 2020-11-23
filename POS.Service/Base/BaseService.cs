@@ -50,7 +50,7 @@ namespace POS.IService.Base
                                                     new CustomerRepository(databaseFactory),
                                                     new AddressRepository(databaseFactory),
                                                     new ConfigRepository(databaseFactory),
-                                                     new CountryRepository(databaseFactory)
+                                                     new CountryRepository(databaseFactory),
                                                     new DistrictRepository(databaseFactory)
                                                     );
                 }
