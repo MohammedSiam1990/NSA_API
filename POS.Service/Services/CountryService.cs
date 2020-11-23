@@ -15,9 +15,6 @@ namespace POS.Service.Services
         {
 
         }
-
-       
-
         public Country GetCountry(int ServiceId)
         {
             return PosService.CountryRepository.GetCountry(ServiceId);
