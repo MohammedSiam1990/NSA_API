@@ -11,9 +11,9 @@ namespace POS.Service.Services
 {
     public class ConfigService : BaseService, IconfigService
     {
-        public string GetConfig(int BranchID, int BrandID)
+        public string GetConfig(int BranchID, int BrandID, string TabID, int TypeID)
         {
-            return PosService.ConfigRepository.GetConfig(BranchID,BrandID);
+            return PosService.ConfigRepository.GetConfig(BranchID,BrandID, TabID, TypeID);
         }
 
         public int SaveConfig(List<Config> model)
