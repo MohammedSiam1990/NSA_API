@@ -10,7 +10,7 @@ namespace POS.Service.IService
     public interface IconfigService
     {
         int SaveConfig(List<Config> model);
-        string GetConfig(int BranchID, int BrandID);
+        string GetConfig(int BranchID, int BrandID, string TabID, int TypeID);
 
 
     }

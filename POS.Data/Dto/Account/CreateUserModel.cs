@@ -20,7 +20,6 @@ namespace POS.Data.Dto.Account
         public int CountryId { get; set; }
         public int UserType { get; set; }
         public string InsertedBy { get; set; }
-        public string AppUrl { get; set; }
-
+        public int CopmanyID { get; set; }
     }
 }

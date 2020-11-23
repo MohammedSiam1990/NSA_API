@@ -69,14 +69,14 @@ namespace POS.API.Controllers
         }
 
         [HttpGet("GetConfig")]
-        public IActionResult GetConfig(int BranchID,int BrandID, string Lang = "en")
+        public IActionResult GetConfig(int BranchID,int BrandID,string TabID,int TypeID, string Lang = "en")
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = ConfigService.GetConfig(BranchID, BrandID);
+                var data = ConfigService.GetConfig(BranchID, BrandID, TabID,TypeID);
                 if (data != null)
                 {
                     if (data.Count() == 0)

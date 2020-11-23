@@ -4,6 +4,7 @@ using Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Pos.IService;
 using POS.Core;
 using POS.Core.Resources;
@@ -13,6 +14,7 @@ using POS.Data.Dto.Account;
 using Steander.Core.DTOs;
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Net;
 using System.Security.Claims;
 using System.Threading;
@@ -77,7 +79,6 @@ namespace StanderApi.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    model.AppUrl = emailConfig.AppUrl;
                     var result = await _accountService.CreateUserAsync(model);
                     return Ok(result);
                 }
@@ -93,6 +94,37 @@ namespace StanderApi.Controllers
             return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
         }
 
+        [HttpGet("GetUsers")]
+        public IActionResult GetUsers(int CompanyID, string Lang = "en")
+        {
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
+                var data = _accountService.GetAllUsersAsync(CompanyID);
+                if (data != null)
+                {
+                    if (data.Count() == 0)
+                    {
+                        return Ok(new { success = true, message = lang.No_data_available, datalist = data });
+                    }
+                    else
+                    {
+                        return Ok(new { success = true, message = "", datalist = data});
+                    }
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+            }
+
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
+        }
 
         [AllowAnonymous]
         [HttpPost("Login")]
