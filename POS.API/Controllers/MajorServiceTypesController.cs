@@ -55,15 +55,15 @@ namespace POS.API.CORE.Controllers
                     if (ExistModel != null)
                     {
                         string ServiceTypesAlert;
-                        if (Lang == "en")
+                        if (item.TypeName == ExistModel.TypeName)
                         {
-                            ServiceTypesAlert = " , TypeName:" + ExistModel.TypeName;
-                            return Ok(new { success = true, message = lang.English_name_already_exists + ServiceTypesAlert });
+                            ServiceTypesAlert = " , TypeName : " + ExistModel.TypeName;
+                            return Ok(new { success = false, message = lang.English_name_already_exists + ServiceTypesAlert });
                         }
                         else
                         {
-                            ServiceTypesAlert = " , TypeNameAr:" + ExistModel.TypeNameAr;
-                            return Ok(new { success = true, message = lang.Arabic_name_already_exists + ServiceTypesAlert });
+                            ServiceTypesAlert = " , TypeNameAr : " + ExistModel.TypeNameAr;
+                            return Ok(new { success = false, message = lang.Arabic_name_already_exists + ServiceTypesAlert });
                         }
                     }
                 }
@@ -95,15 +95,15 @@ namespace POS.API.CORE.Controllers
                     if (ExistModel != null)
                     {
                         string ServiceTypesAlert;
-                        if (Lang == "en")
+                        if (item.TypeName == ExistModel.TypeName)
                         {
-                            ServiceTypesAlert = " , TypeName:" + ExistModel.TypeName;
-                            return Ok(new { success = true, message = lang.English_name_already_exists + ServiceTypesAlert });
+                            ServiceTypesAlert = " , TypeName : " + ExistModel.TypeName;
+                            return Ok(new { success = false, message = lang.English_name_already_exists + ServiceTypesAlert });
                         }
                         else
                         {
-                            ServiceTypesAlert = " , TypeNameAr:" + ExistModel.TypeNameAr;
-                            return Ok(new { success = true, message = lang.Arabic_name_already_exists + ServiceTypesAlert });
+                            ServiceTypesAlert = " , TypeNameAr : " + ExistModel.TypeNameAr;
+                            return Ok(new { success = false, message = lang.Arabic_name_already_exists + ServiceTypesAlert });
                         }
                     }
                 }

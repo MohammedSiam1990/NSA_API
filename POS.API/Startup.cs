@@ -234,7 +234,11 @@ namespace POS.API.CORE
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IconfigService, ConfigService>();
             services.AddScoped<IMajorServiceTypesService, MajorServiceTypesService>();
-        }
+            services.AddScoped<ICountryService, CountryService>();
+           services.AddScoped<IDistrictService, DistrictService>();
+    }
+          
+    
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
