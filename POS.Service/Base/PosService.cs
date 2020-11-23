@@ -1,4 +1,4 @@
-﻿using Ninject;
+using Ninject;
 using POS.Data.IRepository;
 
 namespace Pos.Service.Base
@@ -34,6 +34,7 @@ namespace Pos.Service.Base
         public ICustomerRepository CustomerRepository { get; set; }
         public IAddressRepository AddressRepository { get; set; }
         public IConfigRepository ConfigRepository { get; set; }
+         public IDistrictRepository DistrictRepository { get; set; }
         [Inject]
         public PosServices(
                                      ICompaniesRepository _CompaniesRepository,
@@ -63,7 +64,8 @@ namespace Pos.Service.Base
                                      IMajorServicesIconsRepository _MajorServicesIconsRepository,
                                      ICustomerRepository _CustomerRepository,
                                      IAddressRepository _AddressRepository,
-                                     IConfigRepository _ConfigRepository
+                                     IConfigRepository _ConfigRepository,
+                                     IDistrictRepository _districtRepository
                             )
         {
             CompaniesRepository = _CompaniesRepository;
@@ -94,6 +96,7 @@ namespace Pos.Service.Base
             AddressRepository = _AddressRepository;
             CustomerRepository = _CustomerRepository;
             ConfigRepository = _ConfigRepository;
+            DistrictRepository = _districtRepository;
         }
 
     }

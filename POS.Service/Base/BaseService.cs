@@ -1,4 +1,4 @@
-﻿using Ninject;
+using Ninject;
 using Pos.Service.Base;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
@@ -49,7 +49,8 @@ namespace POS.IService.Base
                                                     new MajorServicesIconsRepository(databaseFactory),
                                                     new CustomerRepository(databaseFactory),
                                                     new AddressRepository(databaseFactory),
-                                                    new ConfigRepository(databaseFactory)
+                                                    new ConfigRepository(databaseFactory),
+                                                    new DistrictRepository(databaseFactory)
                                                     );
                 }
 

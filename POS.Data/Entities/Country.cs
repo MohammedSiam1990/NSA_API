@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -8,7 +8,7 @@ namespace POS.Entities
     {
         public Country()
         {
-            City = new HashSet<City>();
+            Cities = new HashSet<City>();
         }
         [Key]
         public int CountryId { get; set; }
@@ -19,6 +19,6 @@ namespace POS.Entities
         public string Flag { get; set; }
 
         public virtual Currency Currency { get; set; }
-        public virtual ICollection<City> City { get; set; }
+        public virtual ICollection<City> Cities { get; set; }
     }
 }
