@@ -159,6 +159,7 @@
     <Compile Include="IService\IMajorServicesIcons.cs" />
     <Compile Include="IService\IDeleteRecordService.cs" />
     <Compile Include="IService\IItemComponentsService.cs" />
+    <Compile Include="IService\ICountryService.cs" />
     <Compile Include="IService\IMajorServicesService.cs" />
     <Compile Include="IService\IMajorServiceTypesService.cs" />
     <Compile Include="IService\IItemUomService.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="Services\DeleteRecordService.cs" />
     <Compile Include="Services\ItemComponentsService.cs" />
     <Compile Include="Services\ItemUomService.cs" />
+    <Compile Include="Services\CountryService.cs" />
     <Compile Include="Services\MajorServicesService.cs" />
     <Compile Include="Services\MajorServiceTypesService.cs" />
     <Compile Include="Services\MobileDataService.cs" />

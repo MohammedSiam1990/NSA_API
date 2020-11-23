@@ -274,7 +274,14 @@ namespace POS.Data.Infrastructure
                 return DbSet.Where(where).ToList();
             }
         }
-     
+             public virtual IEnumerable<T> GetMany()
+        {
+            using (var Context = new PosDbContext())
+            {
+                DbSet = Context.Set<T>();
+                return DbSet.ToList();
+            }
+        }
         /// <summary>
         /// Gets the many.
         /// </summary>
