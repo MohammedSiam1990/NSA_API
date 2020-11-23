@@ -34,6 +34,7 @@ namespace Pos.Service.Base
         public ICustomerRepository CustomerRepository { get; set; }
         public IAddressRepository AddressRepository { get; set; }
         public IConfigRepository ConfigRepository { get; set; }
+        public ICountryRepository CountryRepository { get; set; }
          public IDistrictRepository DistrictRepository { get; set; }
         [Inject]
         public PosServices(
@@ -65,6 +66,7 @@ namespace Pos.Service.Base
                                      ICustomerRepository _CustomerRepository,
                                      IAddressRepository _AddressRepository,
                                      IConfigRepository _ConfigRepository,
+                                     ICountryRepository _CountryRepository
                                      IDistrictRepository _districtRepository
                             )
         {

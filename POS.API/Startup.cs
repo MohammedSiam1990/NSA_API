@@ -234,6 +234,8 @@ namespace POS.API.CORE
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IconfigService, ConfigService>();
             services.AddScoped<IMajorServiceTypesService, MajorServiceTypesService>();
+            services.AddScoped<ICountryService, CountryService>();
+        }
           services.AddScoped<IDistrictService, DistrictService>();
     }
 
