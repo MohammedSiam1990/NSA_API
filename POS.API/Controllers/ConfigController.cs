@@ -76,7 +76,7 @@ namespace POS.API.Controllers
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = ConfigService.GetConfig(TabID,TypeID,BranchID,BranchID);
+                var data = ConfigService.GetConfig(TabID,TypeID,BranchID, BrandID);
                 if (data != null)
                 {
                     if (data.Count() == 0)
