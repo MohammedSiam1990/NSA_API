@@ -9,6 +9,7 @@ using POS.Core;
 using POS.Core.Resources;
 using POS.Data;
 using POS.Data.Dto;
+using POS.Data.Dto.Account;
 using Steander.Core.DTOs;
 using System;
 using System.Globalization;
@@ -68,6 +69,30 @@ namespace StanderApi.Controllers
             }
             return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
         }
+        [AllowAnonymous]
+        [HttpPost("CreateUser")]
+        public async Task<IActionResult> CreateUser([FromBody]CreateUserModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    model.AppUrl = emailConfig.AppUrl;
+                    var result = await _accountService.CreateUserAsync(model);
+                    return Ok(result);
+                }
+                else
+                {
+                    return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+            }
+            return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+        }
+
 
         [AllowAnonymous]
         [HttpPost("Login")]
