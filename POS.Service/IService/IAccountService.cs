@@ -1,4 +1,5 @@
 ﻿using POS.Data.Dto;
+using POS.Data.Dto.Account;
 using Steander.Core.DTOs;
 using Steander.Core.Entities;
 using System;
@@ -11,6 +12,7 @@ namespace Pos.IService
     {
 
         Task<UserManagerResponse> RegisterUserAsync(RegisterViewModel model);
+        Task<UserManagerResponse> CreateUserAsync(CreateUserModel model);
 
         Task<LoginResponseDto> LoginUserAsync(LoginViewModel model);
 
@@ -18,7 +20,7 @@ namespace Pos.IService
 
         Task<UserManagerResponse> ForgetPasswordAsync(String Email, string Lang);
         Task<UserManagerResponse> ResetPassword(ResetPasswordViewModel model);
-        IList<ApplicationUser> GetAllUsersAsync();
+        IList<ApplicationUser> GetAllUsersAsync(int CompanyID);
 
         Task<ApplicationUser> GetUserAsync(string Id);
         Task<UserManagerResponse> UpdateUserAsync(string Id, UserDto user);

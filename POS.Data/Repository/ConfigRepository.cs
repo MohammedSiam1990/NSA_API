@@ -19,16 +19,19 @@ namespace POS.Data.Repository
         }
 
         [Obsolete]
-        public string GetConfig(int BranchID,int BrandID)
+        public string GetConfig(int? BranchID,int? BrandID, string TabID, int TypeID)
         {
             using (var DbContext = new PosDbContext())
             {
                 try
                 {
 
-                    string Sql = "EXEC Get_Config @BranchID,@BrandID";
-                    var data = DbContext.JsonData.FromSql(Sql, new SqlParameter("@BranchID", BranchID),
-                                                       new SqlParameter("@BrandID", BrandID)).AsEnumerable().FirstOrDefault().Data;
+                    string Sql = "EXEC Get_Config @BranchID,@BrandID,@TabID,@TypeID";
+                    var data = DbContext.JsonData.FromSql(Sql, new SqlParameter("@BranchID", BranchID ?? (object)DBNull.Value),
+                                                       new SqlParameter("@BrandID", BrandID),
+                                                       new SqlParameter("@TabID", TabID),
+                                                       new SqlParameter("@TypeID", TypeID)
+                                                       ).AsEnumerable().FirstOrDefault().Data;
                     return data.ToString();
                 }
                 catch (Exception ex)
