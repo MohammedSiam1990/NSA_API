@@ -117,16 +117,16 @@ namespace POS.API.Controllers
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
         var Districts = DistrictService.GetDistricts();
-        var DistrictsDto = Mapper.Map<List<DistrictModel>>(Districts);
-        if (DistrictsDto != null)
+        var data = Mapper.Map<List<DistrictModel>>(Districts);
+        if (data != null)
         {
-          if (DistrictsDto.Count() == 0)
+          if (data.Count() == 0)
           {
-            return Ok(new { success = true, message = lang.No_data_available, datalist = DistrictsDto });
+            return Ok(new { success = true, message = lang.No_data_available, datalist = data });
           }
           else
           {
-            return Ok(new { success = true, message = "", datalist = DistrictsDto });
+            return Ok(new { success = true, message = "", datalist = data });
           }
 
         }
@@ -140,6 +140,37 @@ namespace POS.API.Controllers
       }
 
       return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
+    }
+
+    [HttpGet("GetDistrict")]
+    public IActionResult GetDistrict(int DistrictId, string Lang = "en")
+    {
+
+      try
+      {
+        Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
+        var District = DistrictService.GetDistrict(DistrictId);
+        var data = Mapper.Map<List<DistrictModel>>(District);
+
+        if (data == null)
+        {
+          return Ok(new { success = false, message = lang.No_data_available });
+        }
+        else
+        {
+          return Ok(new { success = true, message = "", datalist = data });
+        }
+      }
+      catch (Exception ex)
+      {
+        ExceptionError.SaveException(ex);
+
+      }
+      return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
 
     }
 
