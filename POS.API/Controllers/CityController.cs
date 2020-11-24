@@ -231,7 +231,7 @@ namespace POS.API.CORE.Controllers
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
         }
-        [HttpGet("GetCountries/CountryId")]
+        [HttpGet("GetCountries")]
         public IActionResult GetCountries( string Lang = "en")
         {
             try
@@ -240,7 +240,7 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
                 var Country = CountryService.GetCountries();
-                var CountryDto = Mapper.Map<List<CityModel>>(Country);
+                var CountryDto = Mapper.Map<List<CountryModel>>(Country);
                 if (CountryDto != null)
                 {
                     if (CountryDto.Count() == 0)

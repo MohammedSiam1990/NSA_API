@@ -59,7 +59,7 @@ namespace POS.API.Helpers
         CreateMap<CityModel, City>();
         CreateMap<City, CityModel>()
         .ForMember(x => x.CountryName, opt => opt.MapFrom(model => model.Country.CountryName))
-        .ForMember(x => x.CityNameAr, opt => opt.MapFrom(model => model.Country.CountryNameAr));
+        .ForMember(x => x.CountryNameAr, opt => opt.MapFrom(model => model.Country.CountryNameAr));
         CreateMap<DistrictModel, District>();
         CreateMap<District, DistrictModel>()
         .ForMember(x => x.CityName, opt => opt.MapFrom(model => model.City.CityName))
