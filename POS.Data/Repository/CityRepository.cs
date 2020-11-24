@@ -11,24 +11,24 @@ using System.Text;
 
 namespace POS.Data.Repository
 {
-    public class MajorServiceTypesRepository : Repository<MajorServiceTypes>, IMajorServiceTypesRepository
+    public class CityRepository : Repository<City>, ICityRepository
     {
-        public MajorServiceTypesRepository(IDatabaseFactory databaseFactory)
+        public CityRepository(IDatabaseFactory databaseFactory)
         : base(databaseFactory)
         {
 
         }
   
-        public List<MajorServiceTypes> GetMajorServiceTypes(int ServiceId)
+        public List<City> GetCities(int CountryId)
         {
             try
             {
-                var MajorServiceTypes = base.Table()
-                   .Where(e => e.MajorServiceId == ServiceId && e.StatusId!=3)
-                   .Include(e => e.MajorService).ToList();
+                var City = base.Table()
+                   .Where(e => e.CountryId == CountryId )
+                   .Include(e => e.Country).ToList();
                 base.DbContext.Dispose();
                 base.DbContext = null;
-                return MajorServiceTypes;
+                return City;
 
             }
             catch (Exception ex)
@@ -37,14 +37,15 @@ namespace POS.Data.Repository
             }
         }
 
-        public List<MajorServiceTypes> GetMajorServiceTypes()
+        public City GetCity(int CityId)
         {
             try
             {
-                var MajorServiceTypes = base.Table().Include(e => e.MajorService).Where(e => e.StatusId != 3).ToList(); 
+                var City = base.Table().Where(e => e.CityId == CityId)
+                   .Include(e => e.Country).FirstOrDefault();
                 base.DbContext.Dispose();
                 base.DbContext = null;
-                return MajorServiceTypes;
+                return City;
             }
             catch (Exception ex)
             {
@@ -52,44 +53,41 @@ namespace POS.Data.Repository
             }
         }
    
-        public void AddMajorServiceTypes(List<MajorServiceTypes> MajorServiceTypes)
+        public void AddCity(City City)
         {
             try
             {
-                //MajorServiceTypes.CreationDate = DateTime.Now;
-                AddRange(MajorServiceTypes);
+                //City.CreationDate = DateTime.Now;
+                Add(City);
             }
             catch (Exception ex)
             {
                 throw new AppException(ex.Message);
             }
         }
-        public void UpdateMajorServiceTypes(List<MajorServiceTypes> MajorServiceTypes)
+        public void UpdateCity(City City)
         {
 
             try
             {
-                UpdateRange(MajorServiceTypes);
+                Update(City);
             }
             catch (Exception ex)
             {
                 throw new AppException(ex.Message);
             }
         }
-        public int SaveMajorServiceTypes(List<MajorServiceTypes> MajorServiceTypes)
+        public int SaveCity(City City)
         {
             
-                List<MajorServiceTypes> AddedServiceTypes = MajorServiceTypes.Where(e => e.MajorServiceTypeId == 0).ToList();
-                List<MajorServiceTypes> UpdatedServiceTypes = MajorServiceTypes.Where(e => e.MajorServiceTypeId > 0).ToList();
-
                 using (var context = new PosDbContext())
                 {
                     using (var transaction = context.Database.BeginTransaction())
                     {
                         try
                         {
-                            if (AddedServiceTypes.Count == 0) context.AddRange(AddedServiceTypes);
-                            if (UpdatedServiceTypes.Count > 0) context.UpdateRange(UpdatedServiceTypes);
+                            if (City.CityId == 0) context.Add(City);
+                            if (City.CityId > 0) context.Update(City);
                             context.SaveChanges();
                             transaction.Commit();
                         }
@@ -104,12 +102,11 @@ namespace POS.Data.Repository
                 }
          }
 
-        public void DeleteMajorServiceTypes(int MajorServiceId)
+        public void DeleteCity(int CityId)
         {
             try
             {
-                var MajorServiceTypes = GetMajorServiceTypes(MajorServiceId);
-                DeleteRange(MajorServiceTypes);
+                Delete(CityId);
             }
             catch (Exception ex)
             {
@@ -118,9 +115,9 @@ namespace POS.Data.Repository
 
         }
 
-        public MajorServiceTypes ValidateAlreadyExist(MajorServiceTypes model)
+        public City ValidateAlreadyExist(City model)
         {
-           return GetById(e =>   e.MajorServiceTypeId != model.MajorServiceTypeId && (e.TypeName == model.TypeName || e.TypeNameAr == model.TypeNameAr) && e.StatusId != 3);
+           return GetById(e =>   e.CityId != model.CityId && (e.CityName == model.CityName || e.CityNameAr == model.CityNameAr) );
         }
     }
 }

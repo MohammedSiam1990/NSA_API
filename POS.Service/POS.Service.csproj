@@ -163,6 +163,7 @@
     <Compile Include="IService\IItemComponentsService.cs" />
     <Compile Include="IService\ICountryService.cs" />
     <Compile Include="IService\IMajorServicesService.cs" />
+    <Compile Include="IService\ICityService.cs" />
     <Compile Include="IService\IMajorServiceTypesService.cs" />
     <Compile Include="IService\IItemUomService.cs" />
     <Compile Include="IService\IMobileDataService.cs" />
@@ -196,6 +197,7 @@
     <Compile Include="Services\ItemUomService.cs" />
     <Compile Include="Services\CountryService.cs" />
     <Compile Include="Services\MajorServicesService.cs" />
+    <Compile Include="Services\CityService.cs" />
     <Compile Include="Services\MajorServiceTypesService.cs" />
     <Compile Include="Services\MobileDataService.cs" />
     <Compile Include="Services\MailService.cs" />

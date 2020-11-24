@@ -49,17 +49,22 @@ namespace POS.API.Helpers
       CreateMap<MajorServiceTypesModel, MajorServiceTypes>();
       CreateMap<MajorServiceTypes, MajorServiceTypesModel>()
       .ForMember(x => x.ServiceName, opt => opt.MapFrom(model => model.MajorService.ServiceName))
-      .ForMember(x => x.ServiceNameAr, opt => opt.MapFrom(model => model.MajorService.ServiceNameAr))
-      ;
-
+      .ForMember(x => x.ServiceNameAr, opt => opt.MapFrom(model => model.MajorService.ServiceNameAr));
       CreateMap<CustomerModel, Customer>();
       CreateMap<Customer, CustomerModel>();
       CreateMap<AddressModel, Address>();
       CreateMap<Address, AddressModel>();
-      CreateMap<DistrictModel, District>();
-      CreateMap<District, DistrictModel>()
-          .ForMember(x => x.CityName, opt => opt.MapFrom(model => model.City.CityName))
-          .ForMember(x => x.CityNameAr, opt => opt.MapFrom(model => model.City.CityNameAr));
-    }
+        CreateMap<CountryModel, Country>();
+        CreateMap<Country, CountryModel>();
+        CreateMap<CityModel, City>();
+        CreateMap<City, CityModel>()
+        .ForMember(x => x.CountryName, opt => opt.MapFrom(model => model.Country.CountryName))
+        .ForMember(x => x.CountryNameAr, opt => opt.MapFrom(model => model.Country.CountryNameAr));
+        CreateMap<DistrictModel, District>();
+        CreateMap<District, DistrictModel>()
+        .ForMember(x => x.CityName, opt => opt.MapFrom(model => model.City.CityName))
+        .ForMember(x => x.CityNameAr, opt => opt.MapFrom(model => model.City.CityNameAr));
+   
+        }
   }
 }
