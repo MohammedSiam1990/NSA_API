@@ -51,6 +51,7 @@ namespace POS.IService.Base
                                                     new AddressRepository(databaseFactory),
                                                     new ConfigRepository(databaseFactory),
                                                      new CountryRepository(databaseFactory),
+                                                      new CityRepository(databaseFactory),
                                                     new DistrictRepository(databaseFactory)
                                                     );
                 }
