@@ -79,7 +79,7 @@ namespace POS.API.Controllers
         var District = Mapper.Map<District>(model);
 
         var ExistModel = DistrictService.ValidateAlreadyExist(District);
-        if (ExistModel != null)
+        if (ExistModel.DistrictId != null)
         {
           string ServiceTypesAlert;
           if (District.DistrictName == ExistModel.DistrictName)
@@ -153,7 +153,7 @@ namespace POS.API.Controllers
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
         var District = DistrictService.GetDistrict(DistrictId);
-        var data = Mapper.Map<List<DistrictModel>>(District);
+        var data = Mapper.Map<DistrictModel>(District);
 
         if (data == null)
         {

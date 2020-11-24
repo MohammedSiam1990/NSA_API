@@ -17,5 +17,8 @@ namespace POS.API.Models
     public bool? InActive { get; set; }
     public string CityName { get; set; }
     public string CityNameAr { get; set; }
+    public int CountryId { get; set; }
+    public string CountryName { get; set; }
+    public string CountryNameAr { get; set; }
   }
 }
