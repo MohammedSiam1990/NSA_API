@@ -100,5 +100,38 @@ namespace POS.API.Controllers
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
         }
+
+        [HttpGet("GetAddress")]
+        public IActionResult GetAddress(int CustomerID = 0, string Lang = "en")
+        {
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
+                var data = customerService.GetAddress(CustomerID);
+                if (data != null)
+                {
+                    if (data.Count() == 0)
+                    {
+                        return Ok(new { success = true, message = lang.No_data_available, datalist = JsonConvert.DeserializeObject(data) });
+                    }
+                    else
+                    {
+                        return Ok(new { success = true, message = "", datalist = JsonConvert.DeserializeObject(data) });
+                    }
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                // return error message if there was an exception
+                ExceptionError.SaveException(ex);
+
+            }
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
+        }
     }
 }
