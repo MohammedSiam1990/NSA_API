@@ -22,11 +22,13 @@ namespace POS.API.Controllers
     public class CustomerController : Controller
     {
         private ICustomerService customerService;
+        private IAddressService AddressService;
         private IMapper Mapper;
 
-        public CustomerController(IMapper mapper, ICustomerService _customerService)
+        public CustomerController(IMapper mapper, ICustomerService _customerService, IAddressService _AddressService)
         {
             customerService = _customerService;
+            AddressService = _AddressService;
             Mapper = mapper;
         }
         [HttpPost("SaveCustomer")]
@@ -133,5 +135,33 @@ namespace POS.API.Controllers
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
         }
+
+        [HttpPost("SaveAddress")]
+        public IActionResult SaveAddress(Address model, string Lang = "en")
+        {
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
+                //var Customer = Mapper.Map<Customer>(model);
+                if (model.AddressID == 0)
+                    AddressService.AddAddress(model);
+                else
+                {
+                    AddressService.UpdateAddress(model);
+                }
+                return Ok(new { success = true, message = lang.Saved_successfully_completed });
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+                // return error message if there was an exception
+
+            }
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+        }
+
     }
 }

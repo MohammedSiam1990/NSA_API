@@ -11,7 +11,8 @@ namespace POS.API.Models
         public string Title { get; set; }
         public string AddressDescription { get; set; }
         public string PhoneMobile { get; set; }
-        public string GPS { get; set; }
+        public decimal Longitude { get; set; }
+        public decimal Latitude { get; set; }
         public string GPSAddress { get; set; }
         public int? CountryID { get; set; }
         public int? CityID { get; set; }
