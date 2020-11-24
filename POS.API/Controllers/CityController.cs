@@ -44,33 +44,32 @@ namespace POS.API.CORE.Controllers
 
 
         [HttpPost("AddCity")]
-        public IActionResult Add([FromBody]List<CityModel> model, string Lang = "en")
+        public IActionResult Add([FromBody]CityModel model, string Lang = "en")
         {
             // map model to entity
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
             try
             {
-                var City = Mapper.Map<List<City>>(model);
-                foreach (var item in City)
+                var City = Mapper.Map<City>(model);
+
+
+                var ExistModel = CityService.ValidateAlreadyExist(City);
+                if (ExistModel != null)
                 {
-                   
-                    var ExistModel = CityService.ValidateAlreadyExist(item);
-                    if (ExistModel != null)
+                    string CityAlert;
+                    if (City.CityName == ExistModel.CityName)
                     {
-                        string CityAlert;
-                        if (item.CityName == ExistModel.CityName)
-                        {
-                            CityAlert = " , CityName : " + ExistModel.CityName;
-                            return Ok(new { success = false, message = lang.English_name_already_exists + CityAlert });
-                        }
-                        else
-                        {
-                            CityAlert = " , CityNameAr : " + ExistModel.CityNameAr;
-                            return Ok(new { success = false, message = lang.Arabic_name_already_exists + CityAlert });
-                        }
+                        CityAlert = " , CityName : " + ExistModel.CityName;
+                        return Ok(new { success = false, message = lang.English_name_already_exists + CityAlert });
+                    }
+                    else
+                    {
+                        CityAlert = " , CityNameAr : " + ExistModel.CityNameAr;
+                        return Ok(new { success = false, message = lang.Arabic_name_already_exists + CityAlert });
                     }
                 }
+
                 CityService.AddCity(City);
                     return Ok(new { message =lang.Saved_successfully_completed});
             }
@@ -83,35 +82,30 @@ namespace POS.API.CORE.Controllers
         }
 
         [HttpPost("UpdateCity")]
-        public IActionResult Update([FromBody]List<CityModel> model, string Lang = "en")
+        public IActionResult Update([FromBody]CityModel model, string Lang = "en")
         {
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
-
-            var City = Mapper.Map<List<City>>(model);
             try
             {
 
-                foreach (var item in City)
+                var City = Mapper.Map<City>(model);
+                var ExistModel = CityService.ValidateAlreadyExist(City);
+                if (ExistModel != null)
                 {
-                   
-                    var ExistModel = CityService.ValidateAlreadyExist(item);
-                    if (ExistModel != null)
+                    string CityAlert;
+                    if (City.CityName == ExistModel.CityName)
                     {
-                        string CityAlert;
-                        if (item.CityName == ExistModel.CityName)
-                        {
-                            CityAlert = " , CityName : " + ExistModel.CityName;
-                            return Ok(new { success = false, message = lang.English_name_already_exists + CityAlert });
-                        }
-                        else
-                        {
-                            CityAlert = " , CityNameAr : " + ExistModel.CityNameAr;
-                            return Ok(new { success = false, message = lang.Arabic_name_already_exists + CityAlert });
-                        }
+                        CityAlert = " , CityName : " + ExistModel.CityName;
+                        return Ok(new { success = false, message = lang.English_name_already_exists + CityAlert });
+                    }
+                    else
+                    {
+                        CityAlert = " , CityNameAr : " + ExistModel.CityNameAr;
+                        return Ok(new { success = false, message = lang.Arabic_name_already_exists + CityAlert });
                     }
                 }
-                
+             
                     CityService.UpdateCity(City);
                     return Ok(new { success = true, message = lang.Updated_successfully_completed });
                
@@ -122,7 +116,6 @@ namespace POS.API.CORE.Controllers
                 ExceptionError.SaveException(ex);
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
-
         }
 
         [HttpPost("DeleteCity")]
@@ -141,23 +134,19 @@ namespace POS.API.CORE.Controllers
             }
         }
         [HttpPost("SaveCity")]
-        public IActionResult SaveCity(List<CityModel> model, string Lang = "en")
+        public IActionResult SaveCity(CityModel model, string Lang = "en")
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
                 
-                var City = Mapper.Map<List<City>>(model);
-
-                foreach (var item in City)
-                {
-                 
-                  var ExistModel = CityService.ValidateAlreadyExist(item);
+                var City = Mapper.Map<City>(model);
+                  var ExistModel = CityService.ValidateAlreadyExist(City);
                     if (ExistModel != null)
                     {
                       string CityAlert ;
-                        if (item.CityName == ExistModel.CityName)
+                        if (City.CityName == ExistModel.CityName)
                         {
                             CityAlert = " , CityName : " + ExistModel.CityName;
                             return Ok(new { success = false, message = lang.English_name_already_exists + CityAlert });
@@ -168,7 +157,6 @@ namespace POS.API.CORE.Controllers
                             return Ok(new { success = false, message = lang.Arabic_name_already_exists + CityAlert });
                         }
                     }
-                }
                 int result = CityService.SaveCity(City);
                 if (result == 1)
                 {
@@ -263,7 +251,6 @@ namespace POS.API.CORE.Controllers
                     {
                         return Ok(new { success = true, message = "", datalist = CountryDto });
                     }
-
                 }
             }
 
@@ -271,11 +258,8 @@ namespace POS.API.CORE.Controllers
             {
                 // return error message if there was an exception
                 ExceptionError.SaveException(ex);
-
             }
-
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
-
         }
     }
 }

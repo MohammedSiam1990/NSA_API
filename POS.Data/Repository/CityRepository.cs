@@ -53,44 +53,41 @@ namespace POS.Data.Repository
             }
         }
    
-        public void AddCity(List<City> City)
+        public void AddCity(City City)
         {
             try
             {
                 //City.CreationDate = DateTime.Now;
-                AddRange(City);
+                Add(City);
             }
             catch (Exception ex)
             {
                 throw new AppException(ex.Message);
             }
         }
-        public void UpdateCity(List<City> City)
+        public void UpdateCity(City City)
         {
 
             try
             {
-                UpdateRange(City);
+                Update(City);
             }
             catch (Exception ex)
             {
                 throw new AppException(ex.Message);
             }
         }
-        public int SaveCity(List<City> City)
+        public int SaveCity(City City)
         {
             
-                List<City> AddedServiceTypes = City.Where(e => e.CityId == 0).ToList();
-                List<City> UpdatedServiceTypes = City.Where(e => e.CityId > 0).ToList();
-
                 using (var context = new PosDbContext())
                 {
                     using (var transaction = context.Database.BeginTransaction())
                     {
                         try
                         {
-                            if (AddedServiceTypes.Count > 0) context.AddRange(AddedServiceTypes);
-                            if (UpdatedServiceTypes.Count > 0) context.UpdateRange(UpdatedServiceTypes);
+                            if (City.CityId == 0) context.Add(City);
+                            if (City.CityId > 0) context.Update(City);
                             context.SaveChanges();
                             transaction.Commit();
                         }

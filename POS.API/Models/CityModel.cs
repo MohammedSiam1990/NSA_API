@@ -15,6 +15,6 @@ namespace POS.API.Models
         public string CityNameAr { get; set; }
         public int CountryId { get; set; }
         public string CountryName { get; set; }
-    public string CountryNameAr { get; set; }
+        public string CountryNameAr { get; set; }
   }
 }

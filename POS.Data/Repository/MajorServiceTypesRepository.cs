@@ -88,7 +88,7 @@ namespace POS.Data.Repository
                     {
                         try
                         {
-                            if (AddedServiceTypes.Count > 0) context.AddRange(AddedServiceTypes);
+                            if (AddedServiceTypes.Count == 0) context.AddRange(AddedServiceTypes);
                             if (UpdatedServiceTypes.Count > 0) context.UpdateRange(UpdatedServiceTypes);
                             context.SaveChanges();
                             transaction.Commit();

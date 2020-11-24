@@ -16,7 +16,7 @@ namespace POS.Service.Services
 
         }
 
-        public void AddCity(List<City> City)
+        public void AddCity(City City)
         {
             PosService.CityRepository.AddCity(City);
         }
@@ -36,12 +36,12 @@ namespace POS.Service.Services
             return PosService.CityRepository.GetCity(CityId);
         }
 
-        public int SaveCity(List<City> City)
+        public int SaveCity(City City)
         {
            return PosService.CityRepository.SaveCity(City);
         }
 
-        public void UpdateCity(List<City> City)
+        public void UpdateCity(City City)
         {
             PosService.CityRepository.UpdateCity(City);
         }

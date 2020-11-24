@@ -11,9 +11,9 @@ namespace POS.Data.IRepository
     {
         City GetCity(int CityId);
         List<City> GetCities(int CountryId);
-        void AddCity(List<City> City);
-        void UpdateCity(List<City> City);
-        int SaveCity(List<City> City);
+        void AddCity(City City);
+        void UpdateCity(City City);
+        int SaveCity(City City);
         void DeleteCity(int CityId);
         City ValidateAlreadyExist(City model);
 
