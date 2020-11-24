@@ -33,6 +33,27 @@ namespace POS.Data.Repository
         }
 
         [Obsolete]
+        public string GetAddress(int CustomerID)
+        {
+            using (var DbContext = new PosDbContext())
+            {
+                try
+                {
+                    string Sql = "EXEC GetAddress @CustomerID";
+                    var data = DbContext.JsonData.FromSql(Sql, new SqlParameter("@CustomerID", CustomerID)).AsEnumerable().FirstOrDefault().Data;
+                    return data.ToString();
+                }
+                catch (Exception ex)
+                {
+                    Exceptions.ExceptionError.SaveException(ex);
+                }
+                return null;
+
+            }
+
+        }
+
+        [Obsolete]
         public string GetCustomer(int CompanyID)
         {
             using (var DbContext = new PosDbContext())

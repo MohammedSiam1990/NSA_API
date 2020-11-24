@@ -11,5 +11,7 @@ namespace POS.Data.IRepository
         void UpdateCustomer(Customer customer);
         int ValidateCustomerAlreadyExist(Customer customer);
         string GetCustomer(int CustomerID);
+        string GetAddress(int CustomerID);
+
     }
 }
