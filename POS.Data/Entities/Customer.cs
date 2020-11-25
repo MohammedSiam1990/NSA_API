@@ -10,7 +10,6 @@ namespace POS.Data.Entities
         [Key]
         public long CustomerID { get; set; }
         public int CompanyID { get; set; }
-
         public string CustomerNum { get; set; }
         public string CustomerName { get; set; }
         public string CustomerNameAr { get; set; }
@@ -22,8 +21,8 @@ namespace POS.Data.Entities
         public int? InsertSourceID { get; set; }
         public bool? AllowTermSale { get; set; }
         public decimal? TermSaleLimit { get; set; }
-        public decimal? Credit { get; set; }
-        public decimal? CreditOpenBalance { get; set; }
+        //public decimal? Credit { get; set; }
+        //public decimal? CreditOpenBalance { get; set; }
         public string InsertedBy { get; set; }
         public DateTime? CreateDate { get; set; }
         public string ModifiedBy { get; set; }
@@ -38,8 +37,8 @@ namespace POS.Data.Entities
         public decimal? DeliveryFee { get; set; }
         public bool? FreeDelivery { get; set; }
         public decimal? DiscountPrcnt { get; set; }
-        public decimal? Points { get; set; }
-        public decimal? PointsOpenBalance { get; set; }
+        //public decimal? Points { get; set; }
+        //public decimal? PointsOpenBalance { get; set; }
         public int? CustTypeID { get; set; }
         public bool? IsCreditor { get; set; }
       
