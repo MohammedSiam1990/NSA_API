@@ -12,8 +12,7 @@ import { DeleteCompanyComponent } from '../delete-company/delete-company.compone
 @Component({
   selector: 'app-company-list',
   templateUrl: './company-list.component.html',
-  styleUrls: ['./company-list.component.css'],
-  providers: [MessageService],
+  styleUrls: ['./company-list.component.css']
 })
 export class CompanyListComponent implements OnInit {
 
@@ -51,6 +50,9 @@ export class CompanyListComponent implements OnInit {
   getCompanies(): void {
     this.companyService.getCompanies(this.translate.currentLang).subscribe(res => {
       this.gridData = res.datalist;
+      this.gridData.forEach(element => {
+        element.CreationDate=new Date(element.CreationDate);
+      });
       this.getCompaniesPending();
     })
   }

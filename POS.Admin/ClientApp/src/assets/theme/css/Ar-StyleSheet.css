@@ -31,6 +31,164 @@
     margin: 0 auto;
 }
 
+.vertical-nav-menu ul>li>a:hover>.image-bg {
+    margin-left: 5px;
+}
+
+.vertical-nav-menu ul>li>a.mm-active>.image-bg {
+    margin-left: 5px;
+}
+
+.vertical-nav-menu li>a:hover>i>.image-bg {
+    margin-left: 5px;
+}
+
+.image-bg {
+    margin-left: 5px;
+}
+
+.box {
+    display: block;
+    height: auto;
+    margin: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+    width: 180px;
+    margin: auto;
+}
+
+.upload-options {
+    position: relative;
+    height: 30px;
+    background-color: #0a5c80;
+    cursor: pointer;
+    overflow: hidden;
+    text-align: center;
+    -webkit-transition: background-color ease-in-out 150ms;
+    transition: background-color ease-in-out 150ms;
+}
+
+.upload-options:hover {
+    background-color: #074b69;
+}
+
+.upload-options input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.upload-options label {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.upload-options label::after {
+    content: 'add';
+    font-family: 'Material Icons';
+    position: absolute;
+    font-size: 2rem;
+    color: #e6e6e6;
+    top: calc(50% - 1.5rem);
+    left: calc(50% - .9rem);
+    z-index: 0;
+}
+
+.upload-options label span {
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.upload-options label span:hover i.material-icons {
+    color: lightgray;
+}
+
+.js--image-preview {
+    height: 90px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.js--image-preview.js--no-default::after {
+    display: none;
+}
+
+.upload-options label span i.material-icons {
+    -webkit-transition: color 100ms ease-in-out;
+    transition: color 100ms ease-in-out;
+    font-size: 2.25em;
+    line-height: 55px;
+    color: white;
+    display: block;
+}
+
+.drop {
+    display: block;
+    position: absolute;
+    background: rgba(95, 158, 160, 0.2);
+    border-radius: 100%;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+
+.animate {
+    -webkit-animation: ripple 0.4s linear;
+    animation: ripple 0.4s linear;
+}
+
+@-webkit-keyframes ripple {
+    100% {
+        opacity: 0;
+        -webkit-transform: scale(2.5);
+        transform: scale(2.5);
+    }
+}
+
+@keyframes ripple {
+    100% {
+        opacity: 0;
+        -webkit-transform: scale(2.5);
+        transform: scale(2.5);
+    }
+}
+
+.js--image-preview::after {
+    content: "photo_size_select_actual";
+    font-family: 'Material Icons';
+    position: relative;
+    font-size: 4.5em;
+    color: #e6e6e6;
+    top: calc(50% - 3rem);
+    right: calc(50% - 2.25rem);
+    z-index: 0;
+}
+
 .userArea .userPicture {
     margin: 0 auto;
     border-radius: 100%;
@@ -589,6 +747,10 @@ ul.navigation .divider {
     text-decoration: none;
 }
 
+.delete-image {
+    margin-right: 5px;
+}
+
 .dropdown-menu li a i {
     margin-left: 5px;
     color: rgba(10, 92, 128, 1);
@@ -860,6 +1022,13 @@ ul.navigation .divider {
 .submenu.expanded {
     transition: all 2000s linear !important;
     transform: scale(1);
+}
+
+.abs-plus {
+    position: absolute !important;
+    z-index: 2;
+    left: 0;
+    top: -20px;
 }
 
 .popOver+.tooltip>.tooltip-arrow {
@@ -1241,9 +1410,20 @@ img {
     background: white;
 }
 
-.card-body {
-    padding: .25rem 0!important;
-    padding-bottom: 0 !important;
+.k-button {
+    border-color: rgba(0, 0, 0, 0.08);
+    color: #656565;
+    background-color: #f6f6f6;
+    background-image: linear-gradient(#f6f6f6, #f1f1f1);
+    margin-bottom: 10px;
+}
+
+.k-button:hover,
+.k-button.k-state-hover {
+    border-color: rgba(0, 0, 0, 0.15);
+    color: #656565;
+    background-color: #ededed;
+    background-image: linear-gradient(#ededed, #e8e8e8);
 }
 
 .bg-lo {
@@ -1254,6 +1434,10 @@ img {
 .bg-lo:hover {
     background: rgba(10, 92, 128, 0.9)!important;
     color: #fff;
+}
+
+.form-group {
+    margin-bottom: 1.51rem;
 }
 
 .hamburger span::before,

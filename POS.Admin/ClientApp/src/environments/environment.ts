@@ -3,14 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 export const environment = {
   production: false,
-  API_URL: 'http://localhost:5000/api/',
+  API_URL: 'http://posapi.opos.me/api/',
   baseUrl: "http://localhost:4200",
   virtualDirectory: "/",
   virtualDirectoryLanguage: "http://localhost:4200",
   TopicpageSize: 10,
-  ImgUrl: 'http://localhost:5000/uploads/'
+  ImgUrl: 'http://posapi.opos.me/'
 };
-/*
+/*http://localhost:5000/index.html
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
  *

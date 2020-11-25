@@ -1,0 +1,81 @@
+<div class="pt-77">
+    <nav class="Breadcrumb-title" aria-label="breadcrumb">
+        <ol class="breadcrumb  ">
+            <li class="mr-3 active">
+                <i class="fa fa-tachometer arqami-color" aria-hidden="true"></i>
+            </li>
+
+            <li class="breadcrumb-item active" aria-current="page">
+                <span id="pageTitle">{{'MajorServicesType'| translate}}</span>
+        </ol>
+    </nav>
+
+    <div class="main-content">
+        <div class="p-2">
+            <kendo-grid [kendoGridBinding]="gridViewArr" kendoGridSelectBy="id" [pageSize]="pageSize" [pageable]="{
+      
+            pageSizes: pageSizes
+      
+          }" [sortable]="true" [groupable]="true" [reorderable]="true" [resizable]="true" [height]="480">
+
+                <ng-template kendoGridToolbarTemplate>
+                    <div class="float-left">
+                        <input placeholder="{{'search_all_columns'|translate}}" kendoTextBox
+                            (input)="onFilter($event.target.value)" class="kendo-search textbox1 " />
+                        <input title="Search" value="" type="submit" class="button1">
+                    </div>
+                    <button kendoGridExcelCommand type="button" icon="file-excel" class="btn  btn-primary text-white float-right">
+                        {{'Export_to_Excel'|translate}}
+                    </button>
+                    <a class="btn btn-success text-white float-right mr-2" role="button" [routerLink]="['/major-service/add']">
+
+                        <div class=" text-white">
+                            <i class="fa fa-plus"></i>
+                        </div>
+                    </a>
+
+
+                    <div class="row align-items-center">
+                        <div class="col-md-12 col-lg-12 ">
+                            <div class="form-group ">
+                                <label class="label-input-pos required-label">
+                                    {{'MajorServices'| translate}}</label>
+                                <ng-select class="form-control input-sm" [items]="majorServicesArr "
+                                    [(ngModel)]="serviceId" bindLabel="serviceName"
+                                    (change)="onChangeMajorService($event)" [ngModelOptions]="{standalone: true}"
+                                    bindValue="serviceId">
+                                </ng-select>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </ng-template>
+                <kendo-grid-column field="typeName" title="{{'typeName'|translate}}" [width]="120">
+                </kendo-grid-column>
+                <kendo-grid-column field="typeNameAr" title="{{'typeNameAr'|translate}}" [width]="120">
+                </kendo-grid-column>
+
+                <kendo-grid-column [width]="120">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <button  class="btn btn-outline-primary mr-2" type="button"
+                          ><span class="fa fa-check"> </span></button>
+                        <button  class="btn btn-outline-danger" type="button"
+                           ><span class="fa fa-trash">
+                            </span></button>
+                    </ng-template>
+                </kendo-grid-column>
+
+                <kendo-grid-excel fileName="WorkStations.xlsx" [fetchData]="allData"></kendo-grid-excel>
+                <kendo-grid-messages
+                    [groupPanelEmpty]="'Drag a column header and drop it here to group by that column'|translate"
+                    [pagerItemsPerPage]="'items_per_page'|translate" [pagerItems]="'itemsPage'|translate"
+                    [pagerOf]="'of'|translate" noRecords="{{'no_records_available' | translate}}">
+                </kendo-grid-messages>
+            </kendo-grid>
+        </div>
+    </div>
+</div>
+<!-- <app-delete-work-stations #deleteWorkStationsCom (onDeleted)="getWorkStationsPending()"></app-delete-work-stations>
+<app-active-work-stations #activeWorkStationsCom (onActivated)="getWorkStationsPending()"></app-active-work-stations> -->

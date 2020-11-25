@@ -79,7 +79,7 @@ namespace POS.API.Controllers
         var District = Mapper.Map<District>(model);
 
         var ExistModel = DistrictService.ValidateAlreadyExist(District);
-        if (ExistModel.DistrictId != null)
+        if (ExistModel != null)
         {
           string ServiceTypesAlert;
           if (District.DistrictName == ExistModel.DistrictName)

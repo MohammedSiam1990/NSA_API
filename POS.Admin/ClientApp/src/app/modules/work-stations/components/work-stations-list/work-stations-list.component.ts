@@ -15,7 +15,7 @@ import { ExcelExportData } from '@progress/kendo-angular-excel-export';
   selector: 'app-work-stations-list',
   templateUrl: './work-stations-list.component.html',
   styleUrls: ['./work-stations-list.component.css'],
-  providers: [MessageService],
+  // providers: [MessageService],
 })
 export class WorkStationsListComponent implements OnInit {
 
@@ -55,6 +55,9 @@ export class WorkStationsListComponent implements OnInit {
   getWorkStations(): void {
     this.workStationService.getWorkStations(this.translate.currentLang).subscribe(res => {
       this.gridData = res.datalist;
+      this.gridData.forEach(element => {
+        element.CreateDate=new Date(element.CreateDate);
+      });
       this.getWorkStationsPending();
     })
 

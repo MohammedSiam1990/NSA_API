@@ -59,6 +59,21 @@
   "pending":"المعلقه",
   "branches":"الفروع",
   "brands":"العلامات التجارية",
-  "ServiceNameAr":"اسم الخدمة"
+  "ServiceNameAr":"اسم الخدمة",
+  "MajorServicesIcons":"أيقونات الخدمات الرئيسية",
+  "MajorServices":"الخدمات الرئيسية",
+  "MajorServicesType":"نوع الخدمات الرئيسية",
+  "TypeNameAr":"نوع الخدمه بالعربى ",
+  "TypeName":"نوع الخدمه",
+  "save":"حفظ",
+  "cityNameAr":"المدينه",
+  "districtNameAr":"المنطقه",
+  "district":"المنطقه",
+  "country":"الدوله",
+  "city":"المدينه",
+  "DistrictName":"اسم المنطقه ",
+  "InActive":"الحاله",
+  "DistrictNameAr":"اسم المنطقه بالعربى",
+  "field_is_Required":"الحقل مطلوب"
 
 }
