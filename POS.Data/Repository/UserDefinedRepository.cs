@@ -46,10 +46,12 @@ namespace POS.Data.Repository
             {
                 if (model.UserDefinedObjectsID == 0)
                 {
+                    model.CreateDate = DateTime.Now;
                     Add(model);
                 }
                 else
                 {
+                    model.LastModifyDate= DateTime.Now;
                     Update(model);
                 }
             }

@@ -1,4 +1,6 @@
-﻿namespace POS.API.Models
+﻿using System;
+
+namespace POS.API.Models
 {
     public partial class UserDefinedObjectsModel
     {
@@ -13,6 +15,10 @@
         public int? StatusID { get; set; }
         public int? CompanyID { get; set; }
         public int? BrandID { get; set; }
+        public string InsertedBy { get; set; }
+        public string ModifiedBy { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public DateTime? LastModifyDate { get; set; }
     }
 
 }
