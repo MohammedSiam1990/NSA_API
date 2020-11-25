@@ -137,19 +137,19 @@ namespace POS.API.Controllers
         }
 
         [HttpPost("SaveAddress")]
-        public IActionResult SaveAddress(Address model, string Lang = "en")
+        public IActionResult SaveAddress(AddressModel model, string Lang = "en")
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                //var Customer = Mapper.Map<Customer>(model);
+                var adress = Mapper.Map<Address>(model);
                 if (model.AddressID == 0)
-                    AddressService.AddAddress(model);
+                    AddressService.AddAddress(adress);
                 else
                 {
-                    AddressService.UpdateAddress(model);
+                    AddressService.UpdateAddress(adress);
                 }
                 return Ok(new { success = true, message = lang.Saved_successfully_completed });
 

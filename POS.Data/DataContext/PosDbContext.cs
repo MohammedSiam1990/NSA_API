@@ -79,6 +79,7 @@ namespace POS.Data.DataContext
         public virtual DbSet<Config> Config { get; set; }
 
         public virtual DbSet<District> District { get; set; }
+        public virtual DbSet<UserDefinedObjects> UserDefinedObjects { get; set; }
     #endregion
 
 

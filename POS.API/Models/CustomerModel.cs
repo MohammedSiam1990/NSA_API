@@ -27,7 +27,8 @@ namespace POS.API.Models
         public string ModifiedBy { get; set; }
         public DateTime? LastModifyDate { get; set; }
         public string TaxNum { get; set; }
-        public string GPS { get; set; }
+        public decimal? Latitude { get; set; }
+        public decimal? Longitude { get; set; }
         public int? StatusID { get; set; }
         public bool? BlackListed { get; set; }
         public string Email { get; set; }
@@ -37,6 +38,8 @@ namespace POS.API.Models
         public decimal? DiscountPrcnt { get; set; }
         public decimal? Points { get; set; }
         public decimal? PointsOpenBalance { get; set; }
+        public int? CustTypeID { get; set; }
+        public bool? IsCreditor { get; set; }
 
     }
 }
