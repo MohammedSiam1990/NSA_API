@@ -142,8 +142,42 @@ namespace POS.API.Controllers
       return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
     }
+        [HttpGet("GetDistrictsByCity")]
+        public IActionResult GetDistrictsByCity(int CityId,string Lang = "en")
+        {
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-    [HttpGet("GetDistrict")]
+                var Districts = DistrictService.GetDistricts(CityId);
+                var data = Mapper.Map<List<DistrictModel>>(Districts);
+                if (data != null)
+                {
+                    if (data.Count() == 0)
+                    {
+                        return Ok(new { success = true, message = lang.No_data_available, datalist = data });
+                    }
+                    else
+                    {
+                        return Ok(new { success = true, message = "", datalist = data });
+                    }
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                // return error message if there was an exception
+                ExceptionError.SaveException(ex);
+
+            }
+
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
+        }
+
+        [HttpGet("GetDistrict")]
     public IActionResult GetDistrict(int DistrictId, string Lang = "en")
     {
 

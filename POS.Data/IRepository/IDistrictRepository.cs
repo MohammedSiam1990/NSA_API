@@ -10,6 +10,7 @@ namespace POS.Data.IRepository
   {
     District GetDistrict(int DistrictId);
     List<District> GetDistricts();
+    List<District> GetDistricts(int CityId);
     List<District> GetDistricts(Expression<Func<District, bool>> where);
     void AddDistrict(District district);
     void UpdateDistrict(District district);

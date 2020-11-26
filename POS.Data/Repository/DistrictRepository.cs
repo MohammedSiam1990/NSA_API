@@ -75,7 +75,20 @@ namespace POS.Data.Repository
         throw new AppException(ex.Message);
       }
     }
-
+    public List<District> GetDistricts(int CityId)
+    {
+      try
+      {
+        var ItemDistrict = base.Table().Where(e=>e.CityId==CityId).Include(e => e.City).ToList();
+        base.DbContext.Dispose();
+        base.DbContext = null;
+        return ItemDistrict;
+      }
+      catch (Exception ex)
+      {
+        throw new AppException(ex.Message);
+      }
+    }
     public List<District> GetDistricts(Expression<Func<District, bool>> where)
     {
       try

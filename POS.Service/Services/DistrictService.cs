@@ -26,7 +26,10 @@ namespace POS.Service.Services
     {
      return PosService.DistrictRepository.GetDistrict(DistrictId);
     }
-
+    public List<District> GetDistricts(int CityId)
+    {
+     return PosService.DistrictRepository.GetDistricts(CityId);
+    }
     public List<District> GetDistricts()
     {
       return PosService.DistrictRepository.GetDistricts();
