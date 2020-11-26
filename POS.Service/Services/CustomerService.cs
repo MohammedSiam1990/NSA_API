@@ -16,6 +16,11 @@ namespace POS.Service.Services
             PosService.CustomerRepository.AddCustomer(customer);
         }
 
+        public string GetAddress(int CustomerID)
+        {
+            return PosService.CustomerRepository.GetAddress(CustomerID);
+        }
+
         public string GetCustomer(int CompanyID)
         {
             return PosService.CustomerRepository.GetCustomer(CompanyID);

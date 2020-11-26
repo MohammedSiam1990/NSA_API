@@ -1094,13 +1094,13 @@ mark,
 }
 
 .img-thumbnail {
-    padding: .25rem;
+    padding: 0.45rem;
     background-color: #fff;
     border: 1px solid #dee2e6;
     border-radius: .25rem;
     max-width: 100%;
-    height: 185px;
-    width: 400px;
+    height: 130px;
+    width: 100%;
 }
 
 .figure {
@@ -10048,7 +10048,7 @@ button,
     color: #343a40;
     white-space: nowrap;
     transition: all .2s;
-    margin: .1rem 0
+    margin: .7rem 0;
 }
 
 .vertical-nav-menu li a:hover {
@@ -10080,10 +10080,10 @@ button,
 }
 
 .vertical-nav-menu li a.mm-active {
-    background: #0a5c80;
+    background: #c4d4dd;
     text-decoration: none;
     color: #fff;
-    font-weight: bold
+    font-weight: bold;
 }
 
 .vertical-nav-menu i.metismenu-state-icon,
@@ -10126,9 +10126,10 @@ button,
 
 .vertical-nav-menu ul>li>a {
     color: #6c757d;
-    height: 2rem;
-    line-height: 2rem;
-    padding: 0 0.2rem 0;
+    height: 2.3rem;
+    line-height: 2.3rem;
+    padding: 0 0.0rem 0;
+    border-radius: 1.25rem
 }
 
 .vertical-nav-menu ul>li>a>img {

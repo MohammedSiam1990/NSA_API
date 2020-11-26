@@ -13,6 +13,7 @@ namespace POS.Service.IService
         void UpdateCustomer(Customer customer);
         int ValidateCustomerAlreadyExist(Customer customer);
         string GetCustomer(int CompanyID);
+        string GetAddress(int CustomerID);
 
     }
 }

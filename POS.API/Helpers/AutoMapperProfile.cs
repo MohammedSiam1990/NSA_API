@@ -8,8 +8,8 @@ using System.Linq;
 
 namespace POS.API.Helpers
 {
-  public class AutoMapperProfile : Profile
-  {
+    public class AutoMapperProfile : Profile
+    {
     public AutoMapperProfile()
     {
       CreateMap<Companies, CompaniesModel>();
@@ -54,17 +54,24 @@ namespace POS.API.Helpers
       CreateMap<Customer, CustomerModel>();
       CreateMap<AddressModel, Address>();
       CreateMap<Address, AddressModel>();
-        CreateMap<CountryModel, Country>();
-        CreateMap<Country, CountryModel>();
-        CreateMap<CityModel, City>();
-        CreateMap<City, CityModel>()
-        .ForMember(x => x.CountryName, opt => opt.MapFrom(model => model.Country.CountryName))
-        .ForMember(x => x.CityNameAr, opt => opt.MapFrom(model => model.Country.CountryNameAr));
-        CreateMap<DistrictModel, District>();
-        CreateMap<District, DistrictModel>()
-        .ForMember(x => x.CityName, opt => opt.MapFrom(model => model.City.CityName))
-        .ForMember(x => x.CityNameAr, opt => opt.MapFrom(model => model.City.CityNameAr));
-   
-        }
-  }
+      CreateMap<CountryModel, Country>();
+      CreateMap<Country, CountryModel>();
+      CreateMap<CityModel, City>();
+      CreateMap<City, CityModel>()
+      .ForMember(x => x.CountryName, opt => opt.MapFrom(model => model.Country.CountryName))
+      .ForMember(x => x.CountryNameAr, opt => opt.MapFrom(model => model.Country.CountryNameAr));
+      CreateMap<DistrictModel, District>();
+      CreateMap<District, DistrictModel>()
+      .ForMember(x => x.CityName, opt => opt.MapFrom(model => model.City.CityName))
+      .ForMember(x => x.CityNameAr, opt => opt.MapFrom(model => model.City.CityNameAr))
+       .ForMember(x => x.CountryId, opt => opt.MapFrom(model => model.City.Country.CountryId))
+       .ForMember(x => x.CountryName, opt => opt.MapFrom(model => model.City.Country.CountryName))
+       .ForMember(x => x.CountryNameAr, opt => opt.MapFrom(model => model.City.Country.CountryNameAr));
+      CreateMap<UserDefinedObjects, UserDefinedObjectsModel>();
+      CreateMap<UserDefinedObjectsModel, UserDefinedObjects>();
+      CreateMap<AddressModel, Address>();
+      CreateMap<Address, AddressModel>();
+
+    }
+    }
 }

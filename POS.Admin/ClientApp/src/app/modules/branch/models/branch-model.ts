@@ -24,6 +24,7 @@ export class BranchModel {
     ApprovedBy: string;
     ApprovedDate: Date;
     WorkStations: WorkStations[] = [];
+    DistrictID:string;
 }
 
 export class WorkStations {

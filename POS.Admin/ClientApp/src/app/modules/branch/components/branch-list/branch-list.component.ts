@@ -14,7 +14,6 @@ import { ActiveBranchComponent } from '../active-branch/active-branch.component'
   selector: 'app-branch-list',
   templateUrl: './branch-list.component.html',
   styleUrls: ['./branch-list.component.css'],
-  providers: [MessageService],
 })
 export class BranchListComponent implements OnInit {
 
@@ -51,7 +50,10 @@ export class BranchListComponent implements OnInit {
   WorkStations: any;
   getBranches(): void {
     this.branchService.getBranches(this.translate.currentLang).subscribe(res => {
-      this.gridData = res.datalist;
+      this.gridData = res.datalist.Branches;
+      this.gridData.forEach(element => {
+        element.CreateDate=new Date(element.CreateDate);
+      });
       this.getBranchesPending() ;
     })
   }

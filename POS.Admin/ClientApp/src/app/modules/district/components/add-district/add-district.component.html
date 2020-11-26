@@ -1,0 +1,152 @@
+<div class="pt-77">
+    <nav class="Breadcrumb-title" aria-label="breadcrumb">
+        <ol class="breadcrumb  ">
+            <div class="col-md-6">
+
+
+                <li class="breadcrumb-item active " aria-current="page">
+                    <i class=" mr-3 active fa fa-tachometer arqami-color" aria-hidden="true"></i>
+                    <span id="pageTitle" *ngIf="translate.currentLang=='en'"> {{'district'| translate}}</span>
+                    <span id="pageTitle" *ngIf="translate.currentLang=='ar'">{{'district'| translate}} </span>
+                </li>
+            </div>
+            <div class="col-md-6">
+                <li class="float-right ">
+                    <button type="button" class="btn  btn-outline-danger  float-right " [routerLink]="['/district/list']">
+                        <i class="fa fa-close"></i>
+                    </button>
+                </li>
+            </div>
+        </ol>
+    </nav>
+    <div class="p-1">
+        <div class="wrap">
+            <div class="content">
+                <div class="main-card  card">
+                    <div class="card-body">
+                        <form class=" form" [formGroup]="form">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-6">
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <div class="input-group mb-4">
+                                                <label class="label-input-pos  required-label" for="">
+                                                    {{'country'| translate}}</label>
+                                                <ng-select class="form-control input-sm" [items]="countriesArr "
+                                                    bindLabel="countryName" bindValue="countryId"
+                                                    (change)="changeCountry($event)"
+                                                    *ngIf="translate.currentLang=='en'">
+                                                </ng-select>
+                                                <ng-select class="form-control input-sm" [items]="countriesArr "
+                                                    bindLabel="countryNameAr" bindValue="countryId"
+                                                    (change)="changeCountry($event)"
+                                                    *ngIf="translate.currentLang=='ar'">
+                                                </ng-select>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-12">
+
+                                            <div class="text-left form-group ">
+
+                                                <div class="  input-wrap is-required">
+                                                    <label class="label-input-pos  required-label"
+                                                        for="">{{'DistrictName'| translate}}</label>
+                                                    <input type="text" formControlName="districtName"
+                                                        class="form-control input-sm">
+
+                                                </div>
+                                                <control-messages [control]="form.controls.districtName"
+                                                    [title]="'districtName'" [validationMessages]="validationMessages"
+                                                    [inputType]="'lg-input'">
+                                                </control-messages>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+
+                                            <div class="checkbox checkbox-fill d-inline">
+
+                                                <input type="checkbox" name="checkbox-fill-1"
+                                                    formControlName="inActive">
+                                                <label for="checkbox-fill-a1" class="cr ml-2">
+                                                    {{'InActive'| translate}}
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6">
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <div class="input-group mb-4">
+                                                <label class="label-input-pos  required-label" for="">
+                                                    {{'city'| translate}}</label>
+                                                <ng-select class="form-control input-sm" [items]="citiesArr"
+                                                    formControlName="cityId" bindLabel="cityName" bindValue="cityId"
+                                                    *ngIf="translate.currentLang=='en'">
+                                                </ng-select>
+                                                <ng-select class="form-control input-sm" [items]="citiesArr"
+                                                    formControlName="cityId" bindLabel="cityNameAr" bindValue="cityId"
+                                                    *ngIf="translate.currentLang=='ar'">
+                                                </ng-select>
+                                            </div>
+                                            <control-messages [control]="form.controls.cityId" [title]="'cityId'"
+                                                [validationMessages]="validationMessages" [inputType]="'lg-input'">
+                                            </control-messages>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="text-left form-group mb-4">
+                                                <div class="  input-wrap is-required">
+                                                    <label class="label-input-pos  required-label" for="">
+                                                        {{'DistrictNameAr'| translate}}</label>
+                                                    <input type="text" formControlName="districtNameAr"
+                                                        class="form-control input-sm">
+                                                </div>
+                                                <control-messages [control]="form.controls.districtNameAr"
+                                                    [title]="'districtNameAr'" [validationMessages]="validationMessages"
+                                                    [inputType]="'lg-input'">
+                                                </control-messages>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div CLASS="col-md-12 col-lg-12  mt-3">
+                                    <div class="  form-group bttuncompany m-0">
+                                        <button (click)="addDistrict()" type="button" [disabled]="!form.valid"
+                                            class="browse btn btn-lg btn-primary mx-auto  "
+                                            style="width:300px">{{'save'| translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="clearfix">&nbsp;</div>
+
+                            <div class="row">
+                                <div CLASS="col-md-12 ">
+                                    <div class="alert alert-dismissible fade  " role="alert" id="ResultMessage">
+                                        <div id="ResultTxt">
+
+                                        </div>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
