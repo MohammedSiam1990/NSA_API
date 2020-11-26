@@ -26,11 +26,14 @@ namespace POS.Service.Services
             PosService.CityRepository.DeleteCity(CityId);
         }
 
+        public List<City> GetCities( )
+        {
+            return PosService.CityRepository.GetCities();
+        }
         public List<City> GetCities(int CountryId)
         {
             return PosService.CityRepository.GetCities(CountryId);
         }
-
         public City GetCity(int CityId)
         {
             return PosService.CityRepository.GetCity(CityId);

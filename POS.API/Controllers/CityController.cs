@@ -197,7 +197,41 @@ namespace POS.API.CORE.Controllers
 
         }
 
-        [HttpGet("GetCities/CountryId")]
+        [HttpGet("GetCitiesAll")]
+        public IActionResult GetCitiesAll(string Lang = "en")
+        {
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
+                var Cities = CityService.GetCities();
+                var CitiesDto = Mapper.Map<List<CityModel>>(Cities);
+                if (CitiesDto != null)
+                {
+                    if (CitiesDto.Count() == 0)
+                    {
+                        return Ok(new { success = true, message = lang.No_data_available, datalist = CitiesDto });
+                    }
+                    else
+                    {
+                        return Ok(new { success = true, message = "", datalist = CitiesDto });
+                    }
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                // return error message if there was an exception
+                ExceptionError.SaveException(ex);
+
+            }
+
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
+        }
+          [HttpGet("GetCities/CountryId")]
         public IActionResult GetCities( int CountryId,string Lang = "en")
         {
             try
@@ -230,7 +264,7 @@ namespace POS.API.CORE.Controllers
 
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
-        }
+        }   
         [HttpGet("GetCountries/CountryId")]
         public IActionResult GetCountries( string Lang = "en")
         {
