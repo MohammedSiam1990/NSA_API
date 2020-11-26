@@ -9,8 +9,7 @@ import { BrandService } from '../../services/brand.service';
 @Component({
   selector: 'app-brand-list',
   templateUrl: './brand-list.component.html',
-  styleUrls: ['./brand-list.component.css'] ,
-  providers: [MessageService],
+  styleUrls: ['./brand-list.component.css'] 
 })
 export class BrandListComponent implements OnInit {
 
@@ -46,7 +45,11 @@ export class BrandListComponent implements OnInit {
   getBrands(): void {
     this.brandService.getBrands(this.translate.currentLang).subscribe(res => {
       this.gridData = res.datalist;
+      this.gridData.forEach(element => {
+        element.CreateDate=new Date(element.CreateDate);
+      });
       this.gridViewArr =this.gridData;
+
     })
   }
 
@@ -69,7 +72,7 @@ export class BrandListComponent implements OnInit {
   }
 
   public onFilter(inputValue: string): void {
-    this.gridViewArr = process(this.gridViewArr, {
+    this.gridViewArr = process(this.gridData, {
       filter: {
         logic: "or",
         filters: [

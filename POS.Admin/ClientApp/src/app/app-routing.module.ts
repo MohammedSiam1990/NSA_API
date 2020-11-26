@@ -29,6 +29,22 @@ const routes: Routes = [
     path: 'brand', canActivateChild: [AuthGuard],
     loadChildren: () => import('./modules/brand/brand.module').then(m => m.BrandModule)
   },
+  {
+    path: 'service-icon', canActivateChild: [AuthGuard],
+    loadChildren: () => import('./modules/service-icon/service-icon.module').then(m => m.ServiceIconModule)
+  },
+  {
+    path: 'major-service-type', canActivateChild: [AuthGuard],
+    loadChildren: () => import('./modules/major-service/major-service.module').then(m => m.MajorServiceModule)
+  }, 
+  {
+    path: 'district', canActivateChild: [AuthGuard],
+    loadChildren: () => import('./modules/district/district.module').then(m => m.DistrictModule)
+  },
+  {
+    path: 'city', canActivateChild: [AuthGuard],
+    loadChildren: () => import('./modules/city/city.module').then(m => m.CityModule)
+  },
   { path: '', canActivateChild: [AuthGuard], redirectTo: 'home', pathMatch: 'full' },
   { path: '**', canActivateChild: [AuthGuard], redirectTo: 'home', pathMatch: 'full' },
   {

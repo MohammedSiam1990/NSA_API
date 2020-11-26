@@ -78,6 +78,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { AlertComponent } from './components/alert/alert.component';
 import { ExcelModule, GridModule, PDFModule } from '@progress/kendo-angular-grid';
 import { InputsModule } from '@progress/kendo-angular-inputs';
+import { MessageService } from '@progress/kendo-angular-l10n';
 
 @NgModule({
   declarations: [
@@ -257,7 +258,7 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },MessageService
   ]
 })
 export class SharedModule { }

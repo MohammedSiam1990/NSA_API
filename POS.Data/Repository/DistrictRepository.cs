@@ -49,7 +49,8 @@ namespace POS.Data.Repository
     {
       try
       {
-        var QueryDistrict = base.Table().Where(e => e.DistrictId == DistrictId).FirstOrDefault();
+        var QueryDistrict = base.Table().Include(e => e.City).ThenInclude(c=>c.Country)
+          .Where(e => e.DistrictId == DistrictId).FirstOrDefault();
         base.DbContext.Dispose();
         base.DbContext = null;
         return QueryDistrict;

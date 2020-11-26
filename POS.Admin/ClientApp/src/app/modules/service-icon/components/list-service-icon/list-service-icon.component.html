@@ -1,0 +1,136 @@
+<div class="pt-77">
+    <nav class="Breadcrumb-title" aria-label="breadcrumb">
+        <ol class="breadcrumb  ">
+            <li class="mr-3 active">
+                <i class="fa fa-tachometer arqami-color" aria-hidden="true"></i>
+            </li>
+
+            <li class="breadcrumb-item active" aria-current="page">
+                <span id="pageTitle">
+                    {{'MajorServicesIcons'| translate}}</span>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="p-1">
+
+
+        <div class="wrap">
+            <div class="content">
+                <div class="main-card  card">
+                    <div class="card-body">
+                        <form class=" form">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-6 ">
+                                    <div class="row align-items-center">
+
+                                        <div class="col-md-12 col-lg-12 ">
+
+                                            <div class="box mb-2">
+                                                <img [src]="_d.bypassSecurityTrustUrl(imageUrl)" id="preview"
+                                                    class="img-thumbnail">
+
+                                                <div class="upload-options">
+                                                    <label (change)="onFileChange($event)">
+
+                                                        <input type="file" class="image-upload" />
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 ">
+
+                                    <div class="row form-group">
+                                        <div class="col-md-12 col-lg-12 ">
+                                            <div class="form-group ">
+                                                <label class="label-input-pos required-label">
+                                                    {{'MajorServices'| translate}}</label>
+                                                <ng-select class="form-control input-sm" [disabled]="showEdit"
+                                                    [items]="MajorServicesArr " bindLabel="serviceName"
+                                                    bindValue="serviceId" [(ngModel)]="serviceId"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    (change)="onChangeMajorService($event)">
+                                                </ng-select>
+
+                                            </div>
+
+                                        </div>
+                                        <div class=" col-md-12 col-lg-12  ">
+
+                                            <div class="card" *ngIf="MajorServicesIcons.length>0">
+                                                <div class="card-body"
+                                                    style="text-align: center; margin-top: 10px;height: auto;">
+
+                                                    <div class="ImageViews imageSelect">
+
+                                                        <div class="ImageView position-relative "
+                                                            *ngFor="let item of MajorServicesIcons">
+
+                                                            <div class="avatar-upload">
+                                                                <div class="avatar-delete"
+                                                                    (click)="showDeleteServiceIcon(item)">
+
+                                                                    <label></label>
+                                                                </div>
+                                                                <div class="avatar-edit"
+                                                                    (click)="showUpdateServiceIcon(item)">
+                                                                    <!-- <input type='file' id="imageUpload"
+                                                                        accept=".png, .jpg, .jpeg " /> -->
+                                                                    <label for="imageUpload"></label>
+                                                                </div>
+                                                                <div class="avatar-preview">
+                                                                    <div id="imagePreview">
+                                                                        <img src="{{pathIconApi}}{{item.IconName}}">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix">&nbsp;</div>
+
+                            <div class="container d-flex justify-content-center">
+                                <div *ngIf="!showEdit">
+                                    <a class="button" role="button">
+                                        <span>add</span>
+                                        <div class="icon text-white ">
+
+                                            <i class="fa fa-check" (click)="addMajorServicesIcons()"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                                <a class="button" role="button" *ngIf="showEdit">
+                                    <span>edit</span>
+                                    <div class="icon text-white">
+
+                                        <i class="fa fa-pencil" (click)=" updateServiceIcon()"></i>
+                                    </div>
+                                </a>
+                                <a class="button" role="button" *ngIf="showEdit" (click)="showNewServiceIcon()">
+                                    <span>new</span>
+                                    <div class="icon text-white">
+
+                                        <i class="fa fa-plus"></i>
+                                    </div>
+                                </a>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-delete-service-icon #deleteServiceIconCom (onDeleted)="getMajorServicesIcons()"></app-delete-service-icon>

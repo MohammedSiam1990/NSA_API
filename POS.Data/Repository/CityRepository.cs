@@ -19,7 +19,23 @@ namespace POS.Data.Repository
 
         }
   
-        public List<City> GetCities(int CountryId)
+        public List<City> GetCities( )
+        {
+            try
+            {
+                var City = base.Table()
+                   .Include(e => e.Country).ToList();
+                base.DbContext.Dispose();
+                base.DbContext = null;
+                return City;
+
+            }
+            catch (Exception ex)
+            {
+                throw new AppException(ex.Message);
+            }
+        }
+       public List<City> GetCities(int CountryId)
         {
             try
             {
@@ -36,7 +52,6 @@ namespace POS.Data.Repository
                 throw new AppException(ex.Message);
             }
         }
-
         public City GetCity(int CityId)
         {
             try

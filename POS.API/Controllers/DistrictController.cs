@@ -153,7 +153,7 @@ namespace POS.API.Controllers
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
         var District = DistrictService.GetDistrict(DistrictId);
-        var data = Mapper.Map<List<DistrictModel>>(District);
+        var data = Mapper.Map<DistrictModel>(District);
 
         if (data == null)
         {

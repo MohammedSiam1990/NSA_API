@@ -10,6 +10,7 @@ namespace POS.Service.IService
     public interface ICityService
     {
         City GetCity(int CityId);
+        List<City> GetCities();
         List<City> GetCities(int CountryId);
         void AddCity(City City);
         void UpdateCity(City City);
