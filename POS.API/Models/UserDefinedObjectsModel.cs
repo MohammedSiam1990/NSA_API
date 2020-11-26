@@ -8,6 +8,7 @@ namespace POS.API.Models
         public int? TypeID { get; set; }
         public string Name { get; set; }
         public string NameAr { get; set; }
+        public string JsonValues { get; set; }
         public string Value1 { get; set; }
         public string Value2 { get; set; }
         public string Value3 { get; set; }
