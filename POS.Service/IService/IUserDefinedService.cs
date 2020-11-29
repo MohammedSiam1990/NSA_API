@@ -9,7 +9,7 @@ namespace POS.Service.IService
 {
     public interface IUserDefinedService
     {
-        void SaveUserDefined(UserDefinedObjects model);
+        int SaveUserDefined(UserDefinedObjects model);
         string GetUserDefined(int? CompanyID, int? TypeID);
 
     }
