@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using POS.API.Helpers;
 using POS.Data.DataContext;
 using POS.Data.Infrastructure;
@@ -132,7 +132,7 @@ namespace POS.Data.Repository
 
         public City ValidateAlreadyExist(City model)
         {
-           return GetById(e =>   e.CityId != model.CityId && (e.CityName == model.CityName || e.CityNameAr == model.CityNameAr) );
+           return GetById(e =>   e.CityId != model.CityId && e.CountryId==model.CountryId && (e.CityName == model.CityName || e.CityNameAr == model.CityNameAr) );
         }
     }
 }

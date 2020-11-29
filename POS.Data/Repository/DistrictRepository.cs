@@ -122,7 +122,7 @@ namespace POS.Data.Repository
 
     public District ValidateAlreadyExist(District model)
     {
-      return GetById(e => e.DistrictId != model.DistrictId && (e.DistrictName == model.DistrictName || e.DistrictNameAr == model.DistrictNameAr));
+      return GetById(e => e.DistrictId != model.DistrictId && e.CityId == model.CityId  && (e.DistrictName == model.DistrictName || e.DistrictNameAr == model.DistrictNameAr));
 
     }
 
