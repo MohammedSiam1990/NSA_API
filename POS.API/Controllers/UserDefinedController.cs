@@ -40,14 +40,28 @@ namespace POS.API.Controllers
 
                 var UserD = Mapper.Map<UserDefinedObjects>(model);
 
-                UserDefined.SaveUserDefined(UserD);
+                int reult = UserDefined.SaveUserDefined(UserD);
+                if (reult != 1)
+                {
+                    if (reult == -1)
+                    {
+                        return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+                    }
+                    if (reult == -2)
+                    {
+                        return Ok(new { success = false, message = lang.English_name_already_exists, repeated = "NameEn" });
+                    }
+                    if (reult == -3)
+                    {
+                        return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "NameAr" });
+                    }
+                }
                 return Ok(new { success = true, message = lang.Saved_successfully_completed });
 
             }
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
@@ -60,7 +74,7 @@ namespace POS.API.Controllers
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = UserDefined.GetUserDefined(CompanyID,TypeID);
+                var data = UserDefined.GetUserDefined(CompanyID, TypeID);
 
                 if (data != null)
                 {

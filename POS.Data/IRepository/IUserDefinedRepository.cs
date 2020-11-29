@@ -7,7 +7,7 @@ namespace POS.Data.IRepository
 {
     public interface IUserDefinedRepository
     {
-        void SaveUserDefined(UserDefinedObjects model);
+        int SaveUserDefined(UserDefinedObjects model);
         string GetUserDefined(int? CompanyID , int? TypeID);
     }
 }

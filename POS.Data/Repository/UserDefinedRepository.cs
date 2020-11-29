@@ -40,24 +40,34 @@ namespace POS.Data.Repository
 
         }
 
-        public void SaveUserDefined(UserDefinedObjects model)
+        [Obsolete]
+        public int SaveUserDefined(UserDefinedObjects model)
         {
-            try
+            using (var DbContext = new PosDbContext())
             {
-                if (model.UserDefinedObjectsID == 0)
+                try
                 {
-                    model.CreateDate = DateTime.Now;
-                    Add(model);
+                    string Sql = "EXEC SaveUserDefinedObjects @UserDefinedObjectsID,@TypeID,@JsonValues" +
+                        ",@StatusID,@CompanyID,@BrandID,@InsertedBy,@ModifiedBy";
+
+                    int result = DbContext.ReturnResult.FromSqlRaw(Sql, new object[] {
+                                                new SqlParameter("@UserDefinedObjectsID", model.UserDefinedObjectsID),
+                                                new SqlParameter("@TypeID"  ,model.TypeID ?? (object)DBNull.Value),
+                                                new SqlParameter("@JsonValues" , model.JsonValues ?? (object)DBNull.Value),
+                                                new SqlParameter("@StatusID" , model.StatusID ?? (object)DBNull.Value),
+                                                new SqlParameter("@CompanyID" , model.CompanyID ?? (object)DBNull.Value),
+                                                new SqlParameter("@BrandID" , model.BrandID ?? (object)DBNull.Value),
+                                                new SqlParameter("@InsertedBy" , model.InsertedBy ?? (object)DBNull.Value),
+                                                new SqlParameter("@ModifiedBy"  , model.ModifiedBy ?? (object)DBNull.Value), //  User.Identity.GetUserId(),
+                                            }).AsEnumerable().FirstOrDefault().ReturnValue;
+                    return result;
                 }
-                else
+
+                catch (Exception e)
                 {
-                    model.LastModifyDate= DateTime.Now;
-                    Update(model);
+                    Exceptions.ExceptionError.SaveException(e);
                 }
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
+                return -1;
             }
 
         }

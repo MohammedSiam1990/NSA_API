@@ -92,7 +92,6 @@ namespace POS.API.CORE.Controllers
                     if (data == -1)
                     {
                         return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
-
                     }
 
                     if (data == -2)
