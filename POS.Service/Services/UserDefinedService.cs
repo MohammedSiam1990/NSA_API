@@ -16,9 +16,9 @@ namespace POS.Service.Services
             return PosService.UserDefinedRepository.GetUserDefined(CompanyID, TypeID);
         }
 
-        public void SaveUserDefined(UserDefinedObjects model)
+        public int SaveUserDefined(UserDefinedObjects model)
         {
-            PosService.UserDefinedRepository.SaveUserDefined(model);
+          return PosService.UserDefinedRepository.SaveUserDefined(model);
         }
     }
 }
