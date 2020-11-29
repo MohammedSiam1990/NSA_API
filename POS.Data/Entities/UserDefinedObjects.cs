@@ -11,7 +11,6 @@ namespace POS.Data.Entities
         public int UserDefinedObjectsID { get; set; }
         public int? TypeID { get; set; }
         public string JsonValues { get; set; }
-        public int? OrderID { get; set; }
         public int? StatusID { get; set; }
         public int? CompanyID { get; set; }
         public int? BrandID { get; set; }
