@@ -69,16 +69,20 @@
 
   <ItemGroup>
     <Reference Include="Telerik.Reporting">
-      <HintPath>D:\Telerik Reporting R3 2020\Bin\netstandard2.0\Telerik.Reporting.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Progress\Telerik Reporting R3 2020\Bin\netstandard2.0\Telerik.Reporting.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="Telerik.Reporting.OpenXmlRendering.2.7.2">
-      <HintPath>D:\Telerik Reporting R3 2020\Bin\netstandard2.0\Telerik.Reporting.OpenXmlRendering.2.7.2.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Progress\Telerik Reporting R3 2020\Bin\netstandard2.0\Telerik.Reporting.OpenXmlRendering.2.7.2.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="Telerik.Reporting.Services.AspNetCore">
-      <HintPath>D:\Telerik Reporting R3 2020\Bin\netstandard2.0\Telerik.Reporting.Services.AspNetCore.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Progress\Telerik Reporting R3 2020\Bin\netcoreapp3.0\Telerik.Reporting.Services.AspNetCore.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="Telerik.WebReportDesigner.Services">
-      <HintPath>D:\Telerik Reporting R3 2020\Bin\netstandard2.0\Telerik.WebReportDesigner.Services.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Progress\Telerik Reporting R3 2020\Bin\netstandard2.0\Telerik.WebReportDesigner.Services.dll</HintPath>
+      <Private>true</Private>
     </Reference>
   </ItemGroup>
 
