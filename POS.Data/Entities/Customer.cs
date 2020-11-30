@@ -41,7 +41,8 @@ namespace POS.Data.Entities
         //public decimal? PointsOpenBalance { get; set; }
         public int? CustTypeID { get; set; }
         public bool? IsCreditor { get; set; }
-      
+
+        public decimal? deposit { get; set; }
 
     }
 }
