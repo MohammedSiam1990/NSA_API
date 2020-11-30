@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
@@ -30,6 +31,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using Telerik.Reporting.Cache.File;
+using Telerik.Reporting.Services;
+using Telerik.WebReportDesigner.Services;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace POS.API.CORE
 {
@@ -53,6 +58,7 @@ namespace POS.API.CORE
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        [Obsolete]
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddEntityFrameworkSqlServer();
@@ -238,9 +244,40 @@ namespace POS.API.CORE
             services.AddScoped<ICityService, CityService>();
            services.AddScoped<IDistrictService, DistrictService>();
            services.AddScoped<IUserDefinedService, UserDefinedService>();
-    }
-          
-    
+
+
+
+            #region added code 
+            services.TryAddSingleton<IReportServiceConfiguration>(sp =>
+              new ReportServiceConfiguration
+              {
+                    // The default ReportingEngineConfiguration will be initialized from appsettings.json or appsettings.{EnvironmentName}.json:
+                    ReportingEngineConfiguration = sp.GetService<IConfiguration>(),
+
+                    // In case the ReportingEngineConfiguration needs to be loaded from a specific configuration file, use the approach below:
+                    // ReportingEngineConfiguration = ResolveSpecificReportingConfiguration(sp.GetService<IHostingEnvironment>()),
+                    //HostAppId = "Html5DemoAppCore",
+                    HostAppId = "POS.API",
+                  Storage = new FileStorage(),
+                  ReportSourceResolver = new TypeReportSourceResolver()
+                      .AddFallbackResolver(new UriReportSourceResolver(
+                          Path.Combine(sp.GetService<IHostingEnvironment>().ContentRootPath, "..", "..", "..", "Report Designer", "Examples"))),
+              });
+
+            // Configure dependencies for ReportDesignerController.
+            services.TryAddSingleton<IReportDesignerServiceConfiguration>(sp => new ReportDesignerServiceConfiguration
+            {
+                DefinitionStorage = new FileDefinitionStorage(
+                    Path.Combine(sp.GetService<IHostingEnvironment>().ContentRootPath, "..", "..", "..", "Report Designer", "Examples")),
+                SettingsStorage = new FileSettingsStorage(
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Telerik Reporting")),
+                ResourceStorage = new ResourceStorage(
+                    Path.Combine(sp.GetService<IHostingEnvironment>().ContentRootPath, "..", "..", "..", "Report Designer", "Examples", "Resources")),
+            });
+            #endregion
+        }
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
