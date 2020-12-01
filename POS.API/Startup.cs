@@ -1,3 +1,6 @@
+using Telerik.WebReportDesigner.Services;
+using Telerik.Reporting.Cache.File;
+using Telerik.Reporting.Services;
 using AutoMapper;
 using EmailService;
 using ImagesService;
@@ -31,10 +34,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using Telerik.Reporting.Cache.File;
-using Telerik.Reporting.Services;
-using Telerik.WebReportDesigner.Services;
-using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+using POS.API.Models.Telerik;
 
 namespace POS.API.CORE
 {
@@ -61,6 +61,14 @@ namespace POS.API.CORE
         [Obsolete]
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+
+            services.Configure<IISServerOptions>(options =>
+            {
+                options.AllowSynchronousIO = true;
+            });
+
+           
             //services.AddEntityFrameworkSqlServer();
             //services.AddDbContext<PosDbContext>();
             // services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>();
@@ -120,7 +128,7 @@ namespace POS.API.CORE
             });
             services.AddMvc();
             services.AddCors();
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllers().AddNewtonsoftJson(options =>
      options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
@@ -244,37 +252,25 @@ namespace POS.API.CORE
             services.AddScoped<ICityService, CityService>();
            services.AddScoped<IDistrictService, DistrictService>();
            services.AddScoped<IUserDefinedService, UserDefinedService>();
+            services.AddScoped<IReportService, ReportService>();
+            services.AddScoped<IReportdesignerService, ReportdesignerService>();
 
 
-
-            #region added code 
-            services.TryAddSingleton<IReportServiceConfiguration>(sp =>
-              new ReportServiceConfiguration
-              {
-                    // The default ReportingEngineConfiguration will be initialized from appsettings.json or appsettings.{EnvironmentName}.json:
-                    ReportingEngineConfiguration = sp.GetService<IConfiguration>(),
-
-                    // In case the ReportingEngineConfiguration needs to be loaded from a specific configuration file, use the approach below:
-                    // ReportingEngineConfiguration = ResolveSpecificReportingConfiguration(sp.GetService<IHostingEnvironment>()),
-                    //HostAppId = "Html5DemoAppCore",
-                    HostAppId = "POS.API",
-                  Storage = new FileStorage(),
-                  ReportSourceResolver = new TypeReportSourceResolver()
-                      .AddFallbackResolver(new UriReportSourceResolver(
-                          Path.Combine(sp.GetService<IHostingEnvironment>().ContentRootPath, "..", "..", "..", "Report Designer", "Examples"))),
-              });
-
-            // Configure dependencies for ReportDesignerController.
-            services.TryAddSingleton<IReportDesignerServiceConfiguration>(sp => new ReportDesignerServiceConfiguration
+            services.Configure<IISServerOptions>(options =>
             {
-                DefinitionStorage = new FileDefinitionStorage(
-                    Path.Combine(sp.GetService<IHostingEnvironment>().ContentRootPath, "..", "..", "..", "Report Designer", "Examples")),
-                SettingsStorage = new FileSettingsStorage(
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Telerik Reporting")),
-                ResourceStorage = new ResourceStorage(
-                    Path.Combine(sp.GetService<IHostingEnvironment>().ContentRootPath, "..", "..", "..", "Report Designer", "Examples", "Resources")),
+                options.AllowSynchronousIO = true;
             });
-            #endregion
+            services.AddRazorPages()
+                .AddNewtonsoftJson();
+            services.TryAddSingleton<IReportServiceConfiguration>(sp =>
+    new ReportServiceConfiguration
+    {
+        ReportingEngineConfiguration = ConfigurationHelper.ResolveConfiguration(sp.GetService<IWebHostEnvironment>()),
+        HostAppId = "ReportingCore3App",
+        Storage = new FileStorage(),
+        ReportSourceResolver = new UriReportSourceResolver(
+            System.IO.Path.Combine(sp.GetService<IWebHostEnvironment>().ContentRootPath, "Reports"))
+    });
         }
 
 
