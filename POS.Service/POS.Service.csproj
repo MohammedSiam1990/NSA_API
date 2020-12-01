@@ -177,8 +177,6 @@
     <Compile Include="IService\IPaymentMethodsService.cs" />
     <Compile Include="IService\IRemarksTemplateService.cs" />
     <Compile Include="IService\IMenuService.cs" />
-    <Compile Include="IService\IReportdesignerService.cs" />
-    <Compile Include="IService\IReportService.cs" />
     <Compile Include="IService\ITaxService.cs" />
     <Compile Include="IService\IItemService.cs" />
     <Compile Include="IService\ISalesGroupsItemsService.cs" />
@@ -213,8 +211,6 @@
     <Compile Include="Services\PaymentMethodsService.cs" />
     <Compile Include="Services\RemarksTemplateService.cs" />
     <Compile Include="Services\MenuService.cs" />
-    <Compile Include="Services\ReportdesignerService.cs" />
-    <Compile Include="Services\ReportService.cs" />
     <Compile Include="Services\SalesGroupsItemsService.cs" />
     <Compile Include="Services\TaxService.cs" />
     <Compile Include="Services\UserDefinedService.cs" />
