@@ -11,6 +11,7 @@ namespace POS.Entities
         }
         public long ItemUomid { get; set; }
         public string Name { get; set; }
+        public string NameAr { get; set; }
         public decimal? Cost { get; set; }
         public decimal? Price { get; set; }
         public bool? Sell { get; set; }

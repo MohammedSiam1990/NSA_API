@@ -1,4 +1,4 @@
-﻿namespace POS.API.Controllers
+namespace POS.API.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
     using Telerik.Reporting.Services;
