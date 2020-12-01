@@ -55,10 +55,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.3.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.6.0" />
     <PackageReference Include="Telerik.Reporting.OpenXmlRendering.Trial" Version="14.2.20.1021" />
-    <PackageReference Include="Telerik.Reporting.Services.AspNetCore.Trial" Version="14.2.20.1021" />
+  <PackageReference Include="Telerik.Reporting.Services.AspNetCore.Trial" Version="14.2.20.1021" />
     <PackageReference Include="Telerik.Reporting.Trial" Version="14.2.20.1021" />
-    <PackageReference Include="Telerik.UI.for.AspNet.Core.Trial" Version="2020.3.1118" />
-    <PackageReference Include="Telerik.WebReportDesigner.Services.Trial" Version="14.2.20.1021" />
+   <PackageReference Include="Telerik.UI.for.AspNet.Core.Trial" Version="2020.3.1118" />
+   <!--<PackageReference Include="Telerik.WebReportDesigner.Services.Trial" Version="14.2.20.1021" />-->
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\POS.Common\POS.Common.csproj" />
