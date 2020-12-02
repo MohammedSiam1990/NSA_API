@@ -53,8 +53,11 @@ namespace POS.IService.Base
                                                      new CountryRepository(databaseFactory),
                                                       new CityRepository(databaseFactory),
                                                     new DistrictRepository(databaseFactory),
-                                                    new UserDefinedRepository(databaseFactory)
-                                                    
+                                                    new UserDefinedRepository(databaseFactory),
+                                                    new PriceTemplateRepository(databaseFactory),
+                                                    new PriceTemplateDetailsRepository(databaseFactory)
+
+
                                                     );
                 }
 

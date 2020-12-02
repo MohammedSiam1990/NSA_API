@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
 
-namespace POS.API.Models
+namespace POS.Data.Entities
 {
-    public partial class PriceTemplateDetailsModel
+    public class PriceTemplateDetails
     {
+        [Key]
         public int PriceTemplateDetailsID { get; set; }
         public int PriceTemplateID { get; set; }
         public long ItemID { get; set; }
+
         public long ItemUOMID { get; set; }
         public decimal value { get; set; }
         public decimal? InvType1Val { get; set; }
@@ -17,5 +19,6 @@ namespace POS.API.Models
         public decimal? InvType3Val { get; set; }
         public decimal? InvType4Val { get; set; }
         public decimal? InvType5Val { get; set; }
+
     }
 }

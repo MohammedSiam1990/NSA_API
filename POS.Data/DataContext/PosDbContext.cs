@@ -80,6 +80,10 @@ namespace POS.Data.DataContext
 
         public virtual DbSet<District> District { get; set; }
         public virtual DbSet<UserDefinedObjects> UserDefinedObjects { get; set; }
+        public virtual DbSet<PriceTemplate> PriceTemplate { get; set; }
+        public virtual DbSet<PriceTemplateDetails> PriceTemplateDetails { get; set; }
+
+
     #endregion
 
 

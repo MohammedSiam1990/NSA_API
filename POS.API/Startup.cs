@@ -252,6 +252,8 @@ namespace POS.API.CORE
             services.AddScoped<ICityService, CityService>();
            services.AddScoped<IDistrictService, DistrictService>();
            services.AddScoped<IUserDefinedService, UserDefinedService>();
+           services.AddScoped<IPriceTemplateService, PriceTemplateService>();
+           services.AddScoped<IPriceTemplateDetailsService, PriceTemplateDetailsService>();
 
 
             services.Configure<IISServerOptions>(options =>
