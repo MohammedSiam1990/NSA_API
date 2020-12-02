@@ -11,7 +11,7 @@ namespace POS.Service.IService
     {
         void SavePriceTemplate(PriceTemplate model);
         int ValidateNameAlreadyExist(PriceTemplate model);
-        string GetPriceTemlate(int PriceTemplateID);
+        string GetPriceTemlate(int BrandID);
 
     }
 }

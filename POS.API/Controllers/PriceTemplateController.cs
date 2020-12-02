@@ -64,14 +64,14 @@ namespace POS.API.Controllers
 
 
         [HttpGet("GetPriceTemplate")]
-        public IActionResult GetPriceTemplate(int PriceTemplateID = 0, string Lang = "en")
+        public IActionResult GetPriceTemplate(int BrandID = 0, string Lang = "en")
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = PriceTemplateService.GetPriceTemlate(PriceTemplateID);
+                var data = PriceTemplateService.GetPriceTemlate(BrandID);
                 if (data != null)
                 {
                     if (data.Count() == 0)

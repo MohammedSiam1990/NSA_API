@@ -11,9 +11,9 @@ namespace POS.Service.Services
 {
     public class PriceTemplateService : BaseService, IPriceTemplateService
     {
-        public string GetPriceTemlate(int PriceTemplateID)
+        public string GetPriceTemlate(int BrandID)
         {
-            return PosService.PriceTemplateRepository.GetPriceTemlate(PriceTemplateID);
+            return PosService.PriceTemplateRepository.GetPriceTemlate(BrandID);
         }
 
         public void SavePriceTemplate(PriceTemplate model)

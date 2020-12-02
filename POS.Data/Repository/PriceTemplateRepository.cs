@@ -19,14 +19,14 @@ namespace POS.Data.Repository
         }
 
         [Obsolete]
-        public string GetPriceTemlate(int PriceTemplateID)
+        public string GetPriceTemlate(int BrandID)
         {
             using (var DbContext = new PosDbContext())
             {
                 try
                 {
-                    string Sql = "EXEC GetPriceTemplate @PriceTemplateID";
-                    var data = DbContext.JsonData.FromSql(Sql, new SqlParameter("@PriceTemplateID", PriceTemplateID)).AsEnumerable().FirstOrDefault().Data;
+                    string Sql = "EXEC GetPriceTemplate @BrandID";
+                    var data = DbContext.JsonData.FromSql(Sql, new SqlParameter("@BrandID", BrandID)).AsEnumerable().FirstOrDefault().Data;
                     return data.ToString();
                 }
                 catch (Exception ex)
