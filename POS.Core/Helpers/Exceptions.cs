@@ -27,28 +27,33 @@ namespace Exceptions
                     FileStream stream = System.IO.File.Create(file_name);
                     stream.Close();
                 }
-                var ErrorText = DateTime.Now + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source + Environment.NewLine + Environment.NewLine;
-                 System.IO.File.WriteAllText(file_name, System.IO.File.ReadAllText(file_name) + ErrorText);
+                var ErrorText = DateTime.Now + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source
+                    + Environment.NewLine + Environment.NewLine + ex.InnerException.Message + Environment.NewLine+ex.InnerException.InnerException;
+                System.IO.File.WriteAllText(file_name, System.IO.File.ReadAllText(file_name) + ErrorText);
 
                 // Send Mail Exception
                 var Appsettings = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json");
                 var jsonAppsettings = File.ReadAllText(Appsettings);
                 var jsonEmailconfig = JObject.Parse(jsonAppsettings);
                 var emailConfig = JsonConvert.DeserializeObject<EmailConfiguration>(jsonEmailconfig["EmailConfiguration"].ToString());
-
+                var Emails = emailConfig.ExceptionErrorEmail.Split(',');
                 var Subject = "Exception Mail from Company";
                 var Body = ErrorText;
-                SendEmailAsync(emailConfig.SmtpServer,
-                                emailConfig.Port,
-                                emailConfig.EnableSsl,
-                                emailConfig.From,
-                                emailConfig.ExceptionErrorEmail,
-                                Subject,
-                                Body,
-                                emailConfig.From,
-                                emailConfig.Password, 
-                                emailConfig.UseDefaultCredentials
-                                       );
+                foreach (var email in Emails)
+                {
+                    SendEmailAsync(emailConfig.SmtpServer,
+                    emailConfig.Port,
+                    emailConfig.EnableSsl,
+                    emailConfig.From,
+                    email,
+                    Subject,
+                    Body,
+                    emailConfig.From,
+                    emailConfig.Password,
+                    emailConfig.UseDefaultCredentials
+                       );
+
+                }
             }
             catch (Exception e)
             {
