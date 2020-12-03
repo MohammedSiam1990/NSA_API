@@ -71,28 +71,8 @@ namespace StanderApi.Controllers
             }
             return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
         }
-        [AllowAnonymous]
-        [HttpPost("CreateUser")]
-        public async Task<IActionResult> CreateUser([FromBody]CreateUserModel model)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var result = await _accountService.CreateUserAsync(model);
-                    return Ok(result);
-                }
-                else
-                {
-                    return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionError.SaveException(ex);
-            }
-            return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
-        }
+       
+
 
         [HttpGet("GetUsers")]
         public IActionResult GetUsers(int CompanyID, string Lang = "en")
@@ -286,7 +266,29 @@ namespace StanderApi.Controllers
 
         }
 
-
+        [AllowAnonymous]
+        [HttpPost("AddUser")]
+        public async Task<IActionResult> AddUserAsync([FromBody]UserModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    model.AppUrl = emailConfig.AppUrl;
+                    var result = await _accountService.AddUserAsync(model);
+                    return Ok(result);
+                }
+                else
+                {
+                    return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+            }
+            return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+        }
         //api/auth/getAllUsers
         //[HttpGet("GetAllUsers")]
         // public async Task<IActionResult> GetAllUsers()
@@ -309,12 +311,28 @@ namespace StanderApi.Controllers
             //return Ok();
         }
 
-        [HttpPut("User/{Id}")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<IActionResult> UpdateUser(string Id, UserDto userDto)
+        [AllowAnonymous]
+        [HttpPost("UpdateUser")]
+        public async Task<IActionResult> UpdateUserAsync([FromBody]UserModel model)
         {
-            var result = await _accountService.UpdateUserAsync(Id, userDto);
-            return Ok(result);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    model.AppUrl = emailConfig.AppUrl;
+                    var result = await _accountService.UpdateUserAsync(model);
+                    return Ok(result);
+                }
+                else
+                {
+                    return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+            }
+            return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
         }
 
         [HttpDelete("User/{Id}")]

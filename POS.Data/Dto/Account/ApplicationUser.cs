@@ -17,5 +17,7 @@ namespace Steander.Core.Entities
         public int? UserType { get; set; }
         public string InsertedBy { get; set; }
         public string Password { get; set; }
+        public string ModifiedBy { get; set; }
+        public DateTime LastModifyDate { get; set; }
     }
 }
