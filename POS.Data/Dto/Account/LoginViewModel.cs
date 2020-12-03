@@ -20,5 +20,8 @@ namespace POS.Data.Dto
 
         public int UserType { get; set; }
 
+        public bool RememberMe { get; set; }
+        
+
     }
 }

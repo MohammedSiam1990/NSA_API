@@ -30,12 +30,14 @@ namespace Pos.Service
     {
 
         private UserManager<ApplicationUser> _userManger;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private IConfiguration _configuration;
         private IMailService mailService;
         EmailConfiguration emailConfig;
         private ICompaniesService CompaniesService;
         private IBrandService BrandService;
         public AccountService(UserManager<ApplicationUser> userManager,
+          SignInManager<ApplicationUser> signInManager,
              ICompaniesService _CompaniesService,
              IBrandService _brandService,
             EmailConfiguration _emailConfig,
@@ -45,6 +47,7 @@ namespace Pos.Service
 
         {
             _userManger = userManager;
+            _signInManager = signInManager;
             CompaniesService = _CompaniesService;
             _configuration = configuration;
             mailService = _mailService;
@@ -254,7 +257,6 @@ namespace Pos.Service
                     };
 
                 }
-
                 if (!user.EmailConfirmed)
                 {
                     return new LoginResponseDto
@@ -264,6 +266,21 @@ namespace Pos.Service
                     };
 
                 }
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                var UserLockOut = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, lockoutOnFailure:true);
+
+                if (UserLockOut.IsLockedOut)
+                {
+                    //  var content =("Your account is locked out, to reset your password, please click this link:{forgotPassLink}" );
+                    return new LoginResponseDto
+                    {
+                        message = lang.Your_account_is_locked_please_try_later,
+                        success = false
+                    };
+                }
+
+     
                 Companies Company = null;
                 Company = CompaniesService.GetCompany(user.CompanyId.Value);
 
@@ -278,14 +295,14 @@ namespace Pos.Service
                 }
 
 
-                if (user.LockoutEnabled == true)
-                {
-                    return new LoginResponseDto
-                    {
-                        message = lang.Your_account_is_locked_please_try_later,
-                        success = false
-                    };
-                }
+                //if (user.LockoutEnabled == true)
+                //{
+                //    return new LoginResponseDto
+                //    {
+                //        message = lang.Your_account_is_locked_please_try_later,
+                //        success = false
+                //    };
+                //}
 
                 if (user.UserType != model.UserType)
                 {
@@ -305,6 +322,7 @@ namespace Pos.Service
                         message = lang.The_username_or_password_is_incorrect,
                         status = false,
                     };
+
                 var claims = new[]
                 {
                 new Claim("Username", model.Username),
@@ -419,6 +437,7 @@ namespace Pos.Service
                 {
                     AppUrl = emailConfig.AppUrlAdmin;
                 }
+               
                 var callbackUrl = AppUrl + "?Resetcode=" + Resetcode + "&Lang=" + Lang;
                 var Subject = lang.Reset_your_password;
                 bool isMessageSent = false;
@@ -535,7 +554,13 @@ namespace Pos.Service
                 if (result.Succeeded)
                 {
                     user.Password = model.Password;
+
                     await _userManger.UpdateAsync(user);
+
+                    if (await _userManger.IsLockedOutAsync(user))
+                    {
+                        await _userManger.SetLockoutEndDateAsync(user, DateTimeOffset.UtcNow);
+                    }
                     return new UserManagerResponse
                     {
                         message = lang.Your_password_has_been_reset_Please,

@@ -81,7 +81,7 @@ namespace POS.API.CORE
 
             var lockoutOptions = new LockoutOptions()
             {
-                AllowedForNewUsers = false,
+                AllowedForNewUsers = true,
                 DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5),
                 MaxFailedAccessAttempts = 5
             };
