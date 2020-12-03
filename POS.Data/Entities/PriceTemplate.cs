@@ -21,6 +21,8 @@ namespace POS.Data.Entities
         public string ModifiedBy { get; set; }
         public DateTime? CreateDate { get; set; }
         public DateTime? LastModifyDate { get; set; }
+        public string TypeName { get; set; }
+
         public List<PriceTemplateDetails> PriceTemplateDetails { get; set; }
 
     }

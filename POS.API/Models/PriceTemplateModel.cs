@@ -18,7 +18,7 @@ namespace POS.API.Models
         public int? BrandID { get; set; }
         public string InsertedBy { get; set; }
         public string ModifiedBy { get; set; }
-
+        public string TypeName { get; set; }
         public List<PriceTemplateDetailsModel> PriceTemplateDetails { get; set; }
     }
 }
