@@ -37,9 +37,7 @@ namespace POS.API.Controllers
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
                 var Price = Mapper.Map<PriceTemplate>(model);
-                //int RemarksTemplateIdentity = 0;
                 int data = PriceTemplateService.ValidateNameAlreadyExist(Price);
-
 
                 if (data == 1)
                 {
@@ -56,8 +54,6 @@ namespace POS.API.Controllers
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-                // return error message if there was an exception
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }

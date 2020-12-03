@@ -1,14 +1,11 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using POS.API.Helpers;
 using POS.Data.DataContext;
 using POS.Data.Entities;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace POS.Data.Repository
 {
@@ -23,18 +20,10 @@ namespace POS.Data.Repository
         {
             using (var DbContext = new PosDbContext())
             {
-                try
-                {
-                    string Sql = "EXEC GetPriceTemplate @BrandID";
-                    var data = DbContext.JsonData.FromSql(Sql, new SqlParameter("@BrandID", BrandID)).AsEnumerable().FirstOrDefault().Data;
-                    return data.ToString();
-                }
-                catch (Exception ex)
-                {
-                    Exceptions.ExceptionError.SaveException(ex);
-                }
-                return null;
-
+                string Sql = "EXEC GetPriceTemplate @BrandID";
+                var data = DbContext.JsonData.FromSql(Sql, new SqlParameter("@BrandID", BrandID))
+                    .AsEnumerable().FirstOrDefault().Data;
+                return data.ToString();
             }
 
         }
@@ -45,25 +34,16 @@ namespace POS.Data.Repository
             {
                 using (var transaction = context.Database.BeginTransaction())
                 {
-                    try
+                    if (model.PriceTemplateID == 0)
                     {
-                        if (model.PriceTemplateID == 0)
-                        {
-                            model.CreateDate = DateTime.Now;
-                            Add(model);
-                        }
-                        else
-                        {
-                            model.LastModifyDate = DateTime.Now;
-                            Update(model);
-                        }
-
+                        model.CreateDate = DateTime.Now;
+                        Add(model);
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        throw new AppException(ex.Message);
+                        model.LastModifyDate = DateTime.Now;
+                        Update(model);
                     }
-
 
                 }
             }
@@ -72,7 +52,7 @@ namespace POS.Data.Repository
         public int ValidateNameAlreadyExist(PriceTemplate model)
         {
             var PriceTemplate = GetById(e => e.PriceTemplateID != model.PriceTemplateID && (e.Name == model.Name
-            || e.NameAr == model.NameAr) && e.BrandID == model.BrandID 
+            || e.NameAr == model.NameAr) && e.BrandID == model.BrandID
           );
 
             if (PriceTemplate == null) return 1;

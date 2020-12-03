@@ -1,10 +1,7 @@
 using AutoMapper;
 using Exceptions;
 using ImagesService;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using Pos.IService;
 using POS.Core.Resources;
 using POS.Entities;
 using POS.Models;
@@ -68,11 +65,10 @@ namespace POS.API.CORE.Controllers
                     }
                 }
                 MajorServiceTypesService.AddMajorServiceTypes(MajorServiceTypes);
-                    return Ok(new { message =lang.Saved_successfully_completed});
+                return Ok(new { message = lang.Saved_successfully_completed });
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -107,17 +103,16 @@ namespace POS.API.CORE.Controllers
                         }
                     }
                 }
-                
-                    MajorServiceTypesService.UpdateMajorServiceTypes(MajorServiceTypes);
-                    return Ok(new { success = true, message = lang.Updated_successfully_completed });
-               
+
+                MajorServiceTypesService.UpdateMajorServiceTypes(MajorServiceTypes);
+                return Ok(new { success = true, message = lang.Updated_successfully_completed });
 
 
-              //  return Ok(new { success = false, message = lang.Update_operation_failed });
+
+                //  return Ok(new { success = false, message = lang.Update_operation_failed });
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -135,8 +130,9 @@ namespace POS.API.CORE.Controllers
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
-                return Ok(new { message = ex.Message });
+                ExceptionError.SaveException(ex);
+                return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
             }
         }
         [HttpPost("SaveMajorServiceTypes")]
@@ -146,16 +142,16 @@ namespace POS.API.CORE.Controllers
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
-                
+
                 var MajorServiceTypes = Mapper.Map<List<MajorServiceTypes>>(model);
 
                 foreach (var item in MajorServiceTypes)
                 {
-                  item.StatusId = 7;
-                  var ExistModel = MajorServiceTypesService.ValidateAlreadyExist(item);
+                    item.StatusId = 7;
+                    var ExistModel = MajorServiceTypesService.ValidateAlreadyExist(item);
                     if (ExistModel != null)
                     {
-                      string ServiceTypesAlert ;
+                        string ServiceTypesAlert;
                         if (item.TypeName == ExistModel.TypeName)
                         {
                             ServiceTypesAlert = " , TypeName : " + ExistModel.TypeName;
@@ -172,7 +168,6 @@ namespace POS.API.CORE.Controllers
                 if (result == 1)
                 {
                     return Ok(new { success = true, message = lang.Saved_successfully_completed });
-
                 }
                 else
                 {
@@ -181,7 +176,6 @@ namespace POS.API.CORE.Controllers
             }
             catch (Exception ex)
             {
-
                 ExceptionError.SaveException(ex);
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -196,13 +190,12 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
                 var MajorServiceTypes = MajorServiceTypesService.GetMajorServiceTypes(MajorServiceId);
                 var MajorServiceTypesDto = Mapper.Map<List<MajorServiceTypesModel>>(MajorServiceTypes);
-             //   MajorServiceTypesDto.ImageName = imagesPath.Comapny + MajorServiceTypesDto.ImageName;
+                //   MajorServiceTypesDto.ImageName = imagesPath.Comapny + MajorServiceTypesDto.ImageName;
 
                 return Ok(new { datalist = MajorServiceTypesDto, message = "", success = true });
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -235,9 +228,7 @@ namespace POS.API.CORE.Controllers
 
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
-
             }
 
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });

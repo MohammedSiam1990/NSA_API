@@ -28,7 +28,7 @@ namespace Exceptions
                     stream.Close();
                 }
                 var ErrorText = DateTime.Now + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException + Environment.NewLine + ex.StackTrace + Environment.NewLine + ex.Source
-                    + Environment.NewLine + Environment.NewLine + ex.InnerException.Message + Environment.NewLine+ex.InnerException.InnerException;
+                    + Environment.NewLine + Environment.NewLine + ex.InnerException.Message ;
                 System.IO.File.WriteAllText(file_name, System.IO.File.ReadAllText(file_name) + ErrorText);
 
                 // Send Mail Exception

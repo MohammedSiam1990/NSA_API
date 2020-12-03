@@ -8,7 +8,7 @@ namespace POS.Service.Services
     {
         public int AddRemarksTemplate(RemarksTemplate remarksTemplate)
         {
-           return PosService.RemarksTemplateRepository.AddRemarksTemplate(remarksTemplate );
+            return PosService.RemarksTemplateRepository.AddRemarksTemplate(remarksTemplate);
         }
 
         public string GetRemarksTemplate(int BrandID)

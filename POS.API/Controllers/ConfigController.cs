@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using POS.API.Models;
 using POS.Core.Resources;
 using POS.Data.Entities;
 using POS.Service.IService;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
 
 namespace POS.API.Controllers
 {
@@ -60,23 +58,20 @@ namespace POS.API.Controllers
             }
             catch (Exception ex)
             {
-
                 ExceptionError.SaveException(ex);
-                // return error message if there was an exception
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
 
         [HttpGet("GetConfig")]
-        public IActionResult GetConfig(int TypeID,int? BranchID=null,int? BrandID=null, string Lang = "en")
+        public IActionResult GetConfig(int TypeID, int? BranchID = null, int? BrandID = null, string Lang = "en")
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = ConfigService.GetConfig(TypeID,BranchID, BrandID);
+                var data = ConfigService.GetConfig(TypeID, BranchID, BrandID);
                 if (data != null)
                 {
                     if (data.Count() == 0)
@@ -93,9 +88,7 @@ namespace POS.API.Controllers
 
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 

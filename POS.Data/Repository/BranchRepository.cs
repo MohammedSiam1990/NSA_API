@@ -5,7 +5,6 @@ using POS.Data.Infrastructure;
 using POS.Data.IRepository;
 using POS.Entities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace POS.Data.Repository
@@ -24,13 +23,11 @@ namespace POS.Data.Repository
 
             using (var DbContext = new PosDbContext())
             {
-                try
-                {
-                    string Sql = "EXEC SaveBranches @BranchID , @BranchNum, @BranchName, @BranchNameAr, @BrandID, @StatusID, @TypeID, @Address," +
-                        "  @CountryID, @CityID, @CurrencyID,  @ImageName, @InsertedBy, @ModifiedBy, " +
-                        "@Latitude, @Longitude,@ServiceTypeID,@ApprovedBy,@ApprovedDate,@DistrictID ";
-                    int result = DbContext.ReturnResult.FromSqlRaw(Sql,
-                                       new object[] {
+                string Sql = "EXEC SaveBranches @BranchID , @BranchNum, @BranchName, @BranchNameAr, @BrandID, @StatusID, @TypeID, @Address," +
+                    "  @CountryID, @CityID, @CurrencyID,  @ImageName, @InsertedBy, @ModifiedBy, " +
+                    "@Latitude, @Longitude,@ServiceTypeID,@ApprovedBy,@ApprovedDate,@DistrictID ";
+                int result = DbContext.ReturnResult.FromSqlRaw(Sql,
+                                   new object[] {
                                       new SqlParameter("@BranchId", Branch.BranchId ),
                                       new SqlParameter("@BranchNum", Branch.BranchNum )   ,
                                       new SqlParameter("@BranchName",Branch.BranchName )   ,
@@ -51,14 +48,8 @@ namespace POS.Data.Repository
                                       new SqlParameter("@ApprovedBy",Branch.ApprovedBy  ?? (object)DBNull.Value),
                                       new SqlParameter("@ApprovedDate",Branch.ApprovedDate  ?? (object)DBNull.Value),
                                       new SqlParameter("@DistrictID",Branch.DistrictID  ?? (object)DBNull.Value)
-                                       }).AsEnumerable().FirstOrDefault().ReturnValue;
-                    return result;
-                }
-                catch (Exception ex)
-                {
-                    Exceptions.ExceptionError.SaveException(ex);
-                }
-                return -1;
+                                   }).AsEnumerable().FirstOrDefault().ReturnValue;
+                return result;
             }
 
 

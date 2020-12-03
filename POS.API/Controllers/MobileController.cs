@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Exceptions;
+﻿using Exceptions;
 using ImagesService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using POS.Core.Resources;
 using POS.Service.IService;
+using System;
+using System.Globalization;
+using System.Threading;
 
 namespace POS.API.Controllers
 {
@@ -51,7 +48,6 @@ namespace POS.API.Controllers
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
@@ -94,7 +90,6 @@ namespace POS.API.Controllers
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
@@ -113,7 +108,7 @@ namespace POS.API.Controllers
 
                 if (data >= 1)
                 {
-                    return Ok(new { success = true, message = "",WorkStationID=data });
+                    return Ok(new { success = true, message = "", WorkStationID = data });
                 }
                 else if (data == -2)
                 {
@@ -136,7 +131,6 @@ namespace POS.API.Controllers
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 

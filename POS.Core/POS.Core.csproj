@@ -209,7 +209,6 @@
     <Compile Include="EmailService\IEmailSender.cs" />
     <Compile Include="EmailService\Message.cs" />
     <Compile Include="EmailService\HelperEmail.cs" />
-    <Compile Include="Helpers\AppException.cs" />
     <Compile Include="Helpers\Exceptions.cs" />
     <Compile Include="Helpers\HelperPassword.cs" />
     <Compile Include="InsertColumnAttribute.cs" />

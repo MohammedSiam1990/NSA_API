@@ -1,12 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using POS.API.Helpers;
 using POS.Data.DataContext;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
 using POS.Entities;
 using Steander.Core.Entities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace POS.Data.Repository
@@ -20,60 +18,30 @@ namespace POS.Data.Repository
         }
         public void AddCompany(Companies Company)
         {
-            try
-            {
-                Company.CreationDate = DateTime.Now;
-                Add(Company);
-                PosDbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            Company.CreationDate = DateTime.Now;
+            Add(Company);
+            PosDbContext.SaveChanges();
         }
         public void UpdateCompany(Companies Company)
         {
+            Company.ModificationDate = DateTime.Now;
+            Update(Company);
 
-            try
-            {
-                Company.ModificationDate = DateTime.Now;
-                Update(Company);
-
-                PosDbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            PosDbContext.SaveChanges();
         }
         public void SaveCompany(Companies Company)
         {
-            try
-            {
-                if (Company.CompanyId == 0)
-                    Add(Company);
-                else
-                    Update(Company);
+            if (Company.CompanyId == 0)
+                Add(Company);
+            else
+                Update(Company);
 
-                PosDbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            PosDbContext.SaveChanges();
         }
         public void DeleteCompany(int CompanyId)
         {
-            try
-            {
-                Delete(CompanyId);
-                PosDbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
-
+            Delete(CompanyId);
+            PosDbContext.SaveChanges();
         }
         public int DeletCompanyeAndUser(Companies Company, ApplicationUser User)
         {
@@ -82,80 +50,39 @@ namespace POS.Data.Repository
             {
                 using (var transaction = context.Database.BeginTransaction())
                 {
-                    try
-                    {
-                        context.Remove(Company);
-                        context.Remove(User);
-                        context.SaveChanges();
-                        transaction.Commit();
-                        result= 1;
-                    }
-                    catch (Exception ex)
-                    {
-                      
-                        transaction.Rollback();
-                        result= - 1;
-                        throw new AppException(ex.Message);
-                    }
+                    context.Remove(Company);
+                    context.Remove(User);
+                    context.SaveChanges();
+                    transaction.Commit();
+                    result = 1;
                 }
             }
             return result;
         }
         public Companies GetCompany(int CompanyId)
         {
-
-            try
-            {
-                return base.GetById(CompanyId);
-                //return PosDbContext.Database.SqlQuery<Companies>(
-                //                @"EXEC GetCompany
-                //                @CompanyId",
-
-                //    new SqlParameter("@EmailTemplateName", CompanyId)).FirstOrDefault();
-
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            return base.GetById(CompanyId);
 
         }
-
-
 
         public bool ValidateCompany(Companies Company)
         {
-            try
-            {
-                if (Company.CompanyName != "")
-                    return true;
-                else
-                    return false;
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            if (Company.CompanyName != "")
+                return true;
+            else
+                return false;
         }
 
-    [Obsolete]
-    public string GetCompanies()
-    {
-      using (var DbContext = new PosDbContext())
-      {
-        try
+        [Obsolete]
+        public string GetCompanies()
         {
-          string Sql = "EXEC GetCompanies ";
-          var data = DbContext.JsonData.FromSql(Sql).AsEnumerable().FirstOrDefault().Data;
-          return data.ToString();
-        }
-        catch (Exception ex)
-        {
-          Exceptions.ExceptionError.SaveException(ex);
-        }
-        return null;
+            using (var DbContext = new PosDbContext())
+            {
+                string Sql = "EXEC GetCompanies ";
+                var data = DbContext.JsonData.FromSql(Sql).AsEnumerable().FirstOrDefault().Data;
+                return data.ToString();
 
-      }
+            }
+        }
     }
-  }
 }

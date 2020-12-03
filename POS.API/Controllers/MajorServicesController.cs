@@ -1,16 +1,12 @@
 using AutoMapper;
 using Exceptions;
 using ImagesService;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using Pos.IService;
 using POS.Core.Resources;
 using POS.Entities;
 using POS.Models;
 using POS.Service.IService;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -49,18 +45,17 @@ namespace POS.API.CORE.Controllers
             var MajorServices = Mapper.Map<MajorServices>(model);
             try
             {
-               // if (MajorServicesService.ValidateMajorServices(MajorServices))
+                // if (MajorServicesService.ValidateMajorServices(MajorServices))
                 // create MajorServices
                 {
                     MajorServicesService.AddMajorServices(MajorServices);
-                    return Ok(new { message =lang.Saved_successfully_completed});
+                    return Ok(new { message = lang.Saved_successfully_completed });
                 }
 
-              //  return Ok(new { message = "Data is Not Complete" });
+                //  return Ok(new { message = "Data is Not Complete" });
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -77,7 +72,7 @@ namespace POS.API.CORE.Controllers
             var MajorServices = Mapper.Map<MajorServices>(model);
             try
             {
-               // if (MajorServicesService.ValidateMajorServices(MajorServices))
+                // if (MajorServicesService.ValidateMajorServices(MajorServices))
                 // Edit MajorServices
                 {
                     MajorServicesService.UpdateMajorServices(MajorServices);
@@ -85,11 +80,10 @@ namespace POS.API.CORE.Controllers
                 }
 
 
-              //  return Ok(new { success = false, message = lang.Update_operation_failed });
+                //  return Ok(new { success = false, message = lang.Update_operation_failed });
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -107,7 +101,6 @@ namespace POS.API.CORE.Controllers
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 return Ok(new { message = ex.Message });
             }
         }
@@ -121,13 +114,12 @@ namespace POS.API.CORE.Controllers
                 // create user
                 var MajorServices = MajorServicesService.GetMajorService(MajorServicesId);
                 var MajorServicesDto = Mapper.Map<MajorServicesModel>(MajorServices);
-             //   MajorServicesDto.ImageName = imagesPath.Comapny + MajorServicesDto.ImageName;
+                //   MajorServicesDto.ImageName = imagesPath.Comapny + MajorServicesDto.ImageName;
 
                 return Ok(new { datalist = MajorServicesDto, message = "", success = true });
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -159,9 +151,7 @@ namespace POS.API.CORE.Controllers
 
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
-
             }
 
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
