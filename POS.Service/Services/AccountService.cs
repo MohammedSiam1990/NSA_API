@@ -592,8 +592,7 @@ namespace Pos.Service
 
         public async Task<UserManagerResponse> AddUserAsync(UserModel model)
         {
-            try
-            {
+
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(model.Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(model.Lang);
 
@@ -679,26 +678,27 @@ namespace Pos.Service
                     // VerificationCode = VerificationCode
                 };
                 var result = await _userManger.CreateAsync(identityUser, model.Password);
+            if (result.Succeeded)
+            {
 
+                return new UserManagerResponse
+                {
+                    message = lang.Saved_successfully_completed,
+                    success = true,
+                };
+            }
+           
+                return new UserManagerResponse
+                {
+                    message = lang.An_error_occurred_while_processing_your_request,
+                    success = false,
+                };
           
-
-            }
-            catch (Exception ex)
-            {
-                ExceptionError(ex);
-            }
-            return new UserManagerResponse
-            {
-                message = lang.An_error_occurred_while_processing_your_request,
-                success = false,
-            };
-
         }
 
    public async Task<UserManagerResponse> UpdateUserAsync(UserModel model)
         {
-            try
-            {
+
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(model.Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(model.Lang);
 
@@ -782,14 +782,17 @@ namespace Pos.Service
                 User.UserType = model.UserType;
 
                 var result = await _userManger.CreateAsync(User, model.Password);
-
-          
-
-            }
-            catch (Exception ex)
+            if (result.Succeeded)
             {
-                ExceptionError(ex);
+
+                return new UserManagerResponse
+                {
+                    message = lang.Saved_successfully_completed,
+                    success = true,
+                };
             }
+
+
             return new UserManagerResponse
             {
                 message = lang.An_error_occurred_while_processing_your_request,
