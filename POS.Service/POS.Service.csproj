@@ -246,6 +246,8 @@
     <Compile Include="IService\IItemGroupsService.cs" />
     <Compile Include="IService\IlookUpService.cs" />
     <Compile Include="IService\IPaymentMethodsService.cs" />
+    <Compile Include="IService\IPriceTemplateDetailsService.cs" />
+    <Compile Include="IService\IPriceTemplateService.cs" />
     <Compile Include="IService\IRemarksTemplateService.cs" />
     <Compile Include="IService\IMenuService.cs" />
     <Compile Include="IService\ITaxService.cs" />
@@ -280,6 +282,8 @@
     <Compile Include="Services\ItemGroupsService.cs" />
     <Compile Include="Services\LookUpService.cs" />
     <Compile Include="Services\PaymentMethodsService.cs" />
+    <Compile Include="Services\PriceTemplateDetailsService.cs" />
+    <Compile Include="Services\PriceTemplateService.cs" />
     <Compile Include="Services\RemarksTemplateService.cs" />
     <Compile Include="Services\MenuService.cs" />
     <Compile Include="Services\SalesGroupsItemsService.cs" />

@@ -38,6 +38,8 @@ namespace Pos.Service.Base
         public ICityRepository CityRepository{ get; set; }
          public IDistrictRepository DistrictRepository { get; set; }
          public IUserDefinedRepository UserDefinedRepository { get; set; }
+         public IPriceTemplateRepository PriceTemplateRepository { get; set; }
+         public IPriceTemplateDetailsRepository PriceTemplateDetailsRepository { get; set; }
         
         [Inject]
         public PosServices(
@@ -72,7 +74,9 @@ namespace Pos.Service.Base
                                      ICountryRepository _CountryRepository,
                                      ICityRepository _CityRepository,
                                      IDistrictRepository _districtRepository,
-                                     IUserDefinedRepository _userDefinedRepository
+                                     IUserDefinedRepository _userDefinedRepository,
+                                     IPriceTemplateRepository _PriceTemplateRepository,
+                                     IPriceTemplateDetailsRepository _PriceTemplateDetailsRepository
                             )
         {
             CompaniesRepository = _CompaniesRepository;
@@ -107,6 +111,8 @@ namespace Pos.Service.Base
             CityRepository =_CityRepository;
             DistrictRepository = _districtRepository;
             UserDefinedRepository = _userDefinedRepository;
+            PriceTemplateRepository = _PriceTemplateRepository;
+            PriceTemplateDetailsRepository = _PriceTemplateDetailsRepository;
         }
 
     }

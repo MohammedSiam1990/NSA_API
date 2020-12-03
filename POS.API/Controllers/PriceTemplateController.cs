@@ -1,66 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Exceptions;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using POS.API.Models;
 using POS.Core.Resources;
 using POS.Data.Entities;
 using POS.Service.IService;
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
 
 namespace POS.API.Controllers
 {
-    [AllowAnonymous]
-    [ApiController]
     [Route("api/[controller]")]
-
-    public class ConfigController : Controller
+    [ApiController]
+    public class PriceTemplateController : ControllerBase
     {
-        private IconfigService ConfigService;
+        private IPriceTemplateService PriceTemplateService;
+
         private IMapper Mapper;
 
-        public ConfigController(IMapper mapper, IconfigService _ConfigService)
+        public PriceTemplateController(IPriceTemplateService _PriceTemplateService, IMapper _Mapper)
         {
-            ConfigService = _ConfigService;
-            Mapper = mapper;
-
+            PriceTemplateService = _PriceTemplateService;
+            Mapper = _Mapper;
         }
-        [HttpPost("SaveConfig")]
-        public IActionResult SaveConfig(List<Config> model, string Lang = "en")
+
+
+        [HttpPost("SavePriceTemplate")]
+        public IActionResult SavePriceTemplate(PriceTemplateModel model, string Lang = "en")
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                //var Customer = Mapper.Map<list>(model);
+                var Price = Mapper.Map<PriceTemplate>(model);
+                //int RemarksTemplateIdentity = 0;
+                int data = PriceTemplateService.ValidateNameAlreadyExist(Price);
 
-                int result = ConfigService.SaveConfig(model);
-                if (result == 1)
+
+                if (data == 1)
                 {
+                    PriceTemplateService.SavePriceTemplate(Price);
                     return Ok(new { success = true, message = lang.Saved_successfully_completed });
-
                 }
-
-                else if (result == -2)
-                {
-                    return Ok(new { success = false, message = lang.Please_reload_the_page });
-                }
-
-                else
-                {
+                else if (data == -1)
                     return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
-                }
+                else if (data == -2)
+                    return Ok(new { success = false, message = lang.English_name_already_exists, repeated = "Name" });
+                else if (data == -3)
+                    return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "NameAr" });
             }
             catch (Exception ex)
             {
-
                 ExceptionError.SaveException(ex);
                 // return error message if there was an exception
 
@@ -68,15 +62,16 @@ namespace POS.API.Controllers
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
 
-        [HttpGet("GetConfig")]
-        public IActionResult GetConfig(int TypeID,int? BranchID=null,int? BrandID=null, string Lang = "en")
+
+        [HttpGet("GetPriceTemplate")]
+        public IActionResult GetPriceTemplate(int BrandID = 0, string Lang = "en")
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = ConfigService.GetConfig(TypeID,BranchID, BrandID);
+                var data = PriceTemplateService.GetPriceTemlate(BrandID);
                 if (data != null)
                 {
                     if (data.Count() == 0)
@@ -90,16 +85,13 @@ namespace POS.API.Controllers
 
                 }
             }
-
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
-
         }
+
 
     }
 }
