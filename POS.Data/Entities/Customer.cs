@@ -43,6 +43,7 @@ namespace POS.Data.Entities
         public bool? IsCreditor { get; set; }
 
         public decimal? deposit { get; set; }
+        public int? CountryID { get; set; }
 
     }
 }

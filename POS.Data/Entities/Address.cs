@@ -22,7 +22,7 @@ namespace POS.Data.Entities
         public string Street { get; set; }
         public string BuildingInf { get; set; }
         public long? CustomerID { get; set; }
-        public bool? InActive { get; set; }
+        public int? StatusID { get; set; }
 
     }
 }

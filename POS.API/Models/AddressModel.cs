@@ -21,7 +21,7 @@ namespace POS.API.Models
         public string Street { get; set; }
         public string BuildingInf { get; set; }
         public int? CustomerID { get; set; }
-        public bool? InActive { get; set; }
+        public int? StatusID { get; set; }
 
     }
 }

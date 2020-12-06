@@ -107,6 +107,11 @@ namespace POS.API.Controllers
                     {
                         return Ok(new { success = false, message = lang.Arabic_group_name_for_mobile_already_exists, repeated = "ItemGroupMobileNameAr" });
                     }
+                    if (data == -6)
+                    {
+                        return Ok(new { success = false, message = lang.Number_already_exists, repeated = "ItemGroupNum" });
+                    }
+
                 }
                 else
                 {
