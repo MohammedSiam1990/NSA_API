@@ -16,5 +16,9 @@ namespace POS.API.Models
         public int CountryId { get; set; }
         public string CountryName { get; set; }
         public string CountryNameAr { get; set; }
-  }
+        public string InsertedBy { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public DateTime? LastModifyDate { get; set; }
+        public string ModifiedBy { get; set; }
+    }
 }

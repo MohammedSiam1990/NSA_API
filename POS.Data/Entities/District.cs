@@ -13,5 +13,9 @@ namespace POS.Entities
         public int? CityId { get; set; }
         public bool? InActive { get; set; }
         public virtual City City { get; set; }
+        public string InsertedBy { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public DateTime? LastModifyDate { get; set; }
+        public string ModifiedBy { get; set; }
     }
 }
