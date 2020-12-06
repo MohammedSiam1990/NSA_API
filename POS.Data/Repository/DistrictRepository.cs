@@ -18,6 +18,7 @@ namespace POS.Data.Repository
         }
         public void AddDistrict(District district)
         {
+            district.CreateDate = DateTime.Now;
             Add(district);
         }
 
@@ -61,6 +62,7 @@ namespace POS.Data.Repository
 
         public void UpdateDistrict(District district)
         {
+            district.LastModifyDate = DateTime.Now;
             Update(district);
         }
 
