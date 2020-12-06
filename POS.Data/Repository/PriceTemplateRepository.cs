@@ -38,11 +38,15 @@ namespace POS.Data.Repository
                     {
                         model.CreateDate = DateTime.Now;
                         Add(model);
+                        transaction.Commit();
+
                     }
                     else
                     {
                         model.LastModifyDate = DateTime.Now;
                         Update(model);
+                        transaction.Commit();
+
                     }
 
                 }

@@ -23,6 +23,7 @@ namespace POS.Data.Repository
                     {
                         var OldPrice = GetMany(e => e.PriceTemplateID==20).ToList();
                         base.DeleteRange(OldPrice);
+                        transaction.Commit();
 
                     }
                     //base.AddRange(model);
