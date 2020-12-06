@@ -41,6 +41,7 @@ namespace POS.API.Models
         public int? CustTypeID { get; set; }
         public bool? IsCreditor { get; set; }
         public decimal? deposit { get; set; }
+        public int? CountryID { get; set; }
 
     }
 }
