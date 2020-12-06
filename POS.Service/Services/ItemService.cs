@@ -73,5 +73,9 @@ namespace Pos.Service
             PosService.SkuRepository.DeleteSku(ItemId);
         }
 
+        public string GetActiveItems(int BrandID, string ImageURL, string Lang)
+        {
+            return PosService.ItemDataRepository.GetProcActiveItemData(BrandID, ImageURL, Lang);
+        }
     }
 }
