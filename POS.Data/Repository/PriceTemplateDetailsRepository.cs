@@ -19,13 +19,13 @@ namespace POS.Data.Repository
             {
                 using (var transaction = context.Database.BeginTransaction())
                 {
-                    var OldPrice = GetMany(e => e.PriceTemplateID == PriceTemplateID).ToList();
-                    base.DeleteRange(OldPrice);
-                    foreach (PriceTemplateDetails m in model)
+                    if (PriceTemplateID != 0)
                     {
-                        m.PriceTemplateDetailsID = 0;
+                        var OldPrice = GetMany(e => e.PriceTemplateID==20).ToList();
+                        base.DeleteRange(OldPrice);
+
                     }
-                    base.AddRange(model);
+                    //base.AddRange(model);
                 }
             }
         }
