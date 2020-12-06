@@ -5,9 +5,7 @@ using POS.Data.Entities;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace POS.Data.Repository
 {
@@ -24,20 +22,11 @@ namespace POS.Data.Repository
         {
             using (var DbContext = new PosDbContext())
             {
-                try
-                {
-                    string Sql = "EXEC GetPaymentMethod @CompanyID";
-                    var data = DbContext.JsonData.FromSqlRaw(Sql, new SqlParameter("@CompanyID", CompanyID)
-                        ).AsEnumerable().FirstOrDefault().Data;
+                string Sql = "EXEC GetPaymentMethod @CompanyID";
+                var data = DbContext.JsonData.FromSqlRaw(Sql, new SqlParameter("@CompanyID", CompanyID)
+                    ).AsEnumerable().FirstOrDefault().Data;
 
-                    return data.ToString();
-                }
-                catch (Exception ex)
-                {
-                    Exceptions.ExceptionError.SaveException(ex);
-                }
-                return null;
-
+                return data.ToString();
             }
 
         }
@@ -47,12 +36,10 @@ namespace POS.Data.Repository
         {
             using (var DbContext = new PosDbContext())
             {
-                try
-                {
-                    string Sql = "EXEC SavePaymentMethod @PaymentMethodID,@CompanyID,@TypeID,@PaymentMethodName,@PaymentMethodNameAr," +
-                        "@CommissionPrcnt,@CalcCommissionTax,@CommissionOnClient,@FreePaymentTypeID,@CalcTaxOnFreePM,@InsertedBy,@ModifiedBy,@StatusID";
+                string Sql = "EXEC SavePaymentMethod @PaymentMethodID,@CompanyID,@TypeID,@PaymentMethodName,@PaymentMethodNameAr," +
+                    "@CommissionPrcnt,@CalcCommissionTax,@CommissionOnClient,@FreePaymentTypeID,@CalcTaxOnFreePM,@InsertedBy,@ModifiedBy,@StatusID";
 
-                    int result = DbContext.ReturnResult.FromSqlRaw(Sql, new object[] {
+                int result = DbContext.ReturnResult.FromSqlRaw(Sql, new object[] {
                                                 new SqlParameter("@PaymentMethodID", paymentMethods.PaymentMethodID),
                                                 new SqlParameter("@CompanyID"  ,paymentMethods.CompanyID),
                                                 new SqlParameter("@TypeID" , paymentMethods.TypeID?? (object)DBNull.Value),
@@ -69,14 +56,7 @@ namespace POS.Data.Repository
 
                                             }).AsEnumerable().FirstOrDefault().ReturnValue;
 
-                    return result;
-                }
-
-                catch (Exception e)
-                {
-                    Exceptions.ExceptionError.SaveException(e);
-                }
-                return -1;
+                return result;
             }
 
         }

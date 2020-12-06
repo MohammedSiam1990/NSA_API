@@ -1,12 +1,9 @@
-﻿using POS.API.Helpers;
-using POS.Data.DataContext;
+﻿using POS.Data.DataContext;
 using POS.Data.Entities;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace POS.Data.Repository
 {
@@ -18,28 +15,20 @@ namespace POS.Data.Repository
 
         public void DeletePriceTemplateDetails(int PriceTemplateID, List<PriceTemplateDetails> model)
         {
-            try
+            using (var context = new PosDbContext())
             {
-                using (var context = new PosDbContext())
+                using (var transaction = context.Database.BeginTransaction())
                 {
-                    using (var transaction = context.Database.BeginTransaction())
+                    if (PriceTemplateID != 0)
                     {
-                        var OldPrice = GetMany(e => e.PriceTemplateID == PriceTemplateID).ToList();
+                        var OldPrice = GetMany(e => e.PriceTemplateID==20).ToList();
                         base.DeleteRange(OldPrice);
-                        foreach(PriceTemplateDetails m in model)
-                        {
-                            m.PriceTemplateDetailsID = 0;
-                        }
-                        base.AddRange(model);
+                        transaction.Commit();
+
                     }
+                    //base.AddRange(model);
                 }
-
             }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
-
         }
 
     }

@@ -5,6 +5,6 @@ namespace POS.Service.IService
 {
     public interface IPriceTemplateDetailsService
     {
-        void SavePriceTemplateDetails(int PriceTemplateID,List<PriceTemplateDetails> model);
+        void SavePriceTemplateDetails(int PriceTemplateID, List<PriceTemplateDetails> model);
     }
 }

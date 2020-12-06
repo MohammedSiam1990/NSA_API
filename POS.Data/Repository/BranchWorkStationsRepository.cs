@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using POS.API.Helpers;
 using POS.Data.DataContext;
 using POS.Data.Entities;
 using POS.Data.Infrastructure;
@@ -16,20 +15,12 @@ namespace POS.Data.Repository
         {
 
         }
-        
+
 
         public void AddBranchWorkStations(BranchWorkStations branchWorkStations)
         {
-            try
-            {
-                branchWorkStations.CreateDate = DateTime.Now;
-                Add(branchWorkStations);
-                //  PosDbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            branchWorkStations.CreateDate = DateTime.Now;
+            Add(branchWorkStations);
         }
 
         [Obsolete]
@@ -37,56 +28,31 @@ namespace POS.Data.Repository
         {
             using (var DbContext = new PosDbContext())
             {
-                try
-                {
-                    string Sql = "EXEC GetWorkStations ";
-                    var data = DbContext.JsonData.FromSql(Sql).AsEnumerable().FirstOrDefault().Data;
-                    return data.ToString();
-                }
-                catch (Exception ex)
-                {
-                    Exceptions.ExceptionError.SaveException(ex);
-                }
-                return null;
-
+                string Sql = "EXEC GetWorkStations ";
+                var data = DbContext.JsonData.FromSql(Sql).AsEnumerable().FirstOrDefault().Data;
+                return data.ToString();
             }
         }
 
-        public void UpdateBranchWorkStations(BranchWorkStations branchWorkStations )
+        public void UpdateBranchWorkStations(BranchWorkStations branchWorkStations)
         {
-            try
-            {
-                    Update(branchWorkStations);
-                    PosDbContext.SaveChanges();
-
-
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            Update(branchWorkStations);
+            PosDbContext.SaveChanges();
         }
 
         public bool ValidateBranchWorkStations(BranchWorkStations branchWorkStations)
         {
-            try
-            {
-                if (branchWorkStations.WorkstationName != "")
-                    return true;
-                else
-                    return false;
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            if (branchWorkStations.WorkstationName != "")
+                return true;
+            else
+                return false;
         }
 
         public int ValidateNameAlreadyExist(BranchWorkStations model)
         {
 
             var branchWorkStations = GetById(e => e.BranchWorkstationID != model.BranchWorkstationID
-            && (e.WorkstationName == model.WorkstationName)&&(e.BranchID==model.BranchID) && e.StatusID != 3);
+            && (e.WorkstationName == model.WorkstationName) && (e.BranchID == model.BranchID) && e.StatusID != 3);
 
             if (branchWorkStations == null) return 1;
 

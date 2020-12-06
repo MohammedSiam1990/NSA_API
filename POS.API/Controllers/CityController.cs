@@ -1,14 +1,10 @@
 using AutoMapper;
 using Exceptions;
 using ImagesService;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using Pos.IService;
 using POS.API.Models;
 using POS.Core.Resources;
 using POS.Entities;
-using POS.Models;
 using POS.Service.IService;
 using System;
 using System.Collections.Generic;
@@ -46,7 +42,6 @@ namespace POS.API.CORE.Controllers
         [HttpPost("AddCity")]
         public IActionResult Add([FromBody]CityModel model, string Lang = "en")
         {
-            // map model to entity
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
             try
@@ -71,11 +66,10 @@ namespace POS.API.CORE.Controllers
                 }
 
                 CityService.AddCity(City);
-                    return Ok(new { message =lang.Saved_successfully_completed});
+                return Ok(new { message = lang.Saved_successfully_completed });
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -105,14 +99,13 @@ namespace POS.API.CORE.Controllers
                         return Ok(new { success = false, message = lang.Arabic_name_already_exists + CityAlert });
                     }
                 }
-             
-                    CityService.UpdateCity(City);
-                    return Ok(new { success = true, message = lang.Updated_successfully_completed });
-               
+
+                CityService.UpdateCity(City);
+                return Ok(new { success = true, message = lang.Updated_successfully_completed });
+
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -129,7 +122,6 @@ namespace POS.API.CORE.Controllers
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 return Ok(new { message = ex.Message });
             }
         }
@@ -140,23 +132,23 @@ namespace POS.API.CORE.Controllers
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
-                
+
                 var City = Mapper.Map<City>(model);
-                  var ExistModel = CityService.ValidateAlreadyExist(City);
-                    if (ExistModel != null)
+                var ExistModel = CityService.ValidateAlreadyExist(City);
+                if (ExistModel != null)
+                {
+                    string CityAlert;
+                    if (City.CityName == ExistModel.CityName)
                     {
-                      string CityAlert ;
-                        if (City.CityName == ExistModel.CityName)
-                        {
-                            CityAlert = " , CityName : " + ExistModel.CityName;
-                            return Ok(new { success = false, message = lang.English_name_already_exists + CityAlert });
-                        }
-                        else
-                        {
-                            CityAlert = " , CityNameAr : " + ExistModel.CityNameAr;
-                            return Ok(new { success = false, message = lang.Arabic_name_already_exists + CityAlert });
-                        }
+                        CityAlert = " , CityName : " + ExistModel.CityName;
+                        return Ok(new { success = false, message = lang.English_name_already_exists + CityAlert });
                     }
+                    else
+                    {
+                        CityAlert = " , CityNameAr : " + ExistModel.CityNameAr;
+                        return Ok(new { success = false, message = lang.Arabic_name_already_exists + CityAlert });
+                    }
+                }
                 int result = CityService.SaveCity(City);
                 if (result == 1)
                 {
@@ -170,7 +162,6 @@ namespace POS.API.CORE.Controllers
             }
             catch (Exception ex)
             {
-
                 ExceptionError.SaveException(ex);
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -190,7 +181,6 @@ namespace POS.API.CORE.Controllers
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -223,16 +213,14 @@ namespace POS.API.CORE.Controllers
 
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
-
             }
 
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
         }
-          [HttpGet("GetCities/CountryId")]
-        public IActionResult GetCities( int CountryId,string Lang = "en")
+        [HttpGet("GetCities/CountryId")]
+        public IActionResult GetCities(int CountryId, string Lang = "en")
         {
             try
             {
@@ -257,16 +245,14 @@ namespace POS.API.CORE.Controllers
 
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
-
             }
 
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
         }
         [HttpGet("GetCountries")]
-        public IActionResult GetCountries( string Lang = "en")
+        public IActionResult GetCountries(string Lang = "en")
         {
             try
             {
@@ -290,7 +276,6 @@ namespace POS.API.CORE.Controllers
 
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });

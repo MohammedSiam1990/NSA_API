@@ -4,16 +4,14 @@ using POS.Service.IService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace POS.Service.Services
 {
     public class ConfigService : BaseService, IconfigService
     {
-        public string GetConfig(int TypeID,int? BranchID, int? BrandID )
+        public string GetConfig(int TypeID, int? BranchID, int? BrandID)
         {
-            return PosService.ConfigRepository.GetConfig(BranchID,BrandID,TypeID);
+            return PosService.ConfigRepository.GetConfig(BranchID, BrandID, TypeID);
         }
 
         public int SaveConfig(List<Config> model)
@@ -28,7 +26,7 @@ namespace POS.Service.Services
             {
                 i.LastModifyDate = DateTime.Now;
             }
-           return PosService.ConfigRepository.SaveConfig(Added, Updated);
+            return PosService.ConfigRepository.SaveConfig(Added, Updated);
         }
 
 

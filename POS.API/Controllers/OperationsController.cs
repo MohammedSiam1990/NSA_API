@@ -52,7 +52,7 @@ namespace POS.API.CORE.Controllers
                 string[] ImagesNameList = new string[Request.Form.Files.Count()];
 
                 if (Request.ContentLength > Setting.imagefilesize)
-                    return BadRequest(new { success = false, message = lang.Your_file_was_not_uploaded_because + "," + lang.It_exceeds_the + lang.Size_limit +":"+ Setting.imagefilesize + " KB "  });
+                    return BadRequest(new { success = false, message = lang.Your_file_was_not_uploaded_because + "," + lang.It_exceeds_the + lang.Size_limit + ":" + Setting.imagefilesize + " KB " });
 
                 if (Request.Form.Files.Count() > 0)
                 {
@@ -70,9 +70,7 @@ namespace POS.API.CORE.Controllers
                         {
                             ImagesNameList[i] = fileName;
                             i++;
-
                         }
-
                     }
                     return Ok(new { success = true, message = lang.Upload_image_successful, filePath = Setting.APIwebPath + "uploads/" + FolderName + "/", ImagesName = ImagesNameList });
 
@@ -114,7 +112,6 @@ namespace POS.API.CORE.Controllers
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
@@ -141,7 +138,6 @@ namespace POS.API.CORE.Controllers
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
@@ -169,8 +165,6 @@ namespace POS.API.CORE.Controllers
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-                // return error message if there was an exception
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }

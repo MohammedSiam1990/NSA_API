@@ -1,13 +1,10 @@
-﻿using POS.Data.Entities;
-using POS.Entities;
-using System;
+﻿using POS.Entities;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 namespace Pos.IService
 {
     public interface IItemService
     {
-        string GetItems(int BrandID, string ImageURL,string Lang);
+        string GetItems(int BrandID, string ImageURL, string Lang);
         List<Item> GetItemAll();
         bool ValidateItem(Item Item);
         void AddItem(Item Item);
