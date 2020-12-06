@@ -3,6 +3,7 @@ using POS.Data.DataContext;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
 using POS.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -46,10 +47,12 @@ namespace POS.Data.Repository
 
         public void AddCity(City City)
         {
+            City.CreateDate = DateTime.Now;
             Add(City);
         }
         public void UpdateCity(City City)
         {
+            City.LastModifyDate = DateTime.Now;
             Update(City);
         }
         public int SaveCity(City City)
@@ -59,8 +62,16 @@ namespace POS.Data.Repository
             {
                 using (var transaction = context.Database.BeginTransaction())
                 {
-                    if (City.CityId == 0) context.Add(City);
-                    if (City.CityId > 0) context.Update(City);
+                    if (City.CityId == 0) 
+                    {
+                        City.CreateDate = DateTime.Now;
+                        context.Add(City);
+                     }
+                    if (City.CityId > 0)
+                    {
+                        City.LastModifyDate = DateTime.Now;
+                        context.Update(City);
+                    }
                     context.SaveChanges();
                     transaction.Commit();
                 }
