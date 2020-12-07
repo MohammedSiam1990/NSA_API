@@ -53,12 +53,12 @@ namespace POS.Data.Repository
         public int ValidateCustomerAlreadyExist(Customer customer)
         {
             var CustomerModel = new Customer();
-
-            CustomerModel = GetById(e => e.CustomerID != customer.CustomerID && (e.CustomerNum == customer.CustomerNum || (e.Mobile == customer.Mobile && e.CountryID==customer.CountryID)) && e.CompanyID == customer.CompanyID && e.CustTypeID == customer.CustTypeID && e.StatusID != 3);
+            
+            CustomerModel = GetById(e =>(e.CustomerNum == customer.CustomerNum || (e.Mobile == customer.Mobile && e.CountryID==customer.CountryID)) && e.CompanyID == customer.CompanyID && e.CustTypeID == customer.CustTypeID && e.StatusID != 3);
             if (CustomerModel == null) return 1;
             if (CustomerModel.CustomerNum == customer.CustomerNum)
                 return -2;
-            else if (CustomerModel.Mobile == customer.Mobile)
+            else if (CustomerModel.Mobile == customer.Mobile && CustomerModel.CountryID == customer.CountryID)
                 return -3;
 
             return 1;

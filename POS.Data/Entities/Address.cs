@@ -12,8 +12,8 @@ namespace POS.Data.Entities
         public string Title { get; set; }
         public string AddressDescription { get; set; }
         public string PhoneMobile { get; set; }
-        public decimal? Longitude { get; set; }
-        public decimal? Latitude { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
         public string GPSAddress { get; set; }
         public int? CountryID { get; set; }
         public int? CityID { get; set; }
