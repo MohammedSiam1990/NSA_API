@@ -64,6 +64,7 @@
     <ProjectReference Include="..\POS.Common\POS.Common.csproj" />
     <ProjectReference Include="..\POS.Core\POS.Core.csproj" />
     <ProjectReference Include="..\POS.Data\POS.Data.csproj" />
+    <ProjectReference Include="..\POS.Reports\POS.Reports.csproj" />
     <ProjectReference Include="..\POS.Service\POS.Service.csproj" />
   </ItemGroup>
   <ItemGroup>
