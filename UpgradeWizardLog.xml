@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="_UpgradeWizard_Files\UpgradeWizardLog.xslt"?>
+<log>
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Common\POS.Common.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Common\app.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Common\app.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Common\app.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Common\app.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Common\app.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Common\app.config" />
+  <event action="Analyze" type="Success" name="app.config" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Common\app.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Common\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Common\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Common\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Common\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Common\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Common\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Common\packages.config" />
+  <event action="Analyze" type="Success" name="POS.Common" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Common\POS.Common.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Core\POS.Core.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Core\app.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Core\app.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Core\app.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Core\app.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Core\app.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Core\app.config" />
+  <event action="Analyze" type="Success" name="app.config" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Core\app.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Core\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Core\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Core\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Core\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Core\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Core\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Core\packages.config" />
+  <event action="Analyze" type="Success" name="lang.ar.resx" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Core\Resources\lang.ar.resx" />
+  <event action="Analyze" type="Success" name="lang.resx" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Core\Resources\lang.resx" />
+  <event action="Analyze" type="Success" name="POS.Core" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Core\POS.Core.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\POS.API.csproj" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\_Layout.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\_Layout.cshtml" />
+  <event action="Analyze" type="Success" name="_Layout.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\_Layout.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml" />
+  <event action="Analyze" type="Success" name="_ManageNav.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\_StatusMessage.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\_StatusMessage.cshtml" />
+  <event action="Analyze" type="Success" name="_StatusMessage.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\_StatusMessage.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml" />
+  <event action="Analyze" type="Success" name="_ViewImports.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml" />
+  <event action="Analyze" type="Success" name="ChangePassword.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\DeletePersonalData.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\DeletePersonalData.cshtml" />
+  <event action="Analyze" type="Success" name="DeletePersonalData.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\DeletePersonalData.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\Disable2fa.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\Disable2fa.cshtml" />
+  <event action="Analyze" type="Success" name="Disable2fa.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\Disable2fa.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\DownloadPersonalData.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\DownloadPersonalData.cshtml" />
+  <event action="Analyze" type="Success" name="DownloadPersonalData.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\DownloadPersonalData.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\Email.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\Email.cshtml" />
+  <event action="Analyze" type="Success" name="Email.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\Email.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\EnableAuthenticator.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\EnableAuthenticator.cshtml" />
+  <event action="Analyze" type="Success" name="EnableAuthenticator.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\EnableAuthenticator.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\ExternalLogins.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\ExternalLogins.cshtml" />
+  <event action="Analyze" type="Success" name="ExternalLogins.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\ExternalLogins.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\GenerateRecoveryCodes.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\GenerateRecoveryCodes.cshtml" />
+  <event action="Analyze" type="Success" name="GenerateRecoveryCodes.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\GenerateRecoveryCodes.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\PersonalData.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\PersonalData.cshtml" />
+  <event action="Analyze" type="Success" name="PersonalData.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\PersonalData.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\ResetAuthenticator.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\ResetAuthenticator.cshtml" />
+  <event action="Analyze" type="Success" name="ResetAuthenticator.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\ResetAuthenticator.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\SetPassword.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\SetPassword.cshtml" />
+  <event action="Analyze" type="Success" name="SetPassword.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\SetPassword.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\ShowRecoveryCodes.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\ShowRecoveryCodes.cshtml" />
+  <event action="Analyze" type="Success" name="ShowRecoveryCodes.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\ShowRecoveryCodes.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\TwoFactorAuthentication.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\TwoFactorAuthentication.cshtml" />
+  <event action="Analyze" type="Success" name="TwoFactorAuthentication.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Manage\TwoFactorAuthentication.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\_StatusMessage.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\_StatusMessage.cshtml" />
+  <event action="Analyze" type="Success" name="_StatusMessage.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\_StatusMessage.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\_ViewImports.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\_ViewImports.cshtml" />
+  <event action="Analyze" type="Success" name="_ViewImports.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\_ViewImports.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\AccessDenied.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\AccessDenied.cshtml" />
+  <event action="Analyze" type="Success" name="AccessDenied.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\AccessDenied.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ConfirmEmail.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ConfirmEmail.cshtml" />
+  <event action="Analyze" type="Success" name="ConfirmEmail.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ConfirmEmail.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml" />
+  <event action="Analyze" type="Success" name="ConfirmEmailChange.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ExternalLogin.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ExternalLogin.cshtml" />
+  <event action="Analyze" type="Success" name="ExternalLogin.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ExternalLogin.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ForgotPassword.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ForgotPassword.cshtml" />
+  <event action="Analyze" type="Success" name="ForgotPassword.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ForgotPassword.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ForgotPasswordConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ForgotPasswordConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="ForgotPasswordConfirmation.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ForgotPasswordConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Lockout.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Lockout.cshtml" />
+  <event action="Analyze" type="Success" name="Lockout.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Lockout.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Login.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Login.cshtml" />
+  <event action="Analyze" type="Success" name="Login.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Login.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\LoginWith2fa.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\LoginWith2fa.cshtml" />
+  <event action="Analyze" type="Success" name="LoginWith2fa.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\LoginWith2fa.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\LoginWithRecoveryCode.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\LoginWithRecoveryCode.cshtml" />
+  <event action="Analyze" type="Success" name="LoginWithRecoveryCode.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\LoginWithRecoveryCode.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Logout.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Logout.cshtml" />
+  <event action="Analyze" type="Success" name="Logout.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Logout.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Register.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Register.cshtml" />
+  <event action="Analyze" type="Success" name="Register.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\Register.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\RegisterConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\RegisterConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="RegisterConfirmation.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\RegisterConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ResetPassword.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ResetPassword.cshtml" />
+  <event action="Analyze" type="Success" name="ResetPassword.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ResetPassword.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="ResetPasswordConfirmation.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\_ViewImports.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\_ViewImports.cshtml" />
+  <event action="Analyze" type="Success" name="_ViewImports.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\_ViewImports.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\_ViewStart.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\_ViewStart.cshtml" />
+  <event action="Analyze" type="Success" name="_ViewStart.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\_ViewStart.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Error.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Error.cshtml" />
+  <event action="Analyze" type="Success" name="Error.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Areas\Identity\Pages\Error.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Pages\Shared\_Layout.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Pages\Shared\_Layout.cshtml" />
+  <event action="Analyze" type="Success" name="_Layout.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Pages\Shared\_Layout.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Pages\Shared\_LoginPartial.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Pages\Shared\_LoginPartial.cshtml" />
+  <event action="Analyze" type="Success" name="_LoginPartial.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Pages\Shared\_LoginPartial.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Pages\Shared\_ValidationScriptsPartial.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Pages\Shared\_ValidationScriptsPartial.cshtml" />
+  <event action="Analyze" type="Success" name="_ValidationScriptsPartial.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Pages\Shared\_ValidationScriptsPartial.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Pages\_ViewImports.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Pages\_ViewImports.cshtml" />
+  <event action="Analyze" type="Success" name="_ViewImports.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Pages\_ViewImports.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Pages\_ViewStart.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Pages\_ViewStart.cshtml" />
+  <event action="Analyze" type="Success" name="_ViewStart.cshtml" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\Pages\_ViewStart.cshtml" />
+  <event action="Analyze" type="Success" name="POS.API" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.API\POS.API.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Data\POS.Data.csproj" />
+  <event action="Analyze" type="Success" name="POS.Data" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Data\POS.Data.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Service\POS.Service.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Service\app.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Service\app.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Service\app.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Service\app.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Service\app.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Service\app.config" />
+  <event action="Analyze" type="Success" name="app.config" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Service\app.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Service\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Service\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Service\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Service\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Service\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Service\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Service\packages.config" />
+  <event action="Analyze" type="Success" name="POS.Service" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Service\POS.Service.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\POS.Reports.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\packages.config" />
+  <event action="Analyze" type="Success" name="BarcodesReport.resx" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Reports\Clients\BarcodesReport.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.config" />
+  <event action="Analyze" type="Success" name="Web.config" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Web.Debug.config" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Web.Release.config" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\Web.Release.config" />
+  <event action="Analyze" type="Success" name="POS.Reports" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\POS.Reports.csproj" />
+  <event action="Analyze" type="Success" name="POS" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.sln" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\POS.Reports.csproj" />
+  <event action="Upgrade" type="Success" name="POS.Reports" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.Reports\POS.Reports.csproj" />
+  <event action="Upgrade" type="Success" name="POS" path="C:\Users\Areej Hejazi\Desktop\POSAPI\POS.sln" />
+</log>
