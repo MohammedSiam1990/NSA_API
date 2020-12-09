@@ -1,4 +1,4 @@
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -74,15 +74,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="obj\Debug\POS.Reports.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\POS.Reports.dll" />
+    <Content Include="obj\Debug\pos.reports.dll.licenses" />
+    <Content Include="obj\Debug\POS.Reports.pdb" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports\Clients\BarcodesReport.cs">
+    <Compile Include="Reports\Report1.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Clients\BarcodesReport.Designer.cs">
-      <DependentUpon>BarcodesReport.cs</DependentUpon>
+    <Compile Include="Reports\Report1.Designer.cs">
+      <DependentUpon>Report1.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Report2.cs">
       <SubType>Component</SubType>
@@ -92,6 +98,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\POS.Reports.csproj.CopyComplete" />
+    <Content Include="obj\Debug\POS.Reports.csprojAssemblyReference.cache" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -102,9 +112,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="Reports\Clients\BarcodesReport.resx">
-      <DependentUpon>BarcodesReport.cs</DependentUpon>
-    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="CS\Common\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
