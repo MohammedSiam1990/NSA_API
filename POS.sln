@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS.Core", "POS.Core\POS.Core.csproj", "{5450D000-3413-43DA-ABC0-C94A453D9943}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "POS.API", "POS.API\POS.API.csproj", "{3414FF37-2BEA-4D29-B8A6-10F25F9030C3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9BB29ED1-F3B2-43DC-9A67-C33F6B78B2AC} = {9BB29ED1-F3B2-43DC-9A67-C33F6B78B2AC}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "POS.Data", "POS.Data\POS.Data.csproj", "{695BAF6F-0097-42D2-A0FD-551F4D15FFE8}"
 	ProjectSection(ProjectDependencies) = postProject
