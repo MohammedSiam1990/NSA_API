@@ -70,18 +70,18 @@ namespace POS.Data.Repository
             if (model.MobileNameAr == "" && model.MobileName == "")
             {
                 item = GetById(e => e.ItemId != model.ItemId && e.StatusId != 3 && e.BrandId == model.BrandId &&
-                (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemName || e.ItemNum == model.ItemNum));
+                (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemNameAr || e.ItemNum == model.ItemNum));
             }
             else if (model.MobileNameAr == "")
             {
                 item = GetById(e => e.ItemId != model.ItemId && e.StatusId != 3 && e.BrandId == model.BrandId &&
-                (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemName || e.MobileName == model.MobileName || e.ItemNum == model.ItemNum));
+                (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemNameAr || e.MobileName == model.MobileName || e.ItemNum == model.ItemNum));
 
             }
             else if (model.MobileName == "")
             {
                 item = GetById(e => e.ItemId != model.ItemId && e.StatusId != 3 && e.BrandId == model.BrandId &&
-                (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemName || e.ItemNum == model.ItemNum));
+                (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemNameAr || e.ItemNum == model.ItemNum));
 
             }
             else
@@ -96,9 +96,9 @@ namespace POS.Data.Repository
                 return -2;
             else if (item.ItemNameAr == model.ItemNameAr)
                 return -3;
-            else if (item.MobileName == model.MobileName)
+            else if (item.MobileName == model.MobileName && model.MobileName!="")
                 return -4;
-            else if (item.MobileNameAr == model.MobileNameAr)
+            else if (item.MobileNameAr == model.MobileNameAr && model.MobileNameAr != "")
                 return -5;
             else if (item.ItemNum == model.ItemNum)
                 return -6;
