@@ -84,6 +84,12 @@
     <Compile Include="Reports\Clients\BarcodesReport.Designer.cs">
       <DependentUpon>BarcodesReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Report2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Report2.Designer.cs">
+      <DependentUpon>Report2.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
