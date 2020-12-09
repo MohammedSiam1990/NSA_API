@@ -1,40 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Mail;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using System.IO;
+using Telerik.Reporting.Cache.File;
 using Telerik.Reporting.Services;
 using Telerik.Reporting.Services.AspNetCore;
 
-namespace POS.API.Controllers
+
+
+//The class name determines the service URL. 
+//ReportsController class name defines /api/reports/ service URL.
+public class ReportsController : ReportsControllerBase
 {
-    [Route("api/[controller]")]
-    [AllowAnonymous]
-    [ApiController]
-    public class ReportsController : ReportsControllerBase
+    static ReportServiceConfiguration configurationInstance;
+
+    static ReportsController()
     {
-        public ReportsController(IReportServiceConfiguration reportServiceConfiguration)
-            : base(reportServiceConfiguration)
+        //This is the folder that contains the report definitions
+        //In this case this is the Reports folder
+        var appPath = "https://localhost:5000/";
+        var reportsPath = Path.Combine(appPath, "Reports");
+
+        //Add resolver for trdx/trdp report definitions, 
+        //then add resolver for class report definitions as fallback resolver; 
+        //finally create the resolver and use it in the ReportServiceConfiguration instance.
+        var resolver = new UriReportSourceResolver(reportsPath)
+            .AddFallbackResolver(new TypeReportSourceResolver());
+
+        //Setup the ReportServiceConfiguration
+        configurationInstance = new ReportServiceConfiguration
         {
-        }
-
-        protected override HttpStatusCode SendMailMessage(MailMessage mailMessage)
-        {
-            throw new System.NotImplementedException("This method should be implemented in order to send mail messages");
-
-            //using (var smtpClient = new SmtpClient("smtp01.mycompany.com", 25))
-            //{
-            //    smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-            //    smtpClient.EnableSsl = false;
-
-            //    smtpClient.Send(mailMessage);
-            //}
-            //return HttpStatusCode.OK;
-        }
+            HostAppId = "Html5App",
+            Storage = new FileStorage(),
+            ReportSourceResolver = resolver,
+            // ReportSharingTimeout = 0,
+            // ClientSessionTimeout = 15,
+        };
     }
 
+    [System.Obsolete]
+    public ReportsController()
+    {
+        //Initialize the service configuration
+        this.ReportServiceConfiguration = configurationInstance;
+    }
 }

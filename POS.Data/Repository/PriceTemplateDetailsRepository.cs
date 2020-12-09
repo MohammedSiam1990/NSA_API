@@ -21,7 +21,7 @@ namespace POS.Data.Repository
                 {
                     if (PriceTemplateID != 0)
                     {
-                        var OldPrice = GetMany(e => e.PriceTemplateID==20).ToList();
+                        var OldPrice = GetMany(e => e.PriceTemplateID== PriceTemplateID).ToList();
                         base.DeleteRange(OldPrice);
                         transaction.Commit();
 
