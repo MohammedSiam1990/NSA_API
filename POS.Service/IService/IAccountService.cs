@@ -12,7 +12,7 @@ namespace Pos.IService
     {
 
         Task<UserManagerResponse> RegisterUserAsync(RegisterViewModel model);
-        Task<UserManagerResponse> CreateUserAsync(CreateUserModel model);
+
 
         Task<LoginResponseDto> LoginUserAsync(LoginViewModel model);
 
@@ -23,7 +23,8 @@ namespace Pos.IService
         IList<ApplicationUser> GetAllUsersAsync(int CompanyID);
 
         Task<ApplicationUser> GetUserAsync(string Id);
-        Task<UserManagerResponse> UpdateUserAsync(string Id, UserDto user);
+        Task<UserManagerResponse> AddUserAsync(UserModel model);
+        Task<UserManagerResponse> UpdateUserAsync(UserModel model);
         Task<UserManagerResponse> DeletetUserAsync(string Id);
         Task<UserManagerResponse> ChangePassword(string UserID, string OldPassword, string NewPassword);
         Task<ApplicationUser> IdentityApplicationUser(string userName);

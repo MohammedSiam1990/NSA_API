@@ -51,7 +51,6 @@ namespace POS.API.Controllers
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
@@ -67,12 +66,12 @@ namespace POS.API.Controllers
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
                 int ItemData = PaymentMethod.SavePaymentMethods(payment);
-                if(ItemData==1)
+                if (ItemData == 1)
                     return Ok(new { success = true, message = lang.Saved_successfully_completed });
                 else if (ItemData == -1)
                     return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
                 else if (ItemData == -2)
-                    return Ok(new { success = false, message = lang.Payment_method_already_exists});
+                    return Ok(new { success = false, message = lang.Payment_method_already_exists });
                 else if (ItemData == -3)
                     return Ok(new { success = false, message = lang.Free_payment_method_already_exists });
                 else if (ItemData == -4)
@@ -84,8 +83,6 @@ namespace POS.API.Controllers
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-                // return error message if there was an exception
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }

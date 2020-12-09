@@ -1,7 +1,6 @@
 using AutoMapper;
 using Exceptions;
 using ImagesService;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Pos.IService;
@@ -9,7 +8,6 @@ using POS.Core.Resources;
 using POS.Entities;
 using POS.Models;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -41,7 +39,6 @@ namespace POS.API.CORE.Controllers
         [HttpPost("AddCompany")]
         public IActionResult Add([FromBody]CompaniesModel model, string Lang = "en")
         {
-            // map model to entity
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
@@ -49,7 +46,6 @@ namespace POS.API.CORE.Controllers
             try
             {
                 if (CompaniesService.ValidateCompany(Company))
-                // create Company
                 {
                     CompaniesService.AddCompany(Company);
                     return Ok(new { message = "Add Company Success" });
@@ -59,7 +55,6 @@ namespace POS.API.CORE.Controllers
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -69,7 +64,6 @@ namespace POS.API.CORE.Controllers
         [HttpPost("DeletCompanyeAndUser")]
         public IActionResult DeletCompanyeAndUser(int CompanyId, string Lang = "en")
         {
-            // map model to entity
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
@@ -90,7 +84,6 @@ namespace POS.API.CORE.Controllers
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -103,12 +96,10 @@ namespace POS.API.CORE.Controllers
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-            // map model to entity
             var Company = Mapper.Map<Companies>(model);
             try
             {
                 if (CompaniesService.ValidateCompany(Company))
-                // Edit Company
                 {
                     CompaniesService.UpdateCompany(Company);
                     return Ok(new { success = true, message = lang.Updated_successfully_completed });
@@ -119,7 +110,6 @@ namespace POS.API.CORE.Controllers
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -129,7 +119,6 @@ namespace POS.API.CORE.Controllers
         [HttpPost("DeleteCompany")]
         public IActionResult Delete(int CompanyId)
         {
-
             try
             {
                 CompaniesService.DeleteCompany(CompanyId);
@@ -137,7 +126,6 @@ namespace POS.API.CORE.Controllers
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 return Ok(new { message = ex.Message });
             }
         }
@@ -148,7 +136,6 @@ namespace POS.API.CORE.Controllers
         {
             try
             {
-                // create user
                 var Company = CompaniesService.GetCompany(CompanyId);
                 var CompanyDto = Mapper.Map<CompaniesModel>(Company);
                 CompanyDto.ImageName = imagesPath.Comapny + CompanyDto.ImageName;
@@ -157,7 +144,6 @@ namespace POS.API.CORE.Controllers
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -189,11 +175,8 @@ namespace POS.API.CORE.Controllers
 
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
-
             }
-
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
         }

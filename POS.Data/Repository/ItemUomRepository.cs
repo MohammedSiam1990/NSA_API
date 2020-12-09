@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using POS.API.Helpers;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
 using POS.Entities;
@@ -7,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace POS.Data.Repository
 {
@@ -21,85 +19,41 @@ namespace POS.Data.Repository
 
         public void AddItemUom(ItemUom itemUom)
         {
-            try
-            {
-
-                Add(itemUom);
-                PosDbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            Add(itemUom);
+            PosDbContext.SaveChanges();
         }
 
         public void DeleteItemUom(long itemUomId)
         {
-            try
-            {
-                Delete(itemUomId);
-                PosDbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            Delete(itemUomId);
+            PosDbContext.SaveChanges();
         }
 
         public ItemUom GetItemUom(long itemUomId)
         {
-            try
-            {
-                var QueryitemUom = base.Table().Where(e => e.ItemUomid == itemUomId).FirstOrDefault();
-                base.DbContext.Dispose();
-                base.DbContext = null;
-                return QueryitemUom;
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            var QueryitemUom = base.Table().Where(e => e.ItemUomid == itemUomId).FirstOrDefault();
+            base.DbContext.Dispose();
+            base.DbContext = null;
+            return QueryitemUom;
         }
 
         public List<ItemUom> GetItemUoms(Expression<Func<ItemUom, bool>> where)
         {
-            try
-            {
-                return base.GetMany(where).ToList();
+            return base.GetMany(where).ToList();
 
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
         }
 
         public List<ItemUom> GetItemUoms()
         {
-            try
-            {
-                var ItemUom = base.Table().Include(e => e.Item).ToList();
-                base.DbContext.Dispose();
-                base.DbContext = null;
-                return ItemUom;
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            var ItemUom = base.Table().Include(e => e.Item).ToList();
+            base.DbContext.Dispose();
+            base.DbContext = null;
+            return ItemUom;
         }
-
         public void UpdateItemUom(ItemUom itemUom)
         {
-            try
-            {
-                Update(itemUom);
-                PosDbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            Update(itemUom);
+            PosDbContext.SaveChanges();
         }
 
         public bool ValidateCodeorNameAlreadyExist(Expression<Func<ItemUom, bool>> where)
@@ -113,17 +67,10 @@ namespace POS.Data.Repository
 
         public bool ValidateitemUom(ItemUom itemUom)
         {
-            try
-            {
-                if (itemUom.Name != "")
-                    return true;
-                else
-                    return false;
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            if (itemUom.Name != "")
+                return true;
+            else
+                return false;
         }
     }
 }

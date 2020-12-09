@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +7,10 @@ using POS.API.Models;
 using POS.Core.Resources;
 using POS.Data.Entities;
 using POS.Service.IService;
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
 
 namespace POS.API.Controllers
 {
@@ -65,8 +63,6 @@ namespace POS.API.Controllers
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-                // return error message if there was an exception
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
@@ -95,9 +91,7 @@ namespace POS.API.Controllers
 
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
@@ -128,9 +122,7 @@ namespace POS.API.Controllers
 
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
@@ -157,8 +149,6 @@ namespace POS.API.Controllers
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-                // return error message if there was an exception
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }

@@ -81,7 +81,7 @@ namespace POS.API.CORE
 
             var lockoutOptions = new LockoutOptions()
             {
-                AllowedForNewUsers = false,
+                AllowedForNewUsers = true,
                 DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5),
                 MaxFailedAccessAttempts = 5
             };
@@ -252,6 +252,8 @@ namespace POS.API.CORE
             services.AddScoped<ICityService, CityService>();
            services.AddScoped<IDistrictService, DistrictService>();
            services.AddScoped<IUserDefinedService, UserDefinedService>();
+           services.AddScoped<IPriceTemplateService, PriceTemplateService>();
+           services.AddScoped<IPriceTemplateDetailsService, PriceTemplateDetailsService>();
 
 
             services.Configure<IISServerOptions>(options =>

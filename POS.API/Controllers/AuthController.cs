@@ -4,7 +4,6 @@ using Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using Pos.IService;
 using POS.Core;
 using POS.Core.Resources;
@@ -71,28 +70,8 @@ namespace StanderApi.Controllers
             }
             return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
         }
-        [AllowAnonymous]
-        [HttpPost("CreateUser")]
-        public async Task<IActionResult> CreateUser([FromBody]CreateUserModel model)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var result = await _accountService.CreateUserAsync(model);
-                    return Ok(result);
-                }
-                else
-                {
-                    return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionError.SaveException(ex);
-            }
-            return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
-        }
+       
+
 
         [HttpGet("GetUsers")]
         public IActionResult GetUsers(int CompanyID, string Lang = "en")
@@ -111,7 +90,7 @@ namespace StanderApi.Controllers
                     }
                     else
                     {
-                        return Ok(new { success = true, message = "", datalist = data});
+                        return Ok(new { success = true, message = "", datalist = data });
                     }
 
                 }
@@ -286,7 +265,29 @@ namespace StanderApi.Controllers
 
         }
 
-
+        [AllowAnonymous]
+        [HttpPost("AddUser")]
+        public async Task<IActionResult> AddUserAsync([FromBody]UserModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    model.AppUrl = emailConfig.AppUrl;
+                    var result = await _accountService.AddUserAsync(model);
+                    return Ok(result);
+                }
+                else
+                {
+                    return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+            }
+            return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+        }
         //api/auth/getAllUsers
         //[HttpGet("GetAllUsers")]
         // public async Task<IActionResult> GetAllUsers()
@@ -303,26 +304,57 @@ namespace StanderApi.Controllers
         [HttpGet("GetUser/{Id}")]
         public async Task<IActionResult> GetUser(string Id)
         {
-            var result = await _accountService.GetUserAsync(Id);
-            //var resultDto = _mapper.Map<UserDto>(result);
-            return Ok(result);
-            //return Ok();
+            try
+            {
+                var result = await _accountService.GetUserAsync(Id);
+                //var resultDto = _mapper.Map<UserDto>(result);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+            }
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
 
-        [HttpPut("User/{Id}")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<IActionResult> UpdateUser(string Id, UserDto userDto)
+        [AllowAnonymous]
+        [HttpPost("UpdateUser")]
+        public async Task<IActionResult> UpdateUserAsync([FromBody]UserModel model)
         {
-            var result = await _accountService.UpdateUserAsync(Id, userDto);
-            return Ok(result);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    model.AppUrl = emailConfig.AppUrl;
+                    var result = await _accountService.UpdateUserAsync(model);
+                    return Ok(result);
+                }
+                else
+                {
+                    return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+            }
+            return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
         }
 
         [HttpDelete("User/{Id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<IActionResult> DeleteUser(string Id)
         {
-            var result = await _accountService.DeletetUserAsync(Id);
-            return Ok(result);
+            try
+            {
+                var result = await _accountService.DeletetUserAsync(Id);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+            }
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
         [HttpPost("ChangePassword")]
         public async Task<IActionResult> ChangePassword(ChangePasswordBindingModel model)
@@ -375,13 +407,22 @@ namespace StanderApi.Controllers
             return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
         }
 
-       [HttpPost("IdentityApplicationUser")]
+        [HttpPost("IdentityApplicationUser")]
 
         public async Task<IActionResult> IdentityApplicationUser()
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var user  = await _accountService.IdentityApplicationUser( userId);
-            return Ok(user);
+            try
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var user = await _accountService.IdentityApplicationUser(userId);
+                return Ok(user);
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+            }
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
     }
 }

@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using POS.API.Helpers;
 using POS.Data.DataContext;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
@@ -7,7 +6,6 @@ using POS.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace POS.Data.Repository
 {
@@ -18,121 +16,78 @@ namespace POS.Data.Repository
         {
 
         }
-  
-        public List<City> GetCities( )
-        {
-            try
-            {
-                var City = base.Table()
-                   .Include(e => e.Country).ToList();
-                base.DbContext.Dispose();
-                base.DbContext = null;
-                return City;
 
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+        public List<City> GetCities()
+        {
+            var City = base.Table()
+               .Include(e => e.Country).ToList();
+            base.DbContext.Dispose();
+            base.DbContext = null;
+            return City;
         }
-       public List<City> GetCities(int CountryId)
+        public List<City> GetCities(int CountryId)
         {
-            try
-            {
-                var City = base.Table()
-                   .Where(e => e.CountryId == CountryId )
-                   .Include(e => e.Country).ToList();
-                base.DbContext.Dispose();
-                base.DbContext = null;
-                return City;
+            var City = base.Table()
+               .Where(e => e.CountryId == CountryId)
+               .Include(e => e.Country).ToList();
+            base.DbContext.Dispose();
+            base.DbContext = null;
+            return City;
 
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+
         }
         public City GetCity(int CityId)
         {
-            try
-            {
-                var City = base.Table().Where(e => e.CityId == CityId)
-                   .Include(e => e.Country).FirstOrDefault();
-                base.DbContext.Dispose();
-                base.DbContext = null;
-                return City;
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            var City = base.Table().Where(e => e.CityId == CityId)
+               .Include(e => e.Country).FirstOrDefault();
+            base.DbContext.Dispose();
+            base.DbContext = null;
+            return City;
         }
-   
+
         public void AddCity(City City)
         {
-            try
-            {
-                //City.CreationDate = DateTime.Now;
-                Add(City);
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            City.CreateDate = DateTime.Now;
+            Add(City);
         }
         public void UpdateCity(City City)
         {
-
-            try
-            {
-                Update(City);
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            City.LastModifyDate = DateTime.Now;
+            Update(City);
         }
         public int SaveCity(City City)
         {
-            
-                using (var context = new PosDbContext())
-                {
-                    using (var transaction = context.Database.BeginTransaction())
-                    {
-                        try
-                        {
-                            if (City.CityId == 0) context.Add(City);
-                            if (City.CityId > 0) context.Update(City);
-                            context.SaveChanges();
-                            transaction.Commit();
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            throw new AppException(ex.Message);
-                        }
-                        return 1;
-                    }
 
+            using (var context = new PosDbContext())
+            {
+                using (var transaction = context.Database.BeginTransaction())
+                {
+                    if (City.CityId == 0) 
+                    {
+                        City.CreateDate = DateTime.Now;
+                        context.Add(City);
+                     }
+                    if (City.CityId > 0)
+                    {
+                        City.LastModifyDate = DateTime.Now;
+                        context.Update(City);
+                    }
+                    context.SaveChanges();
+                    transaction.Commit();
                 }
-         }
+                return 1;
+
+            }
+        }
 
         public void DeleteCity(int CityId)
         {
-            try
-            {
-                Delete(CityId);
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
-
+            Delete(CityId);
         }
 
         public City ValidateAlreadyExist(City model)
         {
-           return GetById(e =>   e.CityId != model.CityId && e.CountryId==model.CountryId && (e.CityName == model.CityName || e.CityNameAr == model.CityNameAr) );
+            return GetById(e => e.CityId != model.CityId && e.CountryId == model.CountryId && (e.CityName == model.CityName || e.CityNameAr == model.CityNameAr));
         }
     }
 }

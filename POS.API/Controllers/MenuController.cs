@@ -3,10 +3,8 @@ using Exceptions;
 using ImagesService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using POS.API.Models;
 using POS.Core.Resources;
-using POS.Entities;
 using POS.Service.IService;
 using System;
 using System.Collections.Generic;
@@ -39,7 +37,7 @@ namespace POS.API.Controllers
         }
 
         [HttpGet("GetMenu")]
-        public IActionResult GetMenu( string Lang = "en")
+        public IActionResult GetMenu(string Lang = "en")
         {
 
             try
@@ -52,7 +50,7 @@ namespace POS.API.Controllers
                 {
                     if (data.Count() == 0)
                     {
-                        return Ok(new { success = true, message = lang.No_data_available, datalist =data });
+                        return Ok(new { success = true, message = lang.No_data_available, datalist = data });
                     }
                     else
                     {
@@ -62,16 +60,14 @@ namespace POS.API.Controllers
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
-
             }
 
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
 
 
-   
+
     }
 
 }

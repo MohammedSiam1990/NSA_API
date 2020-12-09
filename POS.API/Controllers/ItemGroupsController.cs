@@ -64,9 +64,7 @@ namespace POS.API.Controllers
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
-
             }
 
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -109,6 +107,11 @@ namespace POS.API.Controllers
                     {
                         return Ok(new { success = false, message = lang.Arabic_group_name_for_mobile_already_exists, repeated = "ItemGroupMobileNameAr" });
                     }
+                    if (data == -6)
+                    {
+                        return Ok(new { success = false, message = lang.Number_already_exists, repeated = "ItemGroupNum" });
+                    }
+
                 }
                 else
                 {
@@ -118,9 +121,7 @@ namespace POS.API.Controllers
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
-
             }
 
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });

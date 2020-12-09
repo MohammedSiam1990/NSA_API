@@ -18,5 +18,9 @@ namespace POS.Entities
         public int CountryId { get; set; }
         public virtual ICollection<District> Districts { get; set; }
         public virtual Country Country { get; set; }
+        public string InsertedBy { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public DateTime? LastModifyDate { get; set; }
+        public string ModifiedBy { get; set; }
     }
 }

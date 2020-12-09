@@ -8,7 +8,7 @@ namespace POS.Service.Services
 {
     public class SalesGroupsItemsService : BaseService, ISalesGroupsItemsService
     {
-        public void SaveSalesGroupsItems(List<SalesGroupsItems> model,int SalesGroupID)
+        public void SaveSalesGroupsItems(List<SalesGroupsItems> model, int SalesGroupID)
         {
             for (int i = 0; i < model.Count; ++i)
             {

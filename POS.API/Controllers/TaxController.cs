@@ -50,12 +50,10 @@ namespace POS.API.Controllers
                     {
                         return Ok(new { success = true, message = "", datalist = JsonConvert.DeserializeObject(data) });
                     }
-
                 }
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -88,17 +86,16 @@ namespace POS.API.Controllers
                     }
                     if (data == -4)
                     {
-                        return Ok(new { success = false, message = lang.This_tax_is_linked_with_items});
+                        return Ok(new { success = false, message = lang.This_tax_is_linked_with_items });
                     }
                     if (data == -5)
                     {
-                        return Ok(new { success = false, message = lang.Cannot_apply_this_tax_as_special_tax_because_it__linked_as_general_tax});
+                        return Ok(new { success = false, message = lang.Cannot_apply_this_tax_as_special_tax_because_it__linked_as_general_tax });
                     }
                     if (data == -6)
                     {
                         return Ok(new { success = false, message = lang.Cannot_apply_this_tax_as_general_tax_because_it__linked_as_special_tax });
                     }
-
 
                 }
                 else
@@ -110,8 +107,6 @@ namespace POS.API.Controllers
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-                // return error message if there was an exception
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
