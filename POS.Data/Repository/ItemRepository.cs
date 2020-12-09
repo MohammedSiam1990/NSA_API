@@ -67,28 +67,10 @@ namespace POS.Data.Repository
         public int ValidateNameAlreadyExist(Item model)
         {
             var item = new Item();
-            if (model.MobileNameAr == "" && model.MobileName == "")
-            {
-                item = GetById(e => e.ItemId != model.ItemId && e.StatusId != 3 && e.BrandId == model.BrandId &&
-                (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemNameAr || e.ItemNum == model.ItemNum));
-            }
-            else if (model.MobileNameAr == "")
-            {
-                item = GetById(e => e.ItemId != model.ItemId && e.StatusId != 3 && e.BrandId == model.BrandId &&
-                (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemNameAr || e.MobileName == model.MobileName || e.ItemNum == model.ItemNum));
-
-            }
-            else if (model.MobileName == "")
-            {
-                item = GetById(e => e.ItemId != model.ItemId && e.StatusId != 3 && e.BrandId == model.BrandId &&
-                (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemNameAr || e.ItemNum == model.ItemNum));
-
-            }
-            else
-            {
-                item = GetById(e => e.ItemId != model.ItemId && e.StatusId != 3 && e.BrandId == model.BrandId &&
-                (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemNameAr || e.MobileName == model.MobileName || e.MobileNameAr == model.MobileNameAr || e.ItemNum == model.ItemNum));
-            }
+            item = GetById(e => e.ItemId != model.ItemId && e.StatusId != 3 && e.BrandId == model.BrandId &&
+            (e.ItemName == model.ItemName || e.ItemNameAr == model.ItemNameAr ||
+            e.MobileName == model.MobileName || e.MobileNameAr == model.MobileNameAr 
+            || e.ItemNum == model.ItemNum));
 
             if (item == null) return 1;
 
@@ -96,7 +78,7 @@ namespace POS.Data.Repository
                 return -2;
             else if (item.ItemNameAr == model.ItemNameAr)
                 return -3;
-            else if (item.MobileName == model.MobileName && model.MobileName!="")
+            else if (item.MobileName == model.MobileName && model.MobileName != "")
                 return -4;
             else if (item.MobileNameAr == model.MobileNameAr && model.MobileNameAr != "")
                 return -5;
