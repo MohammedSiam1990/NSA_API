@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetTopologySuite.Geometries;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -9,7 +10,7 @@ namespace POS.Data.Entities
     {
         [Key]
         public long CustomerID { get; set; }
-        public int CompanyID { get; set; }
+        public int? CompanyID { get; set; }
         public string CustomerNum { get; set; }
         public string CustomerName { get; set; }
         public string CustomerNameAr { get; set; }
@@ -28,8 +29,8 @@ namespace POS.Data.Entities
         public string ModifiedBy { get; set; }
         public DateTime? LastModifyDate { get; set; }
         public string TaxNum { get; set; }
-        public double? Latitude { get; set; }
-        public double? Longitude { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
         public int? StatusID { get; set; }
         public bool? BlackListed { get; set; }
         public string Email { get; set; }
@@ -43,6 +44,7 @@ namespace POS.Data.Entities
         public bool? IsCreditor { get; set; }
 
         public decimal? deposit { get; set; }
+        public int? CountryID { get; set; }
 
     }
 }

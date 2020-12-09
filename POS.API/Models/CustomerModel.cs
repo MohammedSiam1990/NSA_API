@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetTopologySuite.Geometries;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace POS.API.Models
     public partial class CustomerModel
     {
         public long CustomerID { get; set; }
-        public int CompanyID { get; set; }
+        public int? CompanyID { get; set; }
         public string CustomerNum { get; set; }
         public string CustomerName { get; set; }
         public string CustomerNameAr { get; set; }
@@ -27,8 +28,8 @@ namespace POS.API.Models
         public string ModifiedBy { get; set; }
         public DateTime? LastModifyDate { get; set; }
         public string TaxNum { get; set; }
-        public double? Latitude { get; set; }
-        public double? Longitude { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
         public int? StatusID { get; set; }
         public bool? BlackListed { get; set; }
         public string Email { get; set; }
@@ -36,11 +37,12 @@ namespace POS.API.Models
         public decimal? DeliveryFee { get; set; }
         public bool? FreeDelivery { get; set; }
         public decimal? DiscountPrcnt { get; set; }
-       // public decimal? Points { get; set; }
-       // public decimal? PointsOpenBalance { get; set; }
+        //public decimal? Points { get; set; }
+        //public decimal? PointsOpenBalance { get; set; }
         public int? CustTypeID { get; set; }
         public bool? IsCreditor { get; set; }
         public decimal? deposit { get; set; }
+        public int? CountryID { get; set; }
 
     }
 }

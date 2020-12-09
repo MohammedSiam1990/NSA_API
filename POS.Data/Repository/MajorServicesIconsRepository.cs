@@ -1,13 +1,10 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using POS.API.Helpers;
 using POS.Data.DataContext;
 using POS.Data.Infrastructure;
 using POS.Data.IRepository;
 using POS.Entities;
-using Steander.Core.Entities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace POS.Data.Repository
@@ -21,112 +18,58 @@ namespace POS.Data.Repository
         }
         public void AddMajorServicesIcons(MajorServicesIcons MajorServicesIcons)
         {
-            try
-            {
-                MajorServicesIcons.OrderId = GetMaxOrderIdByService(MajorServicesIcons.ServiceId);
-                Add(MajorServicesIcons);
-           
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            MajorServicesIcons.OrderId = GetMaxOrderIdByService(MajorServicesIcons.ServiceId);
+            Add(MajorServicesIcons);
+
         }
 
 
         public void UpdateMajorServicesIcons(MajorServicesIcons MajorServicesIcons)
         {
 
-            try
-            {
-                MajorServicesIcons.OrderId = GetMaxOrderIdByService(MajorServicesIcons.ServiceId);
-                Update(MajorServicesIcons);
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            MajorServicesIcons.OrderId = GetMaxOrderIdByService(MajorServicesIcons.ServiceId);
+            Update(MajorServicesIcons);
         }
         public int GetMaxOrderIdByService(int ServiceId)
         {
-            try
-            {
-                var OrderId = base.GetMany(e => e.ServiceId==ServiceId).Max(e=>e.OrderId)+1;
-               
-                return OrderId;
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            var OrderId = base.GetMany(e => e.ServiceId == ServiceId).Max(e => e.OrderId) + 1;
+
+            return OrderId;
         }
         public void SaveMajorServicesIcons(MajorServicesIcons MajorServicesIcons)
         {
-            try
-            {
-                MajorServicesIcons.OrderId = GetMaxOrderIdByService(MajorServicesIcons.ServiceId);
+            MajorServicesIcons.OrderId = GetMaxOrderIdByService(MajorServicesIcons.ServiceId);
 
-                if (MajorServicesIcons.IconId == 0)
+            if (MajorServicesIcons.IconId == 0)
 
-                    Add(MajorServicesIcons);
-                else
-                    Update(MajorServicesIcons);
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+                Add(MajorServicesIcons);
+            else
+                Update(MajorServicesIcons);
         }
         public void DeleteMajorServicesIcons(int MajorServicesIconsId)
         {
-            try
-            {
-                Delete(MajorServicesIconsId);
-            //    PosDbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
+            Delete(MajorServicesIconsId);
 
         }
         public MajorServicesIcons GetMajorServicesIcons(int IconId)
         {
+            return base.GetById(IconId);
+        }
 
-            try
+
+
+
+
+        [Obsolete]
+        public string GetMajorServicesByIcons(int? ServiceId)
+        {
+            using (var DbContext = new PosDbContext())
             {
-                return base.GetById(IconId);
+                string Sql = "EXEC GetMajorServicesIcons @ServiceId";
+                var data = DbContext.JsonData.FromSql(Sql, new SqlParameter("@ServiceId", ServiceId)).AsEnumerable().FirstOrDefault().Data;
+                return data.ToString();
 
             }
-            catch (Exception ex)
-            {
-                throw new AppException(ex.Message);
-            }
-
         }
-
-
-
-     
-
-    [Obsolete]
-    public string GetMajorServicesByIcons(int? ServiceId)
-    {
-      using (var DbContext = new PosDbContext())
-      {
-        try
-        {
-          string Sql = "EXEC GetMajorServicesIcons @ServiceId";
-          var data = DbContext.JsonData.FromSql(Sql, new SqlParameter("@ServiceId", ServiceId)).AsEnumerable().FirstOrDefault().Data;
-          return data.ToString();
-        }
-        catch (Exception ex)
-        {
-          Exceptions.ExceptionError.SaveException(ex);
-        }
-        return null;
-
-      }
     }
-  }
 }

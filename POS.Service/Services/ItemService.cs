@@ -12,7 +12,7 @@ namespace Pos.Service
         {
             PosService.ItemRepository.AddItem(Item);
         }
-        public string GetItems(int BrandID, string ImageURL,string Lang)
+        public string GetItems(int BrandID, string ImageURL, string Lang)
         {
             return PosService.ItemDataRepository.GetProcItemData(BrandID, ImageURL, Lang);
         }
@@ -39,13 +39,13 @@ namespace Pos.Service
 
         public int ValidateSkuAlreadyExist(string Lang, Item model, out string SkuAlert)
         {
-            int Id = 1; 
+            int Id = 1;
             SkuAlert = "";
             foreach (var ItemUom in model.ItemUoms)
             {
                 foreach (var Sku in ItemUom.Skus)
                 {
-                     var SkuExists = PosService.SkuRepository.ValidateAlreadyExist( Sku, model.ItemId);
+                    var SkuExists = PosService.SkuRepository.ValidateAlreadyExist(Sku, model.ItemId);
                     if (SkuExists != null)
                     {
                         SkuAlert = "SkuCode:" + SkuExists.Code + ", ItemNum:" + SkuExists.ItemUom.Item.ItemNum;
@@ -69,9 +69,13 @@ namespace Pos.Service
 
         public void DeleteSku(long ItemId)
         {
-            
+
             PosService.SkuRepository.DeleteSku(ItemId);
         }
 
+        public string GetActiveItems(int BrandID, string ImageURL, string Lang)
+        {
+            return PosService.ItemDataRepository.GetProcActiveItemData(BrandID, ImageURL, Lang);
+        }
     }
 }

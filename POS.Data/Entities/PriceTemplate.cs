@@ -17,5 +17,13 @@ namespace POS.Data.Entities
         public DateTime? ToDate { get; set; }
         public bool? InActive { get; set; }
         public int? BrandID { get; set; }
+        public string InsertedBy { get; set; }
+        public string ModifiedBy { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public DateTime? LastModifyDate { get; set; }
+        public string TypeName { get; set; }
+
+        public List<PriceTemplateDetails> PriceTemplateDetails { get; set; }
+
     }
 }

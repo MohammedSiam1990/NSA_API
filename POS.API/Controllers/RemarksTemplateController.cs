@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +7,10 @@ using POS.API.Models;
 using POS.Core.Resources;
 using POS.Entities;
 using POS.Service.IService;
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
 
 namespace POS.API.Controllers
 {
@@ -56,9 +54,7 @@ namespace POS.API.Controllers
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
@@ -71,19 +67,19 @@ namespace POS.API.Controllers
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
                 var remarksTemplate = Mapper.Map<RemarksTemplate>(model);
-                int RemarksTemplateIdentity=0;
-                int data = RemarksTemplateService.ValidateNameAlreadyExist(remarksTemplate );
+                int RemarksTemplateIdentity = 0;
+                int data = RemarksTemplateService.ValidateNameAlreadyExist(remarksTemplate);
 
                 if (data == 1)
                 {
                     if (remarksTemplate.RemarksTemplateId == 0)
-                        RemarksTemplateIdentity=RemarksTemplateService.AddRemarksTemplate(remarksTemplate);
+                        RemarksTemplateIdentity = RemarksTemplateService.AddRemarksTemplate(remarksTemplate);
                     else
                     {
-                        RemarksTemplateIdentity = model.RemarksTemplateId; 
+                        RemarksTemplateIdentity = model.RemarksTemplateId;
                         RemarksTemplateService.UpdateRemarksTemplate(remarksTemplate);
                     }
-                    return Ok(new { success = true, message = lang.Saved_successfully_completed , id= RemarksTemplateIdentity });
+                    return Ok(new { success = true, message = lang.Saved_successfully_completed, id = RemarksTemplateIdentity });
                 }
                 else if (data == -1)
                     return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -95,8 +91,6 @@ namespace POS.API.Controllers
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-                // return error message if there was an exception
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }

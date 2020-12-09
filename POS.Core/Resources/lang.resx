@@ -310,7 +310,7 @@
     <value>Upload Image successful</value>
   </data>
   <data name="Your_account_is_locked_please_try_later" xml:space="preserve">
-    <value>Your account is locked, please try later</value>
+    <value>Your account is locked, please try later , or you may rest your password</value>
   </data>
   <data name="Your_account_is_not_activated_please_activate_it" xml:space="preserve">
     <value>Your account is not activated, please activate it</value>

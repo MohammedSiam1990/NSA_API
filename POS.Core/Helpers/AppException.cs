@@ -10,8 +10,7 @@ namespace POS.API.Helpers
     {
         public AppException() : base() {}
 
-        public AppException(string message) : base(message){
-               Exception ex = new Exception(message);
+        public AppException(Exception ex) {
                ExceptionError.SaveException(ex);
         }
         public AppException(string message ,Exception ex) : base(message)

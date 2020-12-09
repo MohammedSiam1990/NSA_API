@@ -14,7 +14,7 @@ namespace POS.Service.Services
             _configuration = configuration;
         }
 
-        public bool SendEmailAsync(string Smtp, int Port, bool EnableSsl, string From, string To, string Subject, string body, string CredentialEmail, string CredentialPassword,bool UseDefaultCredentials)
+        public bool SendEmailAsync(string Smtp, int Port, bool EnableSsl, string From, string To, string Subject, string body, string CredentialEmail, string CredentialPassword, bool UseDefaultCredentials)
         {
             try
             {
@@ -40,14 +40,10 @@ namespace POS.Service.Services
             catch (SmtpException ex)
             {
                 ExceptionError.SaveException(ex);
-                
+
             }
             return false;
         }
 
-        //public Task SendEmailAsync(string From, string To, string Subject, string body, string CredentialEmail, string CredentialPasswordt)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

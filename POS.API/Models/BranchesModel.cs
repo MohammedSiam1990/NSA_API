@@ -24,8 +24,8 @@ namespace POS.Models
         public DateTime? CreateDate { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime? LastModifyDate { get; set; }
-        public float? Latitude { get; set; }
-        public float? Longitude { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
         public string DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
         public string ServiceTypeID { get; set; }

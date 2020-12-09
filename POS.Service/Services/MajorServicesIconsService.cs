@@ -34,6 +34,6 @@ namespace Pos.Service
             PosService.MajorServicesIconsRepository.UpdateMajorServicesIcons(MajorServicesIcons);
         }
 
-       
+
     }
 }

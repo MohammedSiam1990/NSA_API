@@ -9,7 +9,6 @@ using POS.API.Models;
 using POS.Core.Resources;
 using POS.Data.Entities;
 using POS.Entities;
-using POS.Models;
 using POS.Service.IService;
 using System;
 using System.Collections.Generic;
@@ -54,11 +53,7 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-
                 var data = ItemService.GetItems(BrandID, imagesPath.Item, Lang);
-
-
-
                 if (data == null)
                 {
                     return Ok(new { success = false, message = lang.No_data_available });
@@ -71,11 +66,34 @@ namespace POS.API.CORE.Controllers
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+        }
+        [AllowAnonymous]
+        [HttpGet("GetActiveItems")]
+        public IActionResult GetActiveItems(int BrandID, string Lang = "en")
+        {
 
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
+                var data = ItemService.GetActiveItems(BrandID, imagesPath.Item, Lang);
+                if (data == null)
+                {
+                    return Ok(new { success = false, message = lang.No_data_available });
+                }
+                else
+                {
+                    return Ok(new { success = true, message = "", datalist = JsonConvert.DeserializeObject(data) });
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+            }
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
 
         [AllowAnonymous]
@@ -90,9 +108,6 @@ namespace POS.API.CORE.Controllers
 
 
                 var data = ItemService.GetUOMName(BrandID);
-
-
-
                 if (data == null)
                 {
                     return Ok(new { success = false, message = lang.No_data_available });
@@ -105,7 +120,6 @@ namespace POS.API.CORE.Controllers
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
@@ -137,9 +151,7 @@ namespace POS.API.CORE.Controllers
 
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 ExceptionError.SaveException(ex);
-
             }
 
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -177,7 +189,7 @@ namespace POS.API.CORE.Controllers
                     }
 
                     else
-                        return Ok(new { success = false, message = SkuAlert   });
+                        return Ok(new { success = false, message = SkuAlert });
                 }
                 else if (ItemData == -1)
                     return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
@@ -196,8 +208,6 @@ namespace POS.API.CORE.Controllers
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-                // return error message if there was an exception
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
@@ -211,8 +221,6 @@ namespace POS.API.CORE.Controllers
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-
-
                 ItemComponentsService.SaveItemComponents(model, MainItemID, MainItemUOMID);
                 return Ok(new { success = true, message = lang.Saved_successfully_completed });
 
@@ -220,15 +228,13 @@ namespace POS.API.CORE.Controllers
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-                // return error message if there was an exception
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
 
 
         [HttpPost("SaveSalesGroupsItems")]
-        public IActionResult SaveSalesGroupsItems(List<SalesGroupsItems> model,int SalesGroupID, string Lang = "en")
+        public IActionResult SaveSalesGroupsItems(List<SalesGroupsItems> model, int SalesGroupID, string Lang = "en")
         {
             try
             {
@@ -242,8 +248,6 @@ namespace POS.API.CORE.Controllers
             catch (Exception ex)
             {
                 ExceptionError.SaveException(ex);
-                // return error message if there was an exception
-
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }

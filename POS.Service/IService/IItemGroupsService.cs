@@ -1,5 +1,4 @@
 ﻿using POS.Entities;
-using System.Collections.Generic;
 
 namespace POS.Service.IService
 {
