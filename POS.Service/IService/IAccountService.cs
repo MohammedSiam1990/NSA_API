@@ -13,6 +13,7 @@ namespace Pos.IService
 
         Task<UserManagerResponse> RegisterUserAsync(RegisterViewModel model);
 
+        Task<UserManagerResponse> CreateUserAsync(CreateUserModel model);
 
         Task<LoginResponseDto> LoginUserAsync(LoginViewModel model);
 

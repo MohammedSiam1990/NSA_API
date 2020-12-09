@@ -341,6 +341,31 @@ namespace StanderApi.Controllers
             return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
         }
 
+
+        [AllowAnonymous]
+        [HttpPost("CreateUser")]
+        public async Task<IActionResult> CreateUser([FromBody]CreateUserModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var result = await _accountService.CreateUserAsync(model);
+                    return Ok(result);
+                }
+                else
+                {
+                    return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+            }
+            return Ok(new { message = lang.An_error_occurred_while_processing_your_request, success = false });
+        }
+
+
         [HttpDelete("User/{Id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<IActionResult> DeleteUser(string Id)
