@@ -1,6 +1,6 @@
-namespace POS.Reports.Reports
+namespace POS.Reports.Reports.Client
 {
-    partial class Report1
+    partial class Report2
     {
         #region Component Designer generated code
         /// <summary>
@@ -18,9 +18,9 @@ namespace POS.Reports.Reports
             // 
             this.detail.Height = Telerik.Reporting.Drawing.Unit.Inch(2.0D);
             // 
-            // Report1
+            // Report2
             // 
-            this.Name = "Report1";
+            this.Name = "Report2";
             this.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
                                 this.pageHeaderSection1,
                                 this.detail,
