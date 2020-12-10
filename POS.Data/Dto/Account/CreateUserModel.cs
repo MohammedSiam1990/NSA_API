@@ -25,5 +25,6 @@ namespace POS.Data.Dto.Account
         public int CompanyId { get; set; }
         public bool IsSuperAdmin { get; set; }
         public bool StatusID { get; set; }
+        public string AppUrl { get; set; }
     }
 }
