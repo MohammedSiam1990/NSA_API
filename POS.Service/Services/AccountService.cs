@@ -434,10 +434,9 @@ namespace Pos.Service
 
         }
 
-        public IList<ApplicationUser> GetAllUsersAsync(int CompanyID)
+        public string GetAllUsersAsync(int UserType, int? CompanyID)
         {
-            var users = _userManger.Users.Where(e => e.CompanyId == CompanyID).ToList();
-            return users;
+            return PosService.AuthRepository.GetAllUsersAsync(UserType, CompanyID);
         }
 
         public async Task<ApplicationUser> GetUserAsync(string Id)

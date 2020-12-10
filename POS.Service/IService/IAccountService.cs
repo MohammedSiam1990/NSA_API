@@ -21,7 +21,7 @@ namespace Pos.IService
 
         Task<UserManagerResponse> ForgetPasswordAsync(String Email, string Lang);
         Task<UserManagerResponse> ResetPassword(ResetPasswordViewModel model);
-        IList<ApplicationUser> GetAllUsersAsync(int CompanyID);
+        string GetAllUsersAsync(int UserType,int? CompanyID);
 
         Task<ApplicationUser> GetUserAsync(string Id);
         Task<UserManagerResponse> AddUserAsync(UserModel model);
