@@ -1,4 +1,4 @@
-namespace POS.ReportsCore.Reports.Client
+namespace POS.ReportsCore.Reports
 {
     /// <summary>
     /// Summary description for Report2.

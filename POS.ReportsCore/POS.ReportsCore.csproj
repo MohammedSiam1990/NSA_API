@@ -27,14 +27,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Reports\Report1.resx">
-      <DependentUpon>Report1.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="Reports\Admin\" />
+    <Folder Include="Reports\Client\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Reports\Admin\" />
-    <Folder Include="Reports\Client\" />
+    <EmbeddedResource Update="Reports\Report1.resx">
+      <DependentUpon>Report1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
 
 

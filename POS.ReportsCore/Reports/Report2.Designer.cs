@@ -1,4 +1,4 @@
-namespace POS.ReportsCore.Reports.Client
+namespace POS.ReportsCore.Reports
 {
     partial class Report2
     {

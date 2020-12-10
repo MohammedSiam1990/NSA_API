@@ -4,6 +4,7 @@ using Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Pos.IService;
 using POS.Core;
 using POS.Core.Resources;
@@ -74,14 +75,14 @@ namespace StanderApi.Controllers
 
 
         [HttpGet("GetUsers")]
-        public IActionResult GetUsers(int CompanyID, string Lang = "en")
+        public IActionResult GetUsers(int UserType, int? CompanyID = null, string Lang = "en")
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = _accountService.GetAllUsersAsync(CompanyID);
+                var data = _accountService.GetAllUsersAsync(UserType, CompanyID);
                 if (data != null)
                 {
                     if (data.Count() == 0)
@@ -90,7 +91,7 @@ namespace StanderApi.Controllers
                     }
                     else
                     {
-                        return Ok(new { success = true, message = "", datalist = data });
+                        return Ok(new { success = true, message = "", datalist = JsonConvert.DeserializeObject(data) });
                     }
 
                 }
