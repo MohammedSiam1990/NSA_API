@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Telerik.Reporting.JsonSerialization.Trial" Version="14.2.20.1021" />
+    <PackageReference Include="Telerik.Reporting.OpenXmlRendering.Trial" Version="14.2.20.1021" />
+    <PackageReference Include="Telerik.Reporting.Services.AspNetCore.Trial" Version="14.2.20.1021" />
+    <PackageReference Include="Telerik.Reporting.Trial" Version="14.2.20.1021" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Reports\Report1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Reports\Report1.Designer.cs">
+      <DependentUpon>Report1.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Reports\Report2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Reports\Report2.Designer.cs">
+      <DependentUpon>Report2.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Reports\Report1.resx">
+      <DependentUpon>Report1.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Reports\Admin\" />
+    <Folder Include="Reports\Client\" />
+  </ItemGroup>
+
+
+</Project>

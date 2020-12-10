@@ -29,14 +29,6 @@
     <Compile Remove="Models\CurrencyExchangeRateModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Reports\SampleReport.trdp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Reports\SampleReport.trdp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="MailKit" Version="2.7.0" />
@@ -64,6 +56,7 @@
     <ProjectReference Include="..\POS.Common\POS.Common.csproj" />
     <ProjectReference Include="..\POS.Core\POS.Core.csproj" />
     <ProjectReference Include="..\POS.Data\POS.Data.csproj" />
+    <ProjectReference Include="..\POS.ReportsCore\POS.ReportsCore.csproj" />
     <ProjectReference Include="..\POS.Reports\POS.Reports.csproj" />
     <ProjectReference Include="..\POS.Service\POS.Service.csproj" />
   </ItemGroup>

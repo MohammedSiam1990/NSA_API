@@ -22,7 +22,6 @@ namespace POS.Data.Dto.Account
         public string CompanyName { get; set; }
         public string CompanyNameAr { get; set; }
         public string ImageName { get; set; }
-        public int CountryId { get; set; }
         public string AppUrl { get; set; }
         public int UserType { get; set; }
         public string InsertedBy { get; set; }
