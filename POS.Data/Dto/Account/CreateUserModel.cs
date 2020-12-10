@@ -12,17 +12,12 @@ namespace POS.Data.Dto.Account
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
-
         [Required]
         public string Username { get; set; }
         public string PhoneNumber { get; set; }
         [Required]
         public string Lang { get; set; }
         public string Name { get; set; }
-        public string CompanyName { get; set; }
-        public string CompanyNameAr { get; set; }
-        public string ImageName { get; set; }
-        public string AppUrl { get; set; }
         public int UserType { get; set; }
         public string InsertedBy { get; set; }
         public string ModifiedBy { get; set; }
