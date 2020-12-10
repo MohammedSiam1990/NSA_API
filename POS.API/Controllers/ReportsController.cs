@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System.Globalization;
+using System.IO;
+using System.Threading;
 using Telerik.Reporting.Cache.File;
 using Telerik.Reporting.Services;
 using Telerik.Reporting.Services.AspNetCore;
@@ -15,6 +17,10 @@ public class ReportsController : ReportsControllerBase
     {
         //This is the folder that contains the report definitions
         //In this case this is the Reports folder
+        string lang = "ar";
+        Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(lang);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+
         var appPath = "https://localhost:5000/";
         var reportsPath = Path.Combine(appPath, "Reports");
 

@@ -24,7 +24,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS.Admin", "POS.Admin\POS.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS.Reports", "POS.Reports\POS.Reports.csproj", "{9BB29ED1-F3B2-43DC-9A67-C33F6B78B2AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS.ReportsCore", "POS.ReportsCore\POS.ReportsCore.csproj", "{ABDE43B8-6EB0-4968-BB40-BD11DC1370C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "POS.ReportsCore", "POS.ReportsCore\POS.ReportsCore.csproj", "{ABDE43B8-6EB0-4968-BB40-BD11DC1370C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

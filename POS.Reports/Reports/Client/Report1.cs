@@ -7,6 +7,7 @@ namespace POS.Reports.Reports.Client
     {
         public Report1()
         {
+            
             //
             // Required for telerik Reporting designer support
             //
