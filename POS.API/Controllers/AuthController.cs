@@ -344,14 +344,14 @@ namespace StanderApi.Controllers
 
 
         [AllowAnonymous]
-        [HttpPost("CreateUser")]
-        public async Task<IActionResult> CreateUser([FromBody]CreateUserModel model)
+        [HttpPost("SaveUser")]
+        public async Task<IActionResult> SaveUser([FromBody]CreateUserModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var result = await _accountService.CreateUserAsync(model);
+                    var result = await _accountService.SaveUser(model);
                     return Ok(result);
                 }
                 else

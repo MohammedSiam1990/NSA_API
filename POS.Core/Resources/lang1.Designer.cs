@@ -529,6 +529,15 @@ namespace POS.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The password has been sent to the e-mail.
+        /// </summary>
+        public static string The_password_has_been_sent_to_the_e_mail {
+            get {
+                return ResourceManager.GetString("The_password_has_been_sent_to_the_e-mail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The username or password is incorrect.
         /// </summary>
         public static string The_username_or_password_is_incorrect {
