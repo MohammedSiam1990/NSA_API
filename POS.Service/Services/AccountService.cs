@@ -778,7 +778,7 @@ namespace Pos.Service
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(model.Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(model.Lang);
 
-                if (model.Id == "0")
+                if (model.Id == "0" || model.Id == null)
                 {
 
                     if (model == null)
@@ -920,14 +920,14 @@ namespace Pos.Service
 
                         return new UserManagerResponse
                         {
-                            message = lang.Updated_successfully_completed ,
+                            message = lang.Updated_successfully_completed,
                             success = true,
                         };
 
                     }
                 }
             }
-          
+
 
             catch (Exception ex)
             {
