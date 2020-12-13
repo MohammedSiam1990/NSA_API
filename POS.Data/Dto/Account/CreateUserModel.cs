@@ -18,13 +18,13 @@ namespace POS.Data.Dto.Account
         [Required]
         public string Lang { get; set; }
         public string Name { get; set; }
-        public int UserType { get; set; }
+        public int? UserType { get; set; }
         public string InsertedBy { get; set; }
         public string ModifiedBy { get; set; }
-        public DateTime LastModifyDate { get; set; }
-        public int CompanyId { get; set; }
-        public bool IsSuperAdmin { get; set; }
-        public bool StatusID { get; set; }
+        public DateTime? LastModifyDate { get; set; }
+        public int? CompanyId { get; set; }
+        public bool? IsSuperAdmin { get; set; }
+        public bool? StatusID { get; set; }
         public string AppUrl { get; set; }
     }
 }
