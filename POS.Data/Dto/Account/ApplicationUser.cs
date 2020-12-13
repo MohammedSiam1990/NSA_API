@@ -19,5 +19,6 @@ namespace Steander.Core.Entities
         public string Password { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime? LastModifyDate { get; set; }
+        public int? StatusID { get; set; }
     }
 }

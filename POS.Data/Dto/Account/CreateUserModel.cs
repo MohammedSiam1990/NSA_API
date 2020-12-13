@@ -24,7 +24,7 @@ namespace POS.Data.Dto.Account
         public DateTime? LastModifyDate { get; set; }
         public int? CompanyId { get; set; }
         public bool? IsSuperAdmin { get; set; }
-        public bool? StatusID { get; set; }
+        public int? StatusID { get; set; }
         public string AppUrl { get; set; }
     }
 }

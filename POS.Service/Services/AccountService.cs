@@ -775,12 +775,11 @@ namespace Pos.Service
         {
             try
             {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(model.Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(model.Lang);
+
                 if (model.Id == "0")
                 {
-
-
-                    Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(model.Lang);
-                    Thread.CurrentThread.CurrentUICulture = new CultureInfo(model.Lang);
 
                     if (model == null)
                     {
@@ -835,7 +834,8 @@ namespace Pos.Service
                         EmailConfirmed = true,
                         IsSuperAdmin = model.IsSuperAdmin,
                         LockoutEnabled = true,
-                        CompanyId = model.CompanyId
+                        CompanyId = model.CompanyId,
+                        StatusID = model.StatusID
                     };
 
                     string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*?_-";
@@ -900,6 +900,7 @@ namespace Pos.Service
                 }
                 else
                 {
+
                     var appUser = await _userManger.FindByIdAsync(model.Id);
                     appUser.Email = model.Email;
                     appUser.UserName = model.Email;
@@ -911,6 +912,7 @@ namespace Pos.Service
                     appUser.InsertedBy = model.InsertedBy;
                     appUser.ModifiedBy = model.ModifiedBy;
                     appUser.IsSuperAdmin = model.IsSuperAdmin;
+                    appUser.StatusID = model.StatusID;
                     var result = await _userManger.UpdateAsync(appUser);
 
                     if (result.Succeeded)
