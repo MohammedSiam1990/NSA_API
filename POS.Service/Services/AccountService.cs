@@ -771,11 +771,11 @@ namespace Pos.Service
 
         }
 
-        public async Task<UserManagerResponse> CreateUserAsync(CreateUserModel model)
+        public async Task<UserManagerResponse> SaveUser(CreateUserModel model)
         {
             try
             {
-                if (model.Id == null)
+                if (model.Id == "0")
                 {
 
 
