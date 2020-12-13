@@ -276,6 +276,9 @@
   <data name="Size_limit" xml:space="preserve">
     <value>الحد الأعلى لحجم الصورة</value>
   </data>
+  <data name="The_password_has_been_sent_to_the_e-mail" xml:space="preserve">
+    <value>تم ارسال كلمة المرور الي البريد الألكتروني</value>
+  </data>
   <data name="The_username_or_password_is_incorrect" xml:space="preserve">
     <value>خطأ في اسم المستخدم أو كلمة السر</value>
   </data>

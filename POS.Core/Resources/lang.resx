@@ -273,6 +273,9 @@
   <data name="Size_limit" xml:space="preserve">
     <value>size limit of image</value>
   </data>
+  <data name="The_password_has_been_sent_to_the_e-mail" xml:space="preserve">
+    <value>The password has been sent to the e-mail</value>
+  </data>
   <data name="The_username_or_password_is_incorrect" xml:space="preserve">
     <value>The username or password is incorrect</value>
   </data>

@@ -891,7 +891,7 @@ namespace Pos.Service
 
                         return new UserManagerResponse
                         {
-                            message = lang.Your_registration_completed_successfully + ", " + lang.Please_check_your_email_to_activtate_your_email,
+                            message = lang.Your_registration_completed_successfully + ", " + lang.The_password_has_been_sent_to_the_e_mail,
                             //EmailConfirmed = User.EmailConfirmed,
                             success = true,
                         };
