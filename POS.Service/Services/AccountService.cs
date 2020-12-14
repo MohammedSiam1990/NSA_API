@@ -264,18 +264,6 @@ namespace Pos.Service
             }
 
 
-            Companies Company = null;
-            Company = CompaniesService.GetCompany(user.CompanyId.Value);
-
-            if (Company.StatusId.Value == 6)
-            {
-                return new LoginResponseDto
-                {
-                    message = lang.Your_company_account_is_pending,
-                    success = false
-                };
-
-            }
 
 
             //if (user.LockoutEnabled == true)
@@ -325,6 +313,18 @@ namespace Pos.Service
 
             if (user.CompanyId != null)
             {
+                Companies Company = null;
+                Company = CompaniesService.GetCompany(user.CompanyId.Value);
+
+                if (Company != null && Company.StatusId.Value == 6)
+                {
+                    return new LoginResponseDto
+                    {
+                        message = lang.Your_company_account_is_pending,
+                        success = false
+                    };
+
+                }
                 return new LoginResponseDto
                 {
                     UserId = user.Id,
