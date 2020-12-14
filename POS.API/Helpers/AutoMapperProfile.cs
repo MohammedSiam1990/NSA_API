@@ -77,6 +77,9 @@ namespace POS.API.Helpers
             CreateMap<PriceTemplateDetails, PriceTemplateDetailsModel>();
             CreateMap<PriceTemplateDetailsModel, PriceTemplateDetails>();
 
+            CreateMap<Supplier, SupplierModel>();
+            CreateMap<SupplierModel, Supplier>();
+
 
         }
     }

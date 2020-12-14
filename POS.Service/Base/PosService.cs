@@ -41,6 +41,7 @@ namespace Pos.Service.Base
          public IPriceTemplateRepository PriceTemplateRepository { get; set; }
          public IPriceTemplateDetailsRepository PriceTemplateDetailsRepository { get; set; }
          public IAuthRepository AuthRepository { get; set; }
+         public ISupplierRepository SupplierRepository { get; set; }
         
         [Inject]
         public PosServices(
@@ -78,7 +79,8 @@ namespace Pos.Service.Base
                                      IUserDefinedRepository _userDefinedRepository,
                                      IPriceTemplateRepository _PriceTemplateRepository,
                                      IPriceTemplateDetailsRepository _PriceTemplateDetailsRepository,
-                                     IAuthRepository _AuthRepository
+                                     IAuthRepository _AuthRepository,
+                                     ISupplierRepository _SupplierRepository
                             )
         {
             CompaniesRepository = _CompaniesRepository;
@@ -116,6 +118,7 @@ namespace Pos.Service.Base
             PriceTemplateRepository = _PriceTemplateRepository;
             PriceTemplateDetailsRepository = _PriceTemplateDetailsRepository;
             AuthRepository = _AuthRepository;
+            SupplierRepository = _SupplierRepository;
         }
 
     }

@@ -56,7 +56,8 @@ namespace POS.IService.Base
                                                     new UserDefinedRepository(databaseFactory),
                                                     new PriceTemplateRepository(databaseFactory),
                                                     new PriceTemplateDetailsRepository(databaseFactory),
-                                                    new AuthRepository(databaseFactory)
+                                                    new AuthRepository(databaseFactory),
+                                                    new SupplierRepository(databaseFactory)
 
 
                                                     );
