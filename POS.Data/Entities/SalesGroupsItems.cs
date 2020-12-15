@@ -12,7 +12,7 @@ namespace POS.Data.Entities
         public int SalesGroupID { get; set; }
         public long ItemID { get; set; }
         public int OrderID { get; set; }
-        public string InsertedBy { get; set; }
+        public long? InsertedBy { get; set; }
         public DateTime? CreateDate { get; set; }
 
     }

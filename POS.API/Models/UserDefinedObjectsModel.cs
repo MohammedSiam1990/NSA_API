@@ -10,8 +10,8 @@ namespace POS.API.Models
         public int? StatusID { get; set; }
         public int? CompanyID { get; set; }
         public int? BrandID { get; set; }
-        public string InsertedBy { get; set; }
-        public string ModifiedBy { get; set; }
+        public long? InsertedBy { get; set; }
+        public long? ModifiedBy { get; set; }
     }
 
 }

@@ -20,7 +20,7 @@ namespace POS.Core.Domain
         
         public string AttachmentName { get; set; }
 
-        public int? CreatedBy { get; set; }
+        public long? CreatedBy { get; set; }
         public string AttachmentFullPath { get; set; }
 
     }

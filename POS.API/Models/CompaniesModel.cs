@@ -18,9 +18,9 @@ namespace POS.Models
         public int? CurrencyId { get; set; }
         public DateTime? CreationDate { get; set; }
         public DateTime? ModificationDate { get; set; }
-        public string ModifiedBy { get; set; }
+        public long? ModifiedBy { get; set; }
         public int? StatusId { get; set; }
-        public string ApprovedBy { get; set; }
+        public long? ApprovedBy { get; set; }
         public DateTime? ApprovedDate { get; set; }
 
     }

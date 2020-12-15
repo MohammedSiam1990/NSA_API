@@ -28,16 +28,16 @@ namespace POS.Entities
         public string UserName { get; set; }
        
         public DateTime? CreateDate { get; set; }
-        public string InsertedBy { get; set; }
+        public long? InsertedBy { get; set; }
         public bool? IsSuperAdmin { get; set; }
         public int? CompanyId { get; set; }
         public int? UserType { get; set; }
         public int? StatusId { get; set; }
         public DateTime? LastModifyDate { get; set; }
-        public string ModifiedBy { get; set; }
+        public long? ModifiedBy { get; set; }
         public string NormalizedUserName { get; set; }
         public string NormalizedEmail { get; set; }
-        
+        public int UserID { get; set; }
 
         public virtual Companies Company { get; set; }
         //public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }

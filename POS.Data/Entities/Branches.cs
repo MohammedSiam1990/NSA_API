@@ -20,16 +20,16 @@ namespace POS.Entities
         public int? CityId { get; set; }
         public int? CurrencyId { get; set; }
         public string ImageName { get; set; }
-        public string InsertedBy { get; set; }
+        public long? InsertedBy { get; set; }
         public DateTime? CreateDate { get; set; }
-        public string ModifiedBy { get; set; }
+        public long? ModifiedBy { get; set; }
         public DateTime? LastModifyDate { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
-        public string DeletedBy { get; set; }
+        public long? DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
         public string ServiceTypeID { get; set; }
-        public string ApprovedBy { get; set; }
+        public long? ApprovedBy { get; set; }
         public DateTime? ApprovedDate { get; set; }
         public int? DistrictID { get; set; }
 

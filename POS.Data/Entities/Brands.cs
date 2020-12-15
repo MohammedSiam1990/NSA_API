@@ -15,17 +15,17 @@ namespace POS.Entities
         public int? CountryId { get; set; }
         public int? CityId { get; set; }
         public int? CurrencyId { get; set; }
-        public string InsertedBy { get; set; }
+        public long? InsertedBy { get; set; }
         public DateTime? CreateDate { get; set; }
         public DateTime? LastModifyDate { get; set; }
-        public string ModifiedBy { get; set; }
+        public long? ModifiedBy { get; set; }
         public string TaxNo { get; set; }
         public string ImageName { get; set; }
         public int? CompanyId { get; set; }
         public bool? IsDefault { get; set; }
-        public string DeletedBy { get; set; }
+        public long? DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
-        public string ApprovedBy { get; set; }
+        public long? ApprovedBy { get; set; }
         public DateTime? ApprovedDate { get; set; }
 
         //public virtual City City { get; set; }

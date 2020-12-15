@@ -16,7 +16,7 @@ namespace POS.Core
 
         public bool? IsDeleted { get; set; }
 
-        public int? CreatedBy { get; set; }
+        public long? CreatedBy { get; set; }
 
         public DateTime? CreatedOn { get; set; }
 
@@ -25,7 +25,7 @@ namespace POS.Core
         public DateTime? UpdatedOn { get; set; }
 
         public int? OperationType { get; set; }
-        public int? CreatedByUserTypeID { get; set; }
+        public long? CreatedByUserTypeID { get; set; }
 
         public abstract string TableName { get; }
     }

@@ -23,9 +23,9 @@ namespace POS.API.Models
         public decimal? TermSaleLimit { get; set; }
         //public decimal? Credit { get; set; }
         //public decimal? CreditOpenBalance { get; set; }
-        public string InsertedBy { get; set; }
+        public long? InsertedBy { get; set; }
         public DateTime? CreateDate { get; set; }
-        public string ModifiedBy { get; set; }
+        public long? ModifiedBy { get; set; }
         public DateTime? LastModifyDate { get; set; }
         public string TaxNum { get; set; }
         public string Latitude { get; set; }

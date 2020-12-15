@@ -18,8 +18,8 @@ namespace POS.Data.Entities
         public bool? CommissionOnClient { get; set; }
         public int? FreePaymentTypeID { get; set; }
         public bool? CalcTaxOnFreePM { get; set; }
-        public string InsertedBy { get; set; }
-        public string ModifiedBy { get; set; }
+        public long? InsertedBy { get; set; }
+        public long? ModifiedBy { get; set; }
         public int? StatusID { get; set; }
     }
 }

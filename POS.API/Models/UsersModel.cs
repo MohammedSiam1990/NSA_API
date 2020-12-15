@@ -29,9 +29,9 @@ namespace POS.Entities
         public int? LngId { get; set; }
         public bool? Gender { get; set; }
         public DateTime? CreationDate { get; set; }
-        public string CreatedBy { get; set; }
+        public long? CreatedBy { get; set; }
         public DateTime? ModificationDate { get; set; }
-        public string ModifiedBy { get; set; }
+        public long? ModifiedBy { get; set; }
         public int? BrandId { get; set; }
         public long? BranchId { get; set; }
         public int? ProductId { get; set; }

@@ -175,7 +175,7 @@ namespace Pos.Service
                 LockoutEnabled = false,
                 CompanyId = company.CompanyId,
                 UserType = 1,
-
+                
                 // VerificationCode = VerificationCode
             };
             var result = await _userManger.CreateAsync(identityUser, model.Password);
@@ -327,7 +327,7 @@ namespace Pos.Service
                 }
                 return new LoginResponseDto
                 {
-                    UserId = user.Id,
+                    UserId = user.UserID,
                     UserName = user.UserName,
                     Email = user.Email,
                     Token = tokenAsString,
@@ -345,7 +345,7 @@ namespace Pos.Service
             {
                 return new LoginResponseDto
                 {
-                    UserId = user.Id,
+                    UserId = user.UserID,
                     UserName = user.UserName,
                     Email = user.Email,
                     Token = tokenAsString,
@@ -635,7 +635,7 @@ namespace Pos.Service
                 UserName = model.Username,
                 Email = model.Email,
                 CreateDate = DateTime.Now,
-                InsertedBy = model.Id,
+                InsertedBy = model.UesrID,
                 Name = model.Name,
                 Password = model.Password,
                 PhoneNumber = model.PhoneNumber,
@@ -741,7 +741,7 @@ namespace Pos.Service
             User.UserName = model.Username;
             User.Email = model.Email;
             User.LastModifyDate = DateTime.Now;
-            User.ModifiedBy = model.Id;
+            User.ModifiedBy = model.UesrID;
             User.Name = model.Name;
             User.Password = model.Password;
             User.PhoneNumber = model.PhoneNumber;

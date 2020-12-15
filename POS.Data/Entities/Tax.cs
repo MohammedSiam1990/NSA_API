@@ -11,9 +11,9 @@ namespace POS.Data.Entities
         public int? StatusID { get; set; }
         public bool? SpecialTax { get; set; }
         public int? CompanyID { get; set; }
-        public string InsertedBy { get; set; }
+        public long? InsertedBy { get; set; }
         public DateTime? CreateDate { get; set; }
-        public string ModifiedBy { get; set; }
+        public long? ModifiedBy { get; set; }
         public DateTime? LastModifyDate { get; set; }
     }
 

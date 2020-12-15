@@ -16,8 +16,8 @@ namespace POS.API.Models
         public DateTime? ToDate { get; set; }
         public bool? InActive { get; set; }
         public int? BrandID { get; set; }
-        public string InsertedBy { get; set; }
-        public string ModifiedBy { get; set; }
+        public long? ApprovedBy { get; set; }
+        public long? ModifiedBy { get; set; }
         public string TypeName { get; set; }
         public List<PriceTemplateDetailsModel> PriceTemplateDetails { get; set; }
     }

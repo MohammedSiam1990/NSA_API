@@ -50,7 +50,7 @@ namespace POS.API.Controllers
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var user = _accountService.GetUserAsync(userId);
                 var UserType = (user.Result.UserType);
-                var CreateUser = _accountService.GetUserAsync(model.CreatedBy);
+                var CreateUser = _accountService.GetUserAsync(userId);
                 string ParamName;
                 bool valid = CommandTextValidator.ValidateStatement(out ParamName, model.WorkstationName);
                 if (valid == false)

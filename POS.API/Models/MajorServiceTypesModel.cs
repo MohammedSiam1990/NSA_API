@@ -13,7 +13,7 @@ namespace POS.Models
         public int? StatusId { get; set; }
         public string ServiceName { get; set; }
         public string ServiceNameAr { get; set; }
-        public string  DeletedBy { get; set; }
+        public long? DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
         // public virtual MajorServicesModel MajorServices { get; set; }
     }

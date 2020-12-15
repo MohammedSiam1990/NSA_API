@@ -14,11 +14,11 @@ namespace POS.API.Models
         public string Serial { get; set; }
         public string Mac { get; set; }
         public int StatusID { get; set; }
-        public string CreatedBy { get; set; }
+        public long? CreatedBy { get; set; }
         public DateTime? CreateDate { get; set; }
-        public string ApprovedBy { get; set; }
+        public long? ApprovedBy { get; set; }
         public DateTime? ApprovedDate { get; set; }
-        public string ModifiedBy { get; set; }
+        public long? ModifiedBy { get; set; }
         public DateTime? LastModifyDate { get; set; }
     }
 }

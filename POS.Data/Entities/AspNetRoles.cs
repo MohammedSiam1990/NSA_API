@@ -12,7 +12,8 @@ namespace POS.Entities
 
         public string Id { get; set; }
         public string Name { get; set; }
-
+        public string NameAr { get; set; }
+        public int CompanyId { get; set; }
         public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
     }
 }

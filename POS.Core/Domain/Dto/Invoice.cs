@@ -14,7 +14,7 @@ namespace POS.Core.Domain
         public string ICTaxNumber { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
-        public int? CreatedBy { get; set; }
+        public long? CreatedBy { get; set; }
         public int? CreatedOn { get; set; }
         public int? UpdatedBy { get; set; }
         public int? UpdatedOn { get; set; }

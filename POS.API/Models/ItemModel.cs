@@ -28,11 +28,11 @@ namespace POS.API.Models
         public string ImageName { get; set; }
         public int? StatusId { get; set; }
         public int? BrandId { get; set; }
-        public string InsertedBy { get; set; }
+        public long? ApprovedBy { get; set; }
         public DateTime? CreateDate { get; set; }
-        public string ModifiedBy { get; set; }
+        public long? ModifiedBy { get; set; }
         public DateTime? LastModifyDate { get; set; }
-        public string DeletedBy { get; set; }
+        public long? DeletedBy { get; set; }
         public int? SubTypeID { get; set; }
         public DateTime? DeletedDate { get; set; }
         public List<ItemUomModel> ItemUoms { get; set; }

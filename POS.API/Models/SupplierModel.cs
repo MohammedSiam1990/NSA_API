@@ -16,7 +16,7 @@ namespace POS.API.Models
         public bool? NoTax { get; set; }
         public string Remarks { get; set; }
         public DateTime? CreateDate { get; set; }
-        public string ModifiedBy { get; set; }
+        public long? ModifiedBy { get; set; }
         public DateTime? LastModifyDate { get; set; }
         public string TaxNum { get; set; }
         public int? StatusID { get; set; }

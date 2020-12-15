@@ -35,11 +35,12 @@ namespace POS.Data.Dto.Account
         public int CountryId { get; set; }
         public string AppUrl { get; set; }
         public int UserType { get; set; }
-        public string InsertedBy { get; set; }
-        public string ModifiedBy { get; set; }
+        public long? InsertedBy { get; set; }
+        public long? ModifiedBy { get; set; }
         public DateTime LastModifyDate { get; set; }
         public int CompanyId { get; set; }
         public bool IsSuperAdmin { get; set; }
         public bool StatusID { get; set; }
+        public long? UesrID { get; set; }
     }
 }
