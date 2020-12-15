@@ -37,7 +37,8 @@ namespace POS.Entities
         public long? ModifiedBy { get; set; }
         public string NormalizedUserName { get; set; }
         public string NormalizedEmail { get; set; }
-        public int UserID { get; set; }
+
+        public long UserID { get; set; }
 
         public virtual Companies Company { get; set; }
         //public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Steander.Core.Entities
@@ -20,6 +21,8 @@ namespace Steander.Core.Entities
         public long? ModifiedBy { get; set; }
         public DateTime? LastModifyDate { get; set; }
         public int? StatusID { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long UserID { get; set; }
     }
 }
