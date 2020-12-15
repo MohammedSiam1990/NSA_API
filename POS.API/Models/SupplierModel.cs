@@ -24,7 +24,8 @@ namespace POS.API.Models
         public int? DueDateDays { get; set; }
         public int? DueDateTypeID { get; set; }
         public int? CompanyID { get; set; }
-
         public string Email { get; set; }
+
+        public AddressModel Address { get; set; }
     }
 }
