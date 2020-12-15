@@ -475,6 +475,15 @@ namespace POS.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please Remove special characters.
+        /// </summary>
+        public static string Please_Remove_special_characters {
+            get {
+                return ResourceManager.GetString("Please_Remove_special_characters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your registration is Fail.
         /// </summary>
         public static string Reigster_Model_is_null {

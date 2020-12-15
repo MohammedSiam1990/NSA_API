@@ -255,6 +255,9 @@
   <data name="Please_reload_the_page" xml:space="preserve">
     <value> الرجاء تحديث الصفحة لمنع حدوث تكرار بالأعدادات</value>
   </data>
+  <data name="Please_Remove_special_characters" xml:space="preserve">
+    <value>يجب ان لا يحتوي الأسم على عناصر خاصة</value>
+  </data>
   <data name="Reigster_Model_is_null" xml:space="preserve">
     <value>يوجد خطأ بالتسجيل</value>
   </data>

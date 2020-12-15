@@ -2,6 +2,7 @@ using AutoMapper;
 using Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using POS.API.Models;
+using POS.Common;
 using POS.Core.Resources;
 using POS.Entities;
 using POS.Service.IService;
@@ -37,6 +38,13 @@ namespace POS.API.Controllers
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
             try
             {
+                string ParamName;
+                bool valid = CommandTextValidator.ValidateStatement(out ParamName, model.CityName, model.CityNameAr,model.CountryName,model.CountryNameAr);
+                if (valid == false)
+                {
+                    return Ok(new { success = false, Name = ParamName, message = lang.Please_Remove_special_characters });
+                }
+
                 var District = Mapper.Map<District>(model);
 
                 var ExistModel = DistrictService.ValidateAlreadyExist(District);

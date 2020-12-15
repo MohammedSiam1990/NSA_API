@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Pos.IService;
 using POS.API.Models;
+using POS.Common;
 using POS.Core.Resources;
 using POS.Data.Entities;
 using POS.Entities;
@@ -166,6 +167,12 @@ namespace POS.API.CORE.Controllers
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+                string ParamName;
+                bool valid = CommandTextValidator.ValidateStatement(out ParamName, model.ItemName, model.ItemNameAr,model.ItemNum,model.MobileName,model.MobileNameAr);
+                if (valid == false)
+                {
+                    return Ok(new { success = false, Name = ParamName, message = lang.Please_Remove_special_characters });
+                }
 
                 var Item = Mapper.Map<Item>(model);
 

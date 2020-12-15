@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Pos.IService;
 using POS.API.Models;
+using POS.Common;
 using POS.Core.Resources;
 using POS.Data.Entities;
 using POS.Service.IService;
@@ -50,6 +51,12 @@ namespace POS.API.Controllers
                 var user = _accountService.GetUserAsync(userId);
                 var UserType = (user.Result.UserType);
                 var CreateUser = _accountService.GetUserAsync(model.CreatedBy);
+                string ParamName;
+                bool valid = CommandTextValidator.ValidateStatement(out ParamName, model.WorkstationName);
+                if (valid == false)
+                {
+                    return Ok(new { success = false, Name = ParamName, message = lang.Please_Remove_special_characters });
+                }
 
                 if (data == 1)
                 {

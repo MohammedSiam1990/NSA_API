@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using POS.API.Models;
+using POS.Common;
 using POS.Core.Resources;
 using POS.Data.Entities;
 using POS.Service.IService;
@@ -66,6 +67,12 @@ namespace POS.API.Controllers
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+                string ParamName;
+                bool valid = CommandTextValidator.ValidateStatement(out ParamName, model.TaxName, model.TaxNameAr);
+                if (valid == false)
+                {
+                    return Ok(new { success = false, Name = ParamName, message = lang.Please_Remove_special_characters });
+                }
 
                 var tax = Mapper.Map<Tax>(model);
                 var data = taxService.SaveProcTax(tax);

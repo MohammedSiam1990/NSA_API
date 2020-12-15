@@ -2,6 +2,7 @@ using AutoMapper;
 using Exceptions;
 using ImagesService;
 using Microsoft.AspNetCore.Mvc;
+using POS.Common;
 using POS.Core.Resources;
 using POS.Entities;
 using POS.Models;
@@ -41,6 +42,12 @@ namespace POS.API.CORE.Controllers
             // map model to entity
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+            string ParamName;
+            bool valid = CommandTextValidator.ValidateStatement(out ParamName, model.ServiceName, model.ServiceNameAr);
+            if (valid == false)
+            {
+                return Ok(new { success = false, Name = ParamName, message = lang.Please_Remove_special_characters });
+            }
 
             var MajorServices = Mapper.Map<MajorServices>(model);
             try

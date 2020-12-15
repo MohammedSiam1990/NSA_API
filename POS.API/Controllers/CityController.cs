@@ -3,6 +3,7 @@ using Exceptions;
 using ImagesService;
 using Microsoft.AspNetCore.Mvc;
 using POS.API.Models;
+using POS.Common;
 using POS.Core.Resources;
 using POS.Entities;
 using POS.Service.IService;
@@ -46,6 +47,13 @@ namespace POS.API.CORE.Controllers
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
             try
             {
+                string ParamName;
+                bool valid = CommandTextValidator.ValidateStatement(out ParamName, model.CityName, model.CityNameAr);
+                if (valid == false)
+                {
+                    return Ok(new { success = false, Name = ParamName, message = lang.Please_Remove_special_characters });
+                }
+
                 var City = Mapper.Map<City>(model);
 
 

@@ -9,6 +9,7 @@ using POS.Core.Resources;
 using POS.Data.Entities;
 using POS.Entities;
 using POS.Models;
+using POS.Common;
 using POS.Service.IService;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,6 @@ namespace POS.API.CORE.Controllers
         private ImagesPath imagesPath;
         private IBranchService BranchService;
         private IBranchesConnectingService BranchesConnecting;
-
         private IMapper Mapper;
 
         public BranchController(
@@ -84,8 +84,13 @@ namespace POS.API.CORE.Controllers
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
-
                 var Branch = Mapper.Map<Branches>(model);
+                string ParamName;
+                bool valid = CommandTextValidator.ValidateStatement(out ParamName, model.BranchName, model.BranchNameAr);
+                if (valid==false)
+                {
+                    return Ok(new { success = false, Name = ParamName, message = lang.Please_Remove_special_characters });
+                }
                 var data = BranchService.SaveProcBranch(Branch);
                 if (data != 1)
                 {
@@ -111,6 +116,7 @@ namespace POS.API.CORE.Controllers
                 {
                     return Ok(new { success = true, message = lang.Saved_successfully_completed });
                 }
+
 
             }
             catch (Exception ex)
