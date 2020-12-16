@@ -35,6 +35,8 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using POS.API.Models.Telerik;
+using POS.Data.Dto.Account;
+using POS.Entities;
 
 namespace POS.API.CORE
 {
@@ -68,10 +70,9 @@ namespace POS.API.CORE
                 options.AllowSynchronousIO = true;
             });
 
-           
+
             //services.AddEntityFrameworkSqlServer();
             //services.AddDbContext<PosDbContext>();
-            // services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>();
 
 
             services.AddDbContext<PosDbContext>(options =>
@@ -95,7 +96,7 @@ namespace POS.API.CORE
                 options.Lockout = lockoutOptions;
 
 
-            }).AddRoles<IdentityRole>()
+            }).AddRoles<AspNetRoles>()
                 //.AddClaimsPrincipalFactory<UserClaimsPrincipalFactory<ApplicationUser, IdentityRole>>()
                 .AddEntityFrameworkStores<PosDbContext>()
                 .AddDefaultTokenProviders()

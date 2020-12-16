@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
-namespace POS.Entities
+namespace POS.Data.Dto.Account
 {
-    
-    public partial class AspNetRoles : IdentityRole
+    public class UserRole : IdentityRole<string>
     {
         public string NameAr { get; set; }
         public int CompanyId { get; set; }

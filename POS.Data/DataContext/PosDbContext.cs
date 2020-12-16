@@ -53,7 +53,9 @@ namespace POS.Data.DataContext
 
         #region DbSet Entity
         //public virtual DbSet<BranchServices> BranchServices { get; set; }
+
         public virtual DbSet<Branches> Branches { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<Brands> Brands { get; set; }
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<Companies> Companies { get; set; }
