@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Steander.Core.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace POS.Entities

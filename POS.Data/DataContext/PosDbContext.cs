@@ -16,7 +16,7 @@ using System.Net.Http;
 namespace POS.Data.DataContext
 {
 
-    public partial class PosDbContext : IdentityDbContext<ApplicationUser>
+    public partial class PosDbContext : IdentityDbContext<ApplicationUser,AspNetRoles,string>
     {
 
         public PosDbContext(DbContextOptions<PosDbContext> options) : base(options) { }
@@ -55,7 +55,6 @@ namespace POS.Data.DataContext
         //public virtual DbSet<BranchServices> BranchServices { get; set; }
 
         public virtual DbSet<Branches> Branches { get; set; }
-        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<Brands> Brands { get; set; }
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<Companies> Companies { get; set; }

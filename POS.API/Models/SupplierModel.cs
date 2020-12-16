@@ -17,6 +17,8 @@ namespace POS.API.Models
         public string Remarks { get; set; }
         public DateTime? CreateDate { get; set; }
         public long? ModifiedBy { get; set; }
+        public long? InsertedBy { get; set; }
+
         public DateTime? LastModifyDate { get; set; }
         public string TaxNum { get; set; }
         public int? StatusID { get; set; }
@@ -25,7 +27,7 @@ namespace POS.API.Models
         public int? DueDateTypeID { get; set; }
         public int? CompanyID { get; set; }
         public string Email { get; set; }
-
+        public int ContactCountryCodeID { get; set; }
         public AddressModel Address { get; set; }
     }
 }
