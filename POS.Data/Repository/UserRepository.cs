@@ -22,6 +22,14 @@ namespace POS.Data.Repository
             return QAspNetUser;
         }
 
-
+        public void AssignRollToUser(ApplicationUser User) 
+        {
+            using (var context = new DataContext.PosDbContext())
+            {
+                context.Users.Attach(User);
+                context.Entry(User).Property(x => x.RoleID).IsModified = true;
+                context.SaveChanges();
+            }
+         }
     }
 }
