@@ -26,5 +26,7 @@ namespace POS.Data.Dto.Account
         public bool? IsSuperAdmin { get; set; }
         public int? StatusID { get; set; }
         public string AppUrl { get; set; }
+        public int? RoleID { get; set; }
+
     }
 }

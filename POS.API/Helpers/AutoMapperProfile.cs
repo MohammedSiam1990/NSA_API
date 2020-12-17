@@ -80,6 +80,12 @@ namespace POS.API.Helpers
             CreateMap<Supplier, SupplierModel>();
             CreateMap<SupplierModel, Supplier>();
 
+            CreateMap<Role, RoleModel>();
+            CreateMap<RoleModel, Role>();
+
+            CreateMap<UserRole, UserRoleModel>();
+            CreateMap<UserRoleModel, UserRole>();
+
 
         }
     }

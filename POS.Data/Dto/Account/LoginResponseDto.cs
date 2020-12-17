@@ -9,7 +9,7 @@ namespace POS.Data.Dto
         public string Token { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
-        public long UserId { get; set; }
+        public long? UserId { get; set; }
         public string message { get; set; }
         public bool status { get; set; }
         public string Name { get; set; }

@@ -228,7 +228,7 @@ namespace POS.API.CORE
             services.AddScoped<ICompaniesService, CompaniesService>();
             services.AddScoped<IBrandService, BrandService>();
             services.AddScoped<IBranchService, BranchService>();
-           services.AddScoped<IMajorServicesService, MajorServicesService>();
+            services.AddScoped<IMajorServicesService, MajorServicesService>();
             services.AddScoped<IItemGroupsService, ItemGroupsService>();
             services.AddScoped<IlookUpService, LookUpService>();
             services.AddScoped<IMobileDataService, MobileDataService>();
@@ -236,7 +236,7 @@ namespace POS.API.CORE
             services.AddScoped<ITaxService, TaxService>();
             services.AddScoped<IItemService, ItemService>();
             services.AddScoped<IItemUomService, ItemUomService>();
-            services.AddScoped<IRemarksTemplateService,RemarksTemplateService>();
+            services.AddScoped<IRemarksTemplateService, RemarksTemplateService>();
             services.AddScoped<IAllDataJsonByBrandIDService, AllDataJsonByBrandIDService>();
             services.AddScoped<IBranchWorkStationsService, BranchWorkStationsService>();
             services.AddScoped<IMenuService, MenuService>();
@@ -251,11 +251,13 @@ namespace POS.API.CORE
             services.AddScoped<IMajorServiceTypesService, MajorServiceTypesService>();
             services.AddScoped<ICountryService, CountryService>();
             services.AddScoped<ICityService, CityService>();
-           services.AddScoped<IDistrictService, DistrictService>();
-           services.AddScoped<IUserDefinedService, UserDefinedService>();
-           services.AddScoped<IPriceTemplateService, PriceTemplateService>();
-           services.AddScoped<IPriceTemplateDetailsService, PriceTemplateDetailsService>();
-           services.AddScoped<ISupplierService, SupplierService>();
+            services.AddScoped<IDistrictService, DistrictService>();
+            services.AddScoped<IUserDefinedService, UserDefinedService>();
+            services.AddScoped<IPriceTemplateService, PriceTemplateService>();
+            services.AddScoped<IPriceTemplateDetailsService, PriceTemplateDetailsService>();
+            services.AddScoped<ISupplierService, SupplierService>();
+            services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IUserRoleService, UserRoleService>();
 
 
             services.Configure<IISServerOptions>(options =>
@@ -265,14 +267,14 @@ namespace POS.API.CORE
             services.AddRazorPages()
                 .AddNewtonsoftJson();
             services.TryAddSingleton<IReportServiceConfiguration>(sp =>
-    new ReportServiceConfiguration
-    {
-        ReportingEngineConfiguration = ConfigurationHelper.ResolveConfiguration(sp.GetService<IWebHostEnvironment>()),
-        HostAppId = "ReportingCore3App",
-        Storage = new FileStorage(),
-        ReportSourceResolver = new UriReportSourceResolver(
-            System.IO.Path.Combine(sp.GetService<IWebHostEnvironment>().ContentRootPath, "Reports"))
-    });
+            new ReportServiceConfiguration
+            {
+                ReportingEngineConfiguration = ConfigurationHelper.ResolveConfiguration(sp.GetService<IWebHostEnvironment>()),
+                HostAppId = "ReportingCore3App",
+                Storage = new FileStorage(),
+                ReportSourceResolver = new UriReportSourceResolver(
+                    System.IO.Path.Combine(sp.GetService<IWebHostEnvironment>().ContentRootPath, "Reports"))
+            });
         }
 
 

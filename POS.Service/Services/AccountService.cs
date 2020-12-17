@@ -161,7 +161,7 @@ namespace Pos.Service
 
             };
             PosService.CompaniesRepository.AddCompany(company);
-
+            
             var identityUser = new ApplicationUser()
             {
                 UserName = model.Username,
@@ -175,6 +175,7 @@ namespace Pos.Service
                 LockoutEnabled = false,
                 CompanyId = company.CompanyId,
                 UserType = 1,
+                UserID=_userManger.Users.Count()+1
                 
                 // VerificationCode = VerificationCode
             };
@@ -750,7 +751,7 @@ namespace Pos.Service
             User.LockoutEnabled = true;
             User.CompanyId = model.CompanyId;
             User.UserType = model.UserType;
-
+            User.RoleID = model.RoleID;
             var result = await _userManger.CreateAsync(User, model.Password);
             if (result.Succeeded)
             {
@@ -1048,6 +1049,7 @@ namespace Pos.Service
                     appUser.ModifiedBy = model.ModifiedBy;
                     appUser.IsSuperAdmin = model.IsSuperAdmin;
                     appUser.StatusID = model.StatusID;
+                    appUser.RoleID = model.RoleID;
                     var result = await _userManger.UpdateAsync(appUser);
 
                     if (result.Succeeded)

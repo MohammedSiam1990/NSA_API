@@ -16,6 +16,12 @@ using POS.Data.Dto.Account;
 using POS.Data;
 using Steander.Core.Entities;
 using POS.Entities;
+using ApplicationUser = Steander.Core.Entities.ApplicationUser;
+using POS.API.Models;
+using AutoMapper;
+using POS.Service.IService;
+using POS.Data.Entities;
+using Newtonsoft.Json;
 
 namespace POS.API.Controllers
 {
@@ -24,70 +30,89 @@ namespace POS.API.Controllers
     public class RolesController : ControllerBase
     {
         private readonly RoleManager<AspNetRoles> roleManager;
-        private UserManager<POS.Data.ApplicationUser> userManger;
+        private UserManager<ApplicationUser> userManger;
         private IAccountService _accountService;
+        private IRoleService RoleService;
+        private IUserRoleService UserRoleService;
+        private IMapper Mapper;
 
-        public RolesController(RoleManager<AspNetRoles> _roleManager, UserManager<POS.Data.ApplicationUser> _userManger, IAccountService accountService)
+        public RolesController(RoleManager<AspNetRoles> _roleManager, UserManager<ApplicationUser> _userManger,
+            IAccountService accountService, IRoleService _RoleService, IMapper _Mapper, IUserRoleService _UserRoleService)
         {
             roleManager = _roleManager;
             userManger = _userManger;
             _accountService = accountService;
+            RoleService = _RoleService;
+            Mapper = _Mapper;
+            UserRoleService = _UserRoleService;
         }
 
         [HttpPost("CreateRole")]
-        public async Task<IActionResult> CreateRole(AspNetRoles role, string Lang = "en")
+        public IActionResult CreateRole(RoleModel model, string Lang = "en")
         {
 
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
             try
             {
-                var roleExist = await roleManager.RoleExistsAsync(role.Name);
-                if (!roleExist)
+                var role = Mapper.Map<Role>(model);
+                int result = RoleService.RoleAlreadyExists(role);
+                if (result == 1)
                 {
-                    var result = await roleManager.CreateAsync(role);
+                    RoleService.SaveRole(role);
+                    return Ok(new { success = true, message = lang.Saved_successfully_completed });
                 }
-                return Ok();
-
+                else if (result == -2)
+                {
+                    return Ok(new { success = true, message = lang.Name_already_exists });
+                }
+                else if (result == -3)
+                {
+                    return Ok(new { success = true, message = lang.Arabic_name_already_exists });
+                }
             }
             catch (Exception e)
             {
-                return Ok(new { success = false, message = e });
-
+                Exceptions.ExceptionError.SaveException(e);
             }
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
 
         }
 
-
-        [HttpPost("AssginRole")]
-        
-        public async Task<IActionResult> AssginRole(string UserID, string RoleID, string Lang = "en")
+        [HttpGet("GetRole")]
+        public IActionResult GetRole(int CompanyId,string Lang = "en")
         {
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
             try
             {
-                var user = await userManger.FindByIdAsync(UserID);
-                var role = await roleManager.FindByIdAsync(RoleID);
-                //var userRole = new ApplicationUser()
-                //{
-                //    Id = user.Id
-                //};
-                var result = await userManger.AddToRoleAsync(user, role.Name);
-                if (result.Succeeded)
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
+                var data = RoleService.GetRole(CompanyId);
+                if (data != null)
                 {
-                    return Ok(new { success = true, message = "AssginRole success" });
+                    if (data.Count() == 0)
+                    {
+                        return Ok(new { success = true, message = lang.No_data_available, datalist = JsonConvert.DeserializeObject(data) });
+                    }
+                    else
+                    {
+                        return Ok(new { success = true, message = "", datalist = JsonConvert.DeserializeObject(data) });
+                    }
+
                 }
-                return Ok(new { success = false });
-
-
             }
-            catch (Exception e)
+
+            catch (Exception ex)
             {
-                return Ok(new { success = false, message = e });
-
+                ExceptionError.SaveException(ex);
             }
+
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
         }
+
+
 
 
 

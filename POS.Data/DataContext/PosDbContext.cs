@@ -84,6 +84,8 @@ namespace POS.Data.DataContext
         public virtual DbSet<PriceTemplate> PriceTemplate { get; set; }
         public virtual DbSet<PriceTemplateDetails> PriceTemplateDetails { get; set; }
         public virtual DbSet<Supplier> Supplier { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<UserRole> UserRole { get; set; }
 
 
     #endregion

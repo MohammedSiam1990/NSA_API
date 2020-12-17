@@ -250,11 +250,13 @@
     <Compile Include="IService\IPriceTemplateService.cs" />
     <Compile Include="IService\IRemarksTemplateService.cs" />
     <Compile Include="IService\IMenuService.cs" />
+    <Compile Include="IService\IRoleService.cs" />
     <Compile Include="IService\ISupplierService.cs" />
     <Compile Include="IService\ITaxService.cs" />
     <Compile Include="IService\IItemService.cs" />
     <Compile Include="IService\ISalesGroupsItemsService.cs" />
     <Compile Include="IService\IUserDefinedService.cs" />
+    <Compile Include="IService\IUserRoleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Base\BaseService.cs" />
     <Compile Include="Base\PosService.cs" />
@@ -287,10 +289,12 @@
     <Compile Include="Services\PriceTemplateService.cs" />
     <Compile Include="Services\RemarksTemplateService.cs" />
     <Compile Include="Services\MenuService.cs" />
+    <Compile Include="Services\RoleService.cs" />
     <Compile Include="Services\SalesGroupsItemsService.cs" />
     <Compile Include="Services\SupplierService.cs" />
     <Compile Include="Services\TaxService.cs" />
     <Compile Include="Services\UserDefinedService.cs" />
+    <Compile Include="Services\UserRoleService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\POS.Common\POS.Common.csproj">

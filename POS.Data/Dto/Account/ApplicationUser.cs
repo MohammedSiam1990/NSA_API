@@ -21,8 +21,7 @@ namespace Steander.Core.Entities
         public long? ModifiedBy { get; set; }
         public DateTime? LastModifyDate { get; set; }
         public int? StatusID { get; set; }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long UserID { get; set; }
+        public long? UserID { get; set; }
+        public int? RoleID { get; set; }
     }
 }

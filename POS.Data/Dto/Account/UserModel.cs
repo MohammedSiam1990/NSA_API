@@ -42,5 +42,6 @@ namespace POS.Data.Dto.Account
         public bool IsSuperAdmin { get; set; }
         public bool StatusID { get; set; }
         public long? UesrID { get; set; }
+        public int? RoleID { get; set; }
     }
 }
