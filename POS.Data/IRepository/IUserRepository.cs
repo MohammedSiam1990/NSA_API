@@ -9,5 +9,6 @@ namespace POS.Data.IRepository
     public interface IUserRepository
     {
         ApplicationUser GetUser(int CompanyId);
+        void AssignRollToUser(ApplicationUser User);
     }
 }
