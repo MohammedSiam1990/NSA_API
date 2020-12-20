@@ -64,11 +64,11 @@ namespace POS.API.Controllers
                 }
                 else if (result == -2)
                 {
-                    return Ok(new { success = true, message = lang.Name_already_exists });
+                    return Ok(new { success = false, message = lang.Name_already_exists , repeated = "Name" });
                 }
                 else if (result == -3)
                 {
-                    return Ok(new { success = true, message = lang.Arabic_name_already_exists });
+                    return Ok(new { success = false, message = lang.Arabic_name_already_exists , repeated = "NameAr" });
                 }
             }
             catch (Exception e)

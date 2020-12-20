@@ -7,6 +7,7 @@ namespace POS.ReportsCore.Reports
     {
         public Report1()
         {
+            
             //
             // Required for telerik Reporting designer support
             //
