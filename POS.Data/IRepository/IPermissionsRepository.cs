@@ -7,7 +7,7 @@ namespace POS.Data.IRepository
 {
     public interface IPermissionsRepository
     {
-        void SavePermissions(Permissions model);
+        void SavePermissions(List<Permissions> model,int RoleID);
         string GetPermissionsLookUps(int MenuType);
     }
 }

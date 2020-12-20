@@ -16,9 +16,9 @@ namespace POS.Service.Services
             return PosService.PermissionsRepository.GetPermissionsLookUps(MenuType);
         }
 
-        public void SavePermissions(Permissions model)
+        public void SavePermissions(List<Permissions> model, int RoleID)
         {
-            PosService.PermissionsRepository.SavePermissions(model);
+            PosService.PermissionsRepository.SavePermissions(model,RoleID);
         }
     }
 }

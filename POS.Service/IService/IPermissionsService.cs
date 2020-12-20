@@ -9,7 +9,7 @@ namespace POS.Service.IService
 {
     public interface IPermissionsService
     {
-        void SavePermissions(Permissions model);
+        void SavePermissions(List<Permissions> model, int RoleID);
         string GetPermissionsLookUps(int MenuType);
 
     }
