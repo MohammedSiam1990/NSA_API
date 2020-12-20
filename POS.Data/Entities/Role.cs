@@ -12,10 +12,10 @@ namespace POS.Data.Entities
         public string Name { get; set; }
         public string NameAr { get; set; }
         public int? CompanyId { get; set; }
-        public DateTime CreateDate { get; set; }
-        public DateTime LastModifyDate { get; set; }
-        public int InsertedBy { get; set; }
-        public int ModifiedBy { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public DateTime? LastModifyDate { get; set; }
+        public int? InsertedBy { get; set; }
+        public int? ModifiedBy { get; set; }
 
     }
 }
