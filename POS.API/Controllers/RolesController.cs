@@ -47,8 +47,8 @@ namespace POS.API.Controllers
             UserRoleService = _UserRoleService;
         }
 
-        [HttpPost("CreateRole")]
-        public IActionResult CreateRole(RoleModel model, string Lang = "en")
+        [HttpPost("SaveRole")]
+        public IActionResult SaveRole(RoleModel model, string Lang = "en")
         {
 
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
