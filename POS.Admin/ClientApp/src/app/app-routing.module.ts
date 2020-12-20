@@ -36,7 +36,7 @@ const routes: Routes = [
   {
     path: 'major-service-type', canActivateChild: [AuthGuard],
     loadChildren: () => import('./modules/major-service/major-service.module').then(m => m.MajorServiceModule)
-  }, 
+  },
   {
     path: 'district', canActivateChild: [AuthGuard],
     loadChildren: () => import('./modules/district/district.module').then(m => m.DistrictModule)
@@ -44,6 +44,18 @@ const routes: Routes = [
   {
     path: 'city', canActivateChild: [AuthGuard],
     loadChildren: () => import('./modules/city/city.module').then(m => m.CityModule)
+  },
+  {
+    path: 'report', canActivateChild: [AuthGuard],
+    loadChildren: () => import('./modules/test-report/test-report.module').then(m => m.TestReportModule)
+  },
+  {
+    path: 'user', canActivateChild: [AuthGuard],
+    loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule)
+  },
+  {
+    path: 'role', canActivateChild: [AuthGuard],
+    loadChildren: () => import('./modules/role/role.module').then(m => m.RoleModule)
   },
   { path: '', canActivateChild: [AuthGuard], redirectTo: 'home', pathMatch: 'full' },
   { path: '**', canActivateChild: [AuthGuard], redirectTo: 'home', pathMatch: 'full' },

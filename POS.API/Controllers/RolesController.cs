@@ -112,9 +112,26 @@ namespace POS.API.Controllers
 
         }
 
+    [HttpGet("GetRoleById")]
+    public IActionResult GetRoleById(int RoleId, string Lang = "en")
+    {
+      try
+      {
+        Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+        var role = RoleService.GetRoleById(RoleId);
 
-
-
+        return Ok(new { datalist = role, message = "", success = true });
+      }
+      catch (Exception ex)
+      {
+        ExceptionError.SaveException(ex);
+      }
+      return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
 
     }
+
+
+
+  }
 }

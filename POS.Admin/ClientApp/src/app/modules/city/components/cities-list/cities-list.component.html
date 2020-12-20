@@ -22,12 +22,21 @@
                     <div class="ml-2 float-left">
                         <div class="input-group">
 
-                            <select class="custom-select" id="inputGroupSelect01" style="width: 244px;">
-                                <option selected>Choose...</option>
-                                <option value="1"></option>
-                                <option value="2"></option>
-                                <option value="3"></option>
-                            </select>
+                 
+                            <div class="input-group mb-4">
+                                <label class="label-input-pos  required-label" for="">
+                                    {{'country'| translate}}</label>
+                                <ng-select class="form-control input-sm" [items]="countriesArr "
+                                    bindLabel="countryName" bindValue="countryId" [(ngModel)]="countryId" [clearable]="false"
+                                    (change)="changeCountry($event)"
+                                    *ngIf="translate.currentLang=='en'" style="width: 200px;">
+                                </ng-select>
+                                <ng-select class="form-control input-sm" [items]="countriesArr "
+                                    bindLabel="countryNameAr" bindValue="countryId" [(ngModel)]="countryId" [clearable]="false"
+                                    (change)="changeCountry($event)"
+                                    *ngIf="translate.currentLang=='ar'"  style="width: 200px;">
+                                </ng-select>
+                            </div>
                         </div>
                     </div>
                     <div class="float-left">
@@ -40,15 +49,15 @@
                         class="btn  btn-primary text-white float-right">
                         {{'Export_to_Excel'|translate}}
                     </button>
-                    <button type="button" icon="plus" [routerLink]="['/city/list']"
+                    <button type="button" icon="plus" [routerLink]="['/city/add']"
                         class="btn  btn-success  text-white float-right mr-2">
                         <i class="fa fa-plus"></i>
                     </button>
                 </ng-template>
-                <kendo-grid-column field="cityName" title="{{'cityName'|translate}}" [width]="120"
+                <kendo-grid-column field="cityName" title="{{'CityName'|translate}}" [width]="120"
                     *ngIf="translate.currentLang=='en'">
                 </kendo-grid-column>
-                <kendo-grid-column field="cityNameAr" title="{{'cityNameAr'|translate}}" [width]="120"
+                <kendo-grid-column field="cityNameAr" title="{{'CityNameAr'|translate}}" [width]="120"
                     *ngIf="translate.currentLang=='ar'">
                 </kendo-grid-column>
 
@@ -63,7 +72,7 @@
                         <!-- <button *ngIf="!dataItem.inActive" class="btn btn-outline-primary mr-2" type="button"><span
                                 class="fa fa-check"> </span></button> -->
                         <button class="btn btn-outline-primary" type="button"
-                            [routerLink]="['/district/edit', dataItem.districtId]"><span class="k-icon k-i-edit">
+                            [routerLink]="['/city/edit', dataItem.cityId]"><span class="k-icon k-i-edit">
                             </span></button>
                     </ng-template>
                 </kendo-grid-column>

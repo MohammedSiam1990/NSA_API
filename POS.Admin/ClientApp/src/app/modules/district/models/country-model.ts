@@ -16,6 +16,10 @@ export class CityModel {
     countryId: number;
     countryName: string;
     countryNameAr: string;
+    insertedBy: string;
+    createDate: string;
+    lastModifyDate: string;
+    modifiedBy: string;
 }
 
 export class DistrictModel {
@@ -27,4 +31,9 @@ export class DistrictModel {
     cityName: string
     cityNameAr: string;
     countryId:number;
+    insertedBy: string;
+    createDate: string;
+    lastModifyDate: string;
+    modifiedBy: string;
 }
+

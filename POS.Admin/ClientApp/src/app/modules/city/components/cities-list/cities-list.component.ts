@@ -34,6 +34,7 @@ export class CitiesListComponent implements OnInit {
 
   public ngOnInit(): void {
     this.changeDir();
+    this.getCountries() ;
     this.getCitiesByCountryId();
   }
 
@@ -45,9 +46,9 @@ export class CitiesListComponent implements OnInit {
     this.messages.notify(this.rtl);
   }
 
-  countryId: number;
+  countryId: number=1;
   getCitiesByCountryId(): void {
-    this.cityService.getCitiesByCountryId(1, this.translate.currentLang).subscribe(res => {
+    this.cityService.getCitiesByCountryId(this.countryId, this.translate.currentLang).subscribe(res => {
       this.gridData = res.datalist;
       this.gridViewArr = this.gridData;
     })
@@ -58,6 +59,10 @@ export class CitiesListComponent implements OnInit {
     this.districtService.getCountries(this.translate.currentLang).subscribe(res => {
       this.countriesArr = res.datalist;
     })
+  }
+
+  changeCountry(item: CountryModel) {
+    this.getCitiesByCountryId();
   }
 
   public onFilter(inputValue: string): void {

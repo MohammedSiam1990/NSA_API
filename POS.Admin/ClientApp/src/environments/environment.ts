@@ -3,12 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 export const environment = {
   production: false,
-  API_URL: 'http://posapi.opos.me/api/',
+  API_URL: 'http://localhost:5000/api/',
   baseUrl: "http://localhost:4200",
   virtualDirectory: "/",
   virtualDirectoryLanguage: "http://localhost:4200",
   TopicpageSize: 10,
-  ImgUrl: 'http://posapi.opos.me/'
+  ImgUrl: 'http://localhost:5000/'
 };
 /*http://localhost:5000/index.html
  * For easier debugging in development mode, you can import the following file

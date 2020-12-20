@@ -6,6 +6,8 @@ import { process } from '@progress/kendo-data-query';
 import { ExcelExportData } from '@progress/kendo-angular-excel-export';
 import { DistrictService } from '../../services/district.service';
 import { ActivatedRoute } from '@angular/router';
+import { CityModel, CountryModel } from '../../models/country-model';
+import { CityService } from 'src/app/modules/city/services/city.service';
 
 
 @Component({
@@ -26,14 +28,18 @@ export class DistrictListComponent implements OnInit {
 
   constructor(private districtService: DistrictService, private loadingService: LoadingService,
     private messages: MessageService,
-
+    private cityService: CityService,
     public translate: TranslateService) {
     this.allData = this.allData.bind(this);
   }
 
   public ngOnInit(): void {
     this.changeDir();
-    this.getDistricts();
+    this.getCountries();
+    this.getCitiesByCountryId();
+    this.getDistrictsBycityId();
+    // this.getCities();
+    // this.getDistricts();
   }
 
   public changeDir() {
@@ -50,6 +56,45 @@ export class DistrictListComponent implements OnInit {
       this.gridData = res.datalist;
       this.gridViewArr = this.gridData;
 
+    })
+  }
+  citiesArr: CityModel[] = [];
+  cityId: number = 1;
+  getCities() {
+    this.cityService.getCities(this.translate.currentLang).subscribe(res => {
+      this.citiesArr = res.datalist;
+    })
+  }
+
+  changeCity($item: CityModel) {
+    this.getDistrictsBycityId();
+  }
+
+  getDistrictsBycityId(): void {
+    this.districtService.getDistrictsByCityId(this.cityId, this.translate.currentLang).subscribe(res => {
+      this.gridData = res.datalist;
+      this.gridViewArr = this.gridData;
+    })
+  }
+
+  countryId: number=1;
+  getCitiesByCountryId() {
+    this.districtService.getCitiesByCountryId(this.countryId, this.translate.currentLang).subscribe(res => {
+      this.citiesArr = res.datalist;
+    })
+  }
+
+  changeCountry(item: CountryModel) {
+    this.countryId = item.countryId;
+    this.cityId=null;
+    this.gridViewArr=null;
+    this.getCitiesByCountryId();
+  }
+
+  countriesArr: CountryModel[] = [];
+  getCountries() {
+    this.districtService.getCountries(this.translate.currentLang).subscribe(res => {
+      this.countriesArr = res.datalist;
     })
   }
 

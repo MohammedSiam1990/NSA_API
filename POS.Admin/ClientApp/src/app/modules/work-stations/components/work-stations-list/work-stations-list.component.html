@@ -22,32 +22,42 @@
 
                 <ng-template kendoGridToolbarTemplate>
                     <div class="float-left">
-                        <input placeholder="{{'search_all_columns'|translate}}" kendoTextBox (input)="search($event.target.value)" class="kendo-search textbox1 " />
+                        <input placeholder="{{'search_all_columns'|translate}}" kendoTextBox
+                            (input)="search($event.target.value)" class="kendo-search textbox1 " />
                         <input title="Search" value="" type="submit" class="button1">
                     </div>
-                    <button kendoGridExcelCommand type="button" icon="file-excel" class="btn  btn-primarynpm text-white float-right">
-            {{'Export_to_Excel'|translate}}
-          </button>
-                    <button *ngIf="showActive==false" class="btn btn-outline-primary mr-2 float-right" type="button" (click)="getWorkStationsActive()"><span class="fa fa-check-square-o"> </span></button>
-                    <button *ngIf="showActive==true" class="btn btn-outline-warning float-right" type="button" (click)="getWorkStationsPending()"><span class="fa fa-spin fa-spinner">
-            </span></button>
+                    <button kendoGridExcelCommand type="button" icon="file-excel"
+                        class="btn  btn-primary text-white float-right">
+                        {{'Export_to_Excel'|translate}}
+                    </button>
+                    <button *ngIf="showActive==false" class="btn btn-outline-primary mr-2 float-right" type="button"
+                        (click)="getWorkStationsActive()"><span class="fa fa-check-square-o"> </span></button>
+                    <button *ngIf="showActive==true" class="btn btn-outline-warning float-right" type="button"
+                        (click)="getWorkStationsPending()"><span class="fa fa-spin fa-spinner">
+                        </span></button>
                     <!-- <button kendoGridPDFCommand icon="file-pdf" class="btn  btn-info float-right">
                     {{'Export_to_PDF'|translate}}
                 </button> -->
                 </ng-template>
-                <kendo-grid-column field="CompanyName" title="{{'CompanyName'|translate}}" [width]="120" *ngIf="translate.currentLang=='en'">
+                <kendo-grid-column field="CompanyName" title="{{'CompanyName'|translate}}" [width]="120"
+                    *ngIf="translate.currentLang=='en'">
                 </kendo-grid-column>
-                <kendo-grid-column field="CompanyNameAr" title="{{'CompanyNameAr'|translate}}" [width]="120" *ngIf="translate.currentLang=='ar'">
-                </kendo-grid-column>
-
-                <kendo-grid-column field="BrandName" title="{{'BrandName'|translate}}" [width]="120" *ngIf="translate.currentLang=='en'">
-                </kendo-grid-column>
-                <kendo-grid-column field="BrandNameAr" title="{{'BrandNameAr'|translate}}" [width]="120" *ngIf="translate.currentLang=='ar'">
+                <kendo-grid-column field="CompanyNameAr" title="{{'CompanyNameAr'|translate}}" [width]="120"
+                    *ngIf="translate.currentLang=='ar'">
                 </kendo-grid-column>
 
-                <kendo-grid-column field="BranchName" title="{{'BranchName'|translate}}" [width]="120" *ngIf="translate.currentLang=='en'">
+                <kendo-grid-column field="BrandName" title="{{'BrandName'|translate}}" [width]="120"
+                    *ngIf="translate.currentLang=='en'">
                 </kendo-grid-column>
-                <kendo-grid-column field="BranchNameAr" title="{{'BranchNameAr'|translate}}" [width]="120" *ngIf="translate.currentLang=='ar'">
+                <kendo-grid-column field="BrandNameAr" title="{{'BrandNameAr'|translate}}" [width]="120"
+                    *ngIf="translate.currentLang=='ar'">
+                </kendo-grid-column>
+
+                <kendo-grid-column field="BranchName" title="{{'BranchName'|translate}}" [width]="120"
+                    *ngIf="translate.currentLang=='en'">
+                </kendo-grid-column>
+                <kendo-grid-column field="BranchNameAr" title="{{'BranchNameAr'|translate}}" [width]="120"
+                    *ngIf="translate.currentLang=='ar'">
                 </kendo-grid-column>
 
                 <kendo-grid-column field="WorkstationName" title="{{'WorkstationName'|translate}}" [width]="120">
@@ -55,20 +65,26 @@
 
                 <kendo-grid-column field="Phone" title="{{'Phone'|translate}}" [width]="120"></kendo-grid-column>
 
-                <kendo-grid-column field="CreateDate" title="{{'CreateDate'|translate}}" [width]="120" filter="date" format="dd/MM/yyyy">
+                <kendo-grid-column field="CreateDate" title="{{'CreateDate'|translate}}" [width]="120" filter="date"
+                    format="dd/MM/yyyy">
                 </kendo-grid-column>
 
                 <kendo-grid-column [width]="120">
                     <ng-template kendoGridCellTemplate let-dataItem>
-                        <button *ngIf="dataItem.StatusID==6" class="btn btn-outline-primary mr-2" type="button" (click)="activeWorkStations(dataItem)"><span class="fa fa-check"> </span></button>
-                        <button *ngIf="dataItem.StatusID==6" class="btn btn-outline-danger" type="button" (click)="deleteWorkStations(dataItem)"><span class="fa fa-trash">
-              </span></button>
+                        <button *ngIf="dataItem.StatusID==6" class="btn btn-outline-primary mr-2" type="button"
+                            (click)="activeWorkStations(dataItem)"><span class="fa fa-check"> </span></button>
+                        <button *ngIf="dataItem.StatusID==6" class="btn btn-outline-danger" type="button"
+                            (click)="deleteWorkStations(dataItem)"><span class="fa fa-trash">
+                            </span></button>
                     </ng-template>
                 </kendo-grid-column>
 
                 <!-- <kendo-grid-pdf fileName="WorkStations.pdf" [repeatHeaders]="true"></kendo-grid-pdf> -->
                 <kendo-grid-excel fileName="WorkStations.xlsx" [fetchData]="allData"></kendo-grid-excel>
-                <kendo-grid-messages [groupPanelEmpty]="'Drag a column header and drop it here to group by that column'|translate" [pagerItemsPerPage]="'items_per_page'|translate" [pagerItems]="'itemsPage'|translate" [pagerOf]="'of'|translate" noRecords="{{'no_records_available' | translate}}">
+                <kendo-grid-messages
+                    [groupPanelEmpty]="'Drag a column header and drop it here to group by that column'|translate"
+                    [pagerItemsPerPage]="'items_per_page'|translate" [pagerItems]="'itemsPage'|translate"
+                    [pagerOf]="'of'|translate" noRecords="{{'no_records_available' | translate}}">
                 </kendo-grid-messages>
             </kendo-grid>
         </div>

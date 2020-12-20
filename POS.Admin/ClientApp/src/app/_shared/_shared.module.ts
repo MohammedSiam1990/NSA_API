@@ -79,6 +79,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { ExcelModule, GridModule, PDFModule } from '@progress/kendo-angular-grid';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { MessageService } from '@progress/kendo-angular-l10n';
+import { special3Char } from './directives/Special3CharacterDirective';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { MessageService } from '@progress/kendo-angular-l10n';
     SafePipe,
     SharedHeaderComponent,
     SentenceCasePipe,
+    special3Char,
     ControlMessagesComponent,
     NotificationComponent,
     ButtonLoaderComponent,
@@ -182,6 +184,7 @@ import { MessageService } from '@progress/kendo-angular-l10n';
     NgbModule,
     FormsModule,
     TranslateModule,
+    special3Char,
     TruncateWordPipe,
     ControlMessagesComponent,
     TruncatePipe,

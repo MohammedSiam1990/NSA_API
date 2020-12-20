@@ -2,8 +2,6 @@
     <nav class="Breadcrumb-title" aria-label="breadcrumb">
         <ol class="breadcrumb  ">
             <div class="col-md-6">
-
-
                 <li class="breadcrumb-item active " aria-current="page">
                     <i class=" mr-3 active fa fa-tachometer arqami-color" aria-hidden="true"></i>
                     <span id="pageTitle" *ngIf="translate.currentLang=='en'"> {{'City'| translate}}</span>
@@ -12,7 +10,7 @@
             </div>
             <div class="col-md-6">
                 <li class="float-right ">
-                    <button type="button" class="btn  btn-outline-danger  float-right ">
+                    <button type="button" class="btn  btn-outline-danger  float-right " [routerLink]="['/city/list']">
                         <i class="fa fa-close"></i>
                     </button>
                 </li>
@@ -24,35 +22,47 @@
             <div class="content">
                 <div class="main-card  card">
                     <div class="card-body">
-                        <form class=" form">
+                        <form class=" form" [formGroup]="form">
                             <div class="row">
                                 <div class="col-md-12 col-lg-6">
                                     <div class="row">
                                         <div class="col-md-12">
                                         </div>
                                         <div class="col-md-12">
-
                                             <div class="text-left form-group ">
-
                                                 <div class="  input-wrap is-required">
                                                     <label class="label-input-pos  required-label"
-                                                        for="">{{'CityName'| translate}}</label>
-                                                    <input type="text" class="form-control input-sm">
-
+                                                        for="">{{'CityNameEn'| translate}}</label>
+                                                    <input type="text" class="form-control input-sm"
+                                                        formControlName="cityName" special3Char>
+                                                        <control-messages [control]="form.controls.cityName" [title]="'cityName'"
+                                                        [validationMessages]="validationMessages" [inputType]="'lg-input'">
+                                                    </control-messages>
                                                 </div>
-
                                             </div>
+                                 
                                         </div>
                                         <div class="col-md-12">
 
                                             <div class="text-left form-group ">
-
-                                                <div class="  input-wrap is-required">
-                                                    <label class="label-input-pos  required-label"
-                                                        for="">{{'CountryId	'| translate}}</label>
-                                                    <input type="text" class="form-control input-sm">
-
+                                                <div class="input-group mb-4">
+                                                    <label class="label-input-pos  required-label" for="">
+                                                        {{'country'| translate}}</label>
+                                                    <ng-select class="form-control input-sm" [items]="countriesArr "
+                                                        bindLabel="countryName" bindValue="countryId"
+                                                        formControlName="countryId" *ngIf="translate.currentLang=='en'">
+                                                    </ng-select>
+                                                    <ng-select class="form-control input-sm" [items]="countriesArr "
+                                                        bindLabel="countryNameAr" bindValue="countryId"
+                                                        formControlName="countryId" *ngIf="translate.currentLang=='ar'">
+                                                    </ng-select>
+                                                           <control-messages [control]="form.controls.countryId"
+                                                    [title]="'countryId'" [validationMessages]="validationMessages"
+                                                    [inputType]="'lg-input'">
+                                                </control-messages>
                                                 </div>
+
+                                         
 
                                             </div>
 
@@ -65,30 +75,30 @@
                                     <div class="row">
                                         <div class="col-md-12">
 
-
-
                                         </div>
                                         <div class="col-md-12">
                                             <div class="text-left form-group ">
-
                                                 <div class="  input-wrap is-required">
                                                     <label class="label-input-pos  required-label"
-                                                        for="">{{'CityNameAr'| translate}}</label>
-                                                    <input type="text" class="form-control input-sm">
-
+                                                        for="">{{'cityNameAr'| translate}}</label>
+                                                    <input type="text" class="form-control input-sm"special3Char
+                                                        formControlName="cityNameAr">
+                                                        <control-messages [control]="form.controls.cityNameAr"
+                                                        [title]="'cityNameAr'" [validationMessages]="validationMessages"
+                                                        [inputType]="'lg-input'">
+                                                    </control-messages>
                                                 </div>
-
                                             </div>
+                                       
                                         </div>
-
                                     </div>
 
                                 </div>
 
                                 <div CLASS="col-md-12 col-lg-12  mt-3">
                                     <div class="  form-group bttuncompany m-0">
-                                        <button type="button" class="browse btn btn-lg btn-primary mx-auto  "
-                                            style="width:300px">{{'save'| translate}}</button>
+                                        <button type="button" class="browse btn btn-lg btn-primary mx-auto  " [disabled]="!form.valid"
+                                            style="width:300px" (click)="saveCity()">{{'save'| translate}}</button>
                                     </div>
                                 </div>
                             </div>

@@ -5,10 +5,11 @@ using System.Text;
 
 namespace POS.Data.IRepository
 {
-    public interface IRoleRepository
-    {
-        void SaveRole(Role model);
-        string GetRole(int? CompanyId);
-        int RoleAlreadyExists(Role model);
-    }
+  public interface IRoleRepository
+  {
+    void SaveRole(Role model);
+    string GetRole(int? CompanyId);
+    Role GetRoleById(int RoleId);
+    int RoleAlreadyExists(Role model);
+  }
 }

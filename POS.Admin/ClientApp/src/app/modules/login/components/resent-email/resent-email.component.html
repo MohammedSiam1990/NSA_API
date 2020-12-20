@@ -43,7 +43,7 @@
                                                         <label class="label-input-pos  required-label" for="">
                                                             {{'Email'|translate}}</label>
                                                         <input type="email" name="email" id="Email"
-                                                            class="form-control input-sm" formControlName="email">
+                                                            class="form-control input-sm" formControlName="email" special3Char>
                                                     </div>
                                                     <control-messages [control]="form.controls.email"
                                                     [title]="'email'" [validationMessages]="validationMessages"

@@ -12,9 +12,10 @@
             </div>
             <div class="col-md-6">
                 <li class="float-right ">
-                    <button type="button" class="btn  btn-outline-danger  float-right " [routerLink]="['/district/list']">
-            <i class="fa fa-close"></i>
-          </button>
+                    <button type="button" class="btn  btn-outline-danger  float-right "
+                        [routerLink]="['/district/list']">
+                        <i class="fa fa-close"></i>
+                    </button>
                 </li>
             </div>
         </ol>
@@ -32,10 +33,18 @@
 
                                             <div class="input-group mb-4">
                                                 <label class="label-input-pos  required-label" for="">
-                          {{'country'| translate}}</label>
-                                                <ng-select class="form-control input-sm" [items]="countriesArr " bindLabel="countryName" bindValue="countryId" (change)="changeCountry($event)" [(ngModel)]="countryId" [ngModelOptions]="{standalone: true}" *ngIf="translate.currentLang=='en'">
+                                                    {{'country'| translate}}</label>
+                                                <ng-select class="form-control input-sm" [items]="countriesArr "[disabled]="true"
+                                                    bindLabel="countryName" bindValue="countryId"
+                                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="countryId"
+                                                    (change)="changeCountry($event)"
+                                                    *ngIf="translate.currentLang=='en'">
                                                 </ng-select>
-                                                <ng-select class="form-control input-sm" [items]="countriesArr " bindLabel="countryNameAr" bindValue="countryId" [(ngModel)]="countryId" [ngModelOptions]="{standalone: true}" (change)="changeCountry($event)" *ngIf="translate.currentLang=='ar'">
+                                                <ng-select class="form-control input-sm" [items]="countriesArr "
+                                                    [(ngModel)]="countryId" bindLabel="countryNameAr" [disabled]="true"
+                                                    [ngModelOptions]="{standalone: true}" bindValue="countryId"
+                                                    (change)="changeCountry($event)"
+                                                    *ngIf="translate.currentLang=='ar'">
                                                 </ng-select>
                                             </div>
 
@@ -45,22 +54,28 @@
                                             <div class="text-left form-group ">
 
                                                 <div class="  input-wrap is-required">
-                                                    <label class="label-input-pos  required-label" for="">{{'DistrictName'| translate}}</label>
-                                                    <input type="text" formControlName="districtName" class="form-control input-sm">
-
+                                                    <label class="label-input-pos  required-label"
+                                                        for="">{{'DistrictName'| translate}}</label>
+                                                    <input type="text" formControlName="districtName"special3Char
+                                                        class="form-control input-sm">
+                                                    <control-messages [control]="form.controls.districtName"
+                                                        [title]="'districtName'"
+                                                        [validationMessages]="validationMessages"
+                                                        [inputType]="'lg-input'">
+                                                    </control-messages>
                                                 </div>
-                                                <control-messages [control]="form.controls.districtName" [title]="'districtName'" [validationMessages]="validationMessages" [inputType]="'lg-input'">
-                                                </control-messages>
+
                                             </div>
                                         </div>
                                         <div class="col-md-12">
 
                                             <div class="checkbox checkbox-fill d-inline">
 
-                                                <input type="checkbox" name="checkbox-fill-1" formControlName="inActive">
+                                                <input type="checkbox" name="checkbox-fill-1"
+                                                    formControlName="inActive">
                                                 <label for="checkbox-fill-a1" class="cr ml-2">
-                          {{'InActive'| translate}}
-                        </label>
+                                                    {{'InActive'| translate}}
+                                                </label>
                                             </div>
 
                                         </div>
@@ -74,24 +89,35 @@
 
                                             <div class="input-group mb-4">
                                                 <label class="label-input-pos  required-label" for="">
-                          {{'city'| translate}}</label>
-                                                <ng-select class="form-control input-sm" [items]="citiesArr" formControlName="cityId" bindLabel="cityName" bindValue="cityId" *ngIf="translate.currentLang=='en'">
+                                                    {{'city'| translate}}</label>
+                                                <ng-select class="form-control input-sm" [items]="citiesArr"
+                                                    formControlName="cityId" bindLabel="cityName" bindValue="cityId"
+                                                    *ngIf="translate.currentLang=='en'">
                                                 </ng-select>
-                                                <ng-select class="form-control input-sm" [items]="citiesArr" formControlName="cityId" bindLabel="cityNameAr" bindValue="cityId" *ngIf="translate.currentLang=='ar'">
+                                                <ng-select class="form-control input-sm" [items]="citiesArr"
+                                                    formControlName="cityId" bindLabel="cityNameAr" bindValue="cityId"
+                                                    *ngIf="translate.currentLang=='ar'">
                                                 </ng-select>
+                                                <control-messages [control]="form.controls.cityId" [title]="'cityId'"
+                                                    [validationMessages]="validationMessages" [inputType]="'lg-input'">
+                                                </control-messages>
                                             </div>
-                                            <control-messages [control]="form.controls.cityId" [title]="'cityId'" [validationMessages]="validationMessages" [inputType]="'lg-input'">
-                                            </control-messages>
+
                                         </div>
                                         <div class="col-md-12">
                                             <div class="text-left form-group mb-4">
                                                 <div class="  input-wrap is-required">
                                                     <label class="label-input-pos  required-label" for="">
-                            {{'DistrictNameAr'| translate}}</label>
-                                                    <input type="text" formControlName="districtNameAr" class="form-control input-sm">
+                                                        {{'DistrictNameAr'| translate}}</label>
+                                                    <input type="text" formControlName="districtNameAr"
+                                                        class="form-control input-sm" special3Char>
+                                                    <control-messages [control]="form.controls.districtNameAr"
+                                                        [title]="'districtNameAr'"
+                                                        [validationMessages]="validationMessages"
+                                                        [inputType]="'lg-input'">
+                                                    </control-messages>
                                                 </div>
-                                                <control-messages [control]="form.controls.districtNameAr" [title]="'districtNameAr'" [validationMessages]="validationMessages" [inputType]="'lg-input'">
-                                                </control-messages>
+
                                             </div>
                                         </div>
 
@@ -101,7 +127,9 @@
 
                                 <div CLASS="col-md-12 col-lg-12  mt-3">
                                     <div class="  form-group bttuncompany m-0">
-                                        <button (click)="updateDistrict()" type="button" [disabled]="!form.valid" class="browse btn btn-lg btn-primary mx-auto  " style="width:300px">{{'save'| translate}}</button>
+                                        <button (click)="updateDistrict()" type="button" [disabled]="!form.valid"
+                                            class="browse btn btn-lg btn-primary mx-auto  "
+                                            style="width:300px">{{'save'| translate}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -116,8 +144,8 @@
 
                                         </div>
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>

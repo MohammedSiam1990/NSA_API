@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LoadingService } from 'src/app/_shared/services/loading.service';
 import { DistrictService } from '../../services/district.service';
@@ -7,6 +7,7 @@ import { CityModel, CountryModel, DistrictModel } from '../../models/country-mod
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService, NotificationType } from 'src/app/_shared/services/notification.service';
 import {  Router } from '@angular/router';
+import { NgSelectComponent } from '@ng-select/ng-select';
 
 
 @Component({
@@ -15,6 +16,7 @@ import {  Router } from '@angular/router';
   styleUrls: ['./add-district.component.css']
 })
 export class AddDistrictComponent implements OnInit {
+  @ViewChild(NgSelectComponent) ngSelectComponent: NgSelectComponent;
 
   model: DistrictModel;
   public validationMessages = {
@@ -71,10 +73,15 @@ export class AddDistrictComponent implements OnInit {
 
   addDistrict() {
     this.model = this.form.value;
+    var userId = localStorage.getItem("userId");
+    this.model.insertedBy = userId;
     this.districtService.addDistract(this.translate.currentLang, this.model).subscribe(data => {
       if (data.success) {
-        this.notificationService.showNotification(data.message, NotificationType.Success)
-        this.router.navigate(['/district/list']);
+        this.notificationService.showNotification(data.message, NotificationType.Success);
+        debugger
+       this.ngSelectComponent.clearModel();
+        this.form.reset();
+        // this.router.navigate(['/district/list']);
       } else {
         this.notificationService.showNotification(data.message, NotificationType.Error)
       }

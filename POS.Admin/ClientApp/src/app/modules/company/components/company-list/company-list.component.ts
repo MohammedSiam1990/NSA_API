@@ -49,6 +49,7 @@ export class CompanyListComponent implements OnInit {
   WorkStations: any;
   getCompanies(): void {
     this.companyService.getCompanies(this.translate.currentLang).subscribe(res => {
+      debugger
       this.gridData = res.datalist;
       this.gridData.forEach(element => {
         element.CreationDate=new Date(element.CreationDate);

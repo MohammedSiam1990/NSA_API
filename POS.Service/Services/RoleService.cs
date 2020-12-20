@@ -11,19 +11,24 @@ namespace POS.Service.Services
 {
     public class RoleService : BaseService, IRoleService
     {
-        public string GetRole(int? CompanyId)
-        {
-            return PosService.RoleRepository.GetRole(CompanyId);
-        }
+    public string GetRole(int? CompanyId)
+    {
+      return PosService.RoleRepository.GetRole(CompanyId);
+    }
 
-        public int RoleAlreadyExists(Role model)
-        {
-            return PosService.RoleRepository.RoleAlreadyExists(model);
-        }
+    public Role GetRoleById(int RoleId)
+    {
+      return PosService.RoleRepository.GetRoleById(RoleId);
+    }
 
-        public void SaveRole(Role model)
-        {
-            PosService.RoleRepository.SaveRole(model);
-        }
+    public int RoleAlreadyExists(Role model)
+    {
+      return PosService.RoleRepository.RoleAlreadyExists(model);
+    }
+
+    public void SaveRole(Role model)
+    {
+      PosService.RoleRepository.SaveRole(model);
+    }
     }
 }

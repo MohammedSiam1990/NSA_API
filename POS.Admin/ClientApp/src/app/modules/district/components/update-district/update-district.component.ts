@@ -31,7 +31,6 @@ export class UpdateDistrictComponent implements OnInit {
     private route: ActivatedRoute,
     public translate: TranslateService) {
     this.model = new DistrictModel();
-    debugger
     this.districtId = this.route.snapshot.params['id'];
   }
 
@@ -53,7 +52,7 @@ export class UpdateDistrictComponent implements OnInit {
     this.form = this.fb.group({
       districtName: ['', Validators.required],
       districtNameAr: ['', Validators.required],
-      cityId: [null, Validators.required],
+      cityId: [{ value: null, disabled: true }, Validators.required],
       inActive: [false]
     })
   }
@@ -61,7 +60,6 @@ export class UpdateDistrictComponent implements OnInit {
 
   getDistrictById() {
     this.districtService.getDistrictById(this.districtId, this.translate.currentLang).subscribe(data => {
-      debugger
       this.model = data.datalist;
       this.form = this.fb.group({
         districtName: [this.model.districtName, Validators.required],
@@ -71,6 +69,7 @@ export class UpdateDistrictComponent implements OnInit {
       })
       this.countryId = this.model.countryId;
       this.districtId = this.model.districtId;
+      this.form.controls['cityId'].disable();
       this.getCitiesByCountryId();
     })
 
@@ -95,6 +94,8 @@ export class UpdateDistrictComponent implements OnInit {
   updateDistrict() {
     this.model = this.form.value;
     this.model.districtId = this.districtId;
+    var userId = localStorage.getItem("userId");
+    this.model.modifiedBy = userId;
     this.districtService.updateDistrict(this.translate.currentLang, this.model).subscribe(data => {
       if (data.success) {
         this.notificationService.showNotification(data.message, NotificationType.Success)

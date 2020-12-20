@@ -1,0 +1,62 @@
+<div class="pt-77">
+    <nav class="Breadcrumb-title" aria-label="breadcrumb">
+        <ol class="breadcrumb  ">
+            <li class="mr-3 active">
+                <i class="fa fa-tachometer arqami-color" aria-hidden="true"></i>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <span id="pageTitle"> {{'Role'| translate}}</span>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="main-content">
+        <div class="p-2">
+            <kendo-grid [kendoGridBinding]="gridViewArr" kendoGridSelectBy="id" [pageSize]="pageSize" [pageable]="{
+      
+            pageSizes: pageSizes
+      
+          }" [sortable]="true" [groupable]="true" [reorderable]="true" [resizable]="true" [height]="480">
+
+                <ng-template kendoGridToolbarTemplate>
+                    <div class="float-left">
+                        <input placeholder="{{'search_all_columns'|translate}}" kendoTextBox
+                            (input)="onFilter($event.target.value)" class="kendo-search textbox1 " />
+                        <input title="Search" value="" type="submit" class="button1">
+                    </div>
+                    <button kendoGridExcelCommand type="button" icon="file-excel"
+                        class="btn  btn-primary text-white float-right">
+                        {{'Export_to_Excel'|translate}}
+                    </button>
+                    <button type="button" icon="plus" [routerLink]="['/role/add']"
+                        class="btn  btn-success  text-white float-right mr-2">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </ng-template>
+                <kendo-grid-column field="Name" title="{{'Name'|translate}}" [width]="120">
+                </kendo-grid-column>
+
+
+                <kendo-grid-column field="NameAr" title="{{'NameAr'|translate}}" [width]="120">
+                </kendo-grid-column>
+                <kendo-grid-column field="CreateDate" title="{{'CreateDate'|translate}}" [width]="120" filter="date"
+                    format="dd/MM/yyyy">
+                </kendo-grid-column>
+                <!-- <kendo-grid-column [width]="120">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+
+                        <button class="btn btn-outline-primary" type="button"
+                            [routerLink]="['/user/edit', dataItem.Id]"><span class="k-icon k-i-edit">
+                            </span></button>
+                    </ng-template>
+                </kendo-grid-column> -->
+                <kendo-grid-excel fileName="WorkStations.xlsx" [fetchData]="allData"></kendo-grid-excel>
+                <kendo-grid-messages
+                    [groupPanelEmpty]="'Drag a column header and drop it here to group by that column'|translate"
+                    [pagerItemsPerPage]="'items_per_page'|translate" [pagerItems]="'itemsPage'|translate"
+                    [pagerOf]="'of'|translate" noRecords="{{'no_records_available' | translate}}">
+                </kendo-grid-messages>
+            </kendo-grid>
+        </div>
+    </div>
+</div>

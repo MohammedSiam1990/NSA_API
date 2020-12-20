@@ -16,7 +16,7 @@ export class DistrictService {
   getCountries(lang: string) {
     return this.http.get<any>("City/GetCountries?Lang=" + lang);
   }
-
+0
   getCitiesByCountryId(countryId: number, lang: string) {
     return this.http.get<any>("City/GetCities/CountryId?CountryId=" + countryId + '&Lang=' + lang);
   }
@@ -31,6 +31,10 @@ export class DistrictService {
 
   getDistrictById(districtId: number, lang: string) {
     return this.http.get<any>("District/GetDistrict?DistrictId=" + districtId + '&Lang=' + lang);
+  }
+
+  getDistrictsByCityId(CityId: number, lang: string) {
+    return this.http.get<any>("District/GetDistrictsByCity?CityId=" + CityId + '&Lang=' + lang);
   }
 
 }

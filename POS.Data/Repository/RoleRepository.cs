@@ -39,7 +39,15 @@ namespace POS.Data.Repository
 
         }
 
-        public int RoleAlreadyExists(Role model)
+    public Role GetRoleById(int RoleId)
+    {
+      var Role = base.Table().Where(e => e.Id == RoleId).FirstOrDefault();
+      base.DbContext.Dispose();
+      base.DbContext = null;
+      return Role;
+    }
+
+    public int RoleAlreadyExists(Role model)
         {
             var Role = GetById(e =>e.Id!=model.Id && e.CompanyId == model.CompanyId && (e.NameAr == model.NameAr || e.Name == model.Name));
             if (Role == null) return 1;
