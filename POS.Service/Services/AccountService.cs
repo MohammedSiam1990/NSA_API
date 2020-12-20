@@ -1036,7 +1036,7 @@ namespace Pos.Service
                 else
                 {
 
-                    var appUser = await _userManger.FindByNameAsync(model.Username);
+                    var appUser = await _userManger.FindByIdAsync(model.Id);
                     appUser.Email = model.Email;
                     appUser.UserName = model.Email;
                     appUser.Name = model.Name;

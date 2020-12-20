@@ -81,7 +81,7 @@ namespace POS.API.Controllers
         }
 
         [HttpGet("GetRole")]
-        public IActionResult GetRole(int CompanyId,string Lang = "en")
+        public IActionResult GetRole(int? CompanyId,string Lang = "en")
         {
             try
             {

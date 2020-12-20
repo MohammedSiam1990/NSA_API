@@ -18,14 +18,14 @@ namespace POS.Data.Repository
         }
 
         [Obsolete]
-        public string GetRole(int CompanyId)
+        public string GetRole(int? CompanyId)
         {
             using (var DbContext = new PosDbContext())
             {
                 try
                 {
                     string Sql = "EXEC GetRole @CompanyID";
-                    var data = DbContext.JsonData.FromSql(Sql, new SqlParameter("@CompanyID", CompanyId)
+                    var data = DbContext.JsonData.FromSql(Sql, new SqlParameter("@CompanyID", CompanyId ?? (object)DBNull.Value)
                                                            ).AsEnumerable().FirstOrDefault().Data;
                     return data.ToString();
                 }
