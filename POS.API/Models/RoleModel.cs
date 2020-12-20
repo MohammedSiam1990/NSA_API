@@ -14,7 +14,7 @@ namespace POS.API.Models
         public int? CompanyId { get; set; }
         public DateTime? CreateDate { get; set; }
         public DateTime? LastModifyDate { get; set; }
-        public int? InsertedBy { get; set; }
-        public int? ModifiedBy { get; set; }
+        public long? InsertedBy { get; set; }
+        public long? ModifiedBy { get; set; }
     }
 }

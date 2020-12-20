@@ -41,7 +41,7 @@ namespace POS.Data.Repository
 
         public int RoleAlreadyExists(Role model)
         {
-            var Role = GetById(e => e.CompanyId == model.CompanyId && (e.NameAr == model.NameAr || e.Name == model.Name));
+            var Role = GetById(e =>e.Id!=model.Id && e.CompanyId == model.CompanyId && (e.NameAr == model.NameAr || e.Name == model.Name));
             if (Role == null) return 1;
             else if (Role.Name == model.Name) return -2;
             else if (Role.NameAr == model.NameAr) return -3;
