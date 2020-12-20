@@ -86,6 +86,9 @@ namespace POS.API.Helpers
             CreateMap<UserRole, UserRoleModel>();
             CreateMap<UserRoleModel, UserRole>();
 
+            CreateMap<Permissions, PermissionsModel>();
+            CreateMap<PermissionsModel, Permissions>();
+
 
         }
     }

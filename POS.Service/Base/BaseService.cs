@@ -59,8 +59,8 @@ namespace POS.IService.Base
                                                     new AuthRepository(databaseFactory),
                                                     new SupplierRepository(databaseFactory),
                                                     new RoleRepository(databaseFactory),
-                                                    new UserRoleRepository(databaseFactory)
-
+                                                    new UserRoleRepository(databaseFactory),
+                                                    new PermissionsRepository(databaseFactory)
 
                                                     );
                 }

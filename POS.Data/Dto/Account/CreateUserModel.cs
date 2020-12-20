@@ -27,6 +27,6 @@ namespace POS.Data.Dto.Account
         public int? StatusID { get; set; }
         public string AppUrl { get; set; }
         public int? RoleID { get; set; }
-
+        public int? UserID { get; set; }
     }
 }

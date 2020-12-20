@@ -1,5 +1,6 @@
 using Ninject;
 using POS.Data.IRepository;
+using POS.Data.Repository;
 
 namespace Pos.Service.Base
 {
@@ -44,6 +45,8 @@ namespace Pos.Service.Base
          public ISupplierRepository SupplierRepository { get; set; }
          public IUserRoleRepository UserRoleRepository { get; set; }
          public IRoleRepository RoleRepository { get; set; }
+         public IPermissionsRepository PermissionsRepository{ get; set; }
+
         
         [Inject]
         public PosServices(
@@ -84,7 +87,8 @@ namespace Pos.Service.Base
                                      IAuthRepository _AuthRepository,
                                      ISupplierRepository _SupplierRepository,
                                      IRoleRepository _RoleRepository,
-                                     IUserRoleRepository _UserRoleRepository
+                                     IUserRoleRepository _UserRoleRepository,
+                                     IPermissionsRepository _PermissionsRepository
                             )
         {
             CompaniesRepository = _CompaniesRepository;
@@ -125,6 +129,7 @@ namespace Pos.Service.Base
             SupplierRepository = _SupplierRepository;
             RoleRepository = _RoleRepository;
             UserRoleRepository = _UserRoleRepository;
+            PermissionsRepository = _PermissionsRepository;
         }
 
     }

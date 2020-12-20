@@ -161,7 +161,7 @@ namespace Pos.Service
 
             };
             PosService.CompaniesRepository.AddCompany(company);
-            
+
             var identityUser = new ApplicationUser()
             {
                 UserName = model.Username,
@@ -174,9 +174,7 @@ namespace Pos.Service
                 IsSuperAdmin = true,
                 LockoutEnabled = false,
                 CompanyId = company.CompanyId,
-                UserType = 1,
-                UserID=_userManger.Users.Count()+1
-                
+                UserType = 1
                 // VerificationCode = VerificationCode
             };
             var result = await _userManger.CreateAsync(identityUser, model.Password);
@@ -772,7 +770,7 @@ namespace Pos.Service
 
         }
 
-   public async Task<UserManagerResponse> CreateUserAsync(CreateUserModel model)
+        public async Task<UserManagerResponse> CreateUserAsync(CreateUserModel model)
         {
             try
             {
@@ -972,6 +970,7 @@ namespace Pos.Service
                         LockoutEnabled = true,
                         CompanyId = model.CompanyId,
                         StatusID = model.StatusID
+
                     };
 
                     string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*?_-";
@@ -1037,7 +1036,7 @@ namespace Pos.Service
                 else
                 {
 
-                    var appUser = await _userManger.FindByIdAsync(model.Id);
+                    var appUser = await _userManger.FindByNameAsync(model.Username);
                     appUser.Email = model.Email;
                     appUser.UserName = model.Email;
                     appUser.Name = model.Name;
@@ -1050,6 +1049,7 @@ namespace Pos.Service
                     appUser.IsSuperAdmin = model.IsSuperAdmin;
                     appUser.StatusID = model.StatusID;
                     appUser.RoleID = model.RoleID;
+
                     var result = await _userManger.UpdateAsync(appUser);
 
                     if (result.Succeeded)
