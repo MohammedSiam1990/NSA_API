@@ -42,14 +42,14 @@
                 <kendo-grid-column field="CreateDate" title="{{'CreateDate'|translate}}" [width]="120" filter="date"
                     format="dd/MM/yyyy">
                 </kendo-grid-column>
-                <!-- <kendo-grid-column [width]="120">
+                <kendo-grid-column [width]="120">
                     <ng-template kendoGridCellTemplate let-dataItem>
 
                         <button class="btn btn-outline-primary" type="button"
-                            [routerLink]="['/user/edit', dataItem.Id]"><span class="k-icon k-i-edit">
+                            [routerLink]="['/role/edit', dataItem.Id]"><span class="k-icon k-i-edit">
                             </span></button>
                     </ng-template>
-                </kendo-grid-column> -->
+                </kendo-grid-column>
                 <kendo-grid-excel fileName="WorkStations.xlsx" [fetchData]="allData"></kendo-grid-excel>
                 <kendo-grid-messages
                     [groupPanelEmpty]="'Drag a column header and drop it here to group by that column'|translate"
