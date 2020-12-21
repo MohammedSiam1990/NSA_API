@@ -11,9 +11,9 @@ namespace POS.Service.Services
 {
     public class PermissionsService : BaseService, IPermissionsService
     {
-        public string GetPermissionsLookUps(int MenuType)
+        public string GetPermissionsLookUps(int MenuType, int RoldID, int BrandID)
         {
-            return PosService.PermissionsRepository.GetPermissionsLookUps(MenuType);
+            return PosService.PermissionsRepository.GetPermissionsLookUps(MenuType,RoldID,BrandID);
         }
 
         public void SavePermissions(List<Permissions> model, int RoleID)

@@ -30,14 +30,14 @@ namespace POS.API.Controllers
         }
 
         [HttpGet("GetPermissions")]
-        public IActionResult GetPermissions(int MenuType = 0, string Lang = "en")
+        public IActionResult GetPermissions(int MenuType, int RoldID, int BrandID, string Lang = "en")
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = PermissionsService.GetPermissionsLookUps(MenuType);
+                var data = PermissionsService.GetPermissionsLookUps(MenuType, RoldID, BrandID);
                 if (data != null)
                 {
                     if (data.Count() == 0)
