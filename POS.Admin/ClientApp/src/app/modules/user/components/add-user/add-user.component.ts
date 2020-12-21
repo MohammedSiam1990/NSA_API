@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from '@progress/kendo-angular-l10n';
+import { RoleService } from 'src/app/modules/role/services/role.service';
 import { LoadingService } from 'src/app/_shared/services/loading.service';
 import { NotificationService, NotificationType } from 'src/app/_shared/services/notification.service';
 import { UserModelAdd } from '../../models/user-model';
@@ -25,11 +26,13 @@ export class AddUserComponent implements OnInit {
   };
 
   constructor(public translate: TranslateService, private fb: FormBuilder, private router: Router, private loadingService: LoadingService,
-    private messages: MessageService, private notificationService: NotificationService, private userService: UserService) { }
+    private messages: MessageService, private notificationService: NotificationService, private userService: UserService,
+    private roleService: RoleService) { }
 
   ngOnInit(): void {
     this.userModelAdd = new UserModelAdd();
     this.createForm();
+    this.getRoles();
   }
 
   createForm() {
@@ -38,9 +41,24 @@ export class AddUserComponent implements OnInit {
       name: ['', Validators.required],
       phoneNumber: [null, Validators.required],
       statusID: [null],
-      isSuperAdmin: [false]
+      isSuperAdmin: [false],
+      roleID: [null]
     })
   }
+
+  roles: any;
+  getRoles(): void {
+    this.roleService.getRoles(this.translate.currentLang).subscribe(res => {
+      this.roles = res.datalist.Role;
+    })
+  }
+
+  isAdmin: boolean = false;
+  changeAdmin(event: any) {
+    this.isAdmin = event.currentTarget.checked;
+    this.form.controls.roleID.setValue(null);
+  }
+
 
   saveUser() {
     this.userModelAdd = this.form.value;

@@ -30,5 +30,7 @@ export class UserModelAdd {
     isSuperAdmin: boolean;
     statusID: number;
     appUrl: string;
+    roleID: number;
+
 
 }

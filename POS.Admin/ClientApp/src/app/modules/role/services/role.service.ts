@@ -18,6 +18,8 @@ export class RoleService {
     return this.http.get<any>("Roles/GetRole?Lang=" + lang);
   }
 
-
+  getRoleById(lang: string, RoleId: number) {
+    return this.http.get<any>("Roles/GetRoleById?RoleId="+RoleId + '&Lang=' + lang);
+  }
 
 }

@@ -30,8 +30,8 @@
                                         <div class="col-md-12">
                                             <div class="text-left form-group ">
                                                 <div class="  input-wrap is-required">
-                                                    <label class="label-input-pos  required-label"
-                                                        for="">{{'Username'| translate}}</label>
+                                                    <label class="label-input-pos  required-label" for="">{{'Username'|
+                                                        translate}}</label>
                                                     <input type="text" class="form-control input-sm"
                                                         formControlName="username" special3Char>
                                                     <control-messages [control]="form.controls.username"
@@ -45,15 +45,35 @@
                                         <div class="col-md-12">
                                             <div class="text-left form-group ">
                                                 <div class="  input-wrap is-required">
-                                                    <label class="label-input-pos  required-label"
-                                                        for="">{{'Name'| translate}}</label>
+                                                    <label class="label-input-pos  required-label" for="">{{'Name'|
+                                                        translate}}</label>
                                                     <input type="text" class="form-control input-sm"
-                                                        formControlName="name"special3Char>
+                                                        formControlName="name" special3Char>
                                                     <control-messages [control]="form.controls.name" [title]="'name'"
                                                         [validationMessages]="validationMessages"
                                                         [inputType]="'lg-input'">
                                                     </control-messages>
                                                 </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-12" *ngIf="!isAdmin">
+
+                                            <div class="input-group mb-4">
+                                                <label class="label-input-pos  required-label" for="">
+                                                    {{'Role'| translate}}</label>
+                                                <ng-select class="form-control input-sm" [items]="roles"
+                                                    formControlName="roleID" bindLabel="Name" bindValue="Id"
+                                                    *ngIf="translate.currentLang=='en'">
+                                                </ng-select>
+                                                <ng-select class="form-control input-sm" [items]="roles"
+                                                    formControlName="roleID" bindLabel="NameAr" bindValue="Id"
+                                                    *ngIf="translate.currentLang=='ar'">
+                                                </ng-select>
+                                                <control-messages [control]="form.controls.roleID" [title]="'roleID'"
+                                                    [validationMessages]="validationMessages" [inputType]="'lg-input'">
+                                                </control-messages>
                                             </div>
 
                                         </div>
@@ -85,7 +105,7 @@
                                             <div class="checkbox checkbox-fill d-inline">
 
                                                 <input type="checkbox" name="checkbox-fill-1"
-                                                    formControlName="isSuperAdmin">
+                                                    formControlName="isSuperAdmin" (change)="changeAdmin($event)">
                                                 <label for="checkbox-fill-a1" class="cr ml-2">
                                                     {{'IsAdmin'| translate}}
                                                 </label>
@@ -104,6 +124,7 @@
                                             </div>
 
                                         </div>
+
                                     </div>
 
                                 </div>
@@ -111,7 +132,8 @@
                                 <div CLASS="col-md-12 col-lg-12  mt-3">
                                     <div class="  form-group bttuncompany m-0">
                                         <button type="button" class="browse btn btn-lg btn-primary mx-auto  "
-                                            style="width:300px" (click)="saveUser()" [disabled]="!form.valid">{{'save'| translate}}</button>
+                                            style="width:300px" (click)="saveUser()" [disabled]="!form.valid">{{'save'|
+                                            translate}}</button>
                                     </div>
                                 </div>
                             </div>

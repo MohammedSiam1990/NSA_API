@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from '@progress/kendo-angular-l10n';
+import { RoleService } from 'src/app/modules/role/services/role.service';
 import { LoadingService } from 'src/app/_shared/services/loading.service';
 import { NotificationService, NotificationType } from 'src/app/_shared/services/notification.service';
 import { UserModelAdd } from '../../models/user-model';
@@ -26,7 +27,7 @@ export class EditUserComponent implements OnInit {
   };
 
   constructor(public translate: TranslateService, private fb: FormBuilder, private router: Router, private loadingService: LoadingService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute, private roleService: RoleService,
     private messages: MessageService, private notificationService: NotificationService, private userService: UserService) {
     this.userId = this.route.snapshot.params['id'];
   }
@@ -45,7 +46,8 @@ export class EditUserComponent implements OnInit {
       name: ['', Validators.required],
       phoneNumber: [null, Validators.required],
       statusID: [null],
-      isSuperAdmin: [false]
+      isSuperAdmin: [false],
+      roleID: [null]
     })
   }
 
@@ -53,28 +55,50 @@ export class EditUserComponent implements OnInit {
     this.userService.getUserById(this.userId).subscribe(data => {
       this.userModelAdd = data;
       this.form = this.fb.group({
-        username: [ this.userModelAdd.email, Validators.required],
+        username: [this.userModelAdd.email, Validators.required],
         name: [this.userModelAdd.name, Validators.required],
         phoneNumber: [this.userModelAdd.phoneNumber, Validators.required],
         statusID: [null],
-        isSuperAdmin: [this.userModelAdd.isSuperAdmin]
-    
+        isSuperAdmin: [this.userModelAdd.isSuperAdmin],
+        roleID: [this.userModelAdd.roleID]
+
       })
       if (this.userModelAdd.statusID == 7)
-      this.form.controls.statusID.setValue(true);
+        this.form.controls.statusID.setValue(true);
       else
-      this.form.controls.statusID.setValue(false);
+        this.form.controls.statusID.setValue(false);
+      if (this.userModelAdd.isSuperAdmin == true)
+        this.isAdmin = true;
+      else
+        this.isAdmin = false;
       this.userId = this.userModelAdd.id;
+      this.getRoles();
     })
+  }
 
+  roles: any;
+  getRoles(): void {
+    this.roleService.getRoles(this.translate.currentLang).subscribe(res => {
+      this.roles = res.datalist.Role;
+    })
+  }
+
+  isAdmin: boolean = false;
+  changeAdmin(event: any) {
+    this.isAdmin = event.currentTarget.checked;
+    // this.form.controls.roleID.setValue(null);
   }
 
   saveUser() {
+    debugger
+    if(this.form.value.isSuperAdmin)
+     this.form.controls.roleID.setValue(null);
     this.userModelAdd.username = this.form.value.username;
     this.userModelAdd.name = this.form.value.name;
     this.userModelAdd.phoneNumber = this.form.value.phoneNumber;
     this.userModelAdd.isSuperAdmin = this.form.value.isSuperAdmin;
     this.userModelAdd.email = this.form.value.username;
+    this.userModelAdd.roleID = this.form.value.roleID;
     this.userModelAdd.lang = this.translate.currentLang;
     this.userModelAdd.id = this.userId;
     this.userModelAdd.userType = 2;

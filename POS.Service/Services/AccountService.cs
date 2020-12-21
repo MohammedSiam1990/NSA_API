@@ -969,7 +969,8 @@ namespace Pos.Service
                         IsSuperAdmin = model.IsSuperAdmin,
                         LockoutEnabled = true,
                         CompanyId = model.CompanyId,
-                        StatusID = model.StatusID
+                        StatusID = model.StatusID,
+                        RoleID=model.RoleID
 
                     };
 
