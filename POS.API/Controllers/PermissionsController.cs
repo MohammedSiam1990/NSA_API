@@ -30,7 +30,7 @@ namespace POS.API.Controllers
         }
 
         [HttpGet("GetPermissions")]
-        public IActionResult GetPermissions(int MenuType, int RoldID, int BrandID, string Lang = "en")
+        public IActionResult GetPermissions(int MenuType, int RoldID, int? BrandID, string Lang = "en")
         {
             try
             {
