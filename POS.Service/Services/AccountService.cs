@@ -970,9 +970,15 @@ namespace Pos.Service
                         LockoutEnabled = true,
                         CompanyId = model.CompanyId,
                         StatusID = model.StatusID,
-                        RoleID=model.RoleID
+                        RoleID = model.RoleID,
+
+
 
                     };
+                    if (identityUser.IsSuperAdmin == true)
+                    {
+                        identityUser.RoleID = null;
+                    }
 
                     string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*?_-";
                     Random random = new Random();
@@ -1050,7 +1056,10 @@ namespace Pos.Service
                     appUser.IsSuperAdmin = model.IsSuperAdmin;
                     appUser.StatusID = model.StatusID;
                     appUser.RoleID = model.RoleID;
-
+                    if (appUser.IsSuperAdmin == true)
+                    {
+                        appUser.RoleID = null;
+                    }
                     var result = await _userManger.UpdateAsync(appUser);
 
                     if (result.Succeeded)
