@@ -14,8 +14,6 @@ namespace POS.API.Models
         public int? BrandID { get; set; }
         public int? MenuType { get; set; }
         public long? InsertedBy { get; set; }
-        public long? ModifiedBy { get; set; }
         public DateTime? CreateDate { get; set; }
-        public DateTime? LastModifyDate { get; set; }
     }
 }

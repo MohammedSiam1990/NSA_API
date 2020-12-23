@@ -30,9 +30,9 @@ namespace POS.Data.Repository
             }
         }
 
-        public void SavePermissions(List<Permissions> model,int RoleID)
+        public void SavePermissions(List<Permissions> model,int RoleID,int MenuID)
         {
-            var Permission = GetMany(e => e.RoleID == RoleID).ToList();
+            var Permission = GetMany(e => e.RoleID == RoleID && e.MenuID==MenuID).ToList();
             DeleteRange(Permission);
             AddRange(model);
         }
