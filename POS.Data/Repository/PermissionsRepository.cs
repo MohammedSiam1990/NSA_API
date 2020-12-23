@@ -30,11 +30,21 @@ namespace POS.Data.Repository
             }
         }
 
-        public void SavePermissions(List<Permissions> model,int RoleID,int MenuID)
+        public void SavePermissions(Permissions model,int RoleID,int MenuID)
         {
-            var Permission = GetMany(e => e.RoleID == RoleID && e.MenuID==MenuID).ToList();
-            DeleteRange(Permission);
-            AddRange(model);
+            using (var context = new PosDbContext())
+            {
+                using (var transaction = context.Database.BeginTransaction())
+                {
+                    var Permission = GetMany(e => e.RoleID == RoleID && e.MenuID == MenuID).ToList();
+                    base.DeleteRange(Permission);
+                    base.Add(model);
+                    context.SaveChanges();
+                    transaction.Commit();
+                    
+                }
+            }
+
         }
     }
 }
