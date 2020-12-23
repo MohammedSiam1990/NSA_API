@@ -9,6 +9,6 @@ namespace POS.Service.IService
 {
     public interface IRoleBrandsService
     {
-        void SaveRoleBrand(List<RolesBrands> model);
+        void SaveRoleBrand(List<RolesBrands> model, int RollID);
     }
 }

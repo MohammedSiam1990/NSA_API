@@ -11,9 +11,9 @@ namespace POS.Service.Services
 {
     public class RoleBrandsService : BaseService, IRoleBrandsService
     {
-        public void SaveRoleBrand(List<RolesBrands> model)
+        public void SaveRoleBrand(List<RolesBrands> model,int RollID)
         {
-            PosService.RoleBrandsRepository.SaveRoleBrand(model);
+            PosService.RoleBrandsRepository.SaveRoleBrand(model, RollID);
         }
     }
 }

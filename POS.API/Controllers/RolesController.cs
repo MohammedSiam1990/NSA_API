@@ -64,11 +64,11 @@ namespace POS.API.Controllers
                 }
                 else if (result == -2)
                 {
-                    return Ok(new { success = false, message = lang.Name_already_exists , repeated = "Name" });
+                    return Ok(new { success = false, message = lang.Name_already_exists, repeated = "Name" });
                 }
                 else if (result == -3)
                 {
-                    return Ok(new { success = false, message = lang.Arabic_name_already_exists , repeated = "NameAr" });
+                    return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "NameAr" });
                 }
             }
             catch (Exception e)
@@ -81,7 +81,7 @@ namespace POS.API.Controllers
         }
 
         [HttpGet("GetRole")]
-        public IActionResult GetRole(int? CompanyId,string Lang = "en")
+        public IActionResult GetRole(int? CompanyId, string Lang = "en")
         {
             try
             {
@@ -112,26 +112,26 @@ namespace POS.API.Controllers
 
         }
 
-    [HttpGet("GetRoleById")]
-    public IActionResult GetRoleById(int RoleId, string Lang = "en")
-    {
-      try
-      {
-        Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
-        var role = RoleService.GetRoleById(RoleId);
+        [HttpGet("GetRoleById")]
+        public IActionResult GetRoleById(int RoleId, string Lang = "en")
+        {
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+                var role = RoleService.GetRoleById(RoleId);
 
-        return Ok(new { datalist = role, message = "", success = true });
-      }
-      catch (Exception ex)
-      {
-        ExceptionError.SaveException(ex);
-      }
-      return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+                return Ok(new { datalist = role, message = "", success = true });
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+            }
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
+        }
+
+
 
     }
-
-
-
-  }
 }

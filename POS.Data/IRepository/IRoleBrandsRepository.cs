@@ -7,6 +7,7 @@ namespace POS.Data.IRepository
 {
     public interface IRoleBrandsRepository
     {
-        void SaveRoleBrand(List<RolesBrands> model);
+        void SaveRoleBrand(List<RolesBrands> model,int RollID);
+        
     }
 }
