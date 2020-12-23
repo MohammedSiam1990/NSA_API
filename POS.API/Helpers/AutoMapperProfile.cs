@@ -89,8 +89,6 @@ namespace POS.API.Helpers
             CreateMap<Permissions, PermissionsModel>();
             CreateMap<PermissionsModel, Permissions>();
 
-            CreateMap<RolesBrands, RolesBrandsModel>();
-            CreateMap<RolesBrandsModel, RolesBrands>();
 
 
         }

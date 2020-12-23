@@ -16,7 +16,7 @@ namespace POS.Data.Entities
         public DateTime? LastModifyDate { get; set; }
         public long? InsertedBy { get; set; }
         public long? ModifiedBy { get; set; }
-        public List<RolesBrands> RolesBrands { get; set; }
+        public string BrandsIDs { get; set; }
 
     }
 }

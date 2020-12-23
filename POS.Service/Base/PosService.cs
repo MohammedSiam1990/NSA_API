@@ -36,19 +36,18 @@ namespace Pos.Service.Base
         public IAddressRepository AddressRepository { get; set; }
         public IConfigRepository ConfigRepository { get; set; }
         public ICountryRepository CountryRepository { get; set; }
-        public ICityRepository CityRepository{ get; set; }
-         public IDistrictRepository DistrictRepository { get; set; }
-         public IUserDefinedRepository UserDefinedRepository { get; set; }
-         public IPriceTemplateRepository PriceTemplateRepository { get; set; }
-         public IPriceTemplateDetailsRepository PriceTemplateDetailsRepository { get; set; }
-         public IAuthRepository AuthRepository { get; set; }
-         public ISupplierRepository SupplierRepository { get; set; }
-         public IUserRoleRepository UserRoleRepository { get; set; }
-         public IRoleRepository RoleRepository { get; set; }
-         public IPermissionsRepository PermissionsRepository{ get; set; }
-         public IRoleBrandsRepository RoleBrandsRepository { get; set; }
+        public ICityRepository CityRepository { get; set; }
+        public IDistrictRepository DistrictRepository { get; set; }
+        public IUserDefinedRepository UserDefinedRepository { get; set; }
+        public IPriceTemplateRepository PriceTemplateRepository { get; set; }
+        public IPriceTemplateDetailsRepository PriceTemplateDetailsRepository { get; set; }
+        public IAuthRepository AuthRepository { get; set; }
+        public ISupplierRepository SupplierRepository { get; set; }
+        public IUserRoleRepository UserRoleRepository { get; set; }
+        public IRoleRepository RoleRepository { get; set; }
+        public IPermissionsRepository PermissionsRepository { get; set; }
 
-        
+
         [Inject]
         public PosServices(
                                      ICompaniesRepository _CompaniesRepository,
@@ -89,8 +88,7 @@ namespace Pos.Service.Base
                                      ISupplierRepository _SupplierRepository,
                                      IRoleRepository _RoleRepository,
                                      IUserRoleRepository _UserRoleRepository,
-                                     IPermissionsRepository _PermissionsRepository,
-                                     IRoleBrandsRepository _RoleBrandsRepository
+                                     IPermissionsRepository _PermissionsRepository
                             )
         {
             CompaniesRepository = _CompaniesRepository;
@@ -122,7 +120,7 @@ namespace Pos.Service.Base
             CustomerRepository = _CustomerRepository;
             ConfigRepository = _ConfigRepository;
             CountryRepository = _CountryRepository;
-            CityRepository =_CityRepository;
+            CityRepository = _CityRepository;
             DistrictRepository = _districtRepository;
             UserDefinedRepository = _userDefinedRepository;
             PriceTemplateRepository = _PriceTemplateRepository;
@@ -132,7 +130,6 @@ namespace Pos.Service.Base
             RoleRepository = _RoleRepository;
             UserRoleRepository = _UserRoleRepository;
             PermissionsRepository = _PermissionsRepository;
-            RoleBrandsRepository = _RoleBrandsRepository;
         }
 
     }

@@ -87,7 +87,6 @@ namespace POS.Data.DataContext
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<UserRole> UserRole { get; set; }
         public virtual DbSet<Permissions> Permissions { get; set; }
-        public virtual DbSet<RolesBrands> RolesBrands { get; set; }
 
 
     #endregion

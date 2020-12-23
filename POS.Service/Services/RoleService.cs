@@ -29,7 +29,6 @@ namespace POS.Service.Services
         public void SaveRole(Role model)
         {
             PosService.RoleRepository.SaveRole(model);
-            PosService.RoleBrandsRepository.SaveRoleBrand(model.RolesBrands,model.Id);
         }
     }
 }

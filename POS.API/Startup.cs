@@ -259,7 +259,6 @@ namespace POS.API.CORE
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IUserRoleService, UserRoleService>();
             services.AddScoped<IPermissionsService, PermissionsService>();
-            services.AddScoped<IRoleBrandsService, RoleBrandsService>();
 
 
             services.Configure<IISServerOptions>(options =>
