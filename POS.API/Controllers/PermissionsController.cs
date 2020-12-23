@@ -37,7 +37,7 @@ namespace POS.API.Controllers
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = PermissionsService.GetPermissionsLookUps(MenuType, RoldID, BrandID);
+                var data = PermissionsService.GetPermissions(MenuType, RoldID, BrandID);
                 if (data != null)
                 {
                     if (data.Count() == 0)

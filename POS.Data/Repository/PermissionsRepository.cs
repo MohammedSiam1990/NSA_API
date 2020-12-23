@@ -18,11 +18,11 @@ namespace POS.Data.Repository
         }
 
         [Obsolete]
-        public string GetPermissionsLookUps(int MenuType,int RoldID, int? BrandID)
+        public string GetPermissions(int MenuType,int RoldID, int? BrandID)
         {
             using (var DbContext = new PosDbContext())
             {
-                string Sql = "EXEC GetPermissionsLookups @MenuType,@RoldID,@BrandID";
+                string Sql = "EXEC GetPermissions @MenuType,@RoldID,@BrandID";
                 var data = DbContext.JsonData.FromSql(Sql, new SqlParameter("@RoldID", RoldID),
                     new SqlParameter("@MenuType", MenuType), new SqlParameter("@BrandID", BrandID ?? (object)DBNull.Value))
                     .AsEnumerable().FirstOrDefault().Data;
