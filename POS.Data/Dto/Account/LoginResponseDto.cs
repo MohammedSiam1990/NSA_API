@@ -16,6 +16,7 @@ namespace POS.Data.Dto
         public string companyId { get; set; }
         public string CompanyNameEn { get; set; }
         public string CompanyNameAr { get; set; }
+        public bool? IsSuperAdmin { get; set; }
 
         public bool success { get; set; }
 

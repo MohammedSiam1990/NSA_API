@@ -335,6 +335,7 @@ namespace Pos.Service
                     status = true,
                     companyId = user.CompanyId.ToString(),
                     Name = user.Name,
+                    IsSuperAdmin=user.IsSuperAdmin,
                     CompanyNameEn = Company.CompanyName,
                     CompanyNameAr = Company.CompanyNameAr
                 };
@@ -350,6 +351,7 @@ namespace Pos.Service
                     Email = user.Email,
                     Token = tokenAsString,
                     message = "Login Successfully",
+                    IsSuperAdmin = user.IsSuperAdmin,
                     status = true,
                     Name = user.Name,
                 };
