@@ -62,6 +62,7 @@ namespace POS.Data.Repository
             {
                 model.CreateDate = DateTime.Now;
                 Add(model);
+
             }
             else
             {

@@ -16,5 +16,6 @@ namespace POS.API.Models
         public DateTime? LastModifyDate { get; set; }
         public long? InsertedBy { get; set; }
         public long? ModifiedBy { get; set; }
+        public List<RolesBrandsModel> RolesBrands { get; set; }
     }
 }

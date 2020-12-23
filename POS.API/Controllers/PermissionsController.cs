@@ -63,7 +63,7 @@ namespace POS.API.Controllers
 
 
         [HttpPost("SavePermissions")]
-        public IActionResult SavePermissions(List<PermissionsModel> model, string Lang = "en")
+        public IActionResult SavePermissions(List<PermissionsModel> model,int MenuID, string Lang = "en")
         {
             try
             {
@@ -72,7 +72,7 @@ namespace POS.API.Controllers
                 var Permission = Mapper.Map<List<Permissions>>(model);
                 int rollId = Permission.First().RoleID;
 
-                PermissionsService.SavePermissions(Permission, rollId);
+                PermissionsService.SavePermissions(Permission, rollId, MenuID);
 
                 return Ok(new { success = true, message = lang.Saved_successfully_completed });
 
