@@ -14,6 +14,6 @@ namespace POS.Service.Services
         public void SaveRoleBrand(List<RolesBrands> model)
         {
             PosService.RoleBrandsRepository.SaveRoleBrand(model);
-        }0
+        }
     }
 }
