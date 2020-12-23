@@ -45,7 +45,7 @@ namespace POS.Data.Repository
         }
 
         [Obsolete]
-        public string GetProcBrand(int CompanyID, string ImageURL)
+        public string GetProcBrand(int CompanyID, long UserID, string ImageURL)
         {
             using (var DbContext = new PosDbContext())
             {
@@ -55,8 +55,9 @@ namespace POS.Data.Repository
                 else
                     CompId = CompanyID;
 
-                string Sql = "EXEC GetBrands @CompanyID,@ImageURL";
+                string Sql = "EXEC GetBrands @CompanyID,@UserID,@ImageURL";
                 var data = DbContext.JsonData.FromSql(Sql, new SqlParameter("@CompanyID", CompId),
+                                                   new SqlParameter("@UserID", UserID),
                                                    new SqlParameter("@ImageURL", ImageURL)).AsEnumerable().FirstOrDefault().Data;
                 return data.ToString();
 

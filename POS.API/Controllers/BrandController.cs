@@ -39,14 +39,14 @@ namespace POS.API.CORE.Controllers
 
 
         [HttpGet("GetBrands")]
-        public IActionResult GetBrands(int CompanyId = 0, string Lang = "en")
+        public IActionResult GetBrands(long UserID,int CompanyId = 0 ,string Lang = "en")
         {
             try
             {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
 
-                var data = BrandService.GetProcBrands(CompanyId, imagesPath.Brand);
+                var data = BrandService.GetProcBrands(CompanyId, UserID, imagesPath.Brand);
                 if (data != null)
                 {
                     if (data.Count() == 0)

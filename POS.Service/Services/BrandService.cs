@@ -11,9 +11,9 @@ namespace Pos.Service
             return PosService.BrandRepository.SaveProcBrand(Brand);
         }
 
-        public string GetProcBrands(int CompanyId, string ImageURL)
+        public string GetProcBrands(int CompanyId, long UserID, string ImageURL)
         {
-            return PosService.BrandRepository.GetProcBrand(CompanyId, ImageURL);
+            return PosService.BrandRepository.GetProcBrand(CompanyId, UserID, ImageURL);
         }
     }
 }
