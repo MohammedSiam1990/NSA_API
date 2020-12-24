@@ -336,8 +336,10 @@ namespace Pos.Service
                     companyId = user.CompanyId.ToString(),
                     Name = user.Name,
                     IsSuperAdmin=user.IsSuperAdmin,
+                    RoleID=user.RoleID,
                     CompanyNameEn = Company.CompanyName,
-                    CompanyNameAr = Company.CompanyNameAr
+                    CompanyNameAr = Company.CompanyNameAr,
+                    
                 };
 
 
