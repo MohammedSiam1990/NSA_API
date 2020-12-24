@@ -310,7 +310,7 @@ namespace Pos.Service
 
             string tokenAsString = new JwtSecurityTokenHandler().WriteToken(token);
 
-            if (user.CompanyId != null && user.RoleID != null)
+            if (user.CompanyId != null)
             {
                 Companies Company = null;
                 Company = CompaniesService.GetCompany(user.CompanyId.Value);
