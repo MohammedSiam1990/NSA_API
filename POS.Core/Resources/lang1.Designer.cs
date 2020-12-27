@@ -655,6 +655,15 @@ namespace POS.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You dont have any permission for any brands.
+        /// </summary>
+        public static string You_dont_have_any_permission_for_any_brands {
+            get {
+                return ResourceManager.GetString("You_dont_have_any_permission_for_any_brands", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your account is locked, please try later , or you may rest your password.
         /// </summary>
         public static string Your_account_is_locked_please_try_later {

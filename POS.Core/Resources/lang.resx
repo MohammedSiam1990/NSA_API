@@ -336,4 +336,7 @@
   <data name="Your_registration_completed_successfully" xml:space="preserve">
     <value>Your registration completed successfully</value>
   </data>
+  <data name="You_dont_have_any_permission_for_any_brands" xml:space="preserve">
+    <value>You dont have any permission for any brands</value>
+  </data>
 </root>

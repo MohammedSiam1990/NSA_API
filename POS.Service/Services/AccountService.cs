@@ -9,6 +9,7 @@ using POS.Data.Dto;
 using POS.Data.Dto.Account;
 using POS.Entities;
 using POS.IService.Base;
+using POS.Service.IService;
 using Steander.Core.DTOs;
 using Steander.Core.Entities;
 using System;
@@ -35,13 +36,15 @@ namespace Pos.Service
         EmailConfiguration emailConfig;
         private ICompaniesService CompaniesService;
         private IBrandService BrandService;
+        private IRoleService RoleService;
         public AccountService(UserManager<ApplicationUser> userManager,
           SignInManager<ApplicationUser> signInManager,
              ICompaniesService _CompaniesService,
              IBrandService _brandService,
             EmailConfiguration _emailConfig,
             IConfiguration configuration,
-          IMailService _mailService
+          IMailService _mailService,
+          IRoleService _RoleService
             )
 
         {
@@ -52,6 +55,7 @@ namespace Pos.Service
             mailService = _mailService;
             emailConfig = _emailConfig;
             BrandService = _brandService;
+            RoleService = _RoleService;
         }
 
         public static void ExceptionError(Exception ex)
@@ -263,17 +267,6 @@ namespace Pos.Service
             }
 
 
-
-
-            //if (user.LockoutEnabled == true)
-            //{
-            //    return new LoginResponseDto
-            //    {
-            //        message = lang.Your_account_is_locked_please_try_later,
-            //        success = false
-            //    };
-            //}
-
             if (user.UserType != model.UserType)
             {
                 return new LoginResponseDto
@@ -324,7 +317,16 @@ namespace Pos.Service
                     };
 
                 }
+                int CheckResult = RoleService.CheckRoleBrands(user.RoleID);
+                if (CheckResult == -2)
+                {
+                    return new LoginResponseDto
+                    {
+                        message = lang.You_dont_have_any_permission_for_any_brands,
+                        success = false
+                    };
 
+                }
                 return new LoginResponseDto
                 {
                     UserId = user.UserID,

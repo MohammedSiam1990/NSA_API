@@ -11,6 +11,11 @@ namespace POS.Service.Services
 {
     public class RoleService : BaseService, IRoleService
     {
+        public int CheckRoleBrands(int? RoleID)
+        {
+            return PosService.RoleRepository.CheckRoleBrands(RoleID);
+        }
+
         public string GetRole(int? CompanyId)
         {
             return PosService.RoleRepository.GetRole(CompanyId);

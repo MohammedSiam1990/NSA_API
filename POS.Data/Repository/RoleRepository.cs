@@ -17,6 +17,16 @@ namespace POS.Data.Repository
         {
         }
 
+        public int CheckRoleBrands(int? RoleID)
+        {
+            var Role = base.Table().Where(e => e.Id == RoleID).FirstOrDefault();
+            if (Role.BrandsIDs == null)
+            {
+                return -2;
+            }
+            return 1;
+        }
+
         [Obsolete]
         public string GetRole(int? CompanyId)
         {
