@@ -10,6 +10,7 @@ namespace POS.Reports.Reports.Client
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Report1));
+            Telerik.Reporting.Drawing.FormattingRule formattingRule1 = new Telerik.Reporting.Drawing.FormattingRule();
             Telerik.Reporting.ReportParameter reportParameter1 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
             this.pageHeaderSection1 = new Telerik.Reporting.PageHeaderSection();
@@ -56,6 +57,10 @@ namespace POS.Reports.Reports.Client
             // 
             // Report1
             // 
+            formattingRule1.Filters.Add(new Telerik.Reporting.Filter("Parameters.Para1.Value", Telerik.Reporting.FilterOperator.Equal, "ar"));
+            formattingRule1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
+            this.ConditionalFormatting.AddRange(new Telerik.Reporting.Drawing.FormattingRule[] {
+            formattingRule1});
             this.Culture = new System.Globalization.CultureInfo("ar-JO");
             this.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.pageHeaderSection1,
