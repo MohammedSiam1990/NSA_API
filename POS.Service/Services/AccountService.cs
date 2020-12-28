@@ -7,9 +7,11 @@ using Pos.IService;
 using POS.Core.Resources;
 using POS.Data.Dto;
 using POS.Data.Dto.Account;
+using POS.Data.Entities;
 using POS.Entities;
 using POS.IService.Base;
 using POS.Service.IService;
+using POS.Service.Services;
 using Steander.Core.DTOs;
 using Steander.Core.Entities;
 using System;
@@ -23,6 +25,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Pos.Service
 {
@@ -37,6 +40,7 @@ namespace Pos.Service
         private ICompaniesService CompaniesService;
         private IBrandService BrandService;
         private IRoleService RoleService;
+        private IloginAuditService loginAuditService;
         public AccountService(UserManager<ApplicationUser> userManager,
           SignInManager<ApplicationUser> signInManager,
              ICompaniesService _CompaniesService,
@@ -44,7 +48,8 @@ namespace Pos.Service
             EmailConfiguration _emailConfig,
             IConfiguration configuration,
           IMailService _mailService,
-          IRoleService _RoleService
+          IRoleService _RoleService,
+          IloginAuditService _loginAuditService
             )
 
         {
@@ -56,6 +61,7 @@ namespace Pos.Service
             emailConfig = _emailConfig;
             BrandService = _brandService;
             RoleService = _RoleService;
+            loginAuditService = _loginAuditService;
         }
 
         public static void ExceptionError(Exception ex)
@@ -317,16 +323,30 @@ namespace Pos.Service
                     };
 
                 }
-                int CheckResult = RoleService.CheckRoleBrands(user.RoleID);
-                if (CheckResult == -2)
+                if (user.IsSuperAdmin == false)
                 {
-                    return new LoginResponseDto
+                    int CheckResult = RoleService.CheckRoleBrands(user.RoleID);
+                    if (CheckResult == -2)
                     {
-                        message = lang.You_dont_have_any_permission_for_any_brands,
-                        success = false
-                    };
+                        return new LoginResponseDto
+                        {
+                            message = lang.You_dont_have_any_permission_for_any_brands,
+                            success = false
+                        };
 
+                    }
                 }
+
+                var LoginAuditObj = new LoginAudit
+                {
+                    CompanyId = user.CompanyId,
+                    TransactionDate = DateTime.Now,
+                    TransactionType = 1,
+                    UserName = user.UserName
+
+                };
+
+                loginAuditService.SaveLoginAudit(LoginAuditObj);
                 return new LoginResponseDto
                 {
                     UserId = user.UserID,
@@ -337,17 +357,26 @@ namespace Pos.Service
                     status = true,
                     companyId = user.CompanyId.ToString(),
                     Name = user.Name,
-                    IsSuperAdmin=user.IsSuperAdmin,
-                    RoleID=user.RoleID,
+                    IsSuperAdmin = user.IsSuperAdmin,
+                    RoleID = user.RoleID,
                     CompanyNameEn = Company.CompanyName,
                     CompanyNameAr = Company.CompanyNameAr,
-                    
+
                 };
 
 
             }
             else if (user.CompanyId == null && user.UserType == 2)
             {
+                var LoginAuditObj = new LoginAudit
+                {
+                    TransactionDate = DateTime.Now,
+                    TransactionType = 1,
+                    UserName = user.UserName
+                };
+
+                loginAuditService.SaveLoginAudit(LoginAuditObj);
+
                 return new LoginResponseDto
                 {
                     UserId = user.UserID,
@@ -1095,7 +1124,27 @@ namespace Pos.Service
 
         }
 
+        public async Task<UserManagerResponse> Logout(string UserID)
+        {
+            var user = await _userManger.FindByIdAsync(UserID);
 
+            await _signInManager.SignOutAsync();
+            var LoginAuditObj = new LoginAudit
+            {
+                CompanyId = user.CompanyId,
+                TransactionDate = DateTime.Now,
+                TransactionType = 2,
+                UserName = user.UserName
+
+            };
+            loginAuditService.SaveLoginAudit(LoginAuditObj);
+            return new UserManagerResponse
+            {
+                message = "Log out success",
+                success = true,
+            };
+
+        }
     }
 
 }

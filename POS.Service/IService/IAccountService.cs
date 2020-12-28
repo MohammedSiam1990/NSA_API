@@ -29,5 +29,7 @@ namespace Pos.IService
         Task<UserManagerResponse> DeletetUserAsync(string Id);
         Task<UserManagerResponse> ChangePassword(string UserID, string OldPassword, string NewPassword);
         Task<ApplicationUser> IdentityApplicationUser(string userName);
+        Task<UserManagerResponse> Logout(string UserID);
+
     }
 }

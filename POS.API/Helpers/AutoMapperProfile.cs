@@ -88,6 +88,8 @@ namespace POS.API.Helpers
 
             CreateMap<Permissions, PermissionsModel>();
             CreateMap<PermissionsModel, Permissions>();
+            CreateMap<LoginAudit, LoginAuditModel>();
+            CreateMap<LoginAuditModel, LoginAudit>();
 
 
 

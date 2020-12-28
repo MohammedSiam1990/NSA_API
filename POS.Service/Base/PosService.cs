@@ -46,6 +46,7 @@ namespace Pos.Service.Base
         public IUserRoleRepository UserRoleRepository { get; set; }
         public IRoleRepository RoleRepository { get; set; }
         public IPermissionsRepository PermissionsRepository { get; set; }
+        public IloginAuditRepository loginAuditRepository { get; set; }
 
 
         [Inject]
@@ -88,7 +89,8 @@ namespace Pos.Service.Base
                                      ISupplierRepository _SupplierRepository,
                                      IRoleRepository _RoleRepository,
                                      IUserRoleRepository _UserRoleRepository,
-                                     IPermissionsRepository _PermissionsRepository
+                                     IPermissionsRepository _PermissionsRepository,
+                                     IloginAuditRepository _loginAuditRepository
                             )
         {
             CompaniesRepository = _CompaniesRepository;
@@ -130,6 +132,7 @@ namespace Pos.Service.Base
             RoleRepository = _RoleRepository;
             UserRoleRepository = _UserRoleRepository;
             PermissionsRepository = _PermissionsRepository;
+            loginAuditRepository = _loginAuditRepository;
         }
 
     }

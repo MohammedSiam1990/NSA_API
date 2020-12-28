@@ -450,5 +450,23 @@ namespace StanderApi.Controllers
             }
             return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
         }
+        [AllowAnonymous]
+        [HttpPost("LogOut")]
+
+        public async Task<IActionResult> LogOut()
+        {
+            try
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var user = await _accountService.Logout(userId);
+                return Ok(user);
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+            }
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+        }
     }
 }
