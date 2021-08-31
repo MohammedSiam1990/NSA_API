@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>2128d603-fcd7-47e7-82b7-5a4b67bc82e7</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="DTO\**" />
+    <Compile Remove="Resources\**" />
+    <Compile Remove="uploads\BrandImageOffer\**" />
+    <Compile Remove="uploads\MajorService\**" />
+    <Content Remove="DTO\**" />
+    <Content Remove="Resources\**" />
+    <Content Remove="uploads\BrandImageOffer\**" />
+    <Content Remove="uploads\MajorService\**" />
+    <EmbeddedResource Remove="DTO\**" />
+    <EmbeddedResource Remove="Resources\**" />
+    <EmbeddedResource Remove="uploads\BrandImageOffer\**" />
+    <EmbeddedResource Remove="uploads\MajorService\**" />
+    <None Remove="DTO\**" />
+    <None Remove="Resources\**" />
+    <None Remove="uploads\BrandImageOffer\**" />
+    <None Remove="uploads\MajorService\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Controllers\WorkTimeTemplateController.cs" />
+    <Compile Remove="Helpers\AppException.cs" />
+    <Compile Remove="Helpers\Exceptions.cs" />
+    <Compile Remove="Models\CurrencyExchangeRateModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="MailKit" Version="2.7.0" />
+    <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.3.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.3.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.6.0" />
+   <!--<PackageReference Include="Telerik.WebReportDesigner.Services.Trial" Version="14.2.20.1021" />-->
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NSR.Common\NSR.Common.csproj" />
+    <ProjectReference Include="..\NSR.Core\NSR.Core.csproj" />
+    <ProjectReference Include="..\NSR.Data\NSR.Data.csproj" />
+    <ProjectReference Include="..\NSR.Service\NSR.Service.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="uploads\Branch\" />
+    <Folder Include="uploads\Brand\" />
+    <Folder Include="uploads\Company\" />
+    <Folder Include="uploads\ItemGroup\Icons\Resturant\" />
+    <Folder Include="uploads\University\" />
+    <Folder Include="uploads\Soldier\" />
+    <Folder Include="uploads\School\" />
+  </ItemGroup>
+</Project>
