@@ -41,7 +41,7 @@ namespace NSR.API.CORE
     public class Startup
     {
         private readonly IWebHostEnvironment _env;
-        // private readonly IConfiguration _configuration;
+        // private readonly IConfiguration _configuration111;
 
         public Startup(IWebHostEnvironment env, IConfiguration configuration)
         {
