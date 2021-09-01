@@ -11,7 +11,7 @@ namespace NSR.Entities
     [Table("University")]
     public partial class University
     {
-        [Key]
+        [Key]/// 3333333333333
         public int UniversityId { get; set; }
         [StringLength(100)]
         public string UniversityName1 { get; set; }
