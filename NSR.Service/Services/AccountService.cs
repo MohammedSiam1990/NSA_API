@@ -186,6 +186,7 @@ namespace NSR.Service
                 CompanyId = company.CompanyId,
                 UserType = 1
                 // VerificationCode = VerificationCode
+                // Mohgammed Siam
             };
             var result = await _userManger.CreateAsync(identityUser, model.Password);
 
