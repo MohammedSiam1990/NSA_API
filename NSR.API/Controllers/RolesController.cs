@@ -1,0 +1,137 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Exceptions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NSR.IService;
+using NSR.Core.Resources;
+using NSR.Data.DataContext;
+using NSR.Data.Dto.Account;
+using NSR.Data;
+using Steander.Core.Entities;
+using NSR.Entities;
+using ApplicationUser = Steander.Core.Entities.ApplicationUser;
+using NSR.API.Models;
+using AutoMapper;
+using NSR.Service.IService;
+using NSR.Data.Entities;
+using Newtonsoft.Json;
+
+namespace NSR.API.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class RolesController : ControllerBase
+    {
+        private readonly RoleManager<AspNetRoles> roleManager;
+        private UserManager<ApplicationUser> userManger;
+        private IAccountService _accountService;
+        private IRoleService RoleService;
+        private IUserRoleService UserRoleService;
+        private IMapper Mapper;
+
+        public RolesController(RoleManager<AspNetRoles> _roleManager, UserManager<ApplicationUser> _userManger,
+            IAccountService accountService, IRoleService _RoleService, IMapper _Mapper, IUserRoleService _UserRoleService)
+        {
+            roleManager = _roleManager;
+            userManger = _userManger;
+            _accountService = accountService;
+            RoleService = _RoleService;
+            Mapper = _Mapper;
+            UserRoleService = _UserRoleService;
+        }
+
+        [HttpPost("SaveRole")]
+        public IActionResult SaveRole(RoleModel model, string Lang = "en")
+        {
+
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+            try
+            {
+                var role = Mapper.Map<Role>(model);
+                int result = RoleService.RoleAlreadyExists(role);
+                if (result == 1)
+                {
+                    RoleService.SaveRole(role);
+                    return Ok(new { success = true, message = lang.Saved_successfully_completed });
+                }
+                else if (result == -2)
+                {
+                    return Ok(new { success = false, message = lang.Name_already_exists, repeated = "Name" });
+                }
+                else if (result == -3)
+                {
+                    return Ok(new { success = false, message = lang.Arabic_name_already_exists, repeated = "NameAr" });
+                }
+            }
+            catch (Exception e)
+            {
+                Exceptions.ExceptionError.SaveException(e);
+            }
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
+
+        }
+
+        [HttpGet("GetRole")]
+        public IActionResult GetRole(int? CompanyId, string Lang = "en")
+        {
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+
+                var data = RoleService.GetRole(CompanyId);
+                if (data != null)
+                {
+                    if (data.Count() == 0)
+                    {
+                        return Ok(new { success = true, message = lang.No_data_available, datalist = JsonConvert.DeserializeObject(data) });
+                    }
+                    else
+                    {
+                        return Ok(new { success = true, message = "", datalist = JsonConvert.DeserializeObject(data) });
+                    }
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+            }
+
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
+        }
+
+        [HttpGet("GetRoleById")]
+        public IActionResult GetRoleById(int RoleId, string Lang = "en")
+        {
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Lang);
+                var role = RoleService.GetRoleById(RoleId);
+
+                return Ok(new { datalist = role, message = "", success = true });
+            }
+            catch (Exception ex)
+            {
+                ExceptionError.SaveException(ex);
+            }
+            return Ok(new { success = false, message = lang.An_error_occurred_while_processing_your_request });
+
+        }
+
+
+
+    }
+}
