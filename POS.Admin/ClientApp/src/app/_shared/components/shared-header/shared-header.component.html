@@ -1,0 +1,78 @@
+<div class="app-header header-shadow">
+    <div class="app-header__logo" (click)="openMun()">
+        <div class="logo-src">
+            <a href="index.html">
+                <img src="assets\images\arqami_logo.svg" width="119" alt="apiax logo" class="logoLarge">
+
+            </a>
+        </div>
+        <div class="header__pane ml-auto show" style="display: block;">
+            <div>
+                <button class="hamburger hamburger-x  button-bruger is-active">
+          <i class="menu-button-brguer fa fa-bars" aria-label="Menu"></i>
+        </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-header__menu">
+        <span>
+      <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+        <span class="btn-icon-wrapper">
+          <i class="fa fa-ellipsis-v fa-w-6"></i>
+        </span>
+        </button>
+        </span>
+    </div>
+    <div class="app-header__content">
+        <div class="app-header-left">
+            <div class="search-wrapper">
+
+
+            </div>
+
+        </div>
+        <div class="app-header-right">
+            <div class="header-btn-lg pr-0">
+                <div class="widget-content p-0">
+                    <div class="widget-content-wrapper">
+                        <div class="widget-content-left">
+                            <div class="  position-relative " (click)="switchLanguage()">
+                                <div class="chooseLang">
+                                    <div>
+                                        <span class="lang AR-lang" value="ar"></span>
+                                        <span class="lang en-lang" value="en"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="btn-group">
+                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 ">
+                                <img width="42" class="rounded-circle" src="assets\images\avatar7.png" alt="">
+                                <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" (click)="showChangePass()">
+                                <button type="button" class="dropdown-item ">{{'change_password'| translate}}</button>
+
+
+
+                            </div>
+                        </div>
+                        <div class="widget-content-left  ml-3 header-user-info">
+                            <div class="widget-heading" id="UserName">{{userName}}</div>
+                            <div class="widget-subheading" id="CompanyName">{{companyNameEn}}</div>
+                        </div>
+                        <div class="widget-content-right  ml-3">
+                            <button title="" type="button" class="btn-shadow  btn btn-primary " data-original-title="تسجيل خروج" (click)="logout()" style="    border-radius: 50%;
+">
+                <i class="fa text-white fa-sign-out "></i>
+              </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

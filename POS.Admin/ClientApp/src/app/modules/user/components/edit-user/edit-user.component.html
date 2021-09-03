@@ -1,0 +1,163 @@
+<div class="pt-77">
+    <nav class="Breadcrumb-title" aria-label="breadcrumb">
+        <ol class="breadcrumb  ">
+            <div class="col-md-6">
+                <li class="breadcrumb-item active " aria-current="page">
+                    <i class=" mr-3 active fa fa-user arqami-color align-middle" aria-hidden="true"></i>
+                    <span id="pageTitle"> {{'User'| translate}}</span>
+                </li>
+            </div>
+            <div class="col-md-6">
+                <li class="float-right ">
+                    <button type="button" class="btn  btn-outline-danger  float-right " [routerLink]="['/user/list']">
+                        <i class="fa fa-close"></i>
+                    </button>
+                </li>
+            </div>
+        </ol>
+    </nav>
+    <div class="p-1">
+        <div class="wrap">
+            <div class="content">
+                <div class="main-card  card">
+                    <div class="card-body">
+                        <form class=" form" [formGroup]="form">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-6">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="text-left form-group ">
+                                                <div class="  input-wrap is-required">
+                                                    <label class="label-input-pos  required-label" for="">{{'Username'|
+                                                        translate}}</label>
+                                                    <input type="text" class="form-control input-sm"
+                                                        formControlName="username" special3Char>
+                                                    <control-messages [control]="form.controls.username"
+                                                        [title]="'username'" [validationMessages]="validationMessages"
+                                                        [inputType]="'lg-input'">
+                                                    </control-messages>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="text-left form-group ">
+                                                <div class="  input-wrap is-required">
+                                                    <label class="label-input-pos  required-label" for="">{{'Name'|
+                                                        translate}}</label>
+                                                    <input type="text" class="form-control input-sm"
+                                                        formControlName="name" special3Char>
+                                                    <control-messages [control]="form.controls.name" [title]="'name'"
+                                                        [validationMessages]="validationMessages"
+                                                        [inputType]="'lg-input'">
+                                                    </control-messages>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-12" *ngIf="!isAdmin">
+
+                                            <div class="input-group mb-4">
+                                                <label class="label-input-pos  required-label" for="">
+                                                    {{'Role'| translate}}</label>
+                                                <ng-select class="form-control input-sm" [items]="roles"
+                                                    formControlName="roleID" bindLabel="Name" bindValue="Id"
+                                                    *ngIf="translate.currentLang=='en'">
+                                                </ng-select>
+                                                <ng-select class="form-control input-sm" [items]="roles"
+                                                    formControlName="roleID" bindLabel="NameAr" bindValue="Id"
+                                                    *ngIf="translate.currentLang=='ar'">
+                                                </ng-select>
+                                                <control-messages [control]="form.controls.roleID" [title]="'roleID'"
+                                                    [validationMessages]="validationMessages" [inputType]="'lg-input'">
+                                                </control-messages>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6">
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <div class="text-left form-group ">
+                                                <div class="  input-wrap is-required">
+                                                    <label class="label-input-pos  required-label"
+                                                        for="">{{'PhoneNumber'| translate}}</label>
+                                                    <input type="text" class="form-control input-sm"
+                                                        formControlName="phoneNumber" special3Char>
+                                                    <control-messages [control]="form.controls.phoneNumber"
+                                                        [title]="'phoneNumber'"
+                                                        [validationMessages]="validationMessages"
+                                                        [inputType]="'lg-input'">
+                                                    </control-messages>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6 control-unit">
+
+                                            <div class="checkbox checkbox-fill d-inline">
+
+                                                <input type="checkbox" name="checkbox-fill-1"
+                                                    formControlName="isSuperAdmin" (change)="changeAdmin($event)">
+                                                <label for="checkbox-fill-a1" class="cr ml-2">
+                                                    {{'IsAdmin'| translate}}
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6 control-unit">
+
+                                            <div class="checkbox checkbox-fill d-inline">
+
+                                                <input type="checkbox" name="checkbox-fill-1"
+                                                    formControlName="statusID">
+                                                <label for="checkbox-fill-a1" class="cr ml-2">
+                                                    {{'Active'| translate}}
+                                                </label>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div CLASS="col-md-12 col-lg-12  mt-3">
+                                    <div class="  form-group bttuncompany m-0">
+                                        <button type="button" class="browse btn btn-lg btn-primary mx-auto  "
+                                            style="width:300px" (click)="saveUser()" [disabled]="!form.valid">{{'save'|
+                                            translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="clearfix">&nbsp;</div>
+
+                            <div class="row">
+                                <div CLASS="col-md-12 ">
+                                    <div class="alert alert-dismissible fade  " role="alert" id="ResultMessage">
+                                        <div id="ResultTxt">
+
+                                        </div>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

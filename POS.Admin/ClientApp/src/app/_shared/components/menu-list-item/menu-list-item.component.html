@@ -1,0 +1,50 @@
+<div id="sidebar" class="side-nav pos-sidebar " [ngClass]=" navService.isExpanded ? 'side-nav--show' : ''">
+
+    <div class="app-sidebar__inner " *ngFor="let item of menu ">
+        <ul class=" vertical-nav-menu metismenu" id="mainMenu">
+            <li class="app-sidebar__heading" *ngIf="translate.currentLang=='en'" style="cursor: pointer;" (click)="toggleSelection(item)" [ngClass]="{'mm-active':item.selected}">
+                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i> {{item.menuKeyName}}</li>
+            <li class="app-sidebar__heading" *ngIf="translate.currentLang=='ar'" style="cursor: pointer;" (click)="toggleSelection(item)" [ngClass]="{'mm-active':item.selected}">
+                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i> {{item.menuKeyNameAr}}</li>
+            <ul class="mm-collapse" [ngClass]="{'mm-show':item.selected}">
+                <li *ngFor="let sub of item.inverseMenuParent let i=index">
+                    <a *ngIf="translate.currentLang=='en'" aria-disabled=" true " routerLink='{{sub.menuUrl}}' class="d-d-flex" routerLinkActive="mm-active">
+                        <div class="image-bg">
+
+                            <img *ngIf="sub.menuClassName.indexOf('.') !== -1" src="http://pos.opos.me/assets/images/icon-svg/{{sub.menuClassName}}" aria-disabled="true " width="20 " height="25 ">
+                        </div>
+                        {{sub.menuKeyName}} <i class="metismenu-state-icon pe-7s-angle-down caret-left " *ngIf="sub.inverseMenuParent.length>0"></i>
+                    </a>
+
+                    <a *ngIf="translate.currentLang=='ar'" class="d-d-flex" aria-disabled=" true " [ngClass]="{'mm-show':item.selected}" routerLink='{{sub.menuUrl}}' routerLinkActive="mm-active"><i
+              *ngIf="sub.menuClassName.indexOf('.') !== 1" class="{{sub.menuClassName}} "></i>
+            <div class="image-bg">
+              <img *ngIf="sub.menuClassName.indexOf('.') !== -1"
+                src="http://pos.opos.me/assets/images/icon-svg/{{sub.menuClassName}}" aria-disabled="true " width="20 "
+                height="25 ">
+            </div>
+            {{sub.menuKeyNameAr}} <i class="metismenu-state-icon pe-7s-angle-down caret-left "
+              *ngIf="sub.inverseMenuParent.length>0"></i>
+          </a>
+
+                    <!-- <ul class="mm-collapse" [ngClass]="{'mm-show':sub.selected  }" *ngIf="sub.inverseMenuParent.length>0">
+                        <li *ngFor="let subSub of sub.inverseMenuParent ">
+                            <a *ngIf="translate.currentLang=='en'" routerLink='{{subSub.menuUrl}}'
+                                routerLinkActive="mm-active"><i class="metismenu-icon pe-7s-shield "></i>
+                                <img class="rounded-circle " src="http://pos.opos.me/assets/images/icon-svg/brand.svg"
+                                    aria-disabled="true " width="20 " height="25 ">{{subSub.menuKeyName}}</a>
+    
+                            <a *ngIf="translate.currentLang=='ar'" routerLink='{{subSub.menuUrl}}'
+                                routerLinkActive="mm-active"><i class="metismenu-icon pe-7s-shield "></i><img
+                                    class="rounded-circle "
+                                    src="http://pos.opos.me/assets/images/icon-svg/brand.svg"
+                                    aria-disabled="true " width="20 " height="25 ">{{subSub.menuKeyNameAr}}</a>
+                        </li>
+                    </ul> -->
+                </li>
+            </ul>
+        </ul>
+
+    </div>
+
+</div>

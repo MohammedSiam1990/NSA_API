@@ -1,0 +1,24 @@
+<div id="wrapper">
+
+
+    <app-shared-header class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header closed-sidebar-mobile closed-sidebar" fxHide.gt-xs *ngIf="isAuthenticated()">
+
+
+    </app-shared-header>
+
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+
+    <app-reset-password fxHide.gt-xs *ngIf="isAuthenticated()">
+    </app-reset-password>
+    <div class="position-relative w-100">
+
+        <app-menu-list-item fxHide.gt-xs *ngIf="isAuthenticated()">
+        </app-menu-list-item>
+        <div class="main " [ngClass]=" navService.isExpanded && isAuthenticated()? 'main--show' : ''">
+
+            <router-outlet></router-outlet>
+
+        </div>
+    </div>
+
+</div>

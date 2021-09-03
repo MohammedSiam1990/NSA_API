@@ -1,0 +1,92 @@
+<div class="pt-77">
+    <nav class="Breadcrumb-title" aria-label="breadcrumb">
+        <ol class="breadcrumb  ">
+            <div class="col-md-6">
+                <li class="breadcrumb-item active " aria-current="page">
+                    <i class=" mr-3 active fa fa-user arqami-color align-middle" aria-hidden="true"></i>
+                    <span id="pageTitle"> {{'Role'| translate}}</span>
+                </li>
+            </div>
+            <div class="col-md-6">
+                <li class="float-right ">
+                    <button type="button" class="btn  btn-outline-danger  float-right " [routerLink]="['/role/list']">
+                        <i class="fa fa-close"></i>
+                    </button>
+                </li>
+            </div>
+        </ol>
+    </nav>
+    <div class="p-1">
+        <div class="wrap">
+            <div class="content">
+                <div class="main-card  card">
+                    <div class="card-body">
+                        <form class=" form" [formGroup]="form">
+                            <div class="row">
+
+
+
+                                <div class="col-md-6">
+                                    <div class="text-left form-group ">
+                                        <div class="  input-wrap is-required">
+                                            <label class="label-input-pos  required-label" for="">{{'name'|
+                                                translate}}</label>
+                                            <input type="text" class="form-control input-sm" formControlName="name"
+                                                special3Char>
+                                            <control-messages [control]="form.controls.name" [title]="'name'"
+                                                [validationMessages]="validationMessages" [inputType]="'lg-input'">
+                                            </control-messages>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-left form-group ">
+                                        <div class="  input-wrap is-required">
+                                            <label class="label-input-pos  required-label" for="">{{'nameAr'|
+                                                translate}}</label>
+                                            <input type="text" class="form-control input-sm" formControlName="nameAr"
+                                                special3Char>
+                                            <control-messages [control]="form.controls.nameAr" [title]="'nameAr'"
+                                                [validationMessages]="validationMessages" [inputType]="'lg-input'">
+                                            </control-messages>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <div CLASS="col-md-12 col-lg-12  mt-3">
+                                    <div class="  form-group bttuncompany m-0">
+                                        <button type="button" class="browse btn btn-lg btn-primary mx-auto  "
+                                            style="width:300px" (click)="saveRole()" [disabled]="!form.valid">{{'save'|
+                                            translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="clearfix">&nbsp;</div>
+
+                            <div class="row">
+                                <div CLASS="col-md-12 ">
+                                    <div class="alert alert-dismissible fade  " role="alert" id="ResultMessage">
+                                        <div id="ResultTxt">
+
+                                        </div>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,52 @@
+<div class="pt-77">
+    <nav class="Breadcrumb-title" aria-label="breadcrumb">
+        <ol class="breadcrumb  ">
+            <li class="mr-3 active">
+                <i class="fa fa-tachometer arqami-color" aria-hidden="true"></i>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <span id="pageTitle" *ngIf="translate.currentLang=='en'"> {{title}} {{'brands'| translate}}</span>
+                <span id="pageTitle" *ngIf="translate.currentLang=='ar'"> {{'brands'| translate}} {{title}} </span>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="main-content">
+        <div class="p-2">
+            <kendo-grid [kendoGridBinding]="gridViewArr" kendoGridSelectBy="id" [pageSize]="pageSize" [pageable]="{
+      
+            pageSizes: pageSizes
+      
+          }" [sortable]="true" [groupable]="true" [reorderable]="true" [resizable]="true" [height]="480">
+
+                <ng-template kendoGridToolbarTemplate>
+                    <div class="float-left">
+                        <input placeholder="{{'search_all_columns'|translate}}" kendoTextBox (input)="search($event.target.value)" class="kendo-search textbox1 " />
+                        <input title="Search" value="" type="submit" class="button1">
+                    </div>
+                    <button kendoGridExcelCommand type="button" icon="file-excel" class="btn  btn-primary text-white float-right">
+            {{'Export_to_Excel'|translate}}
+          </button>
+                </ng-template>
+                <kendo-grid-column field="BrandName" title="{{'BrandName'|translate}}" [width]="120" *ngIf="translate.currentLang=='en'">
+                </kendo-grid-column>
+                <kendo-grid-column field="BrandNameAr" title="{{'BrandNameAr'|translate}}" [width]="120" *ngIf="translate.currentLang=='ar'">
+                </kendo-grid-column>
+
+                <kendo-grid-column field="ServiceName" title="{{'ServiceName'|translate}}" [width]="120" *ngIf="translate.currentLang=='en'">
+                </kendo-grid-column>
+                <kendo-grid-column field="ServiceNameAr" title="{{'ServiceNameAr'|translate}}" [width]="120" *ngIf="translate.currentLang=='ar'">
+                </kendo-grid-column>
+
+                <kendo-grid-column *ngIf="translate.currentLang=='en'" field="CompanyName" title="{{'CompanyName'|translate}}" [width]="120">
+                </kendo-grid-column>
+                <kendo-grid-column *ngIf="translate.currentLang=='ar'" field="CompanyNameAr" title="{{'CompanyNameAr'|translate}}" [width]="120"></kendo-grid-column>
+                <kendo-grid-column field="CreateDate" title="{{'CreateDate'|translate}}" [width]="120" filter="date" format="dd/MM/yyyy">
+                </kendo-grid-column>
+                <kendo-grid-excel fileName="WorkStations.xlsx" [fetchData]="allData"></kendo-grid-excel>
+                <kendo-grid-messages [groupPanelEmpty]="'Drag a column header and drop it here to group by that column'|translate" [pagerItemsPerPage]="'items_per_page'|translate" [pagerItems]="'itemsPage'|translate" [pagerOf]="'of'|translate" noRecords="{{'no_records_available' | translate}}">
+                </kendo-grid-messages>
+            </kendo-grid>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+<div class="pt-77">
+    <nav class="Breadcrumb-title" aria-label="breadcrumb">
+        <ol class="breadcrumb  ">
+            <li class="mr-3 active">
+                <i class="fa fa-tachometer arqami-color" aria-hidden="true"></i>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <span id="pageTitle" *ngIf="translate.currentLang=='en'">{{'district'| translate}}</span>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="main-content">
+        <div class="p-2">
+            <kendo-grid [kendoGridBinding]="gridViewArr" kendoGridSelectBy="id" [pageSize]="pageSize" [pageable]="{
+      
+            pageSizes: pageSizes
+      
+          }" [sortable]="true" [groupable]="true" [reorderable]="true" [resizable]="true" [height]="480">
+
+                <ng-template kendoGridToolbarTemplate>
+                    <div class="ml-2 float-left">
+                        <div class="input-group mb-4">
+                            <label class="label-input-pos  required-label" for="">
+                                {{'country'| translate}}</label>
+                            <ng-select class="form-control input-sm" [items]="countriesArr " bindLabel="countryName" [clearable]="false"
+                                bindValue="countryId" (change)="changeCountry($event)" [(ngModel)]="countryId"
+                                *ngIf="translate.currentLang=='en'" style="width: 200px;">
+                            </ng-select>
+                            <ng-select class="form-control input-sm" [items]="countriesArr "
+                                bindLabel="countryNameAr" bindValue="countryId" (change)="changeCountry($event)" [clearable]="false"
+                                [(ngModel)]="countryId" *ngIf="translate.currentLang=='ar'" style="width: 200px;">
+                            </ng-select>
+                        </div>
+
+                    </div>
+                    <div class="ml-2 mr-2 float-left">
+                        <div class="input-group mb-4">
+                            <label class="label-input-pos  required-label" for="">
+                                {{'city'| translate}}</label>
+                            <ng-select class="form-control input-sm" [items]="citiesArr" [(ngModel)]="cityId" [clearable]="false"
+                                (change)="changeCity($event)" bindLabel="cityName" bindValue="cityId"
+                                *ngIf="translate.currentLang=='en'" style="width: 200px;">
+                            </ng-select>
+                            <ng-select class="form-control input-sm" [items]="citiesArr" [(ngModel)]="cityId" [clearable]="false"
+                                (change)="changeCity($event)" bindLabel="cityNameAr" bindValue="cityId"
+                                *ngIf="translate.currentLang=='ar'" style="width: 200px;">
+                            </ng-select>
+                        </div>
+
+                    </div>
+                    <div class="float-left">
+                        <input placeholder="{{'search_all_columns'|translate}}" kendoTextBox
+                            (input)="onFilter($event.target.value)" class="kendo-search textbox1 " />
+                        <input title="Search" value="" type="submit" class="button1">
+                    </div>
+
+                    <button kendoGridExcelCommand type="button" icon="file-excel"
+                        class="btn  btn-primary text-white float-right ">
+                        {{'Export_to_Excel'|translate}}
+                    </button>
+                    <button type="button" icon="plus" [routerLink]="['/district/add']"
+                        class="btn  btn-success  text-white float-right mr-2">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </ng-template>
+                <kendo-grid-column field="districtName" title="{{'districtName'|translate}}" [width]="120"
+                    *ngIf="translate.currentLang=='en'">
+                </kendo-grid-column>
+                <kendo-grid-column field="districtNameAr" title="{{'districtNameAr'|translate}}" [width]="120"
+                    *ngIf="translate.currentLang=='ar'">
+                </kendo-grid-column>
+
+                <kendo-grid-column field="cityName" title="{{'cityName'|translate}}" [width]="120"
+                    *ngIf="translate.currentLang=='en'">
+                </kendo-grid-column>
+                <kendo-grid-column field="cityNameAr" title="{{'cityNameAr'|translate}}" [width]="120"
+                    *ngIf="translate.currentLang=='ar'">
+                </kendo-grid-column>
+                <kendo-grid-column [width]="120">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <!-- <button *ngIf="!dataItem.inActive" class="btn btn-outline-primary mr-2" type="button"><span
+                                class="fa fa-check"> </span></button> -->
+                        <button class="btn btn-outline-primary" type="button"
+                            [routerLink]="['/district/edit', dataItem.districtId]"><span class="k-icon k-i-edit">
+                            </span></button>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-excel fileName="WorkStations.xlsx" [fetchData]="allData"></kendo-grid-excel>
+                <kendo-grid-messages
+                    [groupPanelEmpty]="'Drag a column header and drop it here to group by that column'|translate"
+                    [pagerItemsPerPage]="'items_per_page'|translate" [pagerItems]="'itemsPage'|translate"
+                    [pagerOf]="'of'|translate" noRecords="{{'no_records_available' | translate}}">
+                </kendo-grid-messages>
+            </kendo-grid>
+        </div>
+    </div>
+</div>

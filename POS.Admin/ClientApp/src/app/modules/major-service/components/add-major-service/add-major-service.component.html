@@ -1,0 +1,130 @@
+<div class="pt-77">
+    <nav class="Breadcrumb-title" aria-label="breadcrumb">
+        <ol class="breadcrumb  ">
+            <li class="mr-3 active">
+                <i class="fa fa-tachometer arqami-color" aria-hidden="true"></i>
+            </li>
+
+            <li class="breadcrumb-item active" aria-current="page">
+                <span id="pageTitle">
+                    {{'MajorServicesType'| translate}}</span>
+            </li>
+        </ol>
+    </nav>
+    <div class="p-1">
+        <div class="wrap">
+            <div class="content">
+                <div class="main-card  card">
+                    <div class="card-body">
+                        <form class=" form" [formGroup]="form">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-6 ">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-12 col-lg-12 ">
+                                            <div class="form-group ">
+                                                <label class="label-input-pos required-label">
+                                                    {{'MajorServices'| translate}}</label>
+                                                <ng-select class="form-control input-sm" [items]="majorServicesArr "
+                                                    [(ngModel)]="serviceId" bindLabel="serviceName"
+                                                    (change)="onChangeMajorService($event)"
+                                                    [ngModelOptions]="{standalone: true}" bindValue="serviceId">
+                                                </ng-select>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6">
+                                    <div class="row form-group position-relative">
+                                        <a class="btn btn-primary m-2 abs-plus" role="button" (click)="addItem()">
+
+                                            <div class=" text-white">
+                                                <i class="fa fa-plus"></i>
+                                            </div>
+                                        </a>
+                                        <div class="col-md-12 col-lg-12 ">
+
+                                            <div class="card mb-2">
+                                                <div class="card-body"
+                                                    style="height: 229px;overflow-y: auto;overflow-x: hidden; ">
+
+                                                    <div class="w-100 h-auto imageSelect"
+                                                        formArrayName="majorServiceTypes"
+                                                        *ngFor="let item of form.get('majorServiceTypes')?.controls ; let i = index">
+
+                                                        <div class="row" [formGroupName]="i">
+                                                            <div class="col-md-12 col-lg-5 ">
+                                                                <div class=" text-left form-group">
+                                                                    <div class="input-wrap is-required">
+                                                                        <label
+                                                                            class="label-input-pos required-label">{{'TypeName'| translate}}</label>
+                                                                        <input type="text" formControlName="typeName"special3Char
+                                                                            #inputs class="form-control input-sm">
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 col-lg-5 ">
+                                                                <div class=" text-left form-group">
+                                                                    <div class="input-wrap is-required">
+                                                                        <label
+                                                                            class="label-input-pos
+                                                                          required-label">{{'TypeNameAr'| translate}}</label>
+                                                                        <input type="text" formControlName="typeNameAr"special3Char
+                                                                            class="form-control input-sm">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 col-lg-2 ">
+                                                                <div class=" d-flex justify-content-center">
+
+                                                                    <a class="btn btn-danger m-2" role="button"
+                                                                        (click)="removeItem(i,item.value)">
+
+                                                                        <div class=" text-white">
+                                                                            <i class="fa fa-minus"></i>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="clearfix">&nbsp;</div>
+                            <div class="container d-flex justify-content-center">
+                                <a class="button" role="button" (click)="addServiceType()">
+                                    <span>{{'save'| translate}}</span>
+                                    <div class="icon text-white">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                </a>
+                                <!-- <a class="button" role="button" [routerLink]="['/major-service/service-type']">
+                                    <span>{{'cancel'| translate}}</span>
+                                    <div class="icon text-white">
+                                        <i class="fa fa-close"></i>
+                                    </div>
+                                </a> -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-delete-service-type #deleteServiceTypeCom (onDeleted)="getServiceTypesByMajorServiceId()">
+</app-delete-service-type>
