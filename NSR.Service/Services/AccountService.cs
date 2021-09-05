@@ -181,7 +181,11 @@ namespace NSR.Service
                 Password = model.Password,
                 PhoneNumber = model.PhoneNumber,
                 EmailConfirmed = false,
-
+                IsSuperAdmin = false,
+                LockoutEnabled = false,
+                CompanyId = company.CompanyId,
+                UserType = 1
+                // VerificationCode = VerificationCode jjjjjjjjjjjjjjjjjjjjjjjj
             };
             var result = await _userManger.CreateAsync(identityUser, model.Password);
 
