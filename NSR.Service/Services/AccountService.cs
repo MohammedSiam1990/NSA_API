@@ -185,7 +185,7 @@ namespace NSR.Service
                 LockoutEnabled = false,
                 CompanyId = company.CompanyId,
                 UserType = 1
-                // VerificationCode = VerificationCode jjjjjjjjjjjjjjjjjjjjjjjj
+                // VerificationCode = VerificationCode 
             };
             var result = await _userManger.CreateAsync(identityUser, model.Password);
 

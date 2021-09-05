@@ -11,6 +11,7 @@ using NSR.Core.Resources;
 using Steander.Core.Entities; 
 namespace NSR.Service.Services
 {
+    //Muath    
     public class UniversityService : BaseService, IUniversityService
     {
         private UserManager<ApplicationUser> _userManger;

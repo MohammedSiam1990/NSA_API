@@ -23,9 +23,19 @@
     <None Remove="uploads\MajorService\**" />
   </ItemGroup>
   <ItemGroup>
-
-
-   
+    <Compile Remove="Controllers\CustomerController.cs" />
+    <Compile Remove="Controllers\ItemController.cs" />
+    <Compile Remove="Controllers\ItemGroupsController.cs" />
+    <Compile Remove="Controllers\MobileController.cs" />
+    <Compile Remove="Controllers\PaymentMethodController.cs" />
+    <Compile Remove="Controllers\PriceTemplateController.cs" />
+    <Compile Remove="Controllers\RemarksTemplateController.cs" />
+    <Compile Remove="Controllers\SupplierController.cs" />
+    <Compile Remove="Controllers\TaxController.cs" />
+    <Compile Remove="Controllers\WorkTimeTemplateController.cs" />
+    <Compile Remove="Helpers\AppException.cs" />
+    <Compile Remove="Helpers\Exceptions.cs" />
+    <Compile Remove="Models\CurrencyExchangeRateModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
